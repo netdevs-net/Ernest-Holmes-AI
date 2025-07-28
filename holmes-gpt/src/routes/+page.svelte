@@ -3,8 +3,7 @@
 	import ChatInterface from '$lib/components/ChatInterface.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import QuestionHistory from '$lib/components/QuestionHistory.svelte';
-	import { questionCount, saveQuestion, updateQuestionSource } from '$lib/stores/questionStore';
-	import sqliteStorage from '$lib/utils/sqliteStorage';
+	import { questionCount, saveQuestion, updateQuestionSource, questions } from '$lib/stores/questionStore';
 	import { extractTags } from '$lib/utils/questionStorage';
 	import { getDeviceFingerprint, getSessionId, storeDeviceInfo } from '$lib/utils/macAddress';
 	
@@ -99,7 +98,7 @@
 				}];
 			} else {
 				// Update the last question with response preview and source
-				const lastQuestion = sqliteStorage.getQuestions()[0];
+				const lastQuestion = $questions[0];
 				if (lastQuestion && lastQuestion.question === content) {
 					updateQuestionSource(lastQuestion.id, {
 						responsePreview: data.response.substring(0, 100) + '...',
