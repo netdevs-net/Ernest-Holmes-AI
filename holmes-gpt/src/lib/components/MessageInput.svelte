@@ -47,9 +47,9 @@
 				type="button"
 				class="quotes-btn" 
 				on:click={onQuotesClick}
-				title="View Quotes from Ernest Holmes"
+				title="View Quotes Slideshow"
 			>
-				📖 Wisdom Quotes
+				🎬 Quotes Slideshow
 			</button>
 		</div>
 	</div>

@@ -3,7 +3,7 @@
 	import ChatInterface from '$lib/components/ChatInterface.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import QuestionHistory from '$lib/components/QuestionHistory.svelte';
-	import QuotesDisplay from '$lib/components/QuotesDisplay.svelte';
+	import QuotesSlideshow from '$lib/components/QuotesSlideshow.svelte';
 	import { questionCount, saveQuestion, updateQuestionSource, questions } from '$lib/stores/questionStore';
 	import { extractTags } from '$lib/utils/questionStorage';
 	import { getDeviceFingerprint, getSessionId, storeDeviceInfo } from '$lib/utils/macAddress';
@@ -202,24 +202,12 @@
 		</div>
 	{/if}
 	
-	{#if showQuotes}
-		<div 
-			class="quotes-overlay" 
-			on:click|self={toggleQuotes}
-			on:keydown={handleOverlayKeydown}
-			role="dialog"
-			aria-modal="true"
-			aria-label="Wisdom Quotes"
-			tabindex="-1"
-		>
-			<QuotesDisplay 
-				limit={5}
-				showRandom={true}
-				autoRefresh={false}
-				onClose={toggleQuotes}
-			/>
-		</div>
-	{/if}
+	<QuotesSlideshow 
+		isVisible={showQuotes}
+		onClose={toggleQuotes}
+		autoPlay={true}
+		slideDuration={8000}
+	/>
 </main>
 
 <style>
