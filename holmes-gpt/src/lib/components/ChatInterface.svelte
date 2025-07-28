@@ -19,7 +19,7 @@
 	}
 </script>
 
-<div class="flex flex-col h-[calc(100vh-200px)] max-w-4xl mx-auto">
+<div class="flex flex-col h-[calc(100vh-120px)] max-w-4xl mx-auto">
 	<!-- Messages Container -->
 	<div class="flex-1 overflow-y-auto p-4 space-y-4">
 		{#each messages as message (message.timestamp.getTime())}

@@ -234,8 +234,8 @@
 	<div class="relative z-10 flex flex-col">
 		<Header on:styleChanged={handleStyleChange} />
 		
-		<div class="container mx-auto px-4 pt-4 pb-8 max-w-5xl flex-1">
-			<div class="chat-container rounded-3xl p-8 relative">
+		<div class="container mx-auto px-4 pt-2 pb-4 max-w-5xl flex-1">
+			<div class="chat-container rounded-3xl p-4 relative">
 				<ChatInterface 
 					{messages} 
 					{isLoading} 
