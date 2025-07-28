@@ -66,11 +66,11 @@
 	<form on:submit|preventDefault={handleSubmit} class="flex space-x-4">
 		<div class="flex-1 relative">
 			<textarea
-				bind:this={textarea}
 				bind:value={message}
 				on:keydown={handleKeydown}
 				placeholder="Ask Ernest Holmes a spiritual question..."
-				class="w-full px-6 py-4 border border-gray-600/50 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400 bg-gray-800/50 backdrop-blur-sm text-gray-100 placeholder-gray-400 text-base"
+				class="w-full px-6 py-4 border rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400 backdrop-blur-sm text-base"
+				style="border-color: var(--border-primary); background: var(--glass-bg); color: var(--text-primary);"
 				rows="1"
 				disabled={isLoading}
 			></textarea>
@@ -153,44 +153,42 @@
 	
 	.category-select {
 		padding: 8px 12px;
-		border: 1px solid rgba(156, 163, 175, 0.3);
 		border-radius: 8px;
-		background: rgba(31, 41, 55, 0.5);
-		color: #f3f4f6;
 		font-size: 0.9rem;
 		backdrop-filter: blur(4px);
 		min-width: 120px;
+		border: 1px solid var(--border-primary);
+		background: var(--glass-bg);
+		color: var(--text-primary);
 	}
 	
 	.category-select:focus {
 		outline: none;
-		border-color: rgba(251, 191, 36, 0.5);
+		border-color: var(--text-accent);
 	}
 	
 	.send-btn {
-		padding: 1rem 2rem;
-		background: linear-gradient(to right, #f59e0b, #ea580c);
+		padding: 8px 16px;
+		background: linear-gradient(135deg, var(--text-accent), #f59e0b);
+		border: none;
+		border-radius: 8px;
 		color: white;
-		border-radius: 1rem;
-		font-weight: 500;
-		opacity: 1;
+		font-size: 0.9rem;
 		cursor: pointer;
-		transition: all 0.3s;
+		transition: all 0.2s;
 		display: flex;
 		align-items: center;
-		gap: 0.75rem;
-		box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-		border: none;
+		gap: 8px;
+		backdrop-filter: blur(4px);
 	}
 	
-	.send-btn:hover {
-		background: linear-gradient(to right, #d97706, #c2410c);
-		box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-		transform: scale(1.05);
+	.send-btn:hover:not(:disabled) {
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
 	}
 	
 	.send-btn:disabled {
-		opacity: 0.5;
+		opacity: 0.6;
 		cursor: not-allowed;
 		transform: none;
 	}

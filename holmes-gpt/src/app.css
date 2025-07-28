@@ -20,19 +20,19 @@
 }
 
 [data-theme="light"] {
-  /* Light theme */
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --bg-tertiary: #e2e8f0;
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
-  --text-accent: #d97706;
-  --border-primary: rgba(0, 0, 0, 0.1);
-  --border-secondary: rgba(0, 0, 0, 0.05);
-  --shadow-primary: rgba(0, 0, 0, 0.1);
-  --shadow-secondary: rgba(0, 0, 0, 0.05);
-  --glass-bg: rgba(255, 255, 255, 0.8);
-  --glass-border: rgba(0, 0, 0, 0.1);
+  /* Light theme - Improved for better readability */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-accent: #ea580c;
+  --border-primary: rgba(0, 0, 0, 0.15);
+  --border-secondary: rgba(0, 0, 0, 0.08);
+  --shadow-primary: rgba(0, 0, 0, 0.15);
+  --shadow-secondary: rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(0, 0, 0, 0.12);
 }
 
 @layer base {
