@@ -220,8 +220,6 @@
 			/>
 		</div>
 	{/if}
-		</div>
-	</div>
 </main>
 
 <style>
