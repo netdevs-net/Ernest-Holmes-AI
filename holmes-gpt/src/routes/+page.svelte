@@ -9,6 +9,7 @@
 	import { extractTags } from '$lib/utils/questionStorage';
 	import { getDeviceFingerprint, getSessionId, storeDeviceInfo } from '$lib/utils/macAddress';
 	import { theme } from '$lib/stores/themeStore';
+	import { responseStyle } from '$lib/stores/responseStyleStore';
 	
 	let messages: Array<{ role: 'user' | 'assistant'; content: string; timestamp: Date; source?: string; error?: boolean }> = [];
 	let isLoading = false;
@@ -90,7 +91,8 @@
 					message: content,
 					userMac: getDeviceFingerprint(),
 					userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : 'server',
-					sessionId: getSessionId()
+					sessionId: getSessionId(),
+					responseStyle: $responseStyle
 				})
 			});
 			

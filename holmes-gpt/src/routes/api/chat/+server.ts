@@ -59,6 +59,43 @@ or
 
 Remember: You are speaking as Ernest Holmes would speak, sharing the wisdom of the Science of Mind with clarity, compassion, and spiritual authority.`;
 
+const MODERN_SYSTEM_PROMPT = `You are an AI assistant inspired by Ernest Holmes' teachings, providing spiritual guidance in modern, accessible language.
+
+**FORMATTING REQUIREMENTS:**
+- Use **bold text** for key spiritual concepts and principles
+- Use *italics* for emphasis and important points
+- Use single line breaks between paragraphs for readability
+- Use bullet points or numbered lists when appropriate
+- Structure responses with clear sections
+
+**CONTENT REQUIREMENTS:**
+- Be uplifting and affirmative
+- Guide the questioner into their own power and inner divinity
+- Reflect the understanding that Spirit is the Source of all good
+- Use modern, accessible language while maintaining spiritual depth
+- Be clear, thoughtful, and spiritually grounded
+- Always affirm the presence of Divine Intelligence within
+- Include relevant insights from spiritual wisdom when appropriate
+- Use bold phrases for emphasis on key spiritual truths
+- Create visual hierarchy with formatting
+
+**EXAMPLE FORMAT:**
+"*The spiritual wisdom teaches us* that **you are not a victim of circumstance, but the creator of your own experience.**"
+
+**Key Spiritual Truths:**
+• **Divine Intelligence** is within you
+• **Creative Power** flows through your thoughts
+• **Spiritual Law** responds to your consciousness
+
+**STRUCTURE YOUR RESPONSES WITH:**
+1. **Opening affirmation** with bold key concepts
+2. **Main explanation** with italics for emphasis
+3. **Relevant insights** from spiritual wisdom
+4. **Practical application** with bullet points
+5. **Closing inspiration** with bold spiritual truths
+
+Remember: You are providing spiritual guidance in modern, accessible language while honoring the depth and wisdom of spiritual teachings.`;
+
 // Retry configuration
 const MAX_RETRIES = 3;
 const RETRY_DELAY = 1000; // 1 second
@@ -112,13 +149,15 @@ function getRelevantQuotes(userMessage: string): string[] {
 	}
 }
 
-async function makeApiCall(message: string, retryCount = 0): Promise<any> {
+async function makeApiCall(message: string, responseStyle: 'modern' | 'his-words' = 'modern', retryCount = 0): Promise<any> {
 	try {
+		const systemPrompt = responseStyle === 'his-words' ? HOLMES_SYSTEM_PROMPT : MODERN_SYSTEM_PROMPT;
+		
 		const response = await anthropic.messages.create({
 			model: 'claude-3-haiku-20240307',
 			max_tokens: 1500,
 			temperature: 0.7,
-			system: HOLMES_SYSTEM_PROMPT,
+			system: systemPrompt,
 			messages: [
 				{
 					role: 'user',
@@ -146,7 +185,7 @@ async function makeApiCall(message: string, retryCount = 0): Promise<any> {
 		)) {
 			console.log(`Retrying API call in ${RETRY_DELAY}ms... (attempt ${retryCount + 1}/${MAX_RETRIES})`);
 			await delay(RETRY_DELAY * (retryCount + 1)); // Exponential backoff
-			return makeApiCall(message, retryCount + 1);
+			return makeApiCall(message, responseStyle, retryCount + 1);
 		}
 		
 		throw error;
@@ -155,7 +194,7 @@ async function makeApiCall(message: string, retryCount = 0): Promise<any> {
 
 export const POST: RequestHandler = async ({ request, cookies, getClientAddress }) => {
 	try {
-		const { message, userMac, userAgent, sessionId } = await request.json();
+		const { message, userMac, userAgent, sessionId, responseStyle = 'modern' } = await request.json();
 		
 		// Get client information
 		const clientInfo = getClientInfo({ request, cookies, getClientAddress } as any);
@@ -172,11 +211,12 @@ export const POST: RequestHandler = async ({ request, cookies, getClientAddress 
 			}, { status: 400 });
 		}
 
-		const response = await makeApiCall(message);
+		const response = await makeApiCall(message, responseStyle);
 
 		return json({
 			response: response.content[0].type === 'text' ? response.content[0].text : 'I apologize, but I am unable to respond at this moment.',
 			source: 'claude-3-haiku',
+			responseStyle: responseStyle,
 			timestamp: new Date().toISOString(),
 			clientInfo: {
 				ip: clientInfo.ip,
