@@ -1,44 +1,43 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
-	
-	export let isVisible = false;
-	export let onClose: () => void = () => {};
-	export let autoPlay = true;
-	export let slideDuration = 8000; // 8 seconds per quote
+	import { slide } from 'svelte/transition';
 	
 	interface Quote {
 		quote: string;
 		source: string;
 	}
 	
+	export let searchTerm = '';
+	export let limit = 10;
+	export let showRandom = true;
+	export let autoRotate = true;
+	export let rotationInterval = 5000; // 5 seconds
+	export let onClose: () => void = () => {};
+	
 	let quotes: Quote[] = [];
 	let currentIndex = 0;
-	let loading = true;
+	let loading = false;
 	let error = '';
-	let interval: any;
-	let isFadingIn = false;
-	let isFadingOut = false;
-	
-	onMount(async () => {
-		await loadQuotes();
-		if (autoPlay && isVisible) {
-			startSlideshow();
-		}
-	});
-	
-	onDestroy(() => {
-		if (interval) {
-			clearInterval(interval);
-		}
-	});
+	let totalQuotes = 0;
+	let rotationTimer: ReturnType<typeof setInterval>;
+	let isPaused = false;
 	
 	async function loadQuotes() {
+		loading = true;
+		error = '';
+		
 		try {
-			loading = true;
-			const response = await fetch('/api/quotes?limit=50&random=true');
+			const params = new URLSearchParams();
+			if (searchTerm) params.append('search', searchTerm);
+			if (limit) params.append('limit', limit.toString());
+			if (showRandom) params.append('random', 'true');
+			
+			const response = await fetch(`/api/quotes?${params.toString()}`);
 			if (response.ok) {
 				const data = await response.json();
-				quotes = data.quotes || [];
+				quotes = data.quotes;
+				totalQuotes = data.total;
+				currentIndex = 0;
 			} else {
 				error = 'Failed to load quotes';
 			}
@@ -50,480 +49,460 @@
 		}
 	}
 	
-	function startSlideshow() {
-		if (interval) {
-			clearInterval(interval);
-		}
-		interval = setInterval(() => {
-			nextQuote();
-		}, slideDuration);
-	}
-	
-	function stopSlideshow() {
-		if (interval) {
-			clearInterval(interval);
-			interval = 0;
-		}
+	function formatSource(source: string): string {
+		// Convert filename to readable title
+		return source
+			.replace('.html', '')
+			.replace(/-/g, ' ')
+			.split(' ')
+			.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+			.join(' ');
 	}
 	
 	function nextQuote() {
-		if (quotes.length > 0) {
-			// Start fade out
-			isFadingOut = true;
-			setTimeout(() => {
-				currentIndex = (currentIndex + 1) % quotes.length;
-				isFadingOut = false;
-				isFadingIn = true;
-				setTimeout(() => {
-					isFadingIn = false;
-				}, 2000); // 2 second fade in
-			}, 2000); // 2 second fade out
+		if (quotes.length > 1) {
+			currentIndex = (currentIndex + 1) % quotes.length;
 		}
 	}
 	
 	function previousQuote() {
-		if (quotes.length > 0) {
-			// Start fade out
-			isFadingOut = true;
-			setTimeout(() => {
-				currentIndex = currentIndex === 0 ? quotes.length - 1 : currentIndex - 1;
-				isFadingOut = false;
-				isFadingIn = true;
-				setTimeout(() => {
-					isFadingIn = false;
-				}, 2000); // 2 second fade in
-			}, 2000); // 2 second fade out
+		if (quotes.length > 1) {
+			currentIndex = currentIndex === 0 ? quotes.length - 1 : currentIndex - 1;
 		}
+	}
+	
+	function goToQuote(index: number) {
+		if (index >= 0 && index < quotes.length) {
+			currentIndex = index;
+		}
+	}
+	
+	function togglePause() {
+		isPaused = !isPaused;
+		if (isPaused) {
+			clearInterval(rotationTimer);
+		} else {
+			startRotation();
+		}
+	}
+	
+	function startRotation() {
+		if (autoRotate && quotes.length > 1) {
+			rotationTimer = setInterval(nextQuote, rotationInterval);
+		}
+	}
+	
+	function stopRotation() {
+		clearInterval(rotationTimer);
+	}
+	
+	function refreshQuotes() {
+		loadQuotes();
 	}
 	
 	function handleKeydown(event: KeyboardEvent) {
-		if (!isVisible) return;
-		
 		switch (event.key) {
-			case 'Escape':
-				onClose();
-				break;
 			case 'ArrowRight':
 			case ' ':
+				event.preventDefault();
 				nextQuote();
 				break;
 			case 'ArrowLeft':
+				event.preventDefault();
 				previousQuote();
+				break;
+			case 'Escape':
+				event.preventDefault();
+				onClose();
 				break;
 			case 'p':
 			case 'P':
-				if (interval) {
-					stopSlideshow();
-				} else {
-					startSlideshow();
-				}
+				event.preventDefault();
+				togglePause();
 				break;
 		}
 	}
 	
-	function formatSource(source: string): string {
-		// Convert filename to readable source
-		const sourceMap: Record<string, string> = {
-			'science-of-mind-1938': 'The Science of Mind',
-			'creative-mind-success-1919': 'Creative Mind and Success',
-			'hidden-power-bible-1929': 'The Hidden Power of the Bible',
-			'this-thing-called-you-1948': 'This Thing Called You',
-			'words-that-heal-today-1949': 'Words That Heal Today'
-		};
+	onMount(() => {
+		loadQuotes();
+		document.addEventListener('keydown', handleKeydown);
 		
-		const cleanSource = source.replace('.txt', '').replace(/-/g, '-');
-		return sourceMap[cleanSource] || source;
+		return () => {
+			document.removeEventListener('keydown', handleKeydown);
+			stopRotation();
+		};
+	});
+	
+	onDestroy(() => {
+		stopRotation();
+	});
+	
+	// Watch for prop changes
+	$: if (searchTerm || limit || showRandom) {
+		loadQuotes();
 	}
 	
-	function extractYear(source: string): string {
-		// Extract year from source filename
-		const yearMatch = source.match(/(\d{4})/);
-		return yearMatch ? yearMatch[1] : '';
-	}
-	
-	$: if (isVisible && autoPlay && !interval) {
-		startSlideshow();
-	}
-	
-	$: if (!isVisible && interval) {
-		stopSlideshow();
+	// Start rotation when quotes are loaded
+	$: if (quotes.length > 1 && autoRotate && !isPaused) {
+		stopRotation();
+		startRotation();
 	}
 </script>
 
-<svelte:window on:keydown={handleKeydown} />
-
-{#if isVisible}
-	<div class="quotes-slideshow-overlay" on:click|self={onClose}>
-		<div class="slideshow-container">
-			{#if loading}
-				<div class="loading-screen">
-					<div class="loading-spinner"></div>
-					<p class="loading-text">Loading wisdom...</p>
-				</div>
-			{:else if error}
-				<div class="error-screen">
-					<p class="error-text">{error}</p>
-					<button class="retry-btn" on:click={loadQuotes}>Try Again</button>
-				</div>
-			{:else if quotes.length === 0}
-				<div class="empty-screen">
-					<p class="empty-text">No quotes available</p>
-				</div>
-			{:else}
-				<div class="quote-slide" class:fade-in={isFadingIn} class:fade-out={isFadingOut}>
-					<div class="quote-content">
-						<p class="quote-text">
-							{quotes[currentIndex].quote}
-						</p>
-					</div>
-					
-					<div class="quote-attribution">
-						<div class="author-name">Ernest Holmes</div>
-						<div class="source-info">
-							{formatSource(quotes[currentIndex].source)}
-							{#if extractYear(quotes[currentIndex].source)}
-								<span class="year">— {extractYear(quotes[currentIndex].source)}</span>
-							{/if}
-						</div>
-					</div>
-				</div>
-				
-				<!-- Navigation Controls -->
-				<div class="navigation-controls">
-					<button class="nav-btn prev-btn" on:click={previousQuote} title="Previous Quote (←)">
-						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-						</svg>
-					</button>
-					
-					<div class="slide-indicator">
-						{currentIndex + 1} / {quotes.length}
-					</div>
-					
-					<button class="nav-btn next-btn" on:click={nextQuote} title="Next Quote (→)">
-						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-						</svg>
-					</button>
-				</div>
-				
-				<!-- Play/Pause Control -->
-				<button 
-					class="play-pause-btn" 
-					on:click={() => interval ? stopSlideshow() : startSlideshow()}
-					title="Play/Pause (P)"
-				>
-					{#if interval}
-						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-							<rect x="6" y="4" width="4" height="16"/>
-							<rect x="14" y="4" width="4" height="16"/>
-						</svg>
-					{:else}
-						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-							<polygon points="5,3 19,12 5,21"/>
-						</svg>
-					{/if}
-				</button>
-				
-				<!-- Close Button -->
-				<button class="close-btn" on:click={onClose} title="Close (Esc)">
-					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-					</svg>
-				</button>
-				
-				<!-- Help Text -->
-				<div class="help-text">
-					Use arrow keys or spacebar to navigate • P to pause/play • Esc to close
-				</div>
+<div class="quotes-slideshow-container" tabindex="-1">
+	<div class="quotes-header">
+		<h3 class="quotes-title">
+			📖 Wisdom from Ernest Holmes
+			{#if totalQuotes > 0}
+				<span class="quotes-count">({totalQuotes} quotes available)</span>
 			{/if}
+		</h3>
+		<div class="header-actions">
+			<button 
+				class="control-btn pause-btn" 
+				on:click={togglePause}
+				title="Pause/Resume slideshow"
+				aria-label="Pause slideshow"
+			>
+				{#if isPaused}▶️{:else}⏸️{/if}
+			</button>
+			<button 
+				class="control-btn refresh-btn" 
+				on:click={refreshQuotes}
+				disabled={loading}
+				title="Refresh quotes"
+				aria-label="Refresh quotes"
+			>
+				🔄
+			</button>
+			<button 
+				class="control-btn close-btn" 
+				on:click={onClose}
+				title="Close slideshow"
+				aria-label="Close quotes slideshow"
+			>
+				✕
+			</button>
 		</div>
 	</div>
-{/if}
+	
+	{#if loading}
+		<div class="loading-container">
+			<div class="loading-spinner"></div>
+			<p>Loading wisdom...</p>
+		</div>
+	{:else if error}
+		<div class="error-container">
+			<p>❌ {error}</p>
+			<button class="retry-btn" on:click={loadQuotes}>Try Again</button>
+		</div>
+	{:else if quotes.length === 0}
+		<div class="empty-container">
+			<p>No quotes found. Try adjusting your search.</p>
+		</div>
+	{:else}
+		<div class="slideshow-content">
+			<!-- Navigation Buttons -->
+			<button 
+				class="nav-btn prev-btn" 
+				on:click={previousQuote}
+				disabled={quotes.length <= 1}
+				title="Previous quote"
+				aria-label="Previous quote"
+			>
+				‹
+			</button>
+			
+			<!-- Quote Display -->
+			<div class="quote-display">
+				<div class="quote-content" transition:slide={{ duration: 300 }}>
+					<blockquote class="quote-text">
+						"{quotes[currentIndex].quote}"
+					</blockquote>
+					<cite class="quote-source">
+						— {formatSource(quotes[currentIndex].source)}
+					</cite>
+				</div>
+			</div>
+			
+			<button 
+				class="nav-btn next-btn" 
+				on:click={nextQuote}
+				disabled={quotes.length <= 1}
+				title="Next quote"
+				aria-label="Next quote"
+			>
+				›
+			</button>
+		</div>
+		
+		<!-- Progress Indicators -->
+		{#if quotes.length > 1}
+			<div class="progress-container">
+				<div class="progress-dots">
+					{#each quotes as _, index}
+						<button 
+							class="progress-dot" 
+							class:active={index === currentIndex}
+							on:click={() => goToQuote(index)}
+							title="Go to quote {index + 1}"
+							aria-label="Go to quote {index + 1}"
+						></button>
+					{/each}
+				</div>
+				<div class="progress-text">
+					{currentIndex + 1} of {quotes.length}
+				</div>
+			</div>
+		{/if}
+		
+		<!-- Controls Info -->
+		<div class="controls-info">
+			<p>Use arrow keys or click to navigate • Press P to pause • Press ESC to close</p>
+		</div>
+	{/if}
+</div>
 
 <style>
-	.quotes-slideshow-overlay {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: #000000;
-		z-index: 10000;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		cursor: pointer;
-	}
-	
-	.slideshow-container {
-		width: 100%;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
+	.quotes-slideshow-container {
+		background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+		border-radius: 20px;
 		padding: 2rem;
+		max-width: 800px;
+		width: 100%;
+		max-height: 90vh;
+		overflow-y: auto;
+		box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+		border: 1px solid rgba(255, 255, 255, 0.1);
 		position: relative;
 	}
-	
-	.quote-slide {
-		width: 100%;
-		max-width: 1200px;
-		text-align: center;
-		opacity: 0;
-		transform: translateY(20px);
-		animation: fadeInUp 1s ease-out forwards;
+
+	.quotes-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 2rem;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 	}
-	
-	.quote-content {
-		margin-bottom: 3rem;
-	}
-	
-	.quote-text {
-		font-size: 90px;
-		line-height: 1.2;
-		font-weight: 300;
-		color: #ffffff;
+
+	.quotes-title {
+		color: #fbbf24;
+		font-size: 1.8rem;
+		font-weight: 700;
 		margin: 0;
-		font-family: 'Georgia', serif;
 		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 	}
-	
-	.quote-attribution {
-		opacity: 0.8;
+
+	.quotes-count {
+		font-size: 1rem;
+		color: #9ca3af;
+		font-weight: 400;
 	}
-	
-	.author-name {
-		font-size: 24px;
-		color: #ffffff;
-		font-weight: 600;
-		margin-bottom: 0.5rem;
-		letter-spacing: 1px;
-	}
-	
-	.source-info {
-		font-size: 16px;
-		color: #cccccc;
-		font-style: italic;
-	}
-	
-	.year {
-		color: #999999;
-	}
-	
-	.navigation-controls {
-		position: absolute;
-		bottom: 2rem;
-		left: 50%;
-		transform: translateX(-50%);
+
+	.header-actions {
 		display: flex;
-		align-items: center;
-		gap: 2rem;
-		background: rgba(0, 0, 0, 0.5);
-		padding: 1rem 2rem;
-		border-radius: 50px;
-		backdrop-filter: blur(10px);
+		gap: 0.5rem;
 	}
-	
-	.nav-btn {
-		background: none;
-		border: none;
-		color: #ffffff;
-		cursor: pointer;
+
+	.control-btn {
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 8px;
 		padding: 0.5rem;
-		border-radius: 50%;
-		transition: all 0.3s ease;
-		opacity: 0.7;
-	}
-	
-	.nav-btn:hover {
-		opacity: 1;
-		background: rgba(255, 255, 255, 0.1);
-		transform: scale(1.1);
-	}
-	
-	.slide-indicator {
-		color: #ffffff;
-		font-size: 14px;
-		font-weight: 500;
-		opacity: 0.8;
-	}
-	
-	.play-pause-btn {
-		position: absolute;
-		top: 2rem;
-		right: 2rem;
-		background: none;
-		border: none;
-		color: #ffffff;
+		color: #e5e7eb;
 		cursor: pointer;
-		padding: 1rem;
-		border-radius: 50%;
-		transition: all 0.3s ease;
-		opacity: 0.7;
+		transition: all 0.2s;
+		font-size: 1.2rem;
 	}
-	
-	.play-pause-btn:hover {
-		opacity: 1;
-		background: rgba(255, 255, 255, 0.1);
+
+	.control-btn:hover {
+		background: rgba(255, 255, 255, 0.2);
+		border-color: rgba(255, 255, 255, 0.3);
 	}
-	
-	.close-btn {
-		position: absolute;
-		top: 2rem;
-		left: 2rem;
-		background: none;
-		border: none;
-		color: #ffffff;
-		cursor: pointer;
-		padding: 1rem;
-		border-radius: 50%;
-		transition: all 0.3s ease;
-		opacity: 0.7;
+
+	.control-btn:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
 	}
-	
-	.close-btn:hover {
-		opacity: 1;
-		background: rgba(255, 255, 255, 0.1);
-	}
-	
-	.help-text {
-		position: absolute;
-		bottom: 1rem;
-		left: 50%;
-		transform: translateX(-50%);
-		color: #666666;
-		font-size: 12px;
-		opacity: 0.6;
-	}
-	
-	.loading-screen, .error-screen, .empty-screen {
+
+	.loading-container,
+	.error-container,
+	.empty-container {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		height: 100%;
-		color: #ffffff;
+		min-height: 300px;
+		color: #e5e7eb;
+		text-align: center;
 	}
-	
+
 	.loading-spinner {
 		width: 40px;
 		height: 40px;
-		border: 3px solid rgba(255, 255, 255, 0.3);
-		border-top: 3px solid #ffffff;
+		border: 3px solid rgba(251, 191, 36, 0.3);
+		border-top: 3px solid #fbbf24;
 		border-radius: 50%;
 		animation: spin 1s linear infinite;
 		margin-bottom: 1rem;
 	}
-	
-	.loading-text, .error-text, .empty-text {
-		font-size: 18px;
-		opacity: 0.8;
-	}
-	
-	.retry-btn {
-		background: rgba(255, 255, 255, 0.1);
-		border: 1px solid rgba(255, 255, 255, 0.3);
-		color: #ffffff;
-		padding: 0.5rem 1rem;
-		border-radius: 4px;
-		cursor: pointer;
-		margin-top: 1rem;
-		transition: all 0.3s ease;
-	}
-	
-	.retry-btn:hover {
-		background: rgba(255, 255, 255, 0.2);
-	}
-	
-	@keyframes fadeInUp {
-		from {
-			opacity: 0;
-			transform: translateY(20px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-	
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
-		}
-		to {
-			opacity: 1;
-		}
-	}
-	
-	@keyframes fadeOut {
-		from {
-			opacity: 1;
-		}
-		to {
-			opacity: 0;
-		}
-	}
-	
-	.fade-in {
-		animation: fadeIn 2s ease-in-out;
-	}
-	
-	.fade-out {
-		animation: fadeOut 2s ease-in-out;
-	}
-	
+
 	@keyframes spin {
 		0% { transform: rotate(0deg); }
 		100% { transform: rotate(360deg); }
 	}
-	
+
+	.retry-btn {
+		background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+		border: none;
+		border-radius: 8px;
+		padding: 0.75rem 1.5rem;
+		color: #1a1a2e;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.2s;
+		margin-top: 1rem;
+	}
+
+	.retry-btn:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+	}
+
+	.slideshow-content {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		min-height: 300px;
+	}
+
+	.nav-btn {
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 50%;
+		width: 50px;
+		height: 50px;
+		color: #e5e7eb;
+		font-size: 1.5rem;
+		cursor: pointer;
+		transition: all 0.2s;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.nav-btn:hover:not(:disabled) {
+		background: rgba(255, 255, 255, 0.2);
+		border-color: rgba(255, 255, 255, 0.3);
+		transform: scale(1.1);
+	}
+
+	.nav-btn:disabled {
+		opacity: 0.3;
+		cursor: not-allowed;
+	}
+
+	.quote-display {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 200px;
+	}
+
+	.quote-content {
+		text-align: center;
+		max-width: 600px;
+	}
+
+	.quote-text {
+		font-size: 1.4rem;
+		line-height: 1.6;
+		color: #e5e7eb;
+		margin: 0 0 1rem 0;
+		font-style: italic;
+		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+	}
+
+	.quote-source {
+		font-size: 1rem;
+		color: #fbbf24;
+		font-weight: 600;
+		font-style: normal;
+		display: block;
+		margin-top: 1rem;
+	}
+
+	.progress-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 2rem;
+		gap: 1rem;
+	}
+
+	.progress-dots {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	.progress-dot {
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.3);
+		border: none;
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+
+	.progress-dot.active {
+		background: #fbbf24;
+		transform: scale(1.2);
+	}
+
+	.progress-dot:hover:not(.active) {
+		background: rgba(255, 255, 255, 0.5);
+	}
+
+	.progress-text {
+		color: #9ca3af;
+		font-size: 0.9rem;
+	}
+
+	.controls-info {
+		text-align: center;
+		margin-top: 1.5rem;
+		padding-top: 1rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		color: #9ca3af;
+		font-size: 0.8rem;
+	}
+
 	/* Responsive Design */
 	@media (max-width: 768px) {
-		.quote-text {
-			font-size: 48px;
-		}
-		
-		.author-name {
-			font-size: 18px;
-		}
-		
-		.source-info {
-			font-size: 14px;
-		}
-		
-		.navigation-controls {
-			bottom: 1rem;
-			padding: 0.5rem 1rem;
-			gap: 1rem;
-		}
-		
-		.play-pause-btn, .close-btn {
-			top: 1rem;
-			padding: 0.5rem;
-		}
-		
-		.play-pause-btn {
-			right: 1rem;
-		}
-		
-		.close-btn {
-			left: 1rem;
-		}
-		
-		.help-text {
-			display: none;
-		}
-	}
-	
-	@media (max-width: 480px) {
-		.quote-text {
-			font-size: 36px;
-		}
-		
-		.slideshow-container {
+		.quotes-slideshow-container {
 			padding: 1rem;
+			margin: 0.5rem;
+		}
+
+		.quotes-title {
+			font-size: 1.4rem;
+		}
+
+		.quote-text {
+			font-size: 1.2rem;
+		}
+
+		.nav-btn {
+			width: 40px;
+			height: 40px;
+			font-size: 1.2rem;
+		}
+
+		.slideshow-content {
+			gap: 0.5rem;
 		}
 	}
 </style> 
