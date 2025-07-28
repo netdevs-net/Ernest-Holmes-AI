@@ -12,16 +12,30 @@
 	let bookmarkedOnly = false;
 	let filteredQuestions: QuestionHistory[] = [];
   
-  		$: {
-			filteredQuestions = searchQuestions({
-				category: selectedCategory || undefined,
-				searchTerm: searchTerm || undefined,
-				bookmarkedOnly
-			});
-		}
+  			$: {
+		// Use reactive statement to trigger search when filters change
+		const filters = {
+			category: selectedCategory || undefined,
+			searchTerm: searchTerm || undefined,
+			bookmarkedOnly
+		};
+		
+		// Call searchQuestions asynchronously
+		searchQuestions(filters).then(questions => {
+			filteredQuestions = questions;
+		});
+	}
   
   	onMount(() => {
 		// Stores will automatically load data
+		// Initialize filtered questions
+		searchQuestions({
+			category: selectedCategory || undefined,
+			searchTerm: searchTerm || undefined,
+			bookmarkedOnly
+		}).then(questions => {
+			filteredQuestions = questions;
+		});
 	});
   
   function loadQuestion(question: QuestionHistory) {
@@ -38,8 +52,8 @@
 			}
 		}
 
-		function handleExportQuestions() {
-			const data = exportQuestions();
+		async function handleExportQuestions() {
+			const data = await exportQuestions();
 			const blob = new Blob([data], { type: 'application/json' });
 			const url = URL.createObjectURL(blob);
 			const a = document.createElement('a');
