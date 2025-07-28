@@ -25,6 +25,10 @@ export class SQLiteStorage {
     return this.questionRepo.getQuestions();
   }
 
+  getQuestionsForUser(sessionId?: string, userMac?: string): QuestionHistory[] {
+    return this.questionRepo.getQuestionsForUser(sessionId, userMac);
+  }
+
   searchQuestions(filters: QuestionFilters): QuestionHistory[] {
     return this.questionRepo.searchQuestions(filters);
   }
@@ -43,6 +47,10 @@ export class SQLiteStorage {
 
   getQuestionCount(): number {
     return this.questionRepo.getQuestionCount();
+  }
+
+  getQuestionCountForUser(sessionId?: string, userMac?: string): number {
+    return this.questionRepo.getQuestionCountForUser(sessionId, userMac);
   }
 
   getBookmarkedCount(): number {

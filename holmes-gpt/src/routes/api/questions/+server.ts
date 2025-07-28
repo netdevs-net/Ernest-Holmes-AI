@@ -5,24 +5,30 @@ import { extractTags } from '$lib/utils/questionStorage';
 import { getClientInfo } from '$lib/utils/clientInfo';
 
 // GET /api/questions - Get all questions with optional filters
-export const GET: RequestHandler = async ({ url }) => {
+export const GET: RequestHandler = async ({ url, cookies, getClientAddress }) => {
   try {
     const category = url.searchParams.get('category');
     const searchTerm = url.searchParams.get('search');
     const bookmarkedOnly = url.searchParams.get('bookmarked') === 'true';
     const limit = parseInt(url.searchParams.get('limit') || '50');
+    const sessionId = url.searchParams.get('sessionId');
+
+    // Get client information for user filtering
+    const clientInfo = getClientInfo({ request: { url } as any, cookies, getClientAddress } as any);
 
     const filters = {
       category: category || undefined,
       searchTerm: searchTerm || undefined,
-      bookmarkedOnly
+      bookmarkedOnly,
+      userSessionId: sessionId || clientInfo.sessionId,
+      userMac: clientInfo.mac
     };
 
     let questions;
     if (Object.values(filters).some(f => f !== undefined)) {
       questions = sqliteStorage.searchQuestions(filters);
     } else {
-      questions = sqliteStorage.getQuestions();
+      questions = sqliteStorage.getQuestionsForUser(filters.userSessionId, filters.userMac);
     }
 
     // Apply limit
@@ -33,7 +39,7 @@ export const GET: RequestHandler = async ({ url }) => {
     return json({
       questions,
       count: questions.length,
-      total: sqliteStorage.getQuestionCount()
+      total: sqliteStorage.getQuestionCountForUser(filters.userSessionId, filters.userMac)
     });
   } catch (error) {
     console.error('Error fetching questions:', error);

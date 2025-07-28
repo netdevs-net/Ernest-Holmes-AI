@@ -68,10 +68,42 @@ export class QuestionRepository {
     return rows.map(this.mapRecordToQuestion);
   }
 
+  // Get questions for specific user
+  getQuestionsForUser(sessionId?: string, userMac?: string): QuestionHistory[] {
+    let query = 'SELECT * FROM questions WHERE 1=0'; // Start with false condition
+    const params: any[] = [];
+
+    if (sessionId) {
+      query = 'SELECT * FROM questions WHERE session_id = ?';
+      params.push(sessionId);
+    } else if (userMac) {
+      query = 'SELECT * FROM questions WHERE user_mac = ?';
+      params.push(userMac);
+    } else {
+      // If no user identification, return empty array
+      return [];
+    }
+
+    query += ' ORDER BY timestamp DESC';
+
+    const stmt = this.db.prepare(query);
+    const rows = stmt.all(...params) as QuestionRecord[];
+    return rows.map(this.mapRecordToQuestion);
+  }
+
   // Search questions with filters
-  searchQuestions(filters: QuestionFilters): QuestionHistory[] {
+  searchQuestions(filters: QuestionFilters & { userSessionId?: string; userMac?: string }): QuestionHistory[] {
     let query = 'SELECT * FROM questions WHERE 1=1';
     const params: any[] = [];
+
+    // User filtering - prioritize sessionId over userMac
+    if (filters.userSessionId) {
+      query += ' AND session_id = ?';
+      params.push(filters.userSessionId);
+    } else if (filters.userMac) {
+      query += ' AND user_mac = ?';
+      params.push(filters.userMac);
+    }
 
     if (filters.category) {
       query += ' AND category = ?';
@@ -135,6 +167,25 @@ export class QuestionRepository {
   getQuestionCount(): number {
     const stmt = this.db.prepare('SELECT COUNT(*) as count FROM questions');
     const result = stmt.get() as { count: number };
+    return result.count;
+  }
+
+  getQuestionCountForUser(sessionId?: string, userMac?: string): number {
+    let query = 'SELECT COUNT(*) as count FROM questions WHERE 1=0'; // Start with false condition
+    const params: any[] = [];
+
+    if (sessionId) {
+      query = 'SELECT COUNT(*) as count FROM questions WHERE session_id = ?';
+      params.push(sessionId);
+    } else if (userMac) {
+      query = 'SELECT COUNT(*) as count FROM questions WHERE user_mac = ?';
+      params.push(userMac);
+    } else {
+      return 0;
+    }
+
+    const stmt = this.db.prepare(query);
+    const result = stmt.get(...params) as { count: number };
     return result.count;
   }
 

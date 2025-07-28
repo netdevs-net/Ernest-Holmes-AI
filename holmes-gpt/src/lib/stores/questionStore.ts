@@ -1,5 +1,6 @@
 import { writable, derived } from 'svelte/store';
 import type { QuestionHistory, QuestionFilters } from '$lib/utils/questionStorage';
+import { getSessionId, getDeviceFingerprint } from '$lib/utils/macAddress';
 
 // Create writable stores for data
 const questionsData = writable<QuestionHistory[]>([]);
@@ -34,7 +35,14 @@ export function triggerQuestionUpdate() {
 // Function to load questions from API
 async function loadQuestions() {
 	try {
-		const response = await fetch('/api/questions');
+		// Get user session information
+		const sessionId = getSessionId();
+		const userMac = getDeviceFingerprint();
+		
+		const params = new URLSearchParams();
+		if (sessionId) params.append('sessionId', sessionId);
+		
+		const response = await fetch(`/api/questions?${params.toString()}`);
 		if (response.ok) {
 			const data = await response.json();
 			questionsData.set(data.questions || []);
@@ -125,10 +133,15 @@ export async function updateQuestionSource(questionId: string, updates: { respon
 
 export async function searchQuestions(filters: QuestionFilters) {
 	try {
+		// Get user session information
+		const sessionId = getSessionId();
+		const userMac = getDeviceFingerprint();
+		
 		const params = new URLSearchParams();
 		if (filters.category) params.append('category', filters.category);
 		if (filters.searchTerm) params.append('search', filters.searchTerm);
 		if (filters.bookmarkedOnly !== undefined) params.append('bookmarked', filters.bookmarkedOnly.toString());
+		if (sessionId) params.append('sessionId', sessionId);
 		
 		const response = await fetch(`/api/questions?${params.toString()}`);
 		if (response.ok) {
