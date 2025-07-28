@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let message: { role: 'user' | 'assistant'; content: string; timestamp: Date };
+	export let message: { role: 'user' | 'assistant'; content: string; timestamp: Date; source?: string; error?: boolean };
 	
 	$: isUser = message.role === 'user';
 	$: formattedTime = message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -29,6 +29,14 @@
 				{#if !isUser}
 					<span>•</span>
 					<span class="text-amber-400">Science of Mind</span>
+					{#if message.source && message.source !== 'fallback'}
+						<span>•</span>
+						<span class="text-blue-400">via {message.source}</span>
+					{/if}
+					{#if message.error}
+						<span>•</span>
+						<span class="text-red-400">⚠️</span>
+					{/if}
 				{/if}
 			</div>
 		</div>

@@ -4,8 +4,11 @@
 	import MessageInput from './MessageInput.svelte';
 	import TypingIndicator from './TypingIndicator.svelte';
 	
-	export let messages: Array<{ role: 'user' | 'assistant'; content: string; timestamp: Date }> = [];
+	export let messages: Array<{ role: 'user' | 'assistant'; content: string; timestamp: Date; source?: string; error?: boolean }> = [];
 	export let isLoading = false;
+	export let onHistoryClick: () => void = () => {};
+	export let questionCount = 0;
+	export let selectedCategory = 'general';
 	
 	const dispatch = createEventDispatcher();
 	
@@ -28,6 +31,12 @@
 	
 	<!-- Input Container -->
 	<div class="border-t border-holmes-gold/20 bg-white/50 backdrop-blur-sm p-4">
-		<MessageInput on:sendMessage={({ detail }) => handleSendMessage(detail)} {isLoading} />
+		<MessageInput 
+			on:sendMessage={({ detail }) => handleSendMessage(detail)} 
+			{isLoading}
+			{onHistoryClick}
+			{questionCount}
+			{selectedCategory}
+		/>
 	</div>
 </div> 
