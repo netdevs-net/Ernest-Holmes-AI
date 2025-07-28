@@ -4,6 +4,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import QuestionHistory from '$lib/components/QuestionHistory.svelte';
 	import QuotesSlideshow from '$lib/components/QuotesSlideshow.svelte';
+	import TreatmentGenerator from '$lib/components/TreatmentGenerator.svelte';
 	import { questionCount, saveQuestion, updateQuestionSource, questions } from '$lib/stores/questionStore';
 	import { extractTags } from '$lib/utils/questionStorage';
 	import { getDeviceFingerprint, getSessionId, storeDeviceInfo } from '$lib/utils/macAddress';
@@ -12,6 +13,7 @@
 	let isLoading = false;
 	let showHistory = false;
 	let showQuotes = false;
+	let showTreatment = false;
 	let selectedCategory: 'spiritual' | 'practical' | 'metaphysical' | 'personal' | 'general' = 'general';
 	
 
@@ -144,12 +146,20 @@
 		showHistory = false; // Close history when opening quotes
 	}
 	
+	function toggleTreatment() {
+		showTreatment = !showTreatment;
+		showHistory = false; // Close history when opening treatment
+		showQuotes = false; // Close quotes when opening treatment
+	}
+	
 	function handleOverlayKeydown(event: KeyboardEvent) {
 		if (event.key === 'Escape') {
 			if (showHistory) {
 				toggleHistory();
 			} else if (showQuotes) {
 				toggleQuotes();
+			} else if (showTreatment) {
+				toggleTreatment();
 			}
 		}
 	}
@@ -176,6 +186,7 @@
 					on:sendMessage={({ detail }) => handleSendMessage(detail)}
 					onHistoryClick={toggleHistory}
 					onQuotesClick={toggleQuotes}
+					onTreatmentClick={toggleTreatment}
 					questionCount={$questionCount}
 					{selectedCategory}
 				/>
@@ -207,6 +218,11 @@
 		onClose={toggleQuotes}
 		autoPlay={true}
 		slideDuration={8000}
+	/>
+	
+	<TreatmentGenerator 
+		isVisible={showTreatment}
+		onClose={toggleTreatment}
 	/>
 </main>
 

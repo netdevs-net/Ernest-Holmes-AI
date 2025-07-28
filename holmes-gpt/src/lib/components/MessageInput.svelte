@@ -5,6 +5,7 @@
 	export let isLoading = false;
 	export let onHistoryClick: () => void = () => {};
 	export let onQuotesClick: () => void = () => {};
+	export let onTreatmentClick: () => void = () => {};
 	export let questionCount = 0;
 	export let selectedCategory = 'general';
 	
@@ -50,6 +51,14 @@
 				title="View Quotes Slideshow"
 			>
 				🎬 Quotes Slideshow
+			</button>
+			<button 
+				type="button"
+				class="treatment-btn" 
+				on:click={onTreatmentClick}
+				title="Generate Spiritual Treatment"
+			>
+				🧘‍♀️ Treatment Generator
 			</button>
 		</div>
 	</div>
@@ -119,7 +128,7 @@
 		flex-wrap: wrap;
 	}
 	
-	.history-btn, .quotes-btn {
+	.history-btn, .quotes-btn, .treatment-btn {
 		padding: 8px 16px;
 		background: rgba(59, 130, 246, 0.1);
 		border: 1px solid rgba(59, 130, 246, 0.3);
@@ -131,7 +140,7 @@
 		backdrop-filter: blur(4px);
 	}
 	
-	.history-btn:hover, .quotes-btn:hover {
+	.history-btn:hover, .quotes-btn:hover, .treatment-btn:hover {
 		background: rgba(59, 130, 246, 0.2);
 		border-color: rgba(59, 130, 246, 0.5);
 	}

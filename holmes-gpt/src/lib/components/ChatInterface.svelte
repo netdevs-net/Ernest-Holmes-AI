@@ -8,6 +8,7 @@
 	export let isLoading = false;
 	export let onHistoryClick: () => void = () => {};
 	export let onQuotesClick: () => void = () => {};
+	export let onTreatmentClick: () => void = () => {};
 	export let questionCount = 0;
 	export let selectedCategory = 'general';
 	
@@ -37,6 +38,7 @@
 			{isLoading}
 			{onHistoryClick}
 			{onQuotesClick}
+			{onTreatmentClick}
 			{questionCount}
 			{selectedCategory}
 		/>
