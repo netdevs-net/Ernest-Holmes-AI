@@ -115,4 +115,40 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+/* Prevent box-shadows from causing scrollbars */
+* {
+  box-sizing: border-box;
+}
+
+/* Ensure containers clip their content */
+.treatment-generator-overlay,
+.history-overlay,
+.quotes-slideshow-overlay {
+  overflow: hidden;
+}
+
+/* Prevent any element with box-shadow from extending beyond viewport */
+[style*="box-shadow"],
+[class*="shadow"] {
+  clip-path: inset(0);
+}
+
+/* Prevent box-shadows from causing scrollbars */
+* {
+  box-sizing: border-box;
+}
+
+/* Ensure containers clip their content */
+.treatment-generator-overlay,
+.history-overlay,
+.quotes-slideshow-overlay {
+  overflow: hidden;
+}
+
+/* Prevent any element with box-shadow from extending beyond viewport */
+[style*="box-shadow"],
+[class*="shadow"] {
+  clip-path: inset(0);
 } 

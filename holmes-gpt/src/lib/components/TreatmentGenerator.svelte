@@ -538,8 +538,11 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 		width: 100%;
 		max-height: 90vh;
 		overflow-y: auto;
+		overflow-x: hidden;
 		box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 		border: 1px solid rgba(255, 255, 255, 0.1);
+		/* Prevent box-shadows from extending beyond container */
+		clip-path: inset(0);
 	}
 
 	.generator-header {
@@ -613,6 +616,8 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 		background: rgba(251, 191, 36, 0.2);
 		border-color: #fbbf24;
 		box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+		/* Prevent shadow from extending beyond container */
+		clip-path: inset(0);
 	}
 
 	.category-name {
@@ -719,11 +724,15 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 		align-items: center;
 		gap: 0.5rem;
 		box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+		/* Prevent shadow from extending beyond container */
+		clip-path: inset(0);
 	}
 
 	.generate-btn:hover:not(:disabled) {
 		transform: translateY(-2px);
 		box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
+		/* Prevent shadow from extending beyond container */
+		clip-path: inset(0);
 	}
 
 	.generate-btn:disabled {
