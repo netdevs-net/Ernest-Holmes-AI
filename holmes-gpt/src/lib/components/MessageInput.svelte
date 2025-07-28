@@ -10,18 +10,22 @@
 	export let selectedCategory = 'general';
 	
 	const dispatch = createEventDispatcher();
-	let textarea: HTMLTextAreaElement;
+	let textarea: HTMLTextAreaElement | undefined;
 	let message = '';
 	
 	onMount(() => {
-		textarea?.focus();
+		if (textarea) {
+			textarea.focus();
+		}
 	});
 	
 	function handleSubmit() {
 		if (message.trim() && !isLoading) {
 			dispatch('sendMessage', message.trim());
 			message = '';
-			textarea?.focus();
+			if (textarea) {
+				textarea.focus();
+			}
 		}
 	}
 	
@@ -66,6 +70,7 @@
 	<form on:submit|preventDefault={handleSubmit} class="flex space-x-4">
 		<div class="flex-1 relative">
 			<textarea
+				bind:this={textarea}
 				bind:value={message}
 				on:keydown={handleKeydown}
 				placeholder="Ask Ernest Holmes a spiritual question..."
@@ -73,6 +78,7 @@
 				style="border-color: var(--border-primary); background: var(--glass-bg); color: var(--text-primary);"
 				rows="1"
 				disabled={isLoading}
+				aria-label="Enter your spiritual question"
 			></textarea>
 		</div>
 		
@@ -191,5 +197,25 @@
 		opacity: 0.6;
 		cursor: not-allowed;
 		transform: none;
+	}
+	
+	/* Ensure proper text color in both themes */
+	textarea {
+		color: var(--text-primary) !important;
+	}
+	
+	textarea::placeholder {
+		color: var(--text-secondary);
+		opacity: 0.7;
+	}
+	
+	/* Ensure select text is visible */
+	select {
+		color: var(--text-primary) !important;
+	}
+	
+	select option {
+		color: var(--text-primary);
+		background: var(--bg-primary);
 	}
 </style> 

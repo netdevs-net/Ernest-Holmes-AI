@@ -401,6 +401,7 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	<div 
 		class="treatment-generator-overlay" 
 		on:click|self={onClose}
+		on:keydown={(e) => e.key === 'Escape' && onClose()}
 		role="dialog"
 		aria-modal="true"
 		aria-label="Spiritual Mind Treatment Generator"
@@ -472,6 +473,7 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 							placeholder="Write your spiritual treatment in Holmes' style..."
 							class="custom-treatment-input"
 							rows="6"
+							aria-label="Custom spiritual treatment input"
 						></textarea>
 					</div>
 				{/if}
@@ -688,11 +690,11 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 
 	.custom-treatment-input {
 		width: 100%;
-		background: rgba(255, 255, 255, 0.05);
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		background: var(--glass-bg);
+		border: 1px solid var(--glass-border);
 		border-radius: 12px;
 		padding: 1rem;
-		color: #d1d5db;
+		color: var(--text-primary);
 		font-size: 1rem;
 		line-height: 1.6;
 		resize: vertical;
@@ -701,8 +703,13 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 
 	.custom-treatment-input:focus {
 		outline: none;
-		border-color: #fbbf24;
-		background: rgba(255, 255, 255, 0.08);
+		border-color: var(--text-accent);
+		background: var(--glass-bg);
+	}
+
+	.custom-treatment-input::placeholder {
+		color: var(--text-secondary);
+		opacity: 0.7;
 	}
 
 	.generate-section {
@@ -763,14 +770,14 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.treatment-text {
-		color: #d1d5db;
+		color: var(--text-primary);
 		font-size: 1.1rem;
 		line-height: 1.8;
 		margin-bottom: 1.5rem;
 		padding: 1rem;
-		background: rgba(0, 0, 0, 0.2);
+		background: var(--glass-bg);
 		border-radius: 8px;
-		border-left: 4px solid #fbbf24;
+		border-left: 4px solid var(--text-accent);
 	}
 
 	.treatment-section {
