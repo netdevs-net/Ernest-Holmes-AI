@@ -19,7 +19,7 @@
 </script>
 
 <header class="glass-effect sticky top-0 z-50 w-full" style="border-bottom: 1px solid var(--border-primary);">
-	<div class="container mx-auto px-6 py-2 flex items-center justify-between">
+	<div class="container mx-auto px-6 py-2 flex items-center justify-between max-h-screen">
 		<!-- Left side - Logo -->
 		<div class="flex items-center space-x-4">
 			<div class="w-10 h-10 bg-gradient-to-br from-amber-400 via-orange-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg" role="img" aria-label="HolmesGPT Logo">
@@ -80,13 +80,16 @@
 		top: 0;
 		z-index: 50;
 		width: 100%;
+		min-height: fit-content;
+		overflow: visible;
 	}
 	
 	/* Responsive adjustments for the header layout */
 	@media (max-width: 1024px) {
 		.container {
 			flex-direction: column;
-			gap: 1rem;
+			gap: 0.5rem;
+			padding: 0.5rem;
 		}
 		
 		.container > div {
@@ -96,15 +99,43 @@
 		.container > div:nth-child(2) {
 			order: -1;
 		}
+		
+		/* Ensure header doesn't get too tall */
+		header {
+			max-height: 50vh;
+			overflow: hidden;
+		}
 	}
 	
 	@media (max-width: 768px) {
 		.container {
-			padding: 0.5rem;
+			padding: 0.25rem;
+			gap: 0.25rem;
 		}
 		
 		h1 {
-			font-size: 1.5rem;
+			font-size: 1.25rem;
+		}
+		
+		/* Further reduce height on mobile */
+		header {
+			max-height: 40vh;
+		}
+	}
+	
+	@media (max-width: 480px) {
+		.container {
+			padding: 0.125rem;
+			gap: 0.125rem;
+		}
+		
+		h1 {
+			font-size: 1rem;
+		}
+		
+		/* Minimal height on very small screens */
+		header {
+			max-height: 30vh;
 		}
 	}
 </style> 

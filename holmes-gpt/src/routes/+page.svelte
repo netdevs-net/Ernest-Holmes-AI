@@ -231,10 +231,10 @@
 	<div class="floating-particles" aria-hidden="true"></div>
 	
 	<!-- Main content -->
-	<div class="relative z-10">
+	<div class="relative z-10 flex flex-col">
 		<Header on:styleChanged={handleStyleChange} />
 		
-		<div class="container mx-auto px-4 pt-4 pb-8 max-w-5xl">
+		<div class="container mx-auto px-4 pt-4 pb-8 max-w-5xl flex-1">
 			<div class="chat-container rounded-3xl p-8 relative">
 				<ChatInterface 
 					{messages} 
