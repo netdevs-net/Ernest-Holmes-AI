@@ -40,16 +40,26 @@
 	
 	// Handle response style changes
 	async function handleStyleChange({ detail }: { detail: { previousStyle: string; newStyle: string } }) {
+		console.log('Style change detected:', detail);
+		console.log('Last user message:', lastUserMessage);
+		console.log('Is loading:', isLoading);
+		console.log('Messages length:', messages.length);
+		
 		// If there's a last user message and we're not currently loading, resubmit it
 		if (lastUserMessage && !isLoading && messages.length > 1) {
+			console.log('Auto-resubmitting with new style:', detail.newStyle);
+			
 			// Remove the last assistant message (if it exists)
 			const lastMessage = messages[messages.length - 1];
 			if (lastMessage.role === 'assistant') {
 				messages = messages.slice(0, -1);
+				console.log('Removed previous assistant response');
 			}
 			
 			// Resubmit the last user message with the new style
 			await handleSendMessage(lastUserMessage);
+		} else {
+			console.log('Auto-resubmit conditions not met');
 		}
 	}
 	

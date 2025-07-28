@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { responseStyle, toggleResponseStyle, setResponseStyle } from '$lib/stores/responseStyleStore';
+	import { responseStyle, toggleResponseStyle, setResponseStyle, type ResponseStyle } from '$lib/stores/responseStyleStore';
 	
 	const dispatch = createEventDispatcher();
 	
@@ -12,6 +12,17 @@
 		dispatch('styleChanged', { 
 			previousStyle, 
 			newStyle: $responseStyle 
+		});
+	}
+	
+	function handleLabelClick(newStyle: ResponseStyle) {
+		const previousStyle = $responseStyle;
+		setResponseStyle(newStyle);
+		
+		// Dispatch event to notify parent of style change
+		dispatch('styleChanged', { 
+			previousStyle, 
+			newStyle 
 		});
 	}
 	
@@ -27,7 +38,7 @@
 	<button
 		class="label his-words"
 		class:active={$responseStyle === 'his-words'}
-		on:click={() => setResponseStyle('his-words')}
+		on:click={() => handleLabelClick('his-words')}
 		title="Ernest Holmes' authentic voice"
 		aria-label="Switch to Ernest Holmes style"
 	>
@@ -51,7 +62,7 @@
 	<button
 		class="label modern"
 		class:active={$responseStyle === 'modern'}
-		on:click={() => setResponseStyle('modern')}
+		on:click={() => handleLabelClick('modern')}
 		title="Modern spiritual guidance"
 		aria-label="Switch to modern style"
 	>
