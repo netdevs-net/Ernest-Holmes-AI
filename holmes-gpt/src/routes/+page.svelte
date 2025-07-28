@@ -211,7 +211,7 @@
 </main>
 
 <style>
-	.history-overlay, .quotes-overlay {
+	.history-overlay {
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -226,17 +226,17 @@
 		pointer-events: auto;
 	}
 	
-	.history-overlay > :global(*), .quotes-overlay > :global(*) {
+	.history-overlay > :global(*) {
 		max-width: 90vw;
 		max-height: 90vh;
 	}
 	
 	@media (max-width: 768px) {
-		.history-overlay, .quotes-overlay {
+		.history-overlay {
 			padding: 0.5rem;
 		}
 		
-		.history-overlay > :global(*), .quotes-overlay > :global(*) {
+		.history-overlay > :global(*) {
 			width: 100%;
 			max-width: 100%;
 		}
