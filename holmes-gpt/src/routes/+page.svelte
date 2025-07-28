@@ -2,11 +2,23 @@
 	import { onMount } from 'svelte';
 	import ChatInterface from '$lib/components/ChatInterface.svelte';
 	import Header from '$lib/components/Header.svelte';
+	import QuestionHistory from '$lib/components/QuestionHistory.svelte';
+	import { questionCount, saveQuestion, updateQuestionSource } from '$lib/stores/questionStore';
+	import sqliteStorage from '$lib/utils/sqliteStorage';
+	import { extractTags } from '$lib/utils/questionStorage';
+	import { getDeviceFingerprint, getSessionId, storeDeviceInfo } from '$lib/utils/macAddress';
 	
-	let messages: Array<{ role: 'user' | 'assistant'; content: string; timestamp: Date }> = [];
+	let messages: Array<{ role: 'user' | 'assistant'; content: string; timestamp: Date; source?: string; error?: boolean }> = [];
 	let isLoading = false;
+	let showHistory = false;
+	let selectedCategory: 'spiritual' | 'practical' | 'metaphysical' | 'personal' | 'general' = 'general';
+	
+
 	
 	onMount(() => {
+		// Store device information on first load
+		storeDeviceInfo();
+		
 		// Initialize with a welcome message
 		messages = [
 			{
@@ -38,6 +50,18 @@
 	async function handleSendMessage(content: string) {
 		if (!content.trim()) return;
 		
+		// Save question to history with user identification
+		saveQuestion({
+			question: content,
+			category: selectedCategory,
+			isBookmarked: false,
+			tags: extractTags(content),
+			userIp: '', // Will be set by server
+			userMac: getDeviceFingerprint(),
+			userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : 'server',
+			sessionId: getSessionId()
+		});
+		
 		// Add user message
 		messages = [...messages, {
 			role: 'user',
@@ -53,18 +77,42 @@
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({ message: content })
+				body: JSON.stringify({ 
+					message: content,
+					userMac: getDeviceFingerprint(),
+					userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : 'server',
+					sessionId: getSessionId()
+				})
 			});
 			
-			if (response.ok) {
-				const data = await response.json();
+			const data = await response.json();
+			
+			if (data.error) {
+				// Handle error with fallback response
+				const errorContent = data.fallbackResponse || data.error;
+				messages = [...messages, {
+					role: 'assistant',
+					content: errorContent,
+					timestamp: new Date(),
+					source: data.source || 'fallback',
+					error: true
+				}];
+			} else {
+				// Update the last question with response preview and source
+				const lastQuestion = sqliteStorage.getQuestions()[0];
+				if (lastQuestion && lastQuestion.question === content) {
+					updateQuestionSource(lastQuestion.id, {
+						responsePreview: data.response.substring(0, 100) + '...',
+						source: data.source || 'claude-3-haiku'
+					});
+				}
+				
 				messages = [...messages, {
 					role: 'assistant',
 					content: data.response,
-					timestamp: new Date()
+					timestamp: new Date(),
+					source: data.source || 'claude-3-haiku'
 				}];
-			} else {
-				throw new Error('Failed to get response');
 			}
 		} catch (error) {
 			console.error('Error:', error);
@@ -76,6 +124,17 @@
 		} finally {
 			isLoading = false;
 		}
+	}
+	
+	function handleQuestionSelect(question: string) {
+		// This will be called when user selects a question from history
+		// The question will be automatically sent to the chat
+		handleSendMessage(question);
+		showHistory = false; // Close history panel after selection
+	}
+	
+	function toggleHistory() {
+		showHistory = !showHistory;
 	}
 </script>
 
@@ -93,13 +152,46 @@
 		<Header />
 		
 		<div class="container mx-auto px-4 py-8 max-w-5xl">
-			<div class="chat-container rounded-3xl p-8">
+			<div class="chat-container rounded-3xl p-8 relative">
 				<ChatInterface 
 					{messages} 
 					{isLoading} 
 					on:sendMessage={({ detail }) => handleSendMessage(detail)}
+					onHistoryClick={toggleHistory}
+					questionCount={$questionCount}
+					{selectedCategory}
 				/>
+				
+				<!-- Question History Panel -->
+				{#if showHistory}
+					<div class="history-overlay">
+						<QuestionHistory 
+							isVisible={showHistory}
+							onQuestionSelect={handleQuestionSelect}
+						/>
+					</div>
+				{/if}
 			</div>
 		</div>
 	</div>
-</main> 
+</main>
+
+<style>
+	.history-overlay {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 400px;
+		max-width: 90vw;
+		z-index: 1000;
+		margin: 1rem;
+	}
+	
+	@media (max-width: 768px) {
+		.history-overlay {
+			width: calc(100vw - 2rem);
+			right: 1rem;
+			left: 1rem;
+		}
+	}
+</style> 
