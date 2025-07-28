@@ -16,10 +16,17 @@
 	let loading = true;
 	let error = '';
 	let interval: any;
+	let isFadingIn = false;
+	let isFadingOut = false;
 	
 	onMount(async () => {
 		await loadQuotes();
 		if (autoPlay && isVisible) {
+			// Initial fade in
+			isFadingIn = true;
+			setTimeout(() => {
+				isFadingIn = false;
+			}, 2000);
 			startSlideshow();
 		}
 	});
@@ -66,13 +73,31 @@
 	
 	function nextQuote() {
 		if (quotes.length > 0) {
-			currentIndex = (currentIndex + 1) % quotes.length;
+			// Start fade out
+			isFadingOut = true;
+			setTimeout(() => {
+				currentIndex = (currentIndex + 1) % quotes.length;
+				isFadingOut = false;
+				isFadingIn = true;
+				setTimeout(() => {
+					isFadingIn = false;
+				}, 2000); // 2 second fade in
+			}, 2000); // 2 second fade out
 		}
 	}
 	
 	function previousQuote() {
 		if (quotes.length > 0) {
-			currentIndex = currentIndex === 0 ? quotes.length - 1 : currentIndex - 1;
+			// Start fade out
+			isFadingOut = true;
+			setTimeout(() => {
+				currentIndex = currentIndex === 0 ? quotes.length - 1 : currentIndex - 1;
+				isFadingOut = false;
+				isFadingIn = true;
+				setTimeout(() => {
+					isFadingIn = false;
+				}, 2000); // 2 second fade in
+			}, 2000); // 2 second fade out
 		}
 	}
 	
@@ -150,7 +175,7 @@
 					<p class="empty-text">No quotes available</p>
 				</div>
 			{:else}
-				<div class="quote-slide" class:fade-in={true}>
+				<div class="quote-slide" class:fade-in={isFadingIn} class:fade-out={isFadingOut}>
 					<div class="quote-content">
 						<p class="quote-text">
 							{quotes[currentIndex].quote}
@@ -426,6 +451,32 @@
 			opacity: 1;
 			transform: translateY(0);
 		}
+	}
+	
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+	
+	@keyframes fadeOut {
+		from {
+			opacity: 1;
+		}
+		to {
+			opacity: 0;
+		}
+	}
+	
+	.fade-in {
+		animation: fadeIn 2s ease-in-out;
+	}
+	
+	.fade-out {
+		animation: fadeOut 2s ease-in-out;
 	}
 	
 	@keyframes spin {
