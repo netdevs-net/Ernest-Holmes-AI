@@ -139,7 +139,7 @@
 		background: rgba(59, 130, 246, 0.1);
 		border: 1px solid rgba(59, 130, 246, 0.3);
 		border-radius: 8px;
-		color: #3b82f6;
+		color: #555555;
 		font-size: 0.9rem;
 		cursor: pointer;
 		transition: all 0.3s ease;
