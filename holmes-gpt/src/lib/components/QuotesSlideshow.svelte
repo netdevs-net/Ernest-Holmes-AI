@@ -15,7 +15,7 @@
 	let currentIndex = 0;
 	let loading = true;
 	let error = '';
-	let interval: number;
+	let interval: any;
 	
 	onMount(async () => {
 		await loadQuotes();
