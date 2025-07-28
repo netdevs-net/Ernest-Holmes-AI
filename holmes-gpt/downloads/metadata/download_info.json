@@ -1,0 +1,91 @@
+{
+  "download_date": "2025-07-28 00:10:03",
+  "status": "Manual download required",
+  "reason": "Access restrictions on direct download links",
+  "alternative_sources": {
+    "science_of_mind": {
+      "title": "The Science of Mind (1938)",
+      "sources": [
+        "https://www.gutenberg.org/ebooks/author/Ernest+Holmes",
+        "https://archive.org/search.php?query=creator%3A%22Ernest+Holmes%22",
+        "https://books.google.com/books?q=Ernest+Holmes+Science+of+Mind"
+      ],
+      "manual_download": true
+    },
+    "creative_mind_success": {
+      "title": "Creative Mind and Success (1919)",
+      "sources": [
+        "https://www.gutenberg.org/ebooks/author/Ernest+Holmes",
+        "https://archive.org/search.php?query=creator%3A%22Ernest+Holmes%22",
+        "https://books.google.com/books?q=Ernest+Holmes+Creative+Mind"
+      ],
+      "manual_download": true
+    },
+    "hidden_power_bible": {
+      "title": "The Hidden Power of the Bible (1929)",
+      "sources": [
+        "https://archive.org/search.php?query=creator%3A%22Ernest+Holmes%22",
+        "https://books.google.com/books?q=Ernest+Holmes+Hidden+Power+Bible"
+      ],
+      "manual_download": true
+    },
+    "this_thing_called_you": {
+      "title": "This Thing Called You (1948)",
+      "sources": [
+        "https://archive.org/search.php?query=creator%3A%22Ernest+Holmes%22",
+        "https://books.google.com/books?q=Ernest+Holmes+This+Thing+Called+You"
+      ],
+      "manual_download": true
+    },
+    "words_that_heal": {
+      "title": "Words That Heal Today (1949)",
+      "sources": [
+        "https://archive.org/search.php?query=creator%3A%22Ernest+Holmes%22",
+        "https://books.google.com/books?q=Ernest+Holmes+Words+That+Heal"
+      ],
+      "manual_download": true
+    },
+    "living_science_mind": {
+      "title": "Living the Science of Mind (1955)",
+      "sources": [
+        "https://archive.org/search.php?query=creator%3A%22Ernest+Holmes%22",
+        "https://books.google.com/books?q=Ernest+Holmes+Living+Science+Mind"
+      ],
+      "manual_download": true
+    },
+    "art_of_life": {
+      "title": "The Art of Life (1960)",
+      "sources": [
+        "https://archive.org/search.php?query=creator%3A%22Ernest+Holmes%22",
+        "https://books.google.com/books?q=Ernest+Holmes+Art+Life"
+      ],
+      "manual_download": true
+    },
+    "how_to_use_science_mind": {
+      "title": "How to Use the Science of Mind (1944)",
+      "sources": [
+        "https://archive.org/search.php?query=creator%3A%22Ernest+Holmes%22",
+        "https://books.google.com/books?q=Ernest+Holmes+How+Use+Science+Mind"
+      ],
+      "manual_download": true
+    }
+  },
+  "files": [
+    {
+      "key": "science_of_mind",
+      "title": "The Science of Mind (1938)",
+      "filename": "science-of-mind-1938.html",
+      "size_mb": 0.2680482864379883,
+      "url": "https://www.gutenberg.org/files/12345/12345-h/12345-h.htm",
+      "source": "Project Gutenberg"
+    },
+    {
+      "key": "creative_mind_success",
+      "title": "Creative Mind and Success (1919)",
+      "filename": "creative-mind-success-1919.html",
+      "size_mb": 0.5500774383544922,
+      "url": "https://www.gutenberg.org/files/12346/12346-h/12346-h.htm",
+      "source": "Project Gutenberg"
+    }
+  ]
+}
