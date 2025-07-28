@@ -50,7 +50,7 @@
 		if (!content.trim()) return;
 		
 		// Save question to history with user identification
-		saveQuestion({
+		await saveQuestion({
 			question: content,
 			category: selectedCategory,
 			isBookmarked: false,
@@ -100,7 +100,7 @@
 				// Update the last question with response preview and source
 				const lastQuestion = $questions[0];
 				if (lastQuestion && lastQuestion.question === content) {
-					updateQuestionSource(lastQuestion.id, {
+					await updateQuestionSource(lastQuestion.id, {
 						responsePreview: data.response.substring(0, 100) + '...',
 						source: data.source || 'claude-3-haiku'
 					});
