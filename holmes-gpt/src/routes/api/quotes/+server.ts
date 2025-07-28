@@ -23,7 +23,7 @@ function loadQuotes(): Quote[] {
 		// Filter out metadata and short quotes, keep meaningful ones
 		const meaningfulQuotes = allQuotes.filter(quote => 
 			quote.quote.length > 50 && 
-			quote.quote.length < 1000 &&
+			quote.quote.length <= 67 &&
 			!quote.quote.includes('***') &&
 			!quote.quote.includes('Transcriber') &&
 			!quote.quote.includes('GUTENBERG') &&

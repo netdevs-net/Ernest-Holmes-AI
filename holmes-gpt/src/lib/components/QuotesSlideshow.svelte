@@ -22,11 +22,6 @@
 	onMount(async () => {
 		await loadQuotes();
 		if (autoPlay && isVisible) {
-			// Initial fade in
-			isFadingIn = true;
-			setTimeout(() => {
-				isFadingIn = false;
-			}, 2000);
 			startSlideshow();
 		}
 	});
