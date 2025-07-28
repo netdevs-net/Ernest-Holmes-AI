@@ -74,8 +74,17 @@ export class QuestionRepository {
     const params: any[] = [];
 
     if (sessionId) {
-      query = 'SELECT * FROM questions WHERE session_id = ?';
-      params.push(sessionId);
+      // Check for both new and old sessionId formats
+      if (sessionId.startsWith('session_') && sessionId.split('_').length === 2) {
+        // New format: session_fingerprint (only 2 parts)
+        const fingerprint = sessionId.replace('session_', '');
+        query = 'SELECT * FROM questions WHERE session_id = ? OR user_mac = ?';
+        params.push(sessionId, fingerprint);
+      } else {
+        // Old format or other format
+        query = 'SELECT * FROM questions WHERE session_id = ?';
+        params.push(sessionId);
+      }
     } else if (userMac) {
       query = 'SELECT * FROM questions WHERE user_mac = ?';
       params.push(userMac);
@@ -175,8 +184,17 @@ export class QuestionRepository {
     const params: any[] = [];
 
     if (sessionId) {
-      query = 'SELECT COUNT(*) as count FROM questions WHERE session_id = ?';
-      params.push(sessionId);
+      // Check for both new and old sessionId formats
+      if (sessionId.startsWith('session_') && sessionId.split('_').length === 2) {
+        // New format: session_fingerprint (only 2 parts)
+        const fingerprint = sessionId.replace('session_', '');
+        query = 'SELECT COUNT(*) as count FROM questions WHERE session_id = ? OR user_mac = ?';
+        params.push(sessionId, fingerprint);
+      } else {
+        // Old format or other format
+        query = 'SELECT COUNT(*) as count FROM questions WHERE session_id = ?';
+        params.push(sessionId);
+      }
     } else if (userMac) {
       query = 'SELECT COUNT(*) as count FROM questions WHERE user_mac = ?';
       params.push(userMac);

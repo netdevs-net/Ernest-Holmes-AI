@@ -118,11 +118,11 @@ export function createSessionId(): string {
     return 'server_session_' + Date.now();
   }
   
-  const timestamp = Date.now();
-  const random = Math.random().toString(36).substring(2, 15);
   const fingerprint = generateDeviceFingerprint();
   
-  return `session_${timestamp}_${random}_${fingerprint}`;
+  // Create a more stable session ID based on device fingerprint
+  // This will be the same for the same device across page reloads
+  return `session_${fingerprint}`;
 }
 
 /**
