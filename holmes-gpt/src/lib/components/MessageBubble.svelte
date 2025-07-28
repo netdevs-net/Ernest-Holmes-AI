@@ -11,9 +11,9 @@
 			.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
 			// Convert *italics* to <em>
 			.replace(/\*(.*?)\*/g, '<em>$1</em>')
-			// Convert line breaks to <br> tags
-			.replace(/\n\n/g, '</p><p>')
-			.replace(/\n/g, '<br>')
+			// Remove line breaks and replace with spaces
+			.replace(/\n\n/g, ' ')
+			.replace(/\n/g, ' ')
 			// Convert bullet points
 			.replace(/^•\s*(.*)$/gm, '<li>$1</li>')
 			// Wrap in paragraphs

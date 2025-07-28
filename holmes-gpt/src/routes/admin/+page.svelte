@@ -158,8 +158,8 @@
 		return text
 			.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
 			.replace(/\*(.*?)\*/g, '<em>$1</em>')
-			.replace(/\n\n/g, '</p><p>')
-			.replace(/\n/g, '<br>')
+			.replace(/\n\n/g, ' ')
+			.replace(/\n/g, ' ')
 			.replace(/^/, '<p>')
 			.replace(/$/, '</p>')
 			.replace(/• /g, '<br>• ');
