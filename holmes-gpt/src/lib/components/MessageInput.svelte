@@ -4,6 +4,7 @@
 	
 	export let isLoading = false;
 	export let onHistoryClick: () => void = () => {};
+	export let onQuotesClick: () => void = () => {};
 	export let questionCount = 0;
 	export let selectedCategory = 'general';
 	
@@ -33,14 +34,24 @@
 
 <div class="message-input-container">
 	<div class="input-header">
-		<button 
-			type="button"
-			class="history-btn" 
-			on:click={onHistoryClick}
-			title="View Question History"
-		>
-			📚 Question History ({questionCount})
-		</button>
+		<div class="header-buttons">
+			<button 
+				type="button"
+				class="history-btn" 
+				on:click={onHistoryClick}
+				title="View Question History"
+			>
+				📚 Question History ({questionCount})
+			</button>
+			<button 
+				type="button"
+				class="quotes-btn" 
+				on:click={onQuotesClick}
+				title="View Quotes from Ernest Holmes"
+			>
+				📖 Wisdom Quotes
+			</button>
+		</div>
 	</div>
 	
 	<form on:submit|preventDefault={handleSubmit} class="flex space-x-4">
@@ -102,7 +113,13 @@
 		justify-content: flex-start;
 	}
 	
-	.history-btn {
+	.header-buttons {
+		display: flex;
+		gap: 12px;
+		flex-wrap: wrap;
+	}
+	
+	.history-btn, .quotes-btn {
 		padding: 8px 16px;
 		background: rgba(59, 130, 246, 0.1);
 		border: 1px solid rgba(59, 130, 246, 0.3);
@@ -114,7 +131,7 @@
 		backdrop-filter: blur(4px);
 	}
 	
-	.history-btn:hover {
+	.history-btn:hover, .quotes-btn:hover {
 		background: rgba(59, 130, 246, 0.2);
 		border-color: rgba(59, 130, 246, 0.5);
 	}

@@ -3,6 +3,7 @@
 	import ChatInterface from '$lib/components/ChatInterface.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import QuestionHistory from '$lib/components/QuestionHistory.svelte';
+	import QuotesDisplay from '$lib/components/QuotesDisplay.svelte';
 	import { questionCount, saveQuestion, updateQuestionSource, questions } from '$lib/stores/questionStore';
 	import { extractTags } from '$lib/utils/questionStorage';
 	import { getDeviceFingerprint, getSessionId, storeDeviceInfo } from '$lib/utils/macAddress';
@@ -10,6 +11,7 @@
 	let messages: Array<{ role: 'user' | 'assistant'; content: string; timestamp: Date; source?: string; error?: boolean }> = [];
 	let isLoading = false;
 	let showHistory = false;
+	let showQuotes = false;
 	let selectedCategory: 'spiritual' | 'practical' | 'metaphysical' | 'personal' | 'general' = 'general';
 	
 
@@ -134,6 +136,12 @@
 	
 	function toggleHistory() {
 		showHistory = !showHistory;
+		showQuotes = false; // Close quotes when opening history
+	}
+	
+	function toggleQuotes() {
+		showQuotes = !showQuotes;
+		showHistory = false; // Close history when opening quotes
 	}
 </script>
 
@@ -157,6 +165,7 @@
 					{isLoading} 
 					on:sendMessage={({ detail }) => handleSendMessage(detail)}
 					onHistoryClick={toggleHistory}
+					onQuotesClick={toggleQuotes}
 					questionCount={$questionCount}
 					{selectedCategory}
 				/>
@@ -170,13 +179,24 @@
 						/>
 					</div>
 				{/if}
+				
+				<!-- Quotes Panel -->
+				{#if showQuotes}
+					<div class="quotes-overlay">
+						<QuotesDisplay 
+							limit={5}
+							showRandom={true}
+							autoRefresh={false}
+						/>
+					</div>
+				{/if}
 			</div>
 		</div>
 	</div>
 </main>
 
 <style>
-	.history-overlay {
+	.history-overlay, .quotes-overlay {
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -187,7 +207,7 @@
 	}
 	
 	@media (max-width: 768px) {
-		.history-overlay {
+		.history-overlay, .quotes-overlay {
 			width: calc(100vw - 2rem);
 			right: 1rem;
 			left: 1rem;

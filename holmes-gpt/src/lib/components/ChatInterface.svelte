@@ -7,6 +7,7 @@
 	export let messages: Array<{ role: 'user' | 'assistant'; content: string; timestamp: Date; source?: string; error?: boolean }> = [];
 	export let isLoading = false;
 	export let onHistoryClick: () => void = () => {};
+	export let onQuotesClick: () => void = () => {};
 	export let questionCount = 0;
 	export let selectedCategory = 'general';
 	
@@ -35,6 +36,7 @@
 			on:sendMessage={({ detail }) => handleSendMessage(detail)} 
 			{isLoading}
 			{onHistoryClick}
+			{onQuotesClick}
 			{questionCount}
 			{selectedCategory}
 		/>
