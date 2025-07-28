@@ -11,6 +11,11 @@
 	let selectedCategory = '';
 	let showDeleteConfirm = false;
 	let questionToDelete: QuestionHistory | null = null;
+	let showResponseModal = false;
+	let selectedQuestion: QuestionHistory | null = null;
+	let responseLoading = false;
+	let aiResponse = '';
+	let responseError = '';
 	
 	// Categories for filtering
 	const categories = ['all', 'spiritual', 'practical', 'metaphysical', 'personal', 'general'];
@@ -67,6 +72,46 @@
 		questionToDelete = null;
 	}
 	
+	async function viewResponse(question: QuestionHistory) {
+		selectedQuestion = question;
+		showResponseModal = true;
+		responseLoading = true;
+		aiResponse = '';
+		responseError = '';
+		
+		try {
+			const response = await fetch('/api/chat', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					message: question.question,
+					category: question.category
+				})
+			});
+			
+			if (response.ok) {
+				const data = await response.json();
+				aiResponse = data.response || 'No response received';
+			} else {
+				responseError = 'Failed to get response from AI';
+			}
+		} catch (err) {
+			responseError = 'Error connecting to AI service';
+			console.error('Error getting AI response:', err);
+		} finally {
+			responseLoading = false;
+		}
+	}
+	
+	function closeResponseModal() {
+		showResponseModal = false;
+		selectedQuestion = null;
+		aiResponse = '';
+		responseError = '';
+	}
+	
 	function handleSort(field: 'timestamp' | 'category' | 'question') {
 		if (sortField === field) {
 			sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
@@ -107,6 +152,17 @@
 			general: 'bg-gray-100 text-gray-800 border-gray-200'
 		};
 		return colors[category as keyof typeof colors] || colors.general;
+	}
+	
+	function parseFormatting(text: string): string {
+		return text
+			.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+			.replace(/\*(.*?)\*/g, '<em>$1</em>')
+			.replace(/\n\n/g, '</p><p>')
+			.replace(/\n/g, '<br>')
+			.replace(/^/, '<p>')
+			.replace(/$/, '</p>')
+			.replace(/• /g, '<br>• ');
 	}
 	
 	// Computed properties for filtering and sorting
@@ -388,13 +444,22 @@
 										{/if}
 									</td>
 									<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-										<button
-											on:click={() => confirmDelete(question)}
-											class="text-red-600 hover:text-red-900 transition-colors"
-											title="Delete question"
-										>
-											🗑️ Delete
-										</button>
+										<div class="flex space-x-2">
+											<button
+												on:click={() => viewResponse(question)}
+												class="text-indigo-600 hover:text-indigo-900 transition-colors"
+												title="View AI response"
+											>
+												🤖 View Response
+											</button>
+											<button
+												on:click={() => confirmDelete(question)}
+												class="text-red-600 hover:text-red-900 transition-colors"
+												title="Delete question"
+											>
+												🗑️ Delete
+											</button>
+										</div>
 									</td>
 								</tr>
 							{/each}
@@ -442,6 +507,84 @@
 	</div>
 {/if}
 
+<!-- Response Modal -->
+{#if showResponseModal && selectedQuestion}
+	<div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+		<div class="relative top-10 mx-auto p-6 border w-11/12 max-w-4xl shadow-lg rounded-md bg-white">
+			<div class="flex justify-between items-start mb-4">
+				<div>
+					<h3 class="text-xl font-medium text-gray-900">AI Response</h3>
+					<p class="text-sm text-gray-500 mt-1">Question: "{selectedQuestion.question}"</p>
+				</div>
+				<button
+					on:click={closeResponseModal}
+					class="text-gray-400 hover:text-gray-600 transition-colors"
+					title="Close"
+				>
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+					</svg>
+				</button>
+			</div>
+			
+			<div class="bg-gray-50 rounded-lg p-4 mb-4">
+				<h4 class="font-medium text-gray-900 mb-2">Question Details</h4>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+					<div>
+						<span class="text-gray-500">Category:</span>
+						<span class="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium border {getCategoryColor(selectedQuestion.category)}">
+							{selectedQuestion.category}
+						</span>
+					</div>
+					<div>
+						<span class="text-gray-500">Asked:</span>
+						<span class="ml-2">{formatDate(selectedQuestion.timestamp)}</span>
+					</div>
+					<div>
+						<span class="text-gray-500">Bookmarked:</span>
+						<span class="ml-2">{selectedQuestion.isBookmarked ? '⭐ Yes' : '☆ No'}</span>
+					</div>
+				</div>
+			</div>
+			
+			{#if responseLoading}
+				<div class="text-center py-8">
+					<div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+					<p class="mt-2 text-gray-500">Getting AI response...</p>
+				</div>
+			{:else if responseError}
+				<div class="text-center py-8">
+					<div class="text-red-600 mb-2">⚠️ {responseError}</div>
+					<button
+						on:click={() => viewResponse(selectedQuestion!)}
+						class="text-indigo-600 hover:text-indigo-500"
+					>
+						Try again
+					</button>
+				</div>
+			{:else if aiResponse}
+				<div class="bg-white border rounded-lg p-6 max-h-96 overflow-y-auto">
+					<h4 class="font-medium text-gray-900 mb-3">HolmesGPT Response</h4>
+					<div class="prose prose-sm max-w-none">
+						<div class="formatted-content text-gray-700">
+							{@html parseFormatting(aiResponse)}
+						</div>
+					</div>
+				</div>
+			{/if}
+			
+			<div class="flex justify-end mt-6">
+				<button
+					on:click={closeResponseModal}
+					class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors"
+				>
+					Close
+				</button>
+			</div>
+		</div>
+	</div>
+{/if}
+
 <style>
 	/* Custom scrollbar for table */
 	.overflow-x-auto::-webkit-scrollbar {
@@ -460,5 +603,33 @@
 	
 	.overflow-x-auto::-webkit-scrollbar-thumb:hover {
 		background: #94a3b8;
+	}
+	
+	/* Formatted content styles */
+	.formatted-content strong {
+		color: #d97706;
+		font-weight: 600;
+	}
+	
+	.formatted-content em {
+		color: #6b7280;
+		font-style: italic;
+	}
+	
+	.formatted-content p {
+		margin-bottom: 1rem;
+	}
+	
+	.formatted-content ul {
+		margin-left: 1rem;
+		margin-bottom: 1rem;
+	}
+	
+	.formatted-content li {
+		margin-bottom: 0.5rem;
+	}
+	
+	.formatted-content br {
+		margin-bottom: 0.5rem;
 	}
 </style> 
