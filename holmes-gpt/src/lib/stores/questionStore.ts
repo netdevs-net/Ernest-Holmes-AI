@@ -11,21 +11,9 @@ const bookmarkedCountData = writable(0);
 const questionUpdateTrigger = writable(0);
 
 // Derived stores that update when triggered
-export const questionCount = derived(questionUpdateTrigger, () => {
-	let value = 0;
-	questionCountData.subscribe(v => value = v)();
-	return value;
-});
-export const bookmarkedCount = derived(questionUpdateTrigger, () => {
-	let value = 0;
-	bookmarkedCountData.subscribe(v => value = v)();
-	return value;
-});
-export const questions = derived(questionUpdateTrigger, () => {
-	let value: QuestionHistory[] = [];
-	questionsData.subscribe(v => value = v)();
-	return value;
-});
+export const questionCount = derived([questionUpdateTrigger, questionCountData], ([_, count]) => count);
+export const bookmarkedCount = derived([questionUpdateTrigger, bookmarkedCountData], ([_, count]) => count);
+export const questions = derived([questionUpdateTrigger, questionsData], ([_, questions]) => questions);
 
 // Function to trigger updates
 export function triggerQuestionUpdate() {

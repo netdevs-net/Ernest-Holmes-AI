@@ -13,15 +13,12 @@ export const GET: RequestHandler = async ({ url, cookies, getClientAddress }) =>
     const limit = parseInt(url.searchParams.get('limit') || '50');
     const sessionId = url.searchParams.get('sessionId');
 
-    // Get client information for user filtering
-    const clientInfo = getClientInfo({ request: { url } as any, cookies, getClientAddress } as any);
-
     const filters = {
       category: category || undefined,
       searchTerm: searchTerm || undefined,
       bookmarkedOnly,
-      userSessionId: sessionId || clientInfo.sessionId,
-      userMac: clientInfo.mac
+      userSessionId: sessionId || undefined,
+      userMac: undefined
     };
 
     let questions;
@@ -36,10 +33,15 @@ export const GET: RequestHandler = async ({ url, cookies, getClientAddress }) =>
       questions = questions.slice(0, limit);
     }
 
+    // Always get user-specific count when sessionId is provided
+    const total = filters.userSessionId 
+      ? sqliteStorage.getQuestionCountForUser(filters.userSessionId, filters.userMac)
+      : sqliteStorage.getQuestionCount();
+
     return json({
       questions,
       count: questions.length,
-      total: sqliteStorage.getQuestionCountForUser(filters.userSessionId, filters.userMac)
+      total
     });
   } catch (error) {
     console.error('Error fetching questions:', error);
