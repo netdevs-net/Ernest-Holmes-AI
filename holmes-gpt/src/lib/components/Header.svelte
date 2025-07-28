@@ -103,7 +103,7 @@
 		/* Ensure header doesn't get too tall */
 		header {
 			max-height: 50vh;
-			overflow: hidden;
+			overflow: visible;
 		}
 	}
 	
@@ -120,6 +120,7 @@
 		/* Further reduce height on mobile */
 		header {
 			max-height: 40vh;
+			overflow: visible;
 		}
 	}
 	
@@ -136,6 +137,7 @@
 		/* Minimal height on very small screens */
 		header {
 			max-height: 30vh;
+			overflow: visible;
 		}
 	}
 </style> 
