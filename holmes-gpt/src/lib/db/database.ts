@@ -1,10 +1,10 @@
-import Database from 'better-sqlite3';
-import { join } from 'path';
-import { existsSync, mkdirSync, statSync } from 'fs';
+import Database from "better-sqlite3";
+import { join } from "path";
+import { existsSync, mkdirSync, statSync } from "fs";
 
 // Database configuration
-const DB_DIR = join(process.cwd(), 'data');
-const DB_PATH = join(DB_DIR, 'holmes.db');
+const DB_DIR = join(process.cwd(), "data");
+const DB_PATH = join(DB_DIR, "holmes.db");
 
 // Ensure data directory exists
 if (!existsSync(DB_DIR)) {
@@ -64,8 +64,8 @@ class DatabaseManager {
 
   private constructor() {
     this.db = new Database(DB_PATH);
-    this.db.pragma('journal_mode = WAL'); // Enable WAL mode for better concurrency
-    this.db.pragma('foreign_keys = ON'); // Enable foreign key constraints
+    this.db.pragma("journal_mode = WAL"); // Enable WAL mode for better concurrency
+    this.db.pragma("foreign_keys = ON"); // Enable foreign key constraints
     this.initializeSchema();
   }
 
@@ -79,9 +79,9 @@ class DatabaseManager {
   private initializeSchema(): void {
     try {
       this.db.exec(SCHEMA);
-      console.log('Database schema initialized successfully');
+      console.log("Database schema initialized successfully");
     } catch (error) {
-      console.error('Error initializing database schema:', error);
+      console.error("Error initializing database schema:", error);
       throw error;
     }
   }
@@ -97,20 +97,28 @@ class DatabaseManager {
   }
 
   // Get database statistics
-  public getStats(): { questions: number; conversations: number; size: string } {
-    const questions = this.db.prepare('SELECT COUNT(*) as count FROM questions').get() as { count: number };
-    const conversations = this.db.prepare('SELECT COUNT(*) as count FROM conversations').get() as { count: number };
-    
+  public getStats(): {
+    questions: number;
+    conversations: number;
+    size: string;
+  } {
+    const questions = this.db
+      .prepare("SELECT COUNT(*) as count FROM questions")
+      .get() as { count: number };
+    const conversations = this.db
+      .prepare("SELECT COUNT(*) as count FROM conversations")
+      .get() as { count: number };
+
     // Get file size
     const stats = statSync(DB_PATH);
     const sizeInMB = (stats.size / (1024 * 1024)).toFixed(2);
-    
+
     return {
       questions: questions.count,
       conversations: conversations.count,
-      size: `${sizeInMB} MB`
+      size: `${sizeInMB} MB`,
     };
   }
 }
 
-export default DatabaseManager; 
+export default DatabaseManager;

@@ -1,6 +1,6 @@
-import { QuestionRepository } from '$lib/db/questionRepository';
-import { ConversationRepository } from '$lib/db/conversationRepository';
-import type { QuestionHistory, QuestionFilters } from './questionStorage';
+import { QuestionRepository } from "$lib/db/questionRepository";
+import { ConversationRepository } from "$lib/db/conversationRepository";
+import type { QuestionHistory, QuestionFilters } from "./questionStorage";
 
 export class SQLiteStorage {
   private questionRepo: QuestionRepository;
@@ -12,12 +12,14 @@ export class SQLiteStorage {
   }
 
   // Question-related methods
-  saveQuestion(question: Omit<QuestionHistory, 'id' | 'timestamp'> & {
-    userIp?: string;
-    userMac?: string;
-    userAgent?: string;
-    sessionId?: string;
-  }): void {
+  saveQuestion(
+    question: Omit<QuestionHistory, "id" | "timestamp"> & {
+      userIp?: string;
+      userMac?: string;
+      userAgent?: string;
+      sessionId?: string;
+    },
+  ): void {
     this.questionRepo.saveQuestion(question);
   }
 
@@ -41,7 +43,10 @@ export class SQLiteStorage {
     this.questionRepo.deleteQuestion(questionId);
   }
 
-  updateQuestionSource(questionId: string, updates: { responsePreview?: string; source?: string }): void {
+  updateQuestionSource(
+    questionId: string,
+    updates: { responsePreview?: string; source?: string },
+  ): void {
     this.questionRepo.updateQuestionSource(questionId, updates);
   }
 
@@ -84,7 +89,7 @@ export class SQLiteStorage {
       userIp: conversation.userIp,
       userMac: conversation.userMac,
       userAgent: conversation.userAgent,
-      sessionId: conversation.sessionId
+      sessionId: conversation.sessionId,
     });
   }
 
@@ -142,7 +147,10 @@ export class SQLiteStorage {
   }
 
   getConversationsByDateRange(startDate: Date, endDate: Date): any[] {
-    return this.conversationRepo.getConversationsByDateRange(startDate, endDate);
+    return this.conversationRepo.getConversationsByDateRange(
+      startDate,
+      endDate,
+    );
   }
 
   getConversationsBySource(source: string): any[] {
@@ -150,43 +158,49 @@ export class SQLiteStorage {
   }
 
   // Database management methods
-  async getDatabaseStats(): Promise<{ questions: number; conversations: number; size: string }> {
-    const { default: DatabaseManager } = await import('$lib/db/database');
+  async getDatabaseStats(): Promise<{
+    questions: number;
+    conversations: number;
+    size: string;
+  }> {
+    const { default: DatabaseManager } = await import("$lib/db/database");
     const dbManager = DatabaseManager.getInstance();
     return dbManager.getStats();
   }
 
   // Migration helper - migrate from localStorage to SQLite
   async migrateFromLocalStorage(): Promise<void> {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
     try {
-      const localStorageData = localStorage.getItem('holmes_questions');
+      const localStorageData = localStorage.getItem("holmes_questions");
       if (localStorageData) {
         const questions = JSON.parse(localStorageData);
         if (Array.isArray(questions)) {
           // Clear existing questions in SQLite
-          this.questionRepo.importQuestions('[]');
-          
+          this.questionRepo.importQuestions("[]");
+
           // Import questions from localStorage
-          questions.forEach(question => {
+          questions.forEach((question) => {
             this.saveQuestion({
               question: question.question,
               category: question.category,
               isBookmarked: question.isBookmarked,
               tags: question.tags || [],
               responsePreview: question.responsePreview,
-              source: question.source
+              source: question.source,
             });
           });
 
           // Clear localStorage after successful migration
-          localStorage.removeItem('holmes_questions');
-          console.log(`Migrated ${questions.length} questions from localStorage to SQLite`);
+          localStorage.removeItem("holmes_questions");
+          console.log(
+            `Migrated ${questions.length} questions from localStorage to SQLite`,
+          );
         }
       }
     } catch (error) {
-      console.error('Error migrating from localStorage:', error);
+      console.error("Error migrating from localStorage:", error);
     }
   }
 
@@ -195,7 +209,7 @@ export class SQLiteStorage {
     return {
       questions: this.exportQuestions(),
       conversations: this.exportConversations(),
-      stats: this.getDatabaseStats()
+      stats: this.getDatabaseStats(),
     };
   }
 
@@ -213,4 +227,4 @@ export class SQLiteStorage {
 const sqliteStorage = new SQLiteStorage();
 
 // Export the singleton instance
-export default sqliteStorage; 
+export default sqliteStorage;

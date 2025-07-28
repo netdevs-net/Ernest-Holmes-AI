@@ -1,4 +1,4 @@
-import DatabaseManager from './database';
+import DatabaseManager from "./database";
 
 export interface ConversationRecord {
   id: string;
@@ -36,7 +36,9 @@ export class ConversationRepository {
   }
 
   // Save a new conversation
-  saveConversation(conversation: Omit<Conversation, 'id' | 'timestamp'>): string {
+  saveConversation(
+    conversation: Omit<Conversation, "id" | "timestamp">,
+  ): string {
     const stmt = this.db.prepare(`
       INSERT INTO conversations (id, question_id, user_message, assistant_message, source, user_ip, user_mac, user_agent, session_id)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -53,7 +55,7 @@ export class ConversationRepository {
       conversation.userIp || null,
       conversation.userMac || null,
       conversation.userAgent || null,
-      conversation.sessionId || null
+      conversation.sessionId || null,
     );
 
     return id;
@@ -102,7 +104,10 @@ export class ConversationRepository {
       ORDER BY timestamp DESC
     `);
 
-    const rows = stmt.all(startDate.toISOString(), endDate.toISOString()) as ConversationRecord[];
+    const rows = stmt.all(
+      startDate.toISOString(),
+      endDate.toISOString(),
+    ) as ConversationRecord[];
     return rows.map(this.mapRecordToConversation);
   }
 
@@ -120,19 +125,21 @@ export class ConversationRepository {
 
   // Delete a conversation
   deleteConversation(conversationId: string): void {
-    const stmt = this.db.prepare('DELETE FROM conversations WHERE id = ?');
+    const stmt = this.db.prepare("DELETE FROM conversations WHERE id = ?");
     stmt.run(conversationId);
   }
 
   // Delete conversations by question ID
   deleteConversationsByQuestionId(questionId: string): void {
-    const stmt = this.db.prepare('DELETE FROM conversations WHERE question_id = ?');
+    const stmt = this.db.prepare(
+      "DELETE FROM conversations WHERE question_id = ?",
+    );
     stmt.run(questionId);
   }
 
   // Get conversation count
   getConversationCount(): number {
-    const stmt = this.db.prepare('SELECT COUNT(*) as count FROM conversations');
+    const stmt = this.db.prepare("SELECT COUNT(*) as count FROM conversations");
     const result = stmt.get() as { count: number };
     return result.count;
   }
@@ -144,7 +151,7 @@ export class ConversationRepository {
     byDate: Record<string, number>;
   } {
     const total = this.getConversationCount();
-    
+
     // Get count by source
     const sourceStmt = this.db.prepare(`
       SELECT source, COUNT(*) as count 
@@ -152,9 +159,12 @@ export class ConversationRepository {
       WHERE source IS NOT NULL 
       GROUP BY source
     `);
-    const sourceRows = sourceStmt.all() as Array<{ source: string; count: number }>;
+    const sourceRows = sourceStmt.all() as Array<{
+      source: string;
+      count: number;
+    }>;
     const bySource: Record<string, number> = {};
-    sourceRows.forEach(row => {
+    sourceRows.forEach((row) => {
       bySource[row.source] = row.count;
     });
 
@@ -168,7 +178,7 @@ export class ConversationRepository {
     `);
     const dateRows = dateStmt.all() as Array<{ date: string; count: number }>;
     const byDate: Record<string, number> = {};
-    dateRows.forEach(row => {
+    dateRows.forEach((row) => {
       byDate[row.date] = row.count;
     });
 
@@ -187,20 +197,20 @@ export class ConversationRepository {
       const conversations = JSON.parse(jsonData);
       if (Array.isArray(conversations)) {
         // Clear existing conversations
-        this.db.prepare('DELETE FROM conversations').run();
-        
+        this.db.prepare("DELETE FROM conversations").run();
+
         // Import new conversations
-        conversations.forEach(conversation => {
+        conversations.forEach((conversation) => {
           this.saveConversation({
             questionId: conversation.questionId,
             userMessage: conversation.userMessage,
             assistantMessage: conversation.assistantMessage,
-            source: conversation.source
+            source: conversation.source,
           });
         });
       }
     } catch (error) {
-      console.error('Failed to import conversations:', error);
+      console.error("Failed to import conversations:", error);
       throw error;
     }
   }
@@ -220,7 +230,7 @@ export class ConversationRepository {
 
   // Private helper methods
   private generateId(): string {
-    return 'conv_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    return "conv_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
   }
 
   private mapRecordToConversation(record: ConversationRecord): Conversation {
@@ -234,7 +244,7 @@ export class ConversationRepository {
       userMac: record.user_mac || undefined,
       userAgent: record.user_agent || undefined,
       sessionId: record.session_id || undefined,
-      timestamp: new Date(record.timestamp)
+      timestamp: new Date(record.timestamp),
     };
   }
-} 
+}

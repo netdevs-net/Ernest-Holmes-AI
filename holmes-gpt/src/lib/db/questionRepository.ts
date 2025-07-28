@@ -1,10 +1,13 @@
-import DatabaseManager from './database';
-import type { QuestionHistory, QuestionFilters } from '$lib/utils/questionStorage';
+import DatabaseManager from "./database";
+import type {
+  QuestionHistory,
+  QuestionFilters,
+} from "$lib/utils/questionStorage";
 
 export interface QuestionRecord {
   id: string;
   question: string;
-  category: 'spiritual' | 'practical' | 'metaphysical' | 'personal' | 'general';
+  category: "spiritual" | "practical" | "metaphysical" | "personal" | "general";
   timestamp: string;
   is_bookmarked: boolean;
   tags: string;
@@ -28,12 +31,14 @@ export class QuestionRepository {
   }
 
   // Save a new question
-  saveQuestion(question: Omit<QuestionHistory, 'id' | 'timestamp'> & {
-    userIp?: string;
-    userMac?: string;
-    userAgent?: string;
-    sessionId?: string;
-  }): void {
+  saveQuestion(
+    question: Omit<QuestionHistory, "id" | "timestamp"> & {
+      userIp?: string;
+      userMac?: string;
+      userAgent?: string;
+      sessionId?: string;
+    },
+  ): void {
     const stmt = this.db.prepare(`
       INSERT INTO questions (id, question, category, is_bookmarked, tags, response_preview, source, user_ip, user_mac, user_agent, session_id)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -53,7 +58,7 @@ export class QuestionRepository {
       question.userIp || null,
       question.userMac || null,
       question.userAgent || null,
-      question.sessionId || null
+      question.sessionId || null,
     );
   }
 
@@ -70,36 +75,42 @@ export class QuestionRepository {
 
   // Get questions for specific user
   getQuestionsForUser(sessionId?: string, userMac?: string): QuestionHistory[] {
-    let query = 'SELECT * FROM questions WHERE 1=0'; // Start with false condition
+    let query = "SELECT * FROM questions WHERE 1=0"; // Start with false condition
     const params: any[] = [];
 
     if (sessionId) {
       // Check for both new and old sessionId formats
-      if (sessionId.startsWith('session_') && sessionId.split('_').length === 2) {
+      if (
+        sessionId.startsWith("session_") &&
+        sessionId.split("_").length === 2
+      ) {
         // New format: session_fingerprint (only 2 parts)
-        const fingerprint = sessionId.replace('session_', '');
-        query = 'SELECT * FROM questions WHERE session_id = ? OR user_mac = ?';
+        const fingerprint = sessionId.replace("session_", "");
+        query = "SELECT * FROM questions WHERE session_id = ? OR user_mac = ?";
         params.push(sessionId, fingerprint);
-      } else if (sessionId.startsWith('session_') && sessionId.split('_').length >= 3) {
+      } else if (
+        sessionId.startsWith("session_") &&
+        sessionId.split("_").length >= 3
+      ) {
         // Old format: session_timestamp_random_fingerprint (4 parts)
-        const parts = sessionId.split('_');
+        const parts = sessionId.split("_");
         const fingerprint = parts[parts.length - 1]; // Last part is the fingerprint
-        query = 'SELECT * FROM questions WHERE session_id = ? OR user_mac = ?';
+        query = "SELECT * FROM questions WHERE session_id = ? OR user_mac = ?";
         params.push(sessionId, fingerprint);
       } else {
         // Other format
-        query = 'SELECT * FROM questions WHERE session_id = ?';
+        query = "SELECT * FROM questions WHERE session_id = ?";
         params.push(sessionId);
       }
     } else if (userMac) {
-      query = 'SELECT * FROM questions WHERE user_mac = ?';
+      query = "SELECT * FROM questions WHERE user_mac = ?";
       params.push(userMac);
     } else {
       // If no user identification, return empty array
       return [];
     }
 
-    query += ' ORDER BY timestamp DESC';
+    query += " ORDER BY timestamp DESC";
 
     const stmt = this.db.prepare(query);
     const rows = stmt.all(...params) as QuestionRecord[];
@@ -107,40 +118,45 @@ export class QuestionRepository {
   }
 
   // Search questions with filters
-  searchQuestions(filters: QuestionFilters & { userSessionId?: string; userMac?: string }): QuestionHistory[] {
-    let query = 'SELECT * FROM questions WHERE 1=1';
+  searchQuestions(
+    filters: QuestionFilters & { userSessionId?: string; userMac?: string },
+  ): QuestionHistory[] {
+    let query = "SELECT * FROM questions WHERE 1=1";
     const params: any[] = [];
 
     // User filtering - prioritize sessionId over userMac
     if (filters.userSessionId) {
-      query += ' AND session_id = ?';
+      query += " AND session_id = ?";
       params.push(filters.userSessionId);
     } else if (filters.userMac) {
-      query += ' AND user_mac = ?';
+      query += " AND user_mac = ?";
       params.push(filters.userMac);
     }
 
     if (filters.category) {
-      query += ' AND category = ?';
+      query += " AND category = ?";
       params.push(filters.category);
     }
 
     if (filters.searchTerm) {
-      query += ' AND (question LIKE ? OR tags LIKE ?)';
+      query += " AND (question LIKE ? OR tags LIKE ?)";
       const searchTerm = `%${filters.searchTerm}%`;
       params.push(searchTerm, searchTerm);
     }
 
     if (filters.bookmarkedOnly) {
-      query += ' AND is_bookmarked = 1';
+      query += " AND is_bookmarked = 1";
     }
 
     if (filters.dateRange) {
-      query += ' AND timestamp BETWEEN ? AND ?';
-      params.push(filters.dateRange.start.toISOString(), filters.dateRange.end.toISOString());
+      query += " AND timestamp BETWEEN ? AND ?";
+      params.push(
+        filters.dateRange.start.toISOString(),
+        filters.dateRange.end.toISOString(),
+      );
     }
 
-    query += ' ORDER BY timestamp DESC';
+    query += " ORDER BY timestamp DESC";
 
     const stmt = this.db.prepare(query);
     const rows = stmt.all(...params) as QuestionRecord[];
@@ -161,12 +177,15 @@ export class QuestionRepository {
 
   // Delete a question
   deleteQuestion(questionId: string): void {
-    const stmt = this.db.prepare('DELETE FROM questions WHERE id = ?');
+    const stmt = this.db.prepare("DELETE FROM questions WHERE id = ?");
     stmt.run(questionId);
   }
 
   // Update question source and response preview
-  updateQuestionSource(questionId: string, updates: { responsePreview?: string; source?: string }): void {
+  updateQuestionSource(
+    questionId: string,
+    updates: { responsePreview?: string; source?: string },
+  ): void {
     const stmt = this.db.prepare(`
       UPDATE questions 
       SET response_preview = COALESCE(?, response_preview),
@@ -175,40 +194,52 @@ export class QuestionRepository {
       WHERE id = ?
     `);
 
-    stmt.run(updates.responsePreview || null, updates.source || null, questionId);
+    stmt.run(
+      updates.responsePreview || null,
+      updates.source || null,
+      questionId,
+    );
   }
 
   // Get question count
   getQuestionCount(): number {
-    const stmt = this.db.prepare('SELECT COUNT(*) as count FROM questions');
+    const stmt = this.db.prepare("SELECT COUNT(*) as count FROM questions");
     const result = stmt.get() as { count: number };
     return result.count;
   }
 
   getQuestionCountForUser(sessionId?: string, userMac?: string): number {
-    let query = 'SELECT COUNT(*) as count FROM questions WHERE 1=0'; // Start with false condition
+    let query = "SELECT COUNT(*) as count FROM questions WHERE 1=0"; // Start with false condition
     const params: any[] = [];
 
     if (sessionId) {
       // Check for both new and old sessionId formats
-      if (sessionId.startsWith('session_') && sessionId.split('_').length === 2) {
+      if (
+        sessionId.startsWith("session_") &&
+        sessionId.split("_").length === 2
+      ) {
         // New format: session_fingerprint (only 2 parts)
-        const fingerprint = sessionId.replace('session_', '');
-        query = 'SELECT COUNT(*) as count FROM questions WHERE session_id = ? OR user_mac = ?';
+        const fingerprint = sessionId.replace("session_", "");
+        query =
+          "SELECT COUNT(*) as count FROM questions WHERE session_id = ? OR user_mac = ?";
         params.push(sessionId, fingerprint);
-      } else if (sessionId.startsWith('session_') && sessionId.split('_').length >= 3) {
+      } else if (
+        sessionId.startsWith("session_") &&
+        sessionId.split("_").length >= 3
+      ) {
         // Old format: session_timestamp_random_fingerprint (4 parts)
-        const parts = sessionId.split('_');
+        const parts = sessionId.split("_");
         const fingerprint = parts[parts.length - 1]; // Last part is the fingerprint
-        query = 'SELECT COUNT(*) as count FROM questions WHERE session_id = ? OR user_mac = ?';
+        query =
+          "SELECT COUNT(*) as count FROM questions WHERE session_id = ? OR user_mac = ?";
         params.push(sessionId, fingerprint);
       } else {
         // Other format
-        query = 'SELECT COUNT(*) as count FROM questions WHERE session_id = ?';
+        query = "SELECT COUNT(*) as count FROM questions WHERE session_id = ?";
         params.push(sessionId);
       }
     } else if (userMac) {
-      query = 'SELECT COUNT(*) as count FROM questions WHERE user_mac = ?';
+      query = "SELECT COUNT(*) as count FROM questions WHERE user_mac = ?";
       params.push(userMac);
     } else {
       return 0;
@@ -221,7 +252,9 @@ export class QuestionRepository {
 
   // Get bookmarked question count
   getBookmarkedCount(): number {
-    const stmt = this.db.prepare('SELECT COUNT(*) as count FROM questions WHERE is_bookmarked = 1');
+    const stmt = this.db.prepare(
+      "SELECT COUNT(*) as count FROM questions WHERE is_bookmarked = 1",
+    );
     const result = stmt.get() as { count: number };
     return result.count;
   }
@@ -238,22 +271,22 @@ export class QuestionRepository {
       const questions = JSON.parse(jsonData);
       if (Array.isArray(questions)) {
         // Clear existing questions
-        this.db.prepare('DELETE FROM questions').run();
-        
+        this.db.prepare("DELETE FROM questions").run();
+
         // Import new questions
-        questions.forEach(question => {
+        questions.forEach((question) => {
           this.saveQuestion({
             question: question.question,
             category: question.category,
             isBookmarked: question.isBookmarked,
             tags: question.tags,
             responsePreview: question.responsePreview,
-            source: question.source
+            source: question.source,
           });
         });
       }
     } catch (error) {
-      console.error('Failed to import questions:', error);
+      console.error("Failed to import questions:", error);
       throw error;
     }
   }
@@ -296,14 +329,14 @@ export class QuestionRepository {
 
   // Search questions by tags
   searchByTags(tags: string[]): QuestionHistory[] {
-    const tagConditions = tags.map(() => 'tags LIKE ?').join(' OR ');
+    const tagConditions = tags.map(() => "tags LIKE ?").join(" OR ");
     const query = `
       SELECT * FROM questions 
       WHERE ${tagConditions}
       ORDER BY timestamp DESC
     `;
 
-    const searchParams = tags.map(tag => `%${tag}%`);
+    const searchParams = tags.map((tag) => `%${tag}%`);
     const stmt = this.db.prepare(query);
     const rows = stmt.all(...searchParams) as QuestionRecord[];
     return rows.map(this.mapRecordToQuestion);
@@ -311,7 +344,7 @@ export class QuestionRepository {
 
   // Private helper methods
   private generateId(): string {
-    return 'q_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    return "q_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
   }
 
   private mapRecordToQuestion(record: QuestionRecord): QuestionHistory {
@@ -327,7 +360,7 @@ export class QuestionRepository {
       userIp: record.user_ip || undefined,
       userMac: record.user_mac || undefined,
       userAgent: record.user_agent || undefined,
-      sessionId: record.session_id || undefined
+      sessionId: record.session_id || undefined,
     };
   }
-} 
+}
