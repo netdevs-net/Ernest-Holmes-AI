@@ -30,7 +30,11 @@
 	];
 
 	// Treatment templates in Holmes' style
-	const treatmentTemplates = {
+	const treatmentTemplates: Record<string, {
+		title: string;
+		template: string;
+		keyElements: string[];
+	}> = {
 		general: {
 			title: 'General Spiritual Treatment',
 			template: `I recognize that I am one with Infinite Intelligence, that Divine Mind lives through me, and that Spiritual Law operates through my consciousness. I am a channel for the Creative Power of the universe, and all that I need is already provided. I walk in the consciousness of my oneness with the Infinite, and my life is a perfect expression of Divine Intelligence.`,
@@ -86,7 +90,6 @@
 	// Reactive variables
 	let selectedCategory = 'general';
 	let customTreatment = '';
-	let isVisible = false;
 	let generatedTreatment = '';
 	let isGenerating = false;
 	let showCustomInput = false;
@@ -94,6 +97,7 @@
 	let selectedElements: string[] = [];
 
 	// Props
+	export let isVisible = false;
 	export let onClose: () => void = () => {};
 
 	// Generate treatment based on selected category and custom elements
