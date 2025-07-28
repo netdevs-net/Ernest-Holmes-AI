@@ -1,8 +1,18 @@
 <script lang="ts">
-	import { responseStyle, toggleResponseStyle } from '$lib/stores/responseStyleStore';
+	import { createEventDispatcher } from 'svelte';
+	import { responseStyle, toggleResponseStyle, setResponseStyle } from '$lib/stores/responseStyleStore';
+	
+	const dispatch = createEventDispatcher();
 	
 	function handleToggle() {
+		const previousStyle = $responseStyle;
 		toggleResponseStyle();
+		
+		// Dispatch event to notify parent of style change
+		dispatch('styleChanged', { 
+			previousStyle, 
+			newStyle: $responseStyle 
+		});
 	}
 	
 	function handleKeydown(event: KeyboardEvent) {
@@ -14,14 +24,15 @@
 </script>
 
 <div class="response-style-toggle-container" role="group" aria-label="Response style selection">
-	<div class="toggle-labels">
-		<span class="label his-words" class:active={$responseStyle === 'his-words'}>
-			In His Words
-		</span>
-		<span class="label modern" class:active={$responseStyle === 'modern'}>
-			Modern
-		</span>
-	</div>
+	<button
+		class="label his-words"
+		class:active={$responseStyle === 'his-words'}
+		on:click={() => setResponseStyle('his-words')}
+		title="Ernest Holmes' authentic voice"
+		aria-label="Switch to Ernest Holmes style"
+	>
+		In His Words
+	</button>
 	
 	<button
 		class="toggle-switch"
@@ -36,37 +47,56 @@
 		<div class="toggle-slider"></div>
 		<div class="toggle-track"></div>
 	</button>
+	
+	<button
+		class="label modern"
+		class:active={$responseStyle === 'modern'}
+		on:click={() => setResponseStyle('modern')}
+		title="Modern spiritual guidance"
+		aria-label="Switch to modern style"
+	>
+		Modern
+	</button>
 </div>
 
 <style>
 	.response-style-toggle-container {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		align-items: center;
-		gap: 0.5rem;
+		gap: 0.75rem;
 		padding: 0.5rem;
-	}
-
-	.toggle-labels {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-		font-size: 0.875rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
 	}
 
 	.label {
 		color: var(--text-secondary);
-		transition: color 0.3s ease;
+		transition: all 0.3s ease;
 		padding: 0.25rem 0.5rem;
 		border-radius: 0.375rem;
+		font-size: 0.875rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		background: transparent;
+		border: 1px solid transparent;
+		cursor: pointer;
+	}
+
+	.label:hover {
+		color: var(--text-accent);
+		background: rgba(251, 191, 36, 0.05);
+		border-color: rgba(251, 191, 36, 0.2);
 	}
 
 	.label.active {
 		color: var(--text-accent);
-		background: rgba(251, 191, 36, 0.1);
+		background: rgba(251, 191, 36, 0.15);
+		border-color: rgba(251, 191, 36, 0.3);
+	}
+
+	.label:focus {
+		outline: none;
+		box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.3);
 	}
 
 	.toggle-switch {
@@ -144,9 +174,12 @@
 
 	/* Responsive design */
 	@media (max-width: 768px) {
-		.toggle-labels {
+		.response-style-toggle-container {
+			gap: 0.5rem;
+		}
+
+		.label {
 			font-size: 0.75rem;
-			gap: 0.75rem;
 		}
 
 		.toggle-switch {
