@@ -5,7 +5,7 @@ import sqliteStorage from '$lib/utils/sqliteStorage';
 // GET /api/stats - Get database statistics
 export const GET: RequestHandler = async () => {
   try {
-    const stats = sqliteStorage.getDatabaseStats();
+    const stats = await sqliteStorage.getDatabaseStats();
     const conversationStats = sqliteStorage.getConversationStats();
 
     return json({
@@ -25,6 +25,9 @@ export const GET: RequestHandler = async () => {
     });
   } catch (error) {
     console.error('Error fetching statistics:', error);
-    return json({ error: 'Failed to fetch statistics' }, { status: 500 });
+    return json({ 
+      error: 'Failed to fetch statistics',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, { status: 500 });
   }
 }; 

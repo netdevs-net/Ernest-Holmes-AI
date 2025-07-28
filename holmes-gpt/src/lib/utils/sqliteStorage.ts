@@ -150,8 +150,9 @@ export class SQLiteStorage {
   }
 
   // Database management methods
-  getDatabaseStats(): { questions: number; conversations: number; size: string } {
-    const dbManager = require('$lib/db/database').default.getInstance();
+  async getDatabaseStats(): Promise<{ questions: number; conversations: number; size: string }> {
+    const { default: DatabaseManager } = await import('$lib/db/database');
+    const dbManager = DatabaseManager.getInstance();
     return dbManager.getStats();
   }
 

@@ -8,6 +8,7 @@
 	import { questionCount, saveQuestion, updateQuestionSource, questions } from '$lib/stores/questionStore';
 	import { extractTags } from '$lib/utils/questionStorage';
 	import { getDeviceFingerprint, getSessionId, storeDeviceInfo } from '$lib/utils/macAddress';
+	import { theme } from '$lib/stores/themeStore';
 	
 	let messages: Array<{ role: 'user' | 'assistant'; content: string; timestamp: Date; source?: string; error?: boolean }> = [];
 	let isLoading = false;
@@ -21,6 +22,11 @@
 	onMount(() => {
 		// Store device information on first load
 		storeDeviceInfo();
+		
+		// Initialize theme
+		$: if (typeof document !== 'undefined') {
+			document.documentElement.setAttribute('data-theme', $theme);
+		}
 		
 		// Initialize with a welcome message
 		messages = [
@@ -163,6 +169,25 @@
 			}
 		}
 	}
+	
+	// Handle keyboard shortcuts
+	function handleGlobalKeydown(event: KeyboardEvent) {
+		// Ctrl/Cmd + H for history
+		if ((event.ctrlKey || event.metaKey) && event.key === 'h') {
+			event.preventDefault();
+			toggleHistory();
+		}
+		// Ctrl/Cmd + Q for quotes
+		if ((event.ctrlKey || event.metaKey) && event.key === 'q') {
+			event.preventDefault();
+			toggleQuotes();
+		}
+		// Ctrl/Cmd + T for treatment generator
+		if ((event.ctrlKey || event.metaKey) && event.key === 't') {
+			event.preventDefault();
+			toggleTreatment();
+		}
+	}
 </script>
 
 <svelte:head>
@@ -170,9 +195,9 @@
 	<meta name="description" content="A conversational AI inspired by Ernest Holmes, founder of Religious Science and author of The Science of Mind." />
 </svelte:head>
 
-<main class="min-h-screen relative overflow-hidden">
+<main class="min-h-screen relative overflow-hidden" on:keydown={handleGlobalKeydown} tabindex="-1">
 	<!-- Floating particles background -->
-	<div class="floating-particles"></div>
+	<div class="floating-particles" aria-hidden="true"></div>
 	
 	<!-- Main content -->
 	<div class="relative z-10">
@@ -203,8 +228,10 @@
 			role="dialog"
 			aria-modal="true"
 			aria-label="Question History"
+			aria-describedby="history-description"
 			tabindex="-1"
 		>
+			<div id="history-description" class="sr-only">Question history panel showing your previous spiritual questions</div>
 			<QuestionHistory 
 				isVisible={showHistory}
 				onQuestionSelect={handleQuestionSelect}
