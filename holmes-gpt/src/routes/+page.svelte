@@ -234,7 +234,7 @@
 	<div class="relative z-10">
 		<Header on:styleChanged={handleStyleChange} />
 		
-		<div class="container mx-auto px-4 py-8 max-w-5xl">
+		<div class="container mx-auto px-4 pt-4 pb-8 max-w-5xl">
 			<div class="chat-container rounded-3xl p-8 relative">
 				<ChatInterface 
 					{messages} 

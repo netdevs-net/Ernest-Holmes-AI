@@ -18,7 +18,7 @@
 	}
 </script>
 
-<header class="glass-effect sticky top-0 z-50" style="border-bottom: 1px solid var(--border-primary);">
+<header class="glass-effect sticky top-0 z-50 w-full" style="border-bottom: 1px solid var(--border-primary);">
 	<div class="container mx-auto px-6 py-2 flex items-center justify-between">
 		<!-- Left side - Logo -->
 		<div class="flex items-center space-x-4">
@@ -73,6 +73,15 @@
 </header>
 
 <style>
+	header {
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		width: 100%;
+	}
+	
 	/* Responsive adjustments for the header layout */
 	@media (max-width: 1024px) {
 		.container {
