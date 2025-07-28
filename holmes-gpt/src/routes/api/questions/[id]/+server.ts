@@ -1,6 +1,6 @@
-import { json } from '@sveltejs/kit';
-import type { RequestHandler } from './$types';
-import sqliteStorage from '$lib/utils/sqliteStorage';
+import { json } from "@sveltejs/kit";
+import type { RequestHandler } from "./$types";
+import sqliteStorage from "$lib/utils/sqliteStorage";
 
 // PUT /api/questions/[id] - Update a question
 export const PUT: RequestHandler = async ({ params, request }) => {
@@ -9,21 +9,21 @@ export const PUT: RequestHandler = async ({ params, request }) => {
     const updates = await request.json();
 
     if (!id) {
-      return json({ error: 'Question ID is required' }, { status: 400 });
+      return json({ error: "Question ID is required" }, { status: 400 });
     }
 
     // Update question source and response preview
     if (updates.responsePreview || updates.source) {
       sqliteStorage.updateQuestionSource(id, {
         responsePreview: updates.responsePreview,
-        source: updates.source
+        source: updates.source,
       });
     }
 
-    return json({ success: true, message: 'Question updated successfully' });
+    return json({ success: true, message: "Question updated successfully" });
   } catch (error) {
-    console.error('Error updating question:', error);
-    return json({ error: 'Failed to update question' }, { status: 500 });
+    console.error("Error updating question:", error);
+    return json({ error: "Failed to update question" }, { status: 500 });
   }
 };
 
@@ -33,14 +33,14 @@ export const DELETE: RequestHandler = async ({ params }) => {
     const { id } = params;
 
     if (!id) {
-      return json({ error: 'Question ID is required' }, { status: 400 });
+      return json({ error: "Question ID is required" }, { status: 400 });
     }
 
     sqliteStorage.deleteQuestion(id);
 
-    return json({ success: true, message: 'Question deleted successfully' });
+    return json({ success: true, message: "Question deleted successfully" });
   } catch (error) {
-    console.error('Error deleting question:', error);
-    return json({ error: 'Failed to delete question' }, { status: 500 });
+    console.error("Error deleting question:", error);
+    return json({ error: "Failed to delete question" }, { status: 500 });
   }
-}; 
+};

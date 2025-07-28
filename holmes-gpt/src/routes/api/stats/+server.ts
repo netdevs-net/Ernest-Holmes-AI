@@ -1,6 +1,6 @@
-import { json } from '@sveltejs/kit';
-import type { RequestHandler } from './$types';
-import sqliteStorage from '$lib/utils/sqliteStorage';
+import { json } from "@sveltejs/kit";
+import type { RequestHandler } from "./$types";
+import sqliteStorage from "$lib/utils/sqliteStorage";
 
 // GET /api/stats - Get database statistics
 export const GET: RequestHandler = async () => {
@@ -15,19 +15,23 @@ export const GET: RequestHandler = async () => {
         total: stats.questions,
         bookmarked: sqliteStorage.getBookmarkedCount(),
         byCategory: {
-          spiritual: sqliteStorage.getQuestionsByCategory('spiritual').length,
-          practical: sqliteStorage.getQuestionsByCategory('practical').length,
-          metaphysical: sqliteStorage.getQuestionsByCategory('metaphysical').length,
-          personal: sqliteStorage.getQuestionsByCategory('personal').length,
-          general: sqliteStorage.getQuestionsByCategory('general').length
-        }
-      }
+          spiritual: sqliteStorage.getQuestionsByCategory("spiritual").length,
+          practical: sqliteStorage.getQuestionsByCategory("practical").length,
+          metaphysical:
+            sqliteStorage.getQuestionsByCategory("metaphysical").length,
+          personal: sqliteStorage.getQuestionsByCategory("personal").length,
+          general: sqliteStorage.getQuestionsByCategory("general").length,
+        },
+      },
     });
   } catch (error) {
-    console.error('Error fetching statistics:', error);
-    return json({ 
-      error: 'Failed to fetch statistics',
-      details: error instanceof Error ? error.message : 'Unknown error'
-    }, { status: 500 });
+    console.error("Error fetching statistics:", error);
+    return json(
+      {
+        error: "Failed to fetch statistics",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 },
+    );
   }
-}; 
+};
