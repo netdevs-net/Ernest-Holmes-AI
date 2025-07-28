@@ -12,7 +12,7 @@
 
 @layer components {
   .chat-bubble {
-    @apply rounded-2xl p-6 mb-6 max-w-4xl shadow-lg backdrop-blur-sm;
+    @apply rounded-2xl p-4 md:p-6 mb-4 md:mb-6 max-w-4xl shadow-lg backdrop-blur-sm;
     animation: fadeInUp 0.3s ease-out;
   }
   
@@ -26,7 +26,7 @@
   }
   
   .typing-indicator {
-    @apply flex space-x-2 p-6;
+    @apply flex space-x-2 p-4 md:p-6;
   }
   
   .typing-dot {
@@ -37,6 +37,14 @@
     background: rgba(15, 15, 35, 0.8);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .chat-container {
+      padding: 0.5rem;
+      margin: 0.5rem;
+    }
   }
   
   .glass-effect {
