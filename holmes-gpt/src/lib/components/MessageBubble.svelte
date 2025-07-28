@@ -3,6 +3,28 @@
 	
 	$: isUser = message.role === 'user';
 	$: formattedTime = message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+	
+	// Function to parse markdown-like formatting
+	function parseFormatting(text: string): string {
+		return text
+			// Convert **bold** to <strong>
+			.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+			// Convert *italics* to <em>
+			.replace(/\*(.*?)\*/g, '<em>$1</em>')
+			// Convert line breaks to <br> tags
+			.replace(/\n\n/g, '</p><p>')
+			.replace(/\n/g, '<br>')
+			// Convert bullet points
+			.replace(/^•\s*(.*)$/gm, '<li>$1</li>')
+			// Wrap in paragraphs
+			.replace(/^(.*)$/gm, '<p>$1</p>')
+			// Clean up empty paragraphs
+			.replace(/<p><\/p>/g, '')
+			// Convert lists
+			.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+	}
+	
+	$: formattedContent = isUser ? message.content : parseFormatting(message.content);
 </script>
 
 <div class="flex {isUser ? 'justify-end' : 'justify-start'}">
@@ -20,8 +42,12 @@
 				</div>
 			{/if}
 			
-			<div class="text-base leading-relaxed {isUser ? 'text-white' : 'text-gray-200'}">
-				{message.content}
+			<div class="text-base leading-relaxed {isUser ? 'text-white' : 'text-gray-200'}" class:formatted-content={!isUser}>
+				{#if isUser}
+					{message.content}
+				{:else}
+					{@html formattedContent}
+				{/if}
 			</div>
 			
 			<div class="text-xs text-gray-500 mt-3 {isUser ? 'text-right' : 'text-left'} flex items-center space-x-2">
@@ -41,4 +67,34 @@
 			</div>
 		</div>
 	</div>
-</div> 
+</div>
+
+<style>
+	.formatted-content :global(strong) {
+		color: #fbbf24;
+		font-weight: 600;
+	}
+	
+	.formatted-content :global(em) {
+		color: #f3f4f6;
+		font-style: italic;
+	}
+	
+	.formatted-content :global(p) {
+		margin-bottom: 1rem;
+	}
+	
+	.formatted-content :global(ul) {
+		margin: 1rem 0;
+		padding-left: 1.5rem;
+	}
+	
+	.formatted-content :global(li) {
+		margin-bottom: 0.5rem;
+		color: #e5e7eb;
+	}
+	
+	.formatted-content :global(br) {
+		margin-bottom: 0.5rem;
+	}
+</style> 

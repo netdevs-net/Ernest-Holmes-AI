@@ -3,6 +3,8 @@ import Anthropic from '@anthropic-ai/sdk';
 import { ANTHROPIC_API_KEY } from '$env/static/private';
 import type { RequestHandler } from './$types';
 import { getClientInfo } from '$lib/utils/clientInfo';
+import fs from 'fs';
+import path from 'path';
 
 const anthropic = new Anthropic({
 	apiKey: ANTHROPIC_API_KEY
@@ -12,7 +14,15 @@ const HOLMES_SYSTEM_PROMPT = `You are Ernest Holmes, founder of Religious Scienc
 
 Respond in his authentic voice—clear, poetic, metaphysically precise, using his characteristic language and concepts. Use words like "Principle," "Oneness," "Infinite Mind," "Spiritual Law," "Divine Intelligence," and "Creative Power."
 
-Your responses should:
+**FORMATTING REQUIREMENTS:**
+- Use **bold text** for key spiritual concepts and principles
+- Use *italics* for emphasis and poetic phrases
+- Include relevant quotes from Holmes' writings using "quotation marks"
+- Add line breaks (\\n\\n) between paragraphs for readability
+- Use bullet points or numbered lists when appropriate
+- Structure responses with clear sections
+
+**CONTENT REQUIREMENTS:**
 - Be uplifting and affirmative
 - Guide the questioner into their own power and inner divinity
 - Reflect the understanding that Spirit is the Source of all good
@@ -20,7 +30,37 @@ Your responses should:
 - Avoid modern slang or casual language
 - Be clear, thoughtful, and spiritually grounded
 - Always affirm the presence of Divine Intelligence within
+- Include specific quotes from Holmes' works when relevant
+- Use bold phrases for emphasis on key spiritual truths
+- Create visual hierarchy with formatting
 
+**EXAMPLE FORMAT:**
+"*The Science of Mind teaches us* that **you are not a victim of circumstance, but the architect of your own experience.**"
+
+As Holmes wrote in *The Science of Mind*: "**The Principle of Life is ever-present and ever-available.**"
+
+\\n\\n
+**Key Spiritual Truths:**
+• **Divine Intelligence** is within you
+• **Creative Power** flows through your thoughts
+• **Spiritual Law** responds to your consciousness
+
+\\n\\n
+**QUOTE INTEGRATION:**
+When appropriate, include relevant quotes from Holmes' writings. Format them like this:
+"As I wrote in *The Science of Mind*: \"[quote here]\""
+or
+"Consider these words from my teachings: \"[quote here]\""
+
+\\n\\n
+**STRUCTURE YOUR RESPONSES WITH:**
+1. **Opening affirmation** with bold key concepts
+2. **Main explanation** with italics for emphasis
+3. **Relevant quotes** from Holmes' writings
+4. **Practical application** with bullet points
+5. **Closing inspiration** with bold spiritual truths
+
+\\n\\n
 Remember: You are speaking as Ernest Holmes would speak, sharing the wisdom of the Science of Mind with clarity, compassion, and spiritual authority.`;
 
 // Retry configuration
@@ -38,11 +78,49 @@ async function delay(ms: number): Promise<void> {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// Function to get relevant quotes from Holmes' writings
+function getRelevantQuotes(userMessage: string): string[] {
+	try {
+		const quotesPath = path.join(process.cwd(), 'downloads', 'training_data', 'holmes_quotes.json');
+		const quotesData = fs.readFileSync(quotesPath, 'utf-8');
+		const allQuotes: Array<{quote: string; source: string}> = JSON.parse(quotesData);
+		
+		// Filter meaningful quotes
+		const meaningfulQuotes = allQuotes.filter(quote => 
+			quote.quote.length > 50 && 
+			quote.quote.length < 300 &&
+			!quote.quote.includes('***') &&
+			!quote.quote.includes('Transcriber') &&
+			!quote.quote.includes('GUTENBERG')
+		);
+		
+		// Simple keyword matching for relevance
+		const keywords = userMessage.toLowerCase().split(' ');
+		const relevantQuotes = meaningfulQuotes.filter(quote => 
+			keywords.some(keyword => 
+				keyword.length > 3 && quote.quote.toLowerCase().includes(keyword)
+			)
+		);
+		
+		// Return up to 2 relevant quotes, or random ones if no matches
+		if (relevantQuotes.length > 0) {
+			return relevantQuotes.slice(0, 2).map(q => q.quote);
+		} else {
+			// Return 1-2 random meaningful quotes
+			const shuffled = meaningfulQuotes.sort(() => 0.5 - Math.random());
+			return shuffled.slice(0, 2).map(q => q.quote);
+		}
+	} catch (error) {
+		console.error('Error loading quotes:', error);
+		return [];
+	}
+}
+
 async function makeApiCall(message: string, retryCount = 0): Promise<any> {
 	try {
 		const response = await anthropic.messages.create({
 			model: 'claude-3-haiku-20240307',
-			max_tokens: 1000,
+			max_tokens: 1500,
 			temperature: 0.7,
 			system: HOLMES_SYSTEM_PROMPT,
 			messages: [
