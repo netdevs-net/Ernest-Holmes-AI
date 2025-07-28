@@ -18,26 +18,26 @@
 	}
 </script>
 
-<header class="glass-effect sticky top-0 z-50" role="banner" style="border-bottom: 1px solid var(--border-primary);">
-	<div class="container mx-auto px-6 py-4 flex items-center justify-between">
+<header class="glass-effect sticky top-0 z-50" style="border-bottom: 1px solid var(--border-primary);">
+	<div class="container mx-auto px-6 py-2 flex items-center justify-between">
 		<!-- Left side - Logo -->
 		<div class="flex items-center space-x-4">
-			<div class="w-12 h-12 bg-gradient-to-br from-amber-400 via-orange-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg" role="img" aria-label="HolmesGPT Logo">
-				<span class="text-white font-bold text-xl">H</span>
+			<div class="w-10 h-10 bg-gradient-to-br from-amber-400 via-orange-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg" role="img" aria-label="HolmesGPT Logo">
+				<span class="text-white font-bold text-lg">H</span>
 			</div>
 			<div>
-				<h1 class="text-2xl font-serif font-semibold gradient-text">HolmesGPT</h1>
-				<p class="text-sm" style="color: var(--text-secondary);">Ernest Holmes AI</p>
+				<h1 class="text-xl font-serif font-semibold gradient-text">HolmesGPT</h1>
+				<p class="text-xs" style="color: var(--text-secondary);">Ernest Holmes AI</p>
 			</div>
 		</div>
 		
 		<!-- Center - Response Style Toggle -->
 		<div class="flex-1 flex justify-center">
-			<ResponseStyleToggle />
+			<ResponseStyleToggle on:styleChanged={({ detail }) => dispatch('styleChanged', detail)} />
 		</div>
 		
 		<!-- Right side - Navigation -->
-		<nav class="flex items-center space-x-4" role="navigation" aria-label="Main navigation">
+		<nav class="flex items-center space-x-4" aria-label="Main navigation">
 			<a 
 				href="/admin"
 				class="p-3 rounded-xl glass-effect hover:bg-white/10 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-transparent"
@@ -91,7 +91,7 @@
 	
 	@media (max-width: 768px) {
 		.container {
-			padding: 0.75rem;
+			padding: 0.5rem;
 		}
 		
 		h1 {
