@@ -74,8 +74,8 @@
 				bind:value={message}
 				on:keydown={handleKeydown}
 				placeholder="Ask Ernest Holmes a spiritual question..."
-				class="w-full px-6 py-4 border rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400 backdrop-blur-sm text-base"
-				style="border-color: var(--border-primary); background: var(--glass-bg);"
+				class="w-full px-6 py-4 border rounded-2xl resize-none focus:outline-none backdrop-blur-sm text-base"
+				style="border-color: var(--border-primary); background: var(--glass-bg); color: var(--text-primary);"
 				rows="1"
 				disabled={isLoading}
 				aria-label="Enter your spiritual question"
@@ -136,10 +136,10 @@
 	
 	.history-btn, .quotes-btn, .treatment-btn {
 		padding: 8px 16px;
-		background: rgba(59, 130, 246, 0.1);
-		border: 1px solid rgba(59, 130, 246, 0.3);
+		background: var(--bg-secondary);
+		border: 1px solid var(--border-primary);
 		border-radius: 8px;
-		color: #555555;
+		color: var(--text-primary);
 		font-size: 0.9rem;
 		cursor: pointer;
 		transition: all 0.3s ease;
@@ -149,11 +149,11 @@
 	}
 	
 	.history-btn:hover, .quotes-btn:hover, .treatment-btn:hover {
-		background: rgba(59, 130, 246, 0.4) !important;
-		border-color: rgba(59, 130, 246, 0.7) !important;
-		color: #ffffff !important;
+		background: var(--text-accent) !important;
+		border-color: var(--text-accent) !important;
+		color: white !important;
 		transform: translateY(-1px);
-		box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+		box-shadow: 0 4px 12px var(--shadow-medium);
 	}
 	
 	.input-actions {
@@ -176,11 +176,12 @@
 	.category-select:focus {
 		outline: none;
 		border-color: var(--text-accent);
+		box-shadow: 0 0 0 2px var(--focus-ring);
 	}
 	
 	.send-btn {
 		padding: 8px 16px;
-		background: linear-gradient(135deg, var(--text-accent), #f59e0b);
+		background: linear-gradient(135deg, var(--text-accent), var(--text-accent-hover));
 		border: none;
 		border-radius: 8px;
 		color: white;
@@ -195,8 +196,8 @@
 	
 	.send-btn:hover:not(:disabled) {
 		transform: translateY(-2px);
-		box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5);
-		background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+		box-shadow: 0 6px 20px var(--shadow-medium);
+		background: linear-gradient(135deg, var(--text-accent-hover), var(--text-accent)) !important;
 	}
 	
 	.send-btn:disabled {
@@ -205,23 +206,30 @@
 		transform: none;
 	}
 	
+	/* Focus styles for accessibility */
+	textarea:focus {
+		outline: none;
+		border-color: var(--text-accent);
+		box-shadow: 0 0 0 2px var(--focus-ring);
+	}
+	
 	/* Ensure proper text color in both themes */
 	textarea {
-		color: #0f172a !important; /* Dark text for readability */
+		color: var(--text-primary) !important;
 	}
 	
 	textarea::placeholder {
-		color: #64748b;
+		color: var(--text-muted);
 		opacity: 0.8;
 	}
 	
 	/* Ensure select text is visible */
 	select {
-		color: #0f172a !important; /* Dark text for readability */
+		color: var(--text-primary) !important;
 	}
 	
 	select option {
-		color: #0f172a;
-		background: #ffffff;
+		color: var(--text-primary);
+		background: var(--bg-primary);
 	}
 </style> 

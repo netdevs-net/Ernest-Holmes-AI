@@ -30,7 +30,7 @@
 
 <div class="flex {isUser ? 'justify-end' : 'justify-start'}">
 	<div class="chat-bubble {isUser ? 'user-message' : 'holmes-message'}">
-		<div class="prose prose-invert prose-sm max-w-none">
+		<div class="prose prose-sm max-w-none">
 			{#if !isUser}
 				<div class="flex items-center space-x-2 mb-3">
 					<div class="w-8 h-8 bg-gradient-to-br from-amber-400 via-orange-500 to-red-600 rounded-full flex items-center justify-center">
@@ -54,14 +54,14 @@
 				<span>{formattedTime}</span>
 				{#if !isUser}
 					<span>•</span>
-					<span class="text-amber-400">Science of Mind</span>
+					<span style="color: var(--text-accent);">Science of Mind</span>
 					{#if message.source && message.source !== 'fallback'}
 						<span>•</span>
-						<span class="text-blue-400">via {message.source}</span>
+						<span style="color: var(--text-info);">via {message.source}</span>
 					{/if}
 					{#if message.error}
 						<span>•</span>
-						<span class="text-red-400">⚠️</span>
+						<span style="color: var(--text-error);">⚠️</span>
 					{/if}
 				{/if}
 			</div>
@@ -71,17 +71,18 @@
 
 <style>
 	.formatted-content :global(strong) {
-		color: #fbbf24;
+		color: var(--text-accent);
 		font-weight: 600;
 	}
 	
 	.formatted-content :global(em) {
-		color: #f3f4f6;
+		color: var(--text-secondary);
 		font-style: italic;
 	}
 	
 	.formatted-content :global(p) {
 		margin-bottom: 1rem;
+		color: var(--text-primary);
 	}
 	
 	.formatted-content :global(ul) {
@@ -91,10 +92,31 @@
 	
 	.formatted-content :global(li) {
 		margin-bottom: 0.5rem;
-		color: #e5e7eb;
+		color: var(--text-primary);
 	}
 	
 	.formatted-content :global(br) {
 		margin-bottom: 0.5rem;
+	}
+
+	/* Ensure proper contrast for user messages */
+	.user-message {
+		color: white !important;
+	}
+
+	.user-message :global(*) {
+		color: white !important;
+	}
+
+	/* Holmes message styling */
+	.holmes-message {
+		color: var(--text-primary);
+	}
+
+	/* Focus styles for interactive elements */
+	.chat-bubble:focus-within {
+		outline: 2px solid var(--focus-ring);
+		outline-offset: 2px;
+		border-radius: 1rem;
 	}
 </style> 

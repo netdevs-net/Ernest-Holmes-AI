@@ -557,7 +557,7 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.generator-title {
-		color: #fbbf24;
+		color: var(--text-accent);
 		font-size: 1.8rem;
 		font-weight: 700;
 		margin: 0;
@@ -576,7 +576,7 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 
 	.close-btn:hover {
 		background: rgba(255, 255, 255, 0.1);
-		color: #fbbf24;
+		color: var(--text-accent);
 	}
 
 	.generator-content {
@@ -586,7 +586,7 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.section-title {
-		color: #fbbf24;
+		color: var(--text-accent);
 		font-size: 1.2rem;
 		font-weight: 600;
 		margin: 0 0 1rem 0;
@@ -610,26 +610,26 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 
 	.category-btn:hover {
 		background: rgba(251, 191, 36, 0.1);
-		border-color: #fbbf24;
+		border-color: var(--text-accent);
 		transform: translateY(-2px);
 	}
 
 	.category-btn.active {
 		background: rgba(251, 191, 36, 0.2);
-		border-color: #fbbf24;
+		border-color: var(--text-accent);
 		box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
 		/* Prevent shadow from extending beyond container */
 		clip-path: inset(0);
 	}
 
 	.category-name {
-		color: #fbbf24;
+		color: var(--text-accent);
 		font-weight: 600;
 		margin-bottom: 0.5rem;
 	}
 
 	.category-description {
-		color: #9ca3af;
+		color: var(--text-secondary);
 		font-size: 0.9rem;
 		line-height: 1.4;
 	}
@@ -647,19 +647,19 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 		padding: 0.75rem;
 		cursor: pointer;
 		transition: all 0.3s ease;
-		color: #d1d5db;
+		color: var(--text-primary);
 		font-size: 0.9rem;
 	}
 
 	.element-btn:hover {
 		background: rgba(251, 191, 36, 0.1);
-		border-color: #fbbf24;
+		border-color: var(--text-accent);
 	}
 
 	.element-btn.selected {
 		background: rgba(251, 191, 36, 0.2);
-		border-color: #fbbf24;
-		color: #fbbf24;
+		border-color: var(--text-accent);
+		color: var(--text-accent);
 	}
 
 	.custom-toggle {
@@ -674,18 +674,18 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 		padding: 0.75rem 1.5rem;
 		cursor: pointer;
 		transition: all 0.3s ease;
-		color: #d1d5db;
+		color: var(--text-primary);
 	}
 
 	.toggle-btn:hover {
 		background: rgba(251, 191, 36, 0.1);
-		border-color: #fbbf24;
+		border-color: var(--text-accent);
 	}
 
 	.toggle-btn.active {
 		background: rgba(251, 191, 36, 0.2);
-		border-color: #fbbf24;
-		color: #fbbf24;
+		border-color: var(--text-accent);
+		color: var(--text-accent);
 	}
 
 	.custom-treatment-input {
@@ -694,7 +694,7 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 		border: 1px solid var(--glass-border);
 		border-radius: 12px;
 		padding: 1rem;
-		color: #0f172a !important; /* Dark text for readability */
+		color: var(--text-primary) !important;
 		font-size: 1rem;
 		line-height: 1.6;
 		resize: vertical;
@@ -708,7 +708,7 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.custom-treatment-input::placeholder {
-		color: #64748b;
+		color: var(--text-secondary);
 		opacity: 0.8;
 	}
 
@@ -785,11 +785,11 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 		padding: 1rem;
 		background: rgba(255, 255, 255, 0.03);
 		border-radius: 8px;
-		border-left: 4px solid #fbbf24;
+		border-left: 4px solid var(--text-accent);
 	}
 
 	.section-header {
-		color: #fbbf24;
+		color: var(--text-accent);
 		font-size: 1.1rem;
 		font-weight: 700;
 		margin: 0 0 1rem 0;
@@ -825,7 +825,7 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 
 	.treatment-section p {
 		margin: 0.5rem 0;
-		color: #e5e7eb;
+		color: var(--text-primary);
 		line-height: 1.7;
 		font-size: 1rem;
 	}
@@ -843,14 +843,14 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 		padding: 0.75rem 1.5rem;
 		cursor: pointer;
 		transition: all 0.3s ease;
-		color: #d1d5db;
+		color: var(--text-primary);
 		font-weight: 500;
 	}
 
 	.action-btn:hover {
 		background: rgba(251, 191, 36, 0.1);
-		border-color: #fbbf24;
-		color: #fbbf24;
+		border-color: var(--text-accent);
+		color: var(--text-accent);
 		transform: translateY(-1px);
 	}
 

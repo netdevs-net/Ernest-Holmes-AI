@@ -63,10 +63,7 @@
 		}
 	}
 	
-	// Initialize theme
-	$: if (typeof document !== 'undefined') {
-		document.documentElement.setAttribute('data-theme', $theme);
-	}
+	// Theme is automatically initialized by the theme store
 	
 	function createFloatingParticles() {
 		const container = document.body;

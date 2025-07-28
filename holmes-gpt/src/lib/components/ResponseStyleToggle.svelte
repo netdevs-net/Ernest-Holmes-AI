@@ -94,13 +94,13 @@
 	}
 
 	.label:hover {
-		color: var(--text-accent);
+		color: #fbbf24;
 		background: rgba(251, 191, 36, 0.05);
 		border-color: rgba(251, 191, 36, 0.2);
 	}
 
 	.label.active {
-		color: var(--text-accent);
+		color: #fbbf24;
 		background: rgba(251, 191, 36, 0.15);
 		border-color: rgba(251, 191, 36, 0.3);
 	}
@@ -122,42 +122,43 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		padding: 0;
 	}
 
 	.toggle-switch:focus {
 		outline: none;
-		box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.3);
+		box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.5);
 	}
 
 	.toggle-track {
 		position: absolute;
 		width: 100%;
 		height: 100%;
-		background: var(--glass-bg);
-		border: 2px solid var(--glass-border);
+		background: rgba(0, 0, 0, 0.3);
+		border: 2px solid rgba(255, 255, 255, 0.3);
 		border-radius: 1rem;
 		transition: all 0.3s ease;
 	}
 
 	.toggle-switch:hover .toggle-track {
-		border-color: var(--text-accent);
+		border-color: #fbbf24;
 		background: rgba(251, 191, 36, 0.1);
 	}
 
 	.toggle-slider {
 		position: absolute;
-		left: 0.125rem;
+		left: 0.3125rem;
 		width: 1.5rem;
 		height: 1.5rem;
-		background: linear-gradient(135deg, var(--text-accent), #f59e0b);
+		background: linear-gradient(135deg, #fbbf24, #f59e0b);
 		border-radius: 50%;
 		transition: transform 0.3s ease;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 		z-index: 1;
 	}
 
 	.toggle-switch.modern .toggle-slider {
-		transform: translateX(2rem);
+		transform: translateX(1.875rem);
 	}
 
 	.toggle-switch.his-words .toggle-slider {
@@ -171,7 +172,7 @@
 	}
 
 	.toggle-switch.modern:hover .toggle-slider {
-		transform: translateX(2rem) scale(1.05);
+		transform: translateX(1.875rem) scale(1.05);
 	}
 
 	/* Active state */
@@ -204,15 +205,15 @@
 		}
 
 		.toggle-switch.modern .toggle-slider {
-			transform: translateX(1.75rem);
+			transform: translateX(1.875rem);
 		}
 
 		.toggle-switch.modern:hover .toggle-slider {
-			transform: translateX(1.75rem) scale(1.05);
+			transform: translateX(1.875rem) scale(1.05);
 		}
 
 		.toggle-switch.modern:active .toggle-slider {
-			transform: translateX(1.75rem) scale(0.95);
+			transform: translateX(2rem) scale(0.95);
 		}
 	}
 </style> 
