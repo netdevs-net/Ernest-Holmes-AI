@@ -21,6 +21,16 @@
 		</div>
 		
 		<nav class="flex items-center space-x-4">
+			<a 
+				href="/admin"
+				class="p-3 rounded-xl glass-effect hover:bg-white/10 transition-all duration-300 group"
+				title="Admin Dashboard"
+				aria-label="Admin Dashboard"
+			>
+				<svg class="w-5 h-5 text-gray-300 group-hover:text-amber-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+				</svg>
+			</a>
 			<button 
 				on:click={toggleTheme}
 				class="p-3 rounded-xl glass-effect hover:bg-white/10 transition-all duration-300 group"
