@@ -143,6 +143,16 @@
 		showQuotes = !showQuotes;
 		showHistory = false; // Close history when opening quotes
 	}
+	
+	function handleOverlayKeydown(event: KeyboardEvent) {
+		if (event.key === 'Escape') {
+			if (showHistory) {
+				toggleHistory();
+			} else if (showQuotes) {
+				toggleQuotes();
+			}
+		}
+	}
 </script>
 
 <svelte:head>
@@ -169,30 +179,47 @@
 					questionCount={$questionCount}
 					{selectedCategory}
 				/>
-				
-				<!-- Question History Panel -->
-				{#if showHistory}
-					<div class="history-overlay" on:click|self={toggleHistory}>
-						<QuestionHistory 
-							isVisible={showHistory}
-							onQuestionSelect={handleQuestionSelect}
-							onClose={toggleHistory}
-						/>
-					</div>
-				{/if}
-				
-				<!-- Quotes Panel -->
-				{#if showQuotes}
-					<div class="quotes-overlay" on:click|self={toggleQuotes}>
-						<QuotesDisplay 
-							limit={5}
-							showRandom={true}
-							autoRefresh={false}
-							onClose={toggleQuotes}
-						/>
-					</div>
-				{/if}
 			</div>
+		</div>
+	</div>
+	
+	<!-- Modal Overlays (outside chat container) -->
+	{#if showHistory}
+		<div 
+			class="history-overlay" 
+			on:click|self={toggleHistory}
+			on:keydown={handleOverlayKeydown}
+			role="dialog"
+			aria-modal="true"
+			aria-label="Question History"
+			tabindex="-1"
+		>
+			<QuestionHistory 
+				isVisible={showHistory}
+				onQuestionSelect={handleQuestionSelect}
+				onClose={toggleHistory}
+			/>
+		</div>
+	{/if}
+	
+	{#if showQuotes}
+		<div 
+			class="quotes-overlay" 
+			on:click|self={toggleQuotes}
+			on:keydown={handleOverlayKeydown}
+			role="dialog"
+			aria-modal="true"
+			aria-label="Wisdom Quotes"
+			tabindex="-1"
+		>
+			<QuotesDisplay 
+				limit={5}
+				showRandom={true}
+				autoRefresh={false}
+				onClose={toggleQuotes}
+			/>
+		</div>
+	{/if}
 		</div>
 	</div>
 </main>
@@ -205,11 +232,12 @@
 		right: 0;
 		bottom: 0;
 		background: rgba(0, 0, 0, 0.5);
-		z-index: 1000;
+		z-index: 9999;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		padding: 1rem;
+		pointer-events: auto;
 	}
 	
 	.history-overlay > :global(*), .quotes-overlay > :global(*) {
