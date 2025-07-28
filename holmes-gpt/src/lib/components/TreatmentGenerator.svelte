@@ -694,7 +694,7 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 		border: 1px solid var(--glass-border);
 		border-radius: 12px;
 		padding: 1rem;
-		color: var(--text-primary);
+		color: #0f172a !important; /* Dark text for readability */
 		font-size: 1rem;
 		line-height: 1.6;
 		resize: vertical;
@@ -708,8 +708,8 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.custom-treatment-input::placeholder {
-		color: var(--text-secondary);
-		opacity: 0.7;
+		color: #64748b;
+		opacity: 0.8;
 	}
 
 	.generate-section {

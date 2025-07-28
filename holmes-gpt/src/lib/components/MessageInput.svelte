@@ -75,7 +75,7 @@
 				on:keydown={handleKeydown}
 				placeholder="Ask Ernest Holmes a spiritual question..."
 				class="w-full px-6 py-4 border rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400 backdrop-blur-sm text-base"
-				style="border-color: var(--border-primary); background: var(--glass-bg); color: var(--text-primary);"
+				style="border-color: var(--border-primary); background: var(--glass-bg);"
 				rows="1"
 				disabled={isLoading}
 				aria-label="Enter your spiritual question"
@@ -142,13 +142,18 @@
 		color: #3b82f6;
 		font-size: 0.9rem;
 		cursor: pointer;
-		transition: all 0.2s;
+		transition: all 0.3s ease;
 		backdrop-filter: blur(4px);
+		position: relative;
+		overflow: hidden;
 	}
 	
 	.history-btn:hover, .quotes-btn:hover, .treatment-btn:hover {
-		background: rgba(59, 130, 246, 0.2);
-		border-color: rgba(59, 130, 246, 0.5);
+		background: rgba(59, 130, 246, 0.4) !important;
+		border-color: rgba(59, 130, 246, 0.7) !important;
+		color: #ffffff !important;
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 	}
 	
 	.input-actions {
@@ -189,8 +194,9 @@
 	}
 	
 	.send-btn:hover:not(:disabled) {
-		transform: translateY(-1px);
-		box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5);
+		background: linear-gradient(135deg, #f59e0b, #d97706) !important;
 	}
 	
 	.send-btn:disabled {
@@ -201,21 +207,21 @@
 	
 	/* Ensure proper text color in both themes */
 	textarea {
-		color: var(--text-primary) !important;
+		color: #0f172a !important; /* Dark text for readability */
 	}
 	
 	textarea::placeholder {
-		color: var(--text-secondary);
-		opacity: 0.7;
+		color: #64748b;
+		opacity: 0.8;
 	}
 	
 	/* Ensure select text is visible */
 	select {
-		color: var(--text-primary) !important;
+		color: #0f172a !important; /* Dark text for readability */
 	}
 	
 	select option {
-		color: var(--text-primary);
-		background: var(--bg-primary);
+		color: #0f172a;
+		background: #ffffff;
 	}
 </style> 
