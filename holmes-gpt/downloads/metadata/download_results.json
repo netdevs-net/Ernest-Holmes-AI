@@ -1,0 +1,38 @@
+{
+  "this_thing_called_you": {
+    "title": "This Thing Called You (1948)",
+    "downloaded": true,
+    "file_path": "texts/this-thing-called-you-1948.html",
+    "timestamp": "2025-07-28 00:15:44"
+  },
+  "words_that_heal_today": {
+    "title": "Words That Heal Today (1949)",
+    "downloaded": true,
+    "file_path": "texts/words-that-heal-today-1949.html",
+    "timestamp": "2025-07-28 00:15:46"
+  },
+  "living_science_of_mind": {
+    "title": "Living the Science of Mind (1955)",
+    "downloaded": false,
+    "file_path": null,
+    "timestamp": "2025-07-28 00:15:50"
+  },
+  "hidden_power_bible": {
+    "title": "The Hidden Power of the Bible (1929)",
+    "downloaded": true,
+    "file_path": "texts/hidden-power-bible-1929.html",
+    "timestamp": "2025-07-28 00:15:52"
+  },
+  "art_of_life": {
+    "title": "The Art of Life (1960)",
+    "downloaded": false,
+    "file_path": null,
+    "timestamp": "2025-07-28 00:15:57"
+  },
+  "how_to_use_science_of_mind": {
+    "title": "How to Use the Science of Mind (1944)",
+    "downloaded": false,
+    "file_path": null,
+    "timestamp": "2025-07-28 00:16:01"
+  }
+}
