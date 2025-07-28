@@ -172,21 +172,23 @@
 				
 				<!-- Question History Panel -->
 				{#if showHistory}
-					<div class="history-overlay">
+					<div class="history-overlay" on:click|self={toggleHistory}>
 						<QuestionHistory 
 							isVisible={showHistory}
 							onQuestionSelect={handleQuestionSelect}
+							onClose={toggleHistory}
 						/>
 					</div>
 				{/if}
 				
 				<!-- Quotes Panel -->
 				{#if showQuotes}
-					<div class="quotes-overlay">
+					<div class="quotes-overlay" on:click|self={toggleQuotes}>
 						<QuotesDisplay 
 							limit={5}
 							showRandom={true}
 							autoRefresh={false}
+							onClose={toggleQuotes}
 						/>
 					</div>
 				{/if}
@@ -197,20 +199,32 @@
 
 <style>
 	.history-overlay, .quotes-overlay {
-		position: absolute;
+		position: fixed;
 		top: 0;
+		left: 0;
 		right: 0;
-		width: 400px;
-		max-width: 90vw;
+		bottom: 0;
+		background: rgba(0, 0, 0, 0.5);
 		z-index: 1000;
-		margin: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem;
+	}
+	
+	.history-overlay > :global(*), .quotes-overlay > :global(*) {
+		max-width: 90vw;
+		max-height: 90vh;
 	}
 	
 	@media (max-width: 768px) {
 		.history-overlay, .quotes-overlay {
-			width: calc(100vw - 2rem);
-			right: 1rem;
-			left: 1rem;
+			padding: 0.5rem;
+		}
+		
+		.history-overlay > :global(*), .quotes-overlay > :global(*) {
+			width: 100%;
+			max-width: 100%;
 		}
 	}
 </style> 

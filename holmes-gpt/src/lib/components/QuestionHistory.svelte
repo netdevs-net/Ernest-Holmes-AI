@@ -5,6 +5,7 @@
   
   export let onQuestionSelect: (question: string) => void;
   export let isVisible = false;
+  export let onClose: () => void = () => {};
   
   	let selectedCategory = '';
 	let searchTerm = '';
@@ -82,7 +83,7 @@
                   <button class="export-btn" on:click={handleExportQuestions}>
           Export
         </button>
-        <button class="close-btn" on:click={() => isVisible = false}>
+        <button class="close-btn" on:click={onClose}>
           ×
         </button>
       </div>
@@ -194,7 +195,8 @@
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    max-height: 600px;
+    max-height: 80vh;
+    width: 600px;
     overflow: hidden;
     display: flex;
     flex-direction: column;

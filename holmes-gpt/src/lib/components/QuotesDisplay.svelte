@@ -10,6 +10,7 @@
 	export let limit = 5;
 	export let showRandom = true;
 	export let autoRefresh = true;
+	export let onClose: () => void = () => {};
 	
 	let quotes: Quote[] = [];
 	let loading = false;
@@ -72,23 +73,32 @@
 	}
 </script>
 
-<div class="quotes-container">
-	<div class="quotes-header">
-		<h3 class="quotes-title">
-			📖 Wisdom from Ernest Holmes
-			{#if totalQuotes > 0}
-				<span class="quotes-count">({totalQuotes} quotes available)</span>
-			{/if}
-		</h3>
-		<button 
-			class="refresh-btn" 
-			on:click={refreshQuotes}
-			disabled={loading}
-			title="Refresh quotes"
-		>
-			🔄
-		</button>
-	</div>
+	<div class="quotes-container">
+		<div class="quotes-header">
+			<h3 class="quotes-title">
+				📖 Wisdom from Ernest Holmes
+				{#if totalQuotes > 0}
+					<span class="quotes-count">({totalQuotes} quotes available)</span>
+				{/if}
+			</h3>
+			<div class="header-actions">
+				<button 
+					class="refresh-btn" 
+					on:click={refreshQuotes}
+					disabled={loading}
+					title="Refresh quotes"
+				>
+					🔄
+				</button>
+				<button 
+					class="close-btn" 
+					on:click={onClose}
+					title="Close quotes"
+				>
+					✕
+				</button>
+			</div>
+		</div>
 	
 	{#if loading}
 		<div class="loading">
@@ -128,6 +138,9 @@
 		backdrop-filter: blur(10px);
 		border: 1px solid rgba(255, 255, 255, 0.2);
 		max-width: 100%;
+		width: 600px;
+		max-height: 80vh;
+		overflow-y: auto;
 	}
 	
 	.quotes-header {
@@ -155,7 +168,13 @@
 		color: #718096;
 	}
 	
-	.refresh-btn {
+	.header-actions {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+	}
+	
+	.refresh-btn, .close-btn {
 		background: #667eea;
 		color: white;
 		border: none;
@@ -166,7 +185,7 @@
 		font-size: 1rem;
 	}
 	
-	.refresh-btn:hover:not(:disabled) {
+	.refresh-btn:hover:not(:disabled), .close-btn:hover {
 		background: #5a67d8;
 		transform: scale(1.05);
 	}
@@ -174,6 +193,14 @@
 	.refresh-btn:disabled {
 		opacity: 0.5;
 		cursor: not-allowed;
+	}
+	
+	.close-btn {
+		background: #e53e3e;
+	}
+	
+	.close-btn:hover {
+		background: #c53030;
 	}
 	
 	.loading, .error, .no-quotes {
