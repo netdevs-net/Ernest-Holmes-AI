@@ -17,17 +17,13 @@
 	let showQuotes = false;
 	let showTreatment = false;
 	let selectedCategory: 'spiritual' | 'practical' | 'metaphysical' | 'personal' | 'general' = 'general';
+	let lastUserMessage = '';
 	
 
 	
 	onMount(() => {
 		// Store device information on first load
 		storeDeviceInfo();
-		
-		// Initialize theme
-		$: if (typeof document !== 'undefined') {
-			document.documentElement.setAttribute('data-theme', $theme);
-		}
 		
 		// Initialize with a welcome message
 		messages = [
@@ -41,6 +37,26 @@
 		// Create floating particles
 		createFloatingParticles();
 	});
+	
+	// Handle response style changes
+	async function handleStyleChange({ detail }: { detail: { previousStyle: string; newStyle: string } }) {
+		// If there's a last user message and we're not currently loading, resubmit it
+		if (lastUserMessage && !isLoading && messages.length > 1) {
+			// Remove the last assistant message (if it exists)
+			const lastMessage = messages[messages.length - 1];
+			if (lastMessage.role === 'assistant') {
+				messages = messages.slice(0, -1);
+			}
+			
+			// Resubmit the last user message with the new style
+			await handleSendMessage(lastUserMessage);
+		}
+	}
+	
+	// Initialize theme
+	$: if (typeof document !== 'undefined') {
+		document.documentElement.setAttribute('data-theme', $theme);
+	}
 	
 	function createFloatingParticles() {
 		const container = document.body;
@@ -59,6 +75,9 @@
 	
 	async function handleSendMessage(content: string) {
 		if (!content.trim()) return;
+		
+		// Store the last user message for potential resubmission
+		lastUserMessage = content;
 		
 		// Save question to history with user identification
 		await saveQuestion({
@@ -197,13 +216,13 @@
 	<meta name="description" content="A conversational AI inspired by Ernest Holmes, founder of Religious Science and author of The Science of Mind." />
 </svelte:head>
 
-<main class="min-h-screen relative overflow-hidden" on:keydown={handleGlobalKeydown} tabindex="-1">
+<main class="min-h-screen relative overflow-hidden">
 	<!-- Floating particles background -->
 	<div class="floating-particles" aria-hidden="true"></div>
 	
 	<!-- Main content -->
 	<div class="relative z-10">
-		<Header />
+		<Header on:styleChanged={handleStyleChange} />
 		
 		<div class="container mx-auto px-4 py-8 max-w-5xl">
 			<div class="chat-container rounded-3xl p-8 relative">
@@ -242,12 +261,25 @@
 		</div>
 	{/if}
 	
-	<QuotesSlideshow 
-		isVisible={showQuotes}
-		onClose={toggleQuotes}
-		autoPlay={true}
-		slideDuration={8000}
-	/>
+	{#if showQuotes}
+		<div 
+			class="quotes-overlay" 
+			on:click|self={toggleQuotes}
+			on:keydown={handleOverlayKeydown}
+			role="dialog"
+			aria-modal="true"
+			aria-label="Holmes Quotes"
+			tabindex="-1"
+		>
+			<QuotesSlideshow 
+				onClose={toggleQuotes}
+				limit={10}
+				showRandom={true}
+				autoRotate={true}
+				rotationInterval={5000}
+			/>
+		</div>
+	{/if}
 	
 	<TreatmentGenerator 
 		isVisible={showTreatment}
@@ -256,7 +288,8 @@
 </main>
 
 <style>
-	.history-overlay {
+	.history-overlay,
+	.quotes-overlay {
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -271,17 +304,20 @@
 		pointer-events: auto;
 	}
 	
-	.history-overlay > :global(*) {
+	.history-overlay > :global(*),
+	.quotes-overlay > :global(*) {
 		max-width: 90vw;
 		max-height: 90vh;
 	}
 	
 	@media (max-width: 768px) {
-		.history-overlay {
+		.history-overlay,
+		.quotes-overlay {
 			padding: 0.5rem;
 		}
 		
-		.history-overlay > :global(*) {
+		.history-overlay > :global(*),
+		.quotes-overlay > :global(*) {
 			width: 100%;
 			max-width: 100%;
 		}
