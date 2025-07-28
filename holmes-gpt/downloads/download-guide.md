@@ -5,44 +5,53 @@
 ### **Public Domain Works (Free Downloads)**
 
 #### 1. **The Science of Mind (1938)**
+
 - **Project Gutenberg**: https://www.gutenberg.org/ebooks/author/Ernest+Holmes
 - **Internet Archive**: https://archive.org/details/scienceofmind00holm
 - **Google Books**: https://books.google.com/books?id=YOUR_ID
 - **Status**: Public domain (1938 edition)
 
 #### 2. **Creative Mind and Success (1919)**
+
 - **Project Gutenberg**: https://www.gutenberg.org/ebooks/author/Ernest+Holmes
 - **Internet Archive**: https://archive.org/details/creativemindsucc00holm
 - **Status**: Public domain
 
 #### 3. **The Hidden Power of the Bible (1929)**
+
 - **Internet Archive**: https://archive.org/details/hiddenpowerofbib00holm
 - **Status**: Public domain
 
 #### 4. **This Thing Called You (1948)**
+
 - **Internet Archive**: https://archive.org/details/thingcalledyou00holm
 - **Status**: Public domain
 
 #### 5. **Words That Heal Today (1949)**
+
 - **Internet Archive**: https://archive.org/details/wordsthathealtod00holm
 - **Status**: Public domain
 
 #### 6. **Living the Science of Mind (1955)**
+
 - **Internet Archive**: https://archive.org/details/livingscienceofm00holm
 - **Status**: Public domain
 
 #### 7. **The Art of Life (1960)**
+
 - **Internet Archive**: https://archive.org/details/artoflife00holm
 - **Status**: Public domain
 
 ### **Additional Resources**
 
 #### 8. **365 Science of Mind (Daily Readings)**
+
 - **Religious Science International**: Available through centers
 - **Online versions**: Various spiritual websites
 - **Status**: May have copyright restrictions
 
 #### 9. **How to Use the Science of Mind (1944)**
+
 - **Internet Archive**: https://archive.org/details/howtousescienceo00holm
 - **Status**: Public domain
 
@@ -51,18 +60,21 @@
 ### **Free Online Libraries**
 
 #### **Project Gutenberg**
+
 - **URL**: https://www.gutenberg.org/ebooks/author/Ernest+Holmes
 - **Format**: EPUB, Kindle, HTML, Plain text
 - **Access**: Free, no registration required
 - **Quality**: High-quality digital editions
 
 #### **Internet Archive**
+
 - **URL**: https://archive.org/search.php?query=creator%3A%22Ernest+Holmes%22
 - **Format**: PDF, EPUB, Kindle, Audio
 - **Access**: Free, no registration required
 - **Quality**: Scanned original editions
 
 #### **Google Books**
+
 - **URL**: https://books.google.com/books?q=Ernest+Holmes
 - **Format**: Preview, full text (if public domain)
 - **Access**: Free preview, full text for public domain works
@@ -71,12 +83,14 @@
 ### **Spiritual Resource Websites**
 
 #### **Religious Science International**
+
 - **URL**: https://www.religiousscience.org/
 - **Content**: Current publications, some historical materials
 - **Access**: Some free, some paid
 - **Quality**: Official source
 
 #### **Centers for Spiritual Living**
+
 - **URL**: https://csl.org/
 - **Content**: Educational materials, some historical texts
 - **Access**: Varies by center
@@ -138,18 +152,21 @@ print("All downloads complete!")
 ### **Radio Show Archives**
 
 #### **Internet Archive Audio**
+
 - **URL**: https://archive.org/search.php?query=Ernest+Holmes+audio
 - **Content**: Some radio broadcasts, lectures
 - **Format**: MP3, OGG, WAV
 - **Access**: Free
 
 #### **Religious Science Audio Collections**
+
 - **URL**: Various center websites
 - **Content**: Recorded lectures, radio shows
 - **Format**: MP3, CD
 - **Access**: May require purchase or membership
 
 ### **YouTube Channels**
+
 - **Search**: "Ernest Holmes" + "radio" + "lecture"
 - **Content**: Some uploaded recordings
 - **Quality**: Varies
@@ -160,6 +177,7 @@ print("All downloads complete!")
 ### **Step-by-Step Process**
 
 #### **1. Project Gutenberg Downloads**
+
 1. Go to https://www.gutenberg.org/ebooks/author/Ernest+Holmes
 2. Click on desired book
 3. Choose format (EPUB recommended)
@@ -167,6 +185,7 @@ print("All downloads complete!")
 5. Save to `downloads/texts/` folder
 
 #### **2. Internet Archive Downloads**
+
 1. Go to https://archive.org/search.php?query=creator%3A%22Ernest+Holmes%22
 2. Click on desired book
 3. Click "Download Options"
@@ -174,6 +193,7 @@ print("All downloads complete!")
 5. Download and save to `downloads/texts/` folder
 
 #### **3. Google Books Downloads**
+
 1. Go to https://books.google.com/books?q=Ernest+Holmes
 2. Find public domain editions
 3. Click "Download PDF" (if available)
@@ -184,6 +204,7 @@ print("All downloads complete!")
 ### **Converting PDFs to Text**
 
 #### **Using Python (PyPDF2)**
+
 ```python
 import PyPDF2
 
@@ -193,7 +214,7 @@ def pdf_to_text(pdf_path, text_path):
         text = ""
         for page in reader.pages:
             text += page.extract_text()
-    
+
     with open(text_path, 'w', encoding='utf-8') as file:
         file.write(text)
 
@@ -202,6 +223,7 @@ pdf_to_text("downloads/texts/science-of-mind-archive.pdf", "downloads/texts/scie
 ```
 
 #### **Using Command Line (pdftotext)**
+
 ```bash
 # Install pdftotext (macOS)
 brew install poppler
@@ -214,6 +236,7 @@ pdftotext downloads/texts/creative-mind-success-archive.pdf downloads/texts/crea
 ## 📊 File Organization
 
 ### **Recommended Structure**
+
 ```
 downloads/
 ├── texts/
@@ -236,21 +259,24 @@ downloads/
 ## ⚠️ Important Notes
 
 ### **Copyright Considerations**
+
 - **Public Domain Works**: Free to use (pre-1927 generally)
 - **Later Editions**: May have copyright restrictions
 - **Audio Recordings**: Often have copyright protection
 - **Always verify copyright status** before commercial use
 
 ### **Quality Considerations**
+
 - **Scanned PDFs**: May have OCR errors
 - **Audio Quality**: Historical recordings may be poor
 - **Text Processing**: May need cleaning and formatting
 - **Verify accuracy** against original sources
 
 ### **Usage Guidelines**
+
 - **Respect copyright**: Only use public domain materials
 - **Attribute sources**: Always credit Ernest Holmes
 - **Educational use**: Primary purpose should be learning
 - **Commercial use**: May require permissions
 
-This guide provides comprehensive access to Ernest Holmes' works for AI training and research purposes. 
+This guide provides comprehensive access to Ernest Holmes' works for AI training and research purposes.

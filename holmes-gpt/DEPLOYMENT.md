@@ -7,6 +7,7 @@
 **Easiest deployment for MVP:**
 
 1. **Connect Repository**
+
    ```bash
    # Push to GitHub first
    git add .
@@ -44,6 +45,7 @@
 ## 🔧 Manual Deployment
 
 ### Prerequisites
+
 - Node.js 18+
 - Anthropic API key
 - Domain (optional)
@@ -51,11 +53,13 @@
 ### Steps
 
 1. **Build the Application**
+
    ```bash
    npm run build
    ```
 
 2. **Set Environment Variables**
+
    ```bash
    export ANTHROPIC_API_KEY=your-api-key-here
    ```
@@ -68,6 +72,7 @@
 ## 🌐 Production Considerations
 
 ### Environment Variables
+
 ```bash
 # Required
 ANTHROPIC_API_KEY=your-anthropic-api-key-here
@@ -80,6 +85,7 @@ NODE_ENV=production
 ### Performance Optimization
 
 1. **Enable Compression**
+
    ```javascript
    // vite.config.ts
    export default defineConfig({
@@ -88,11 +94,11 @@ NODE_ENV=production
        rollupOptions: {
          output: {
            manualChunks: {
-             vendor: ['svelte']
-           }
-         }
-       }
-     }
+             vendor: ["svelte"],
+           },
+         },
+       },
+     },
    });
    ```
 
@@ -103,14 +109,14 @@ NODE_ENV=production
      kit: {
        adapter: adapter(),
        headers: {
-         '/*': [
+         "/*": [
            {
-             key: 'Cache-Control',
-             value: 'public, max-age=31536000, immutable'
-           }
-         ]
-       }
-     }
+             key: "Cache-Control",
+             value: "public, max-age=31536000, immutable",
+           },
+         ],
+       },
+     },
    };
    ```
 
@@ -122,24 +128,27 @@ NODE_ENV=production
    - Consider API key rotation
 
 2. **Rate Limiting**
+
    ```javascript
    // Add to API route
-   import rateLimit from 'express-rate-limit';
-   
+   import rateLimit from "express-rate-limit";
+
    const limiter = rateLimit({
      windowMs: 15 * 60 * 1000, // 15 minutes
-     max: 100 // limit each IP to 100 requests per windowMs
+     max: 100, // limit each IP to 100 requests per windowMs
    });
    ```
 
 ## 📊 Monitoring & Analytics
 
 ### Basic Monitoring
+
 - **Vercel Analytics**: Built-in with Vercel deployment
 - **Google Analytics**: Add tracking code
 - **Error Tracking**: Sentry integration
 
 ### Performance Monitoring
+
 ```javascript
 // Add to app.html
 <script>
@@ -154,6 +163,7 @@ NODE_ENV=production
 ## 🔄 CI/CD Pipeline
 
 ### GitHub Actions Example
+
 ```yaml
 # .github/workflows/deploy.yml
 name: Deploy to Vercel
@@ -169,7 +179,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: "18"
       - run: npm ci
       - run: npm run build
       - uses: amondnet/vercel-action@v20
@@ -184,6 +194,7 @@ jobs:
 ### Common Issues
 
 1. **Build Failures**
+
    ```bash
    # Clear cache and reinstall
    rm -rf node_modules package-lock.json
@@ -199,8 +210,8 @@ jobs:
 3. **CORS Issues**
    ```javascript
    // Add to API route if needed
-   res.setHeader('Access-Control-Allow-Origin', '*');
-   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+   res.setHeader("Access-Control-Allow-Origin", "*");
+   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
    ```
 
 ### Performance Issues
@@ -248,10 +259,11 @@ jobs:
 ## 📞 Support
 
 For deployment issues:
+
 1. Check the [SvelteKit documentation](https://kit.svelte.dev/docs)
 2. Review [Vercel deployment guide](https://vercel.com/docs)
 3. Check [Anthropic API documentation](https://docs.anthropic.com)
 
 ---
 
-*Ready to share Holmes' wisdom with the world! 🌟* 
+_Ready to share Holmes' wisdom with the world! 🌟_
