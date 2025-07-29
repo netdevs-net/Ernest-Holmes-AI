@@ -53,23 +53,55 @@
         
         <div class="team-grid">
           <div class="team-member">
-            <div class="member-avatar">
-              <img src="/images/ryan-iguchi.jpg" alt="Ryan Iguchi, Founder and Lead Developer of Holmes AI" />
+            <div class="member-header">
+                          <div class="member-avatar">
+              <img src="/images/Ryan-streetsmart.jpg" alt="Ryan Iguchi, Founder and Lead Developer of Holmes AI" />
             </div>
-            <h3>Ryan Iguchi</h3>
-            <p class="member-role">Founder & Lead Developer</p>
-            <p class="member-bio">
-              Ryan is a passionate technologist and spiritual seeker who dedicated months to studying Ernest Holmes' 
-              teachings and developing the AI systems that bring his wisdom to life. With expertise in AI, web development, 
-              and spiritual technology, Ryan created Holmes AI to make authentic spiritual guidance accessible to everyone.
-            </p>
-            <div class="member-links">
-              <a href="https://NetDevs.net" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit NetDevs.net (opens in new tab)">
-                🌐 NetDevs.net
-              </a>
-              <a href="https://ryan-iguchi.com" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit ryan-iguchi.com (opens in new tab)">
-                👤 ryan-iguchi.com
-              </a>
+              <div class="member-info">
+                <h3>Ryan Iguchi</h3>
+                <p class="member-role">Founder & Lead Developer</p>
+              </div>
+            </div>
+            
+            <div class="member-content">
+              <div class="bio-column">
+                <p class="member-bio">
+                  Ryan is a passionate technologist and spiritual seeker with 10+ years of experience in programming, 
+                  agile project management, and the last 3 years specializing in DevOps and cybersecurity. As a Programmer 
+                  Analyst with strategic focus on reliability engineering, application hardening, observability, and 
+                  optimizing CI/CD pipelines, Ryan brings deep expertise in AI-integrated infrastructure, natural language 
+                  command processing, and prompt-to-action reinforcement learning systems.
+                </p>
+                <p class="member-bio">
+                  Ryan has proven success in building LLM-driven automation pipelines, optimizing simulation workflows 
+                  with AI agents, and integrating AI into cloud-native security and DevOps operations. Both CKAD and 
+                  CompTIA Security+ certified, Ryan is known for leadership in mission-critical projects and 
+                  award-winning performance in CTFs and AI competitions.
+                </p>
+              </div>
+              
+              <div class="bio-column">
+                <p class="member-bio">
+                  Ryan dedicated months to studying Ernest Holmes' teachings and developing the AI systems that bring 
+                  his wisdom to life. With expertise in AI, web development, and spiritual technology, Ryan created 
+                  Holmes AI to make authentic spiritual guidance accessible to everyone.
+                </p>
+                <p class="member-bio employment-note">
+                  <strong>Currently seeking full-time employment opportunities</strong> in DevOps, SRE, AI/ML engineering, 
+                  or technical leadership roles.
+                </p>
+                <div class="member-links">
+                  <a href="https://NetDevs.net" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit NetDevs.net (opens in new tab)">
+                    🌐 NetDevs.net
+                  </a>
+                  <a href="https://ryan-iguchi.com" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit ryan-iguchi.com (opens in new tab)">
+                    👤 ryan-iguchi.com
+                  </a>
+                  <a href="https://www.linkedin.com/in/ryaniguchi/" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit Ryan's LinkedIn profile (opens in new tab)">
+                    💼 LinkedIn
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -82,15 +114,22 @@
       <div class="sponsorship-content">
         <div class="sponsor-card">
           <div class="sponsor-avatar">
-            <img src="/images/linda-gauthier.jpg" alt="Linda Gauthier, Generous Supporter and Spiritual Practitioner" />
+            <img src="/images/linda-short-hair-trans-webp.webp" alt="Linda Gauthier, Generous Supporter and Spiritual Practitioner" />
           </div>
           <div class="sponsor-info">
             <h3>Sponsored by Linda Gauthier</h3>
             <p class="sponsor-role">Generous Supporter & Spiritual Practitioner</p>
             <p class="sponsor-message">
-              Thank you, Linda, for your generous sponsorship and support of Holmes AI. Your commitment to 
-              making spiritual wisdom accessible to all has made this project possible. Your dedication to 
-              healing and spiritual growth inspires us all.
+              Thank you, Linda, for your generous sponsorship and support of Holmes AI. Your extraordinary 
+              healing gifts and boundless compassion for all beings have been a guiding light in bringing 
+              this project to life. Through your spiritual healing practice, you've touched countless lives 
+              with your wisdom, empathy, and deep understanding of the human spirit.
+            </p>
+            <p class="sponsor-message">
+              Your commitment to making spiritual wisdom accessible to everyone, regardless of their 
+              background or circumstances, perfectly aligns with our mission at Holmes AI. Your dedication 
+              to healing, your intuitive understanding of human suffering, and your unwavering belief in 
+              the power of spiritual transformation inspire us all to serve with greater compassion and love.
             </p>
             <div class="sponsor-links">
               <a href="https://OceanHealing.health" target="_blank" rel="noopener noreferrer" class="sponsor-link" aria-label="Visit OceanHealing.health (opens in new tab)">
@@ -191,9 +230,16 @@
     background: var(--bg-secondary);
     padding: 2rem;
     border-radius: 15px;
-    text-align: center;
     box-shadow: 0 5px 15px var(--shadow-light);
     border: 1px solid var(--border-primary);
+  }
+
+  .member-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: left;
   }
 
   .member-avatar {
@@ -201,8 +247,30 @@
     height: 120px;
     border-radius: 50%;
     overflow: hidden;
-    margin: 0 auto 1rem;
     border: 4px solid var(--text-accent);
+    flex-shrink: 0;
+  }
+
+  .member-info {
+    flex: 1;
+  }
+
+  .member-info h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+  }
+
+  .member-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .bio-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .member-avatar img {
@@ -221,6 +289,15 @@
     line-height: 1.6;
     margin-bottom: 1rem;
     color: var(--text-secondary);
+  }
+
+  .employment-note {
+    background: rgba(251, 191, 36, 0.1);
+    border-left: 4px solid var(--text-accent);
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 0 5px 5px 0;
+    color: var(--text-primary);
   }
 
   .member-links {
@@ -262,7 +339,7 @@
     border-radius: 20px;
     box-shadow: 0 10px 30px var(--shadow-medium);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 2rem;
     max-width: 800px;
     margin: 0 auto;
@@ -382,9 +459,21 @@
     outline-offset: 2px;
   }
 
+  @media (min-width: 768px) {
+    .member-content {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
   @media (max-width: 768px) {
     .hero h1 {
       font-size: 2rem;
+    }
+
+    .member-header {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
     }
 
     .sponsor-card {

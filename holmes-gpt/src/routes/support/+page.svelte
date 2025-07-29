@@ -116,7 +116,7 @@
             <div class="achievement-item">
               <h4>✅ CSL Data Partnership</h4>
               <p>
-                Established formal partnership with Centers for Spiritual Living (CSL) for data ownership and 
+                Seeking formal partnership with Centers for Spiritual Living (CSL) for data ownership and 
                 spiritual oversight. This ensures authenticity and maintains the integrity of Religious Science principles.
               </p>
             </div>
