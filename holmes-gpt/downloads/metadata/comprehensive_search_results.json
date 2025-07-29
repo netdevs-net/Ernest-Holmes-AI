@@ -1,0 +1,19 @@
+{
+  "gutenberg": [],
+  "internet_archive": [],
+  "other_sources": [
+    {
+      "title": "Potential source: HathiTrust",
+      "url": "https://babel.hathitrust.org/cgi/pt?q1=Ernest+Holmes",
+      "source": "hathitrust",
+      "note": "Manual verification required"
+    },
+    {
+      "title": "Potential source: Google Books",
+      "url": "https://books.google.com/books?id=",
+      "source": "google_books",
+      "note": "Manual verification required"
+    }
+  ],
+  "search_timestamp": "2025-07-28 18:20:36"
+}

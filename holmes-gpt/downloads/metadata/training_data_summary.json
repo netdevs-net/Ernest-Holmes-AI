@@ -1,0 +1,14 @@
+{
+  "processing_date": "2024-07-28",
+  "datasets_created": {
+    "qa_pairs": 15,
+    "quotes": 20,
+    "treatments": 5,
+    "explanations": 5,
+    "conversations": 3
+  },
+  "total_training_examples": 48,
+  "source": "Ernest Holmes teachings and Science of Mind principles",
+  "quality": "High-quality training data based on authentic Ernest Holmes content",
+  "usage": "Ready for AI fine-tuning and training"
+}
