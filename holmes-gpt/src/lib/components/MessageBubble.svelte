@@ -37,7 +37,7 @@
 						<span class="text-white text-sm font-bold">H</span>
 					</div>
 					<div>
-						<div class="text-xs" style="color: var(--text-secondary);">Spiritual Teacher</div>
+						<div class="text-xs" style="color: var(--text-secondary);">AI Practitioner</div>
 					</div>
 				</div>
 			{/if}

@@ -10,7 +10,7 @@
 			</div>
 			<div>
 				<span class="text-sm font-medium" style="color: var(--text-accent);">Ernest Holmes</span>
-				<div class="text-xs" style="color: var(--text-secondary);">Spiritual Teacher</div>
+				<div class="text-xs" style="color: var(--text-secondary);">AI Practitioner</div>
 			</div>
 		</div>
 		

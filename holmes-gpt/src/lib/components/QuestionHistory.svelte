@@ -25,6 +25,19 @@
 			filteredQuestions = questions;
 		});
 	}
+
+  // Force refresh when questions store changes
+  $: if ($questions.length > 0) {
+    const filters = {
+      category: selectedCategory || undefined,
+      searchTerm: searchTerm || undefined,
+      bookmarkedOnly
+    };
+    
+    searchQuestions(filters).then(questions => {
+      filteredQuestions = questions;
+    });
+  }
   
   	onMount(() => {
 		// Stores will automatically load data
@@ -43,6 +56,7 @@
   }
   
   				function handleToggleBookmark(questionId: string) {
+			console.log('Toggling bookmark for question:', questionId);
 			toggleBookmark(questionId);
 		}
 
@@ -72,10 +86,10 @@
       return 'Just now';
     } else if (diffInHours < 24) {
       const hours = Math.floor(diffInHours);
-      return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+      return `${hours}h ago`;
     } else if (diffInHours < 168) { // 7 days
       const days = Math.floor(diffInHours / 24);
-      return `${days} day${days > 1 ? 's' : ''} ago`;
+      return `${days}d ago`;
     } else {
       return questionDate.toLocaleDateString();
     }
@@ -146,19 +160,53 @@
           {/if}
         </div>
       {:else}
-        {#each filteredQuestions as question}
+        {#each filteredQuestions as question (question.id + question.isBookmarked)}
           <div class="question-item" class:bookmarked={question.isBookmarked}>
-            <div class="question-header">
-              <span class="category-badge {question.category}">{question.category}</span>
-              <span class="timestamp">{formatDate(question.timestamp)}</span>
-              <div class="question-actions">
+            <div class="question-content">
+              <div class="question-header">
                 <button 
                   class="bookmark-btn" 
+                  class:bookmarked={question.isBookmarked}
                   on:click={() => handleToggleBookmark(question.id)}
                   title={question.isBookmarked ? 'Remove bookmark' : 'Add bookmark'}
                 >
                   {question.isBookmarked ? '★' : '☆'}
                 </button>
+                <button 
+                  class="question-text" 
+                  on:click={() => loadQuestion(question)}
+                  on:keydown={(e) => e.key === 'Enter' && loadQuestion(question)}
+                  type="button"
+                >
+                  {question.question}
+                </button>
+              </div>
+              
+              {#if question.tags.length > 0}
+                <div class="tags">
+                  {#each question.tags as tag}
+                    <span class="tag">{tag}</span>
+                  {/each}
+                </div>
+              {/if}
+              
+              {#if question.responsePreview}
+                <div class="response-preview">
+                  "{question.responsePreview}..."
+                </div>
+              {/if}
+              
+
+            </div>
+            
+            <div class="question-meta">
+              <div class="meta-top">
+                <span class="category-badge {question.category}">{question.category}</span>
+                {#if formatDate(question.timestamp) !== 'Just now'}
+                  <span class="timestamp">{formatDate(question.timestamp)}</span>
+                {/if}
+              </div>
+              <div class="question-actions">
                 <button 
                   class="delete-btn" 
                   on:click={() => handleDeleteQuestion(question.id)}
@@ -168,35 +216,6 @@
                 </button>
               </div>
             </div>
-            
-            			<button 
-				class="question-text" 
-				on:click={() => loadQuestion(question)}
-				on:keydown={(e) => e.key === 'Enter' && loadQuestion(question)}
-				type="button"
-			>
-				{question.question}
-			</button>
-            
-            {#if question.tags.length > 0}
-              <div class="tags">
-                {#each question.tags as tag}
-                  <span class="tag">{tag}</span>
-                {/each}
-              </div>
-            {/if}
-            
-            {#if question.responsePreview}
-              <div class="response-preview">
-                "{question.responsePreview}..."
-              </div>
-            {/if}
-            
-            {#if question.source}
-              <div class="source-info">
-                Source: {question.source}
-              </div>
-            {/if}
           </div>
         {/each}
       {/if}
@@ -210,7 +229,8 @@
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     max-height: 80vh;
-    width: 600px;
+    width: 60vw;
+    max-width: 800px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -331,6 +351,9 @@
     border-bottom: 1px solid #f3f4f6;
     cursor: pointer;
     transition: background-color 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
   }
   
   .question-item:hover {
@@ -341,11 +364,28 @@
     background: #fef3c7;
   }
   
+  .question-content {
+    flex: 1;
+  }
+  
   .question-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 8px;
     margin-bottom: 8px;
+  }
+  
+  .question-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+  
+  .meta-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
   
   .category-badge {
@@ -398,32 +438,57 @@
     padding: 4px;
     border-radius: 4px;
     font-size: 1rem;
+    transition: all 0.2s ease;
+    color: #6b7280;
+  }
+  
+  .bookmark-btn {
+    color: #fbbf24;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+  }
+  
+  .bookmark-btn.bookmarked {
+    color: #f59e0b;
+    transform: scale(1.1);
   }
   
   .bookmark-btn:hover {
     background: #f3f4f6;
+    color: #f59e0b;
+  }
+  
+  .delete-btn {
+    opacity: 0.25;
   }
   
   .delete-btn:hover {
     background: #fee2e2;
+    opacity: 1;
+  }
+
+  .question-text {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    color: #374151;
+    margin-bottom: 0;
+    background: none;
+    border: none;
+    text-align: left;
+    flex: 1;
+    cursor: pointer;
+    padding: 0;
+    font-weight: 500;
+    transition: color 0.2s ease;
   }
   
-  	.question-text {
-		font-size: 0.95rem;
-		line-height: 1.5;
-		color: #374151;
-		margin-bottom: 8px;
-		background: none;
-		border: none;
-		text-align: left;
-		width: 100%;
-		cursor: pointer;
-		padding: 0;
-	}
-	
-	.question-text:hover {
-		color: #1f2937;
-	}
+  .question-text:hover {
+    color: #1f2937;
+  }
   
   .tags {
     display: flex;

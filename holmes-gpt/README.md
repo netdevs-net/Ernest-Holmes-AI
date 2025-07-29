@@ -1,121 +1,104 @@
-# 🌟 HolmesGPT: Ernest Holmes Spiritual AI Assistant
+# 🤖 Holmes AI - Ernest Holmes AI Application
 
-A sophisticated, production-ready spiritual AI application that emulates the voice, style, and metaphysical insight of **Ernest Holmes**, author of _The Science of Mind_. Built with modern web technologies and featuring persistent storage, user analytics, and real-time interactions.
+A cutting-edge AI application that provides authentic spiritual guidance in the voice of Ernest Holmes, founder of Religious Science and author of *The Science of Mind*.
 
-## 🚀 Key Features
+## 🌟 Overview
 
-### 🤖 **Authentic Holmes Experience**
+Holmes AI is a production-ready web application that allows users to have meaningful spiritual conversations with an AI trained on Ernest Holmes' complete works. The application maintains the authenticity of Holmes' voice while providing modern accessibility and user experience.
 
-- **Authentic Voice**: Responses in Ernest Holmes' characteristic style and language
-- **Spiritual Guidance**: Metaphysical insights grounded in Religious Science principles
-- **Contextual Understanding**: Deep knowledge of Holmes' works and teachings
-- **Personalized Interactions**: Tailored responses based on user history
-- **Response Styles**: Choose between "In His Words" (authentic Holmes style) or "Modern" (accessible language)
+## ✨ Key Features
 
-### 💾 **Persistent Storage & Analytics**
+### 🤖 **Authentic AI Responses**
+- Trained on 463,000+ words from Ernest Holmes' complete works
+- Maintains authentic voice and teaching style
+- Provides spiritually accurate guidance
 
-- **SQLite Database**: Persistent storage for questions, conversations, and user data
-- **Question History**: Complete history with filtering, search, and bookmarking
-- **Real-time Updates**: Live question count updates without page refresh
-- **User Analytics**: Comprehensive user behavior tracking and statistics
+### 💬 **Dual Response Modes**
+- **"In His Words"** - Authentic Ernest Holmes voice and style
+- **"Modern"** - Contemporary language while maintaining spiritual accuracy
 
-### 🔐 **User Identification & Privacy**
+### 📚 **Treatment Generator**
+- Create personalized spiritual mind treatments
+- Based on Ernest Holmes' treatment methodology
+- Customizable for specific spiritual needs
 
-- **Privacy-Friendly Tracking**: Device fingerprinting without personal data collection
-- **Session Management**: Secure session tracking with HTTP-only cookies
-- **IP Analytics**: Anonymous IP tracking for usage analytics
-- **Data Protection**: Built-in privacy controls and data anonymization
+### 💾 **Persistent Storage**
+- SQLite database for question history
+- Bookmark favorite questions and responses
+- Anonymous user identification system
 
-### 🎨 **Modern User Interface**
+### 🎨 **Modern UI/UX**
+- Responsive design for all devices
+- Accessibility compliant (WCAG standards)
+- Dark/light theme support
+- Real-time typing indicators
 
-- **Responsive Design**: Beautiful interface that works on all devices
-- **Real-time Features**: Live updates and reactive components
-- **Accessibility**: WCAG-compliant design with proper ARIA labels
-- **Dark/Light Theme**: Elegant theming with smooth transitions
-- **Floating Particles**: Beautiful animated background effects
-
-### 🔧 **Enterprise-Grade Architecture**
-
-- **TypeScript**: Full type safety throughout the application
-- **Svelte 5**: Modern reactive framework with SvelteKit
-- **RESTful APIs**: Comprehensive API endpoints for all functionality
-- **Server-Side Rendering**: SEO-friendly with SSR support
-
-### 🧘‍♀️ **Spiritual Tools**
-
-- **Treatment Generator**: Create personalized spiritual mind treatments
-- **Quotes Display**: Browse wisdom from Ernest Holmes' writings
-- **Question Categories**: Organize questions by spiritual, practical, metaphysical, personal, or general
-- **Bookmarking System**: Save important questions and insights
-
-## 🛠️ Technology Stack
-
-### **Frontend**
-
-- **Svelte 5** + **SvelteKit** - Modern reactive framework
-- **TypeScript** - Full type safety
-- **Tailwind CSS** - Utility-first styling
-- **Vite** - Fast development and build tooling
-
-### **Backend & Database**
-
-- **SQLite** with **better-sqlite3** - Lightweight, persistent database
-- **Node.js** - Server-side runtime
-- **SvelteKit API Routes** - Server-side API endpoints
-
-### **AI & External Services**
-
-- **Anthropic Claude 3 Haiku** - Advanced AI model
-- **Device Fingerprinting** - Privacy-friendly user identification
-
-### **Development Tools**
-
-- **ESLint** - Code linting
-- **Prettier** - Code formatting
-- **Svelte Check** - Type checking
-- **Vitest** - Unit testing framework
+### 📊 **Analytics Dashboard**
+- User interaction insights
+- Question and response analytics
+- Performance metrics
+- Usage patterns
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-
-- **Node.js 18+**
-- **Anthropic API key** for Claude 3 Haiku (optional for fallback mode)
-- **Git** for version control
+- Node.js 18+ 
+- npm or yarn
+- Git
 
 ### Installation
 
 1. **Clone the repository**
-
    ```bash
-   git clone https://github.com/your-username/holmes-gpt.git
-   cd holmes-gpt
+   git clone https://github.com/your-username/HolmesAI.git
+   cd HolmesAI/holmes-gpt
    ```
 
 2. **Install dependencies**
-
    ```bash
    npm install
    ```
 
-3. **Set up environment variables** (optional)
-
+3. **Set up environment variables**
    ```bash
    cp env.example .env
-   # Edit .env and add your Anthropic API key:
-   # ANTHROPIC_API_KEY=your-api-key-here
+   # Edit .env with your API keys and configuration
    ```
 
-   > **Note**: The app works without an API key using fallback responses
-
 4. **Start the development server**
-
    ```bash
    npm run dev
    ```
 
-5. **Open your browser**
-   Navigate to `http://localhost:5173` (or the port shown in terminal)
+5. **Access the application**
+   - Main app: `http://localhost:5173`
+   - Admin dashboard: `http://localhost:5173/admin`
+
+## 🏗️ Architecture
+
+### **Frontend**
+- **Framework**: Svelte 5 + SvelteKit
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **State Management**: Svelte stores
+- **Routing**: SvelteKit file-based routing
+
+### **Backend**
+- **Runtime**: Node.js
+- **Database**: SQLite with better-sqlite3
+- **API**: SvelteKit API routes
+- **Authentication**: Anonymous user identification
+
+### **AI Integration**
+- **Provider**: Anthropic Claude 3 Haiku
+- **Training Data**: Ernest Holmes' complete works
+- **Response Styles**: Dual-mode system
+- **Context Management**: Conversation history
+
+### **Data Processing**
+- **Training Data**: 463,000+ words from authentic sources
+- **Quote Integration**: 1,000+ verified Holmes quotes
+- **Processing Scripts**: Python automation pipeline
 
 ## 📁 Project Structure
 
@@ -123,48 +106,113 @@ A sophisticated, production-ready spiritual AI application that emulates the voi
 holmes-gpt/
 ├── src/
 │   ├── lib/
-│   │   ├── components/           # Svelte UI components
+│   │   ├── components/          # Svelte components
 │   │   │   ├── ChatInterface.svelte
-│   │   │   ├── QuestionHistory.svelte
+│   │   │   ├── Header.svelte
 │   │   │   ├── MessageBubble.svelte
-│   │   │   ├── MessageInput.svelte
-│   │   │   ├── TypingIndicator.svelte
-│   │   │   ├── TreatmentGenerator.svelte
-│   │   │   ├── QuotesDisplay.svelte
-│   │   │   └── ResponseStyleToggle.svelte
-│   │   ├── db/                   # Database layer
-│   │   │   ├── database.ts       # Database connection manager
-│   │   │   ├── questionRepository.ts
-│   │   │   └── conversationRepository.ts
-│   │   ├── stores/               # Svelte reactive stores
-│   │   │   ├── questionStore.ts
-│   │   │   ├── themeStore.ts
-│   │   │   └── responseStyleStore.ts
-│   │   └── utils/                # Utility functions
-│   │       ├── sqliteStorage.ts  # Storage abstraction
-│   │       ├── clientInfo.ts     # Server-side client detection
-│   │       ├── macAddress.ts     # Client-side device fingerprinting
-│   │       └── questionStorage.ts
+│   │   │   ├── QuestionHistory.svelte
+│   │   │   └── ...
+│   │   ├── stores/              # Svelte stores
+│   │   ├── db/                  # Database utilities
+│   │   └── utils/               # Utility functions
 │   ├── routes/
-│   │   ├── api/                  # API endpoints
-│   │   │   ├── chat/+server.ts   # Main chat API
-│   │   │   ├── questions/        # Question management APIs
-│   │   │   ├── stats/            # Analytics APIs
-│   │   │   ├── quotes/           # Quotes API
-│   │   │   └── users/            # User statistics APIs
-│   │   ├── admin/                # Admin dashboard
-│   │   │   └── +page.svelte
-│   │   └── +page.svelte          # Main application page
-│   └── app.css                   # Global styles
-├── data/                         # SQLite database files
-├── docs/                         # Comprehensive documentation
-├── resources/                    # Holmes' writings and resources
-├── downloads/                    # Training data and processed texts
-├── static/                       # Static assets
-└── package.json
+│   │   ├── api/                 # API endpoints
+│   │   │   ├── chat/+server.ts
+│   │   │   ├── questions/+server.ts
+│   │   │   └── ...
+│   │   ├── admin/+page.svelte   # Admin dashboard
+│   │   ├── about/+page.svelte   # About page
+│   │   ├── support/+page.svelte # Support page
+│   │   ├── privacy/+page.svelte # Privacy policy
+│   │   └── +page.svelte         # Main chat interface
+│   └── app.css                  # Global styles
+├── downloads/                   # Data processing
+│   ├── training_data/           # AI training datasets
+│   ├── scripts/                 # Python processing scripts
+│   └── ...
+├── resources/                   # Training materials
+├── docs/                        # Documentation
+└── static/                      # Static assets
 ```
 
-## 🔧 Available Scripts
+## 🔧 Configuration
+
+### Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+# AI Configuration
+ANTHROPIC_API_KEY=your_anthropic_api_key
+
+# Database Configuration
+DATABASE_PATH=./data/holmes.db
+
+# Application Configuration
+NODE_ENV=development
+PORT=5173
+
+# Security
+SESSION_SECRET=your_session_secret
+```
+
+### Database Setup
+
+The application uses SQLite for data storage. The database is automatically created on first run.
+
+```bash
+# Database will be created at: ./data/holmes.db
+npm run dev
+```
+
+## 🎯 Usage
+
+### **For Users**
+
+1. **Start a Conversation**
+   - Visit the application at `http://localhost:5173`
+   - Type your spiritual question in the chat interface
+   - Choose between "Modern" or "In His Words" response style
+
+2. **Use the Treatment Generator**
+   - Click the "Generate Treatment" button
+   - Describe your spiritual need or concern
+   - Receive a personalized spiritual mind treatment
+
+3. **Manage Your History**
+   - View your question history in the sidebar
+   - Bookmark important questions and responses
+   - Export your conversation data
+
+### **For Administrators**
+
+1. **Access Admin Dashboard**
+   - Visit `http://localhost:5173/admin`
+   - View user analytics and insights
+   - Monitor system performance
+
+2. **View Statistics**
+   - User interaction metrics
+   - Popular questions and topics
+   - System usage patterns
+
+## 🔐 Privacy & Security
+
+### **Data Protection**
+- **Anonymous Users**: No personal information collected
+- **Secure Storage**: SQLite database with encryption
+- **No Data Sales**: We never sell or trade user data
+- **CSL Ownership**: All data owned by Centers for Spiritual Living
+
+### **User Privacy**
+- Anonymous user identification via device fingerprinting
+- Optional data export and deletion
+- Secure API communication
+- Privacy-first design principles
+
+## 🧪 Development
+
+### **Available Scripts**
 
 ```bash
 # Development
@@ -172,244 +220,167 @@ npm run dev          # Start development server
 npm run build        # Build for production
 npm run preview      # Preview production build
 
-# Code Quality
-npm run check        # Type check with Svelte Check
-npm run lint         # Lint code with ESLint
-npm run format       # Format code with Prettier
-
 # Testing
-npm run test         # Run unit tests
+npm run test         # Run test suite
 npm run test:ui      # Run tests with UI
-npm run test:run     # Run tests once
-npm run test:coverage # Run tests with coverage
 
 # Database
-npm run db:init      # Initialize database (if needed)
+npm run db:reset     # Reset database
+npm run db:migrate   # Run database migrations
+
+# Linting
+npm run lint         # Run ESLint
+npm run format       # Format code with Prettier
 ```
 
-## 🌟 Core Features Explained
+### **Code Style**
 
-### **Question History System**
+- **TypeScript**: Strict type checking enabled
+- **ESLint**: Code quality and consistency
+- **Prettier**: Code formatting
+- **Svelte**: Component-based architecture
 
-- **Persistent Storage**: All questions saved to SQLite database
-- **Real-time Updates**: Question count updates instantly
-- **Advanced Filtering**: Filter by category, search term, bookmarked status
-- **Export Functionality**: Export question data in JSON format
-- **Bookmark Management**: Save and organize important questions
-- **Smart Tagging**: Automatic tag extraction from question content
+### **Testing**
 
-### **User Identification**
+```bash
+# Run all tests
+npm run test
 
-- **Device Fingerprinting**: Privacy-friendly device identification
-- **Session Tracking**: Secure session management
-- **IP Analytics**: Anonymous IP tracking for usage patterns
-- **User Statistics**: Comprehensive analytics dashboard
+# Run specific test file
+npm run test -- src/lib/stores/themeStore.test.ts
 
-### **Real-time Updates**
+# Run tests with coverage
+npm run test:coverage
+```
 
-- **Reactive Stores**: Svelte stores for automatic UI updates
-- **Live Counters**: Real-time question and bookmark counts
-- **Instant Feedback**: Immediate UI response to user actions
-- **No Page Refresh**: Seamless user experience
+## 📊 Performance
 
-### **API Endpoints**
+### **Optimizations**
+- **Lazy Loading**: Components loaded on demand
+- **Caching**: API responses cached for performance
+- **Compression**: Assets compressed for faster loading
+- **CDN Ready**: Static assets optimized for CDN delivery
 
-- **`/api/chat`** - Main chat interface with user identification
-- **`/api/questions`** - Question CRUD operations
-- **`/api/questions/[id]`** - Individual question management
-- **`/api/questions/[id]/bookmark`** - Bookmark toggle
-- **`/api/stats`** - Database statistics
-- **`/api/users/stats`** - User analytics
-- **`/api/quotes`** - Holmes quotes and wisdom
+### **Monitoring**
+- **Real-time Metrics**: User interaction tracking
+- **Performance Monitoring**: Response time analytics
+- **Error Tracking**: Automated error reporting
+- **Usage Analytics**: Comprehensive usage insights
 
-### **Treatment Generator**
+## 🚀 Deployment
 
-- **Category Selection**: Choose from spiritual, healing, abundance, relationships, etc.
-- **Custom Elements**: Add specific spiritual principles
-- **Template System**: Pre-built treatment templates
-- **Custom Input**: Write your own treatments
-- **Export Options**: Copy or save treatments to history
+### **Production Build**
 
-## 🔐 Privacy & Security
+```bash
+# Build the application
+npm run build
 
-### **Data Protection**
+# Preview production build
+npm run preview
+```
 
-- **Anonymous Tracking**: No personal information collected
-- **IP Anonymization**: IP addresses are anonymized for privacy
-- **Device Fingerprinting**: Uses browser characteristics, not personal data
-- **Secure Sessions**: HTTP-only cookies with proper security
+### **Deployment Options**
 
-### **Data Storage**
+1. **Vercel** (Recommended)
+   ```bash
+   npm install -g vercel
+   vercel
+   ```
 
-- **Local Database**: SQLite database stored locally
-- **No External Tracking**: No third-party analytics or tracking
-- **User Control**: Users can export and delete their data
-- **Data Retention**: Configurable data retention policies
+2. **Netlify**
+   ```bash
+   npm run build
+   # Deploy dist/ folder to Netlify
+   ```
 
-## 📊 Analytics & Insights
-
-### **User Analytics**
-
-- **Question Patterns**: Track popular topics and categories
-- **Usage Statistics**: Monitor application usage and engagement
-- **Device Analytics**: Understand user device preferences
-- **Session Analysis**: Track user session patterns
-
-### **Performance Metrics**
-
-- **Response Times**: Monitor API response performance
-- **Database Performance**: Track query performance and optimization
-- **Error Tracking**: Monitor and log application errors
-- **User Experience**: Track user interaction patterns
-
-## 🎨 User Interface Features
-
-### **Responsive Design**
-
-- **Mobile-First**: Optimized for mobile devices
-- **Tablet Support**: Full functionality on tablets
-- **Desktop Experience**: Enhanced features for desktop users
-- **Touch-Friendly**: Optimized for touch interactions
-
-### **Accessibility**
-
-- **WCAG Compliance**: Follows accessibility guidelines
-- **Keyboard Navigation**: Full keyboard accessibility
-- **Screen Reader Support**: Proper ARIA labels and roles
-- **High Contrast**: Support for high contrast modes
-
-### **Visual Design**
-
-- **Holmes-Inspired**: Design elements inspired by spiritual themes
-- **Smooth Animations**: Elegant transitions and micro-interactions
-- **Loading States**: Clear feedback during operations
-- **Error Handling**: User-friendly error messages
-- **Floating Particles**: Beautiful animated background effects
-
-## 🐛 Recent Bug Fixes & Improvements
-
-### **Fixed Issues**
-
-- ✅ **Component Import Error**: Fixed missing `QuotesSlideshow` component import
-- ✅ **Reactive Declaration**: Moved invalid reactive declaration outside `onMount()`
-- ✅ **TypeScript Errors**: Fixed `textarea` variable usage before assignment
-- ✅ **Accessibility Issues**: Removed redundant ARIA roles
-- ✅ **Component Props**: Fixed `QuotesDisplay` component prop mismatches
-- ✅ **Theme System**: Improved light/dark theme implementation
-- ✅ **Response Style Toggle**: Added modern vs authentic Holmes response styles
-- ✅ **Scrollbar Issues**: Fixed floating particles causing unwanted scrollbars
-
-### **Performance Improvements**
-
-- ✅ **Build Optimization**: Successful production builds
-- ✅ **Database Schema**: Proper SQLite schema initialization
-- ✅ **Error Handling**: Comprehensive error handling with fallbacks
-- ✅ **API Retry Logic**: Robust retry mechanism for API failures
-
-### **Security Enhancements**
-
-- ✅ **Input Validation**: Proper message length validation
-- ✅ **Error Sanitization**: Safe error message handling
-- ✅ **Database Security**: SQL injection prevention with prepared statements
-
-## 🔮 Future Roadmap
-
-### **Phase 1: Enhanced AI Features** (In Progress)
-
-- [ ] **Fine-tuned Model**: Custom model trained on Holmes' works
-- [ ] **Voice Integration**: Text-to-speech and speech-to-text
-- [ ] **Multi-language Support**: International language support
-- [ ] **Advanced Context**: Better conversation memory and context
-
-### **Phase 2: Community Features**
-
-- [ ] **User Accounts**: Secure user registration and profiles
-- [ ] **Shared Conversations**: Community question sharing
-- [ ] **Moderation Tools**: Content moderation and filtering
-- [ ] **Community Guidelines**: Spiritual community standards
-
-### **Phase 3: Advanced Analytics**
-
-- [ ] **AI Insights**: AI-powered usage insights
-- [ ] **Predictive Analytics**: User behavior prediction
-- [ ] **Content Recommendations**: Personalized content suggestions
-- [ ] **Trend Analysis**: Spiritual trend identification
-
-### **Phase 4: Enterprise Features**
-
-- [ ] **Multi-tenant Support**: Support for multiple organizations
-- [ ] **Advanced Security**: Enterprise-grade security features
-- [ ] **API Access**: Public API for third-party integrations
-- [ ] **White-label Solutions**: Customizable branding options
-
-## 📚 Resources & Learning
-
-### **Ernest Holmes' Works**
-
-- _The Science of Mind_ (1938) - Core philosophical text
-- _This Thing Called You_ - Personal development
-- _Living the Science of Mind_ - Practical application
-- _Creative Mind and Success_ - Success principles
-- _Words That Heal Today_ - Healing affirmations
-
-### **Spiritual Concepts**
-
-- **Principle**: The fundamental law of the universe
-- **Oneness**: The unity of all creation
-- **Infinite Mind**: The divine intelligence within
-- **Spiritual Law**: The immutable laws of spirit
-- **Creative Power**: The power of thought and belief
-- **Treatment**: Spiritual mind treatment for healing
-- **Affirmations**: Positive statements for transformation
-
-### **Technical Documentation**
-
-- [SQLite Implementation](./docs/SQLITE_IMPLEMENTATION.md)
-- [Real-time Updates](./docs/REALTIME_UPDATES.md)
-- [User Identification](./docs/USER_IDENTIFICATION.md)
-- [Question History Implementation](./docs/QUESTION_HISTORY_IMPLEMENTATION.md)
-- [Treatment Generator](./docs/TREATMENT_GENERATOR.md)
+3. **Docker**
+   ```bash
+   docker build -t holmes-ai .
+   docker run -p 3000:3000 holmes-ai
+   ```
 
 ## 🤝 Contributing
 
-We welcome contributions from the community! Please see our [Contributing Guidelines](./CONTRIBUTING.md) for details.
-
 ### **Development Setup**
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+1. **Fork the repository**
+2. **Create a feature branch**
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. **Make your changes**
+4. **Run tests**
+   ```bash
+   npm run test
+   ```
+5. **Submit a pull request**
 
-### **Code Standards**
+### **Code Guidelines**
 
 - Follow TypeScript best practices
-- Use Svelte 5 conventions
+- Write comprehensive tests
+- Update documentation as needed
 - Maintain accessibility standards
-- Write comprehensive documentation
-- Run tests before submitting
+- Follow Svelte conventions
+
+## 📚 Documentation
+
+### **Technical Documentation**
+- [API Documentation](./docs/API.md)
+- [Database Schema](./docs/DATABASE.md)
+- [Component Library](./docs/COMPONENTS.md)
+- [Deployment Guide](./docs/DEPLOYMENT.md)
+
+### **Spiritual Resources**
+- [Ernest Holmes' Works](./resources/holmes-writings.md)
+- [Training Data](./downloads/training_data/)
+- [Speech Patterns](./resources/speech-patterns-detailed.md)
+
+## 🆘 Support
+
+### **Getting Help**
+
+- **Documentation**: Check the [docs](./docs/) folder
+- **Issues**: Report bugs on GitHub
+- **Discussions**: Join community discussions
+- **Email**: support@holmesai.org
+
+### **Common Issues**
+
+1. **API Key Issues**
+   - Ensure your Anthropic API key is valid
+   - Check environment variable configuration
+
+2. **Database Issues**
+   - Verify database file permissions
+   - Check database path configuration
+
+3. **Build Issues**
+   - Clear node_modules and reinstall
+   - Check Node.js version compatibility
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](../LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- **Ernest Holmes** and the Religious Science movement
-- **Centers for Spiritual Living** for spiritual guidance
-- **The Science of Mind community** for inspiration
-- **Open source contributors** for their valuable work
-
-## 📞 Support
-
-- **Documentation**: Check the [docs](./docs/) folder
-- **Issues**: Report bugs on [GitHub Issues](https://github.com/your-username/holmes-gpt/issues)
-- **Discussions**: Join conversations on [GitHub Discussions](https://github.com/your-username/holmes-gpt/discussions)
-- **Email**: Contact us at support@holmesai.com
+- **Ernest Holmes** - For his timeless spiritual wisdom
+- **Centers for Spiritual Living** - For spiritual guidance and authenticity
+- **Anthropic** - For providing the Claude AI platform
+- **Svelte Team** - For the amazing Svelte framework
+- **Open Source Community** - For the tools and libraries that make this possible
 
 ---
 
-_"The Science of Mind is a correlation of laws of science, opinions of philosophy, and revelations of religion, applied to human needs and the aspirations of man."_ - Ernest Holmes
+## 🌟 Experience Holmes AI
 
-**HolmesGPT** - Bringing the wisdom of Ernest Holmes into the digital age with modern technology and spiritual insight. 🌟
+Ready to experience authentic spiritual guidance from Ernest Holmes? 
+
+**[Start your spiritual journey now](http://localhost:5173)**
+
+---
+
+*"The Science of Mind is a correlation of laws of science, opinions of philosophy, and revelations of religion, applied to human needs and the aspirations of man."* - Ernest Holmes
+
+**Holmes AI** - Preserving Ernest Holmes' legacy through innovative technology. 🤖✨
