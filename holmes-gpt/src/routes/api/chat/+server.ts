@@ -40,6 +40,19 @@ You are speaking directly to the reader in your authentic voice, as if you are g
 - Include specific quotes from your writings when relevant
 - Use your signature phrases and spiritual language
 
+**AUTHENTIC ERNEST HOLMES TEACHINGS:**
+Based on your authentic writings and teachings, remember these core principles:
+
+• **The Principle** is the fundamental law of the universe that never fails to respond to our recognition of It
+• **Infinite Mind** is the Creative Power that brings all things into manifestation through the medium of thought
+• **Spiritual Law** operates impersonally, responding to our recognition of It
+• **Divine Intelligence** is the guiding force within each of us, the spark of the Infinite
+• **Fear is faith turned upside-down** - it is misplaced faith in limitation rather than faith in the Infinite
+• **Prayer** is not begging or pleading, but a recognition of the Truth that already exists
+• **Healing** is the recognition of the Truth that you are whole, perfect, and complete
+• **Abundance** is not something you attract from outside, but something you recognize within
+• **You are a spiritual being having a human experience**, not a human being having a spiritual experience
+
 **EXAMPLE RESPONSE STYLE:**
 "*My dear friend, let me share with you* what I have discovered through years of spiritual study and practice. **The Principle of Life is ever-present and ever-available** to each one of us."
 
@@ -92,29 +105,33 @@ const MODERN_SYSTEM_PROMPT = `You are a modern spiritual guide inspired by Ernes
 - Be clear, helpful, and genuinely supportive
 - Always affirm the presence of inner wisdom and power
 
+**SPIRITUAL PRINCIPLES (in modern language):**
+Based on Ernest Holmes' teachings, share these core concepts in accessible ways:
+
+• **Your thoughts create your reality** - what you focus on expands
+• **You're not separate from the divine** - you're an expression of infinite intelligence
+• **Fear is just misplaced faith** - faith in limitation instead of possibility
+• **Prayer isn't begging** - it's recognizing the truth that already exists
+• **Healing happens** when you recognize your natural wholeness
+• **Abundance flows** when you recognize it's already within you
+• **You're a spiritual being** having a human experience, not the other way around
+
 **EXAMPLE RESPONSE STYLE:**
 "*Here's the thing about spiritual wisdom* - **you're not stuck with whatever life throws at you. You actually have incredible power to shape your experience.**"
 
 **Here's what spiritual teachings tell us:**
 • **Your inner wisdom** is always available to guide you
 • **Your thoughts and beliefs** create your reality
-• **You have the power** to transform any situation
+• **You're connected to something bigger** than your individual self
+• **Every challenge is an opportunity** for growth and learning
 
-**MODERN APPROACH:**
-- Use contemporary language and examples
-- Be relatable and down-to-earth
-- Focus on practical application
-- Speak as a supportive friend
-- Make spiritual concepts accessible
+**STRUCTURE YOUR RESPONSES:**
+1. **Acknowledge their question** - show you understand what they're asking
+2. **Share relevant wisdom** - offer practical spiritual insights
+3. **Give actionable guidance** - suggest specific steps they can take
+4. **End with encouragement** - remind them of their inner strength
 
-**STRUCTURE YOUR RESPONSES WITH:**
-1. **Friendly opening** - Connect with the person's situation
-2. **Clear explanation** - Break down spiritual concepts simply
-3. **Practical insights** - Offer actionable guidance
-4. **Supportive encouragement** - Build confidence and hope
-5. **Empowering conclusion** - Remind them of their inner strength
-
-Remember: You are a supportive, modern spiritual guide helping people access their inner wisdom and power in accessible, contemporary language.`;
+Remember: You're a supportive friend sharing spiritual wisdom in a way that feels relevant and helpful to modern life.`;
 
 // Retry configuration
 const MAX_RETRIES = 3;
@@ -141,38 +158,159 @@ function getRelevantQuotes(userMessage: string): string[] {
       "holmes_quotes.json",
     );
     const quotesData = fs.readFileSync(quotesPath, "utf-8");
-    const allQuotes: Array<{ quote: string; source: string }> =
-      JSON.parse(quotesData);
+    const quotesJson = JSON.parse(quotesData);
+    const allQuotes: string[] = quotesJson.quotes || [];
 
-    // Filter meaningful quotes
-    const meaningfulQuotes = allQuotes.filter(
-      (quote) =>
-        quote.quote.length > 50 &&
-        quote.quote.length < 300 &&
-        !quote.quote.includes("***") &&
-        !quote.quote.includes("Transcriber") &&
-        !quote.quote.includes("GUTENBERG"),
-    );
-
-    // Simple keyword matching for relevance
-    const keywords = userMessage.toLowerCase().split(" ");
-    const relevantQuotes = meaningfulQuotes.filter((quote) =>
-      keywords.some(
-        (keyword) =>
-          keyword.length > 3 && quote.quote.toLowerCase().includes(keyword),
-      ),
-    );
-
-    // Return up to 2 relevant quotes, or random ones if no matches
-    if (relevantQuotes.length > 0) {
-      return relevantQuotes.slice(0, 2).map((q) => q.quote);
-    } else {
-      // Return 1-2 random meaningful quotes
-      const shuffled = meaningfulQuotes.sort(() => 0.5 - Math.random());
-      return shuffled.slice(0, 2).map((q) => q.quote);
+    if (allQuotes.length === 0) {
+      console.warn("No quotes found in training data");
+      return [];
     }
+
+    // Enhanced keyword matching for relevance
+    const userWords = userMessage.toLowerCase().split(/\s+/);
+    const meaningfulWords = userWords.filter(word => word.length > 3);
+    
+    // Define spiritual keywords for better matching
+    const spiritualKeywords = [
+      'god', 'spirit', 'divine', 'infinite', 'mind', 'consciousness', 'prayer', 'meditation',
+      'healing', 'health', 'abundance', 'prosperity', 'love', 'fear', 'faith', 'principle',
+      'law', 'creative', 'power', 'intelligence', 'substance', 'truth', 'wisdom', 'purpose',
+      'relationship', 'challenge', 'difficulty', 'death', 'life', 'oneness', 'unity'
+    ];
+
+    // Score quotes based on relevance
+    const scoredQuotes = allQuotes.map(quote => {
+      let score = 0;
+      const quoteLower = quote.toLowerCase();
+      
+      // Direct keyword matches
+      meaningfulWords.forEach(word => {
+        if (quoteLower.includes(word)) {
+          score += 2;
+        }
+      });
+      
+      // Spiritual keyword matches (weighted higher)
+      spiritualKeywords.forEach(keyword => {
+        if (quoteLower.includes(keyword) && userWords.some(word => 
+          word.includes(keyword) || keyword.includes(word)
+        )) {
+          score += 3;
+        }
+      });
+      
+      // Semantic similarity for common spiritual concepts
+      if (userMessage.toLowerCase().includes('fear') && quoteLower.includes('fear')) {
+        score += 4;
+      }
+      if (userMessage.toLowerCase().includes('pray') && quoteLower.includes('prayer')) {
+        score += 4;
+      }
+      if (userMessage.toLowerCase().includes('heal') && quoteLower.includes('healing')) {
+        score += 4;
+      }
+      if (userMessage.toLowerCase().includes('abundance') && quoteLower.includes('abundance')) {
+        score += 4;
+      }
+      if (userMessage.toLowerCase().includes('god') && quoteLower.includes('infinite mind')) {
+        score += 3;
+      }
+      
+      return { quote, score };
+    });
+
+    // Sort by relevance score and return top matches
+    const relevantQuotes = scoredQuotes
+      .filter(item => item.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 2)
+      .map(item => item.quote);
+
+    // If no relevant quotes found, return random meaningful quotes
+    if (relevantQuotes.length === 0) {
+      const shuffled = allQuotes.sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, 2);
+    }
+
+    return relevantQuotes;
   } catch (error) {
     console.error("Error loading quotes:", error);
+    return [];
+  }
+}
+
+// New function to get relevant Q&A examples for context
+function getRelevantQAExamples(userMessage: string): string[] {
+  try {
+    const qaPath = path.join(
+      process.cwd(),
+      "downloads",
+      "training_data",
+      "holmes_qa_pairs.json",
+    );
+    const qaData = fs.readFileSync(qaPath, "utf-8");
+    const qaJson = JSON.parse(qaData);
+    const allQA: Array<{ question: string; answer: string }> = qaJson.qa_pairs || [];
+
+    if (allQA.length === 0) {
+      return [];
+    }
+
+    // Simple keyword matching for Q&A relevance
+    const userWords = userMessage.toLowerCase().split(/\s+/);
+    const meaningfulWords = userWords.filter(word => word.length > 3);
+
+    const relevantQA = allQA.filter(qa => 
+      meaningfulWords.some(word => 
+        qa.question.toLowerCase().includes(word) || 
+        qa.answer.toLowerCase().includes(word)
+      )
+    );
+
+    // Return relevant Q&A examples (up to 1 for context)
+    return relevantQA.slice(0, 1).map(qa => 
+      `Q: ${qa.question}\nA: ${qa.answer}`
+    );
+  } catch (error) {
+    console.error("Error loading Q&A examples:", error);
+    return [];
+  }
+}
+
+// New function to get relevant affirmative treatments
+function getRelevantTreatments(userMessage: string): string[] {
+  try {
+    const treatmentsPath = path.join(
+      process.cwd(),
+      "downloads",
+      "training_data",
+      "holmes_treatments.json",
+    );
+    const treatmentsData = fs.readFileSync(treatmentsPath, "utf-8");
+    const treatmentsJson = JSON.parse(treatmentsData);
+    const allTreatments: Array<{ title: string; treatment: string }> = treatmentsJson.treatments || [];
+
+    if (allTreatments.length === 0) {
+      return [];
+    }
+
+    // Keyword matching for treatment relevance
+    const userWords = userMessage.toLowerCase().split(/\s+/);
+    const meaningfulWords = userWords.filter(word => word.length > 3);
+
+    const relevantTreatments = allTreatments.filter(treatment => 
+      meaningfulWords.some(word => 
+        treatment.title.toLowerCase().includes(word) || 
+        treatment.treatment.toLowerCase().includes(word)
+      )
+    );
+
+    // Return relevant treatments (up to 1 for context)
+    return relevantTreatments.slice(0, 1).map(treatment => 
+      `${treatment.title}:\n${treatment.treatment}`
+    );
+  } catch (error) {
+    console.error("Error loading treatments:", error);
     return [];
   }
 }
@@ -188,14 +326,44 @@ async function makeApiCall(
         ? HOLMES_SYSTEM_PROMPT
         : MODERN_SYSTEM_PROMPT;
     
+    // Get relevant quotes and Q&A examples for context
+    const relevantQuotes = getRelevantQuotes(message);
+    const relevantQA = getRelevantQAExamples(message);
+    const relevantTreatments = getRelevantTreatments(message);
+    
     // Debug: Log which prompt is being used
     console.log(`Using ${responseStyle === "his-words" ? "HOLMES" : "MODERN"} prompt for response style: ${responseStyle}`);
+    console.log(`Found ${relevantQuotes.length} relevant quotes, ${relevantQA.length} Q&A examples, and ${relevantTreatments.length} treatments`);
+
+    // Enhance the system prompt with relevant context
+    let enhancedSystemPrompt = systemPrompt;
+    
+    if (relevantQuotes.length > 0) {
+      enhancedSystemPrompt += `\n\n**RELEVANT QUOTES FOR CONTEXT:**
+${relevantQuotes.map((quote, index) => `${index + 1}. "${quote}"`).join('\n')}
+
+Use these quotes as inspiration and reference them when appropriate in your response.`;
+    }
+    
+    if (relevantQA.length > 0) {
+      enhancedSystemPrompt += `\n\n**RELEVANT Q&A EXAMPLE FOR CONTEXT:**
+${relevantQA.join('\n')}
+
+Use this example as a reference for how to address similar questions.`;
+    }
+    
+    if (relevantTreatments.length > 0) {
+      enhancedSystemPrompt += `\n\n**RELEVANT AFFIRMATIVE TREATMENT FOR CONTEXT:**
+${relevantTreatments.join('\n')}
+
+Use this treatment as inspiration for creating affirmative statements or spiritual practices in your response.`;
+    }
 
     const response = await anthropic.messages.create({
       model: "claude-3-haiku-20240307",
       max_tokens: 1500,
       temperature: 0.7,
-      system: systemPrompt,
+      system: enhancedSystemPrompt,
       messages: [
         {
           role: "user",
