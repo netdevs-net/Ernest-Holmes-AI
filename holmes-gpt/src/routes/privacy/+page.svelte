@@ -11,7 +11,7 @@
   <Header />
   
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" role="banner">
     <div class="hero-content">
       <h1>Privacy Policy</h1>
       <p class="hero-subtitle">How We Protect Your Privacy and Data</p>
@@ -20,7 +20,7 @@
 
   <div class="container">
     <!-- Introduction -->
-    <section class="section">
+    <section class="section" aria-labelledby="intro-heading">
       <div class="intro-content">
         <p class="lead">
           At Holmes AI, we understand that spiritual conversations are deeply personal and sacred. 
@@ -34,8 +34,8 @@
     </section>
 
     <!-- Information We Collect -->
-    <section class="section">
-      <h2>Information We Collect</h2>
+    <section class="section" aria-labelledby="collect-heading">
+      <h2 id="collect-heading">Information We Collect</h2>
       <div class="policy-content">
         <div class="policy-item">
           <h3>Conversation Data</h3>
@@ -83,8 +83,8 @@
     </section>
 
     <!-- How We Use Information -->
-    <section class="section">
-      <h2>How We Use Your Information</h2>
+    <section class="section" aria-labelledby="use-heading">
+      <h2 id="use-heading">How We Use Your Information</h2>
       <div class="policy-content">
         <div class="policy-item">
           <h3>Providing Our Services</h3>
@@ -128,8 +128,8 @@
     </section>
 
     <!-- Data Ownership -->
-    <section class="section">
-      <h2>Data Ownership</h2>
+    <section class="section" aria-labelledby="ownership-heading">
+      <h2 id="ownership-heading">Data Ownership</h2>
       <div class="ownership-content">
         <div class="ownership-notice">
           <h3>Centers for Spiritual Living (CSL) Rights</h3>
@@ -159,8 +159,8 @@
     </section>
 
     <!-- Data Protection -->
-    <section class="section">
-      <h2>Data Protection</h2>
+    <section class="section" aria-labelledby="protection-heading">
+      <h2 id="protection-heading">Data Protection</h2>
       <div class="policy-content">
         <div class="policy-item">
           <h3>Security Measures</h3>
@@ -191,8 +191,8 @@
     </section>
 
     <!-- Data Sharing -->
-    <section class="section">
-      <h2>Data Sharing</h2>
+    <section class="section" aria-labelledby="sharing-heading">
+      <h2 id="sharing-heading">Data Sharing</h2>
       <div class="policy-content">
         <div class="policy-item">
           <h3>We Do Not Sell Your Data</h3>
@@ -222,8 +222,8 @@
     </section>
 
     <!-- Children's Privacy -->
-    <section class="section">
-      <h2>Children's Privacy</h2>
+    <section class="section" aria-labelledby="children-heading">
+      <h2 id="children-heading">Children's Privacy</h2>
       <div class="policy-content">
         <div class="policy-item">
           <p>
@@ -236,8 +236,8 @@
     </section>
 
     <!-- International Users -->
-    <section class="section">
-      <h2>International Users</h2>
+    <section class="section" aria-labelledby="international-heading">
+      <h2 id="international-heading">International Users</h2>
       <div class="policy-content">
         <div class="policy-item">
           <p>
@@ -250,8 +250,8 @@
     </section>
 
     <!-- Policy Changes -->
-    <section class="section">
-      <h2>Changes to This Policy</h2>
+    <section class="section" aria-labelledby="changes-heading">
+      <h2 id="changes-heading">Changes to This Policy</h2>
       <div class="policy-content">
         <div class="policy-item">
           <p>
@@ -271,21 +271,21 @@
     </section>
 
     <!-- Contact Information -->
-    <section class="section">
-      <h2>Contact Us</h2>
+    <section class="section" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact Us</h2>
       <div class="contact-content">
         <p>
           If you have any questions about this Privacy Policy or our data practices, please contact us:
         </p>
         <div class="contact-info">
           <div class="contact-item">
-            <strong>Email:</strong> privacy@holmesai.org
+            <strong>Email:</strong> <a href="mailto:privacy@holmesai.org" class="contact-link">privacy@holmesai.org</a>
           </div>
           <div class="contact-item">
             <strong>Address:</strong> Centers for Spiritual Living, 573 Park Point Drive, Golden, CO 80401
           </div>
           <div class="contact-item">
-            <strong>Phone:</strong> (720) 496-1370
+            <strong>Phone:</strong> <a href="tel:+17204961370" class="contact-link">(720) 496-1370</a>
           </div>
         </div>
       </div>
@@ -304,10 +304,11 @@
   .privacy-page {
     background: var(--bg-primary);
     min-height: 100vh;
+    color: var(--text-primary);
   }
 
   .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--text-accent) 0%, var(--text-accent-hover) 100%);
     color: white;
     text-align: center;
     padding: 4rem 2rem;
@@ -316,11 +317,13 @@
   .hero h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
+    color: white;
   }
 
   .hero-subtitle {
     font-size: 1.3rem;
     opacity: 0.9;
+    color: white;
   }
 
   .container {
@@ -344,13 +347,18 @@
     font-size: 1.3rem;
     font-weight: 500;
     margin-bottom: 1.5rem;
-    color: var(--accent-color);
+    color: var(--text-accent);
   }
 
   .intro-content {
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
+  }
+
+  .intro-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
   }
 
   .policy-content {
@@ -362,11 +370,12 @@
     background: var(--bg-secondary);
     padding: 2rem;
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px var(--shadow-light);
+    border: 1px solid var(--border-primary);
   }
 
   .policy-item h3 {
-    color: var(--accent-color);
+    color: var(--text-accent);
     margin-bottom: 1rem;
     font-size: 1.5rem;
   }
@@ -389,8 +398,8 @@
   }
 
   .important-note {
-    background: rgba(255, 193, 7, 0.1);
-    border-left: 4px solid #ffc107;
+    background: rgba(251, 191, 36, 0.1);
+    border-left: 4px solid var(--text-accent);
     padding: 1rem;
     margin: 1rem 0;
     border-radius: 0 5px 5px 0;
@@ -400,11 +409,12 @@
     background: var(--bg-secondary);
     padding: 2rem;
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px var(--shadow-medium);
+    border: 1px solid var(--border-primary);
   }
 
   .ownership-notice h3 {
-    color: var(--accent-color);
+    color: var(--text-accent);
     margin-bottom: 1rem;
     font-size: 1.5rem;
   }
@@ -414,7 +424,8 @@
     background: var(--bg-secondary);
     padding: 2rem;
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px var(--shadow-light);
+    border: 1px solid var(--border-primary);
   }
 
   .contact-info {
@@ -428,6 +439,22 @@
     background: var(--bg-primary);
     border-radius: 10px;
     color: var(--text-secondary);
+    border: 1px solid var(--border-primary);
+  }
+
+  .contact-link {
+    color: var(--text-accent);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .contact-link:hover {
+    color: var(--text-accent-hover);
+  }
+
+  .contact-link:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
   }
 
   .last-updated {
@@ -447,6 +474,28 @@
 
     .policy-item {
       padding: 1.5rem;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .policy-item,
+    .ownership-content,
+    .contact-content {
+      border: 2px solid var(--border-primary);
+    }
+    
+    .contact-link {
+      border: 1px solid currentColor;
+      padding: 0.25rem 0.5rem;
+      border-radius: 3px;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .contact-link {
+      transition: none;
     }
   }
 </style> 

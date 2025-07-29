@@ -68,7 +68,6 @@
     color: var(--text-primary);
     min-height: 100vh;
     transition: background-color 0.3s ease, color 0.3s ease;
-    overflow: hidden;
   }
 
   /* Focus styles for accessibility */
@@ -173,6 +172,8 @@
     pointer-events: none;
     z-index: -1;
     overflow: hidden;
+    /* Ensure particles don't cause viewport scrollbars */
+    contain: layout style paint;
   }
   
   .particle {

@@ -11,7 +11,7 @@
   <Header />
   
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" role="banner">
     <div class="hero-content">
       <h1>About Holmes AI</h1>
       <p class="hero-subtitle">Preserving Ernest Holmes' Wisdom for the Digital Age</p>
@@ -20,8 +20,8 @@
 
   <div class="container">
     <!-- Mission Section -->
-    <section class="section">
-      <h2>Our Mission</h2>
+    <section class="section" aria-labelledby="mission-heading">
+      <h2 id="mission-heading">Our Mission</h2>
       <div class="mission-content">
         <div class="mission-text">
           <p class="lead">
@@ -43,8 +43,8 @@
     </section>
 
     <!-- Team Section -->
-    <section class="section">
-      <h2>Our Team</h2>
+    <section class="section" aria-labelledby="team-heading">
+      <h2 id="team-heading">Our Team</h2>
       <div class="team-content">
         <p class="lead">
           Holmes AI is developed by a dedicated team of spiritual practitioners, AI researchers, and technology 
@@ -54,7 +54,7 @@
         <div class="team-grid">
           <div class="team-member">
             <div class="member-avatar">
-              <img src="/images/ryan-iguchi.jpg" alt="Ryan Iguchi" />
+              <img src="/images/ryan-iguchi.jpg" alt="Ryan Iguchi, Founder and Lead Developer of Holmes AI" />
             </div>
             <h3>Ryan Iguchi</h3>
             <p class="member-role">Founder & Lead Developer</p>
@@ -64,10 +64,10 @@
               and spiritual technology, Ryan created Holmes AI to make authentic spiritual guidance accessible to everyone.
             </p>
             <div class="member-links">
-              <a href="https://NetDevs.net" target="_blank" rel="noopener" class="member-link">
+              <a href="https://NetDevs.net" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit NetDevs.net (opens in new tab)">
                 🌐 NetDevs.net
               </a>
-              <a href="https://ryan-iguchi.com" target="_blank" rel="noopener" class="member-link">
+              <a href="https://ryan-iguchi.com" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit ryan-iguchi.com (opens in new tab)">
                 👤 ryan-iguchi.com
               </a>
             </div>
@@ -77,12 +77,12 @@
     </section>
 
     <!-- Sponsorship Section -->
-    <section class="section sponsorship-section">
-      <h2>Special Thanks</h2>
+    <section class="section sponsorship-section" aria-labelledby="sponsorship-heading">
+      <h2 id="sponsorship-heading">Special Thanks</h2>
       <div class="sponsorship-content">
         <div class="sponsor-card">
           <div class="sponsor-avatar">
-            <img src="/images/linda-gauthier.jpg" alt="Linda Gauthier" />
+            <img src="/images/linda-gauthier.jpg" alt="Linda Gauthier, Generous Supporter and Spiritual Practitioner" />
           </div>
           <div class="sponsor-info">
             <h3>Sponsored by Linda Gauthier</h3>
@@ -93,7 +93,7 @@
               healing and spiritual growth inspires us all.
             </p>
             <div class="sponsor-links">
-              <a href="https://OceanHealing.health" target="_blank" rel="noopener" class="sponsor-link">
+              <a href="https://OceanHealing.health" target="_blank" rel="noopener noreferrer" class="sponsor-link" aria-label="Visit OceanHealing.health (opens in new tab)">
                 🌊 OceanHealing.health
               </a>
             </div>
@@ -103,15 +103,15 @@
     </section>
 
     <!-- Call to Action -->
-    <section class="section cta-section">
-      <h2>Experience Holmes AI</h2>
+    <section class="section cta-section" aria-labelledby="cta-heading">
+      <h2 id="cta-heading">Experience Holmes AI</h2>
       <p>
         Ready to experience authentic spiritual guidance from Ernest Holmes? 
         Start your journey with Holmes AI today.
       </p>
       <div class="cta-buttons">
-        <a href="/" class="cta-button primary">Start Chatting</a>
-        <a href="/support" class="cta-button secondary">Support Us</a>
+        <a href="/" class="cta-button primary" aria-label="Start chatting with Holmes AI">Start Chatting</a>
+        <a href="/support" class="cta-button secondary" aria-label="Learn how to support Holmes AI">Support Us</a>
       </div>
     </section>
   </div>
@@ -121,10 +121,11 @@
   .about-page {
     background: var(--bg-primary);
     min-height: 100vh;
+    color: var(--text-primary);
   }
 
   .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--text-accent) 0%, var(--text-accent-hover) 100%);
     color: white;
     text-align: center;
     padding: 4rem 2rem;
@@ -133,11 +134,13 @@
   .hero h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
+    color: white;
   }
 
   .hero-subtitle {
     font-size: 1.3rem;
     opacity: 0.9;
+    color: white;
   }
 
   .container {
@@ -161,7 +164,7 @@
     font-size: 1.3rem;
     font-weight: 500;
     margin-bottom: 1.5rem;
-    color: var(--accent-color);
+    color: var(--text-accent);
   }
 
   .mission-content {
@@ -169,6 +172,12 @@
     grid-template-columns: 1fr;
     gap: 2rem;
     align-items: center;
+  }
+
+  .mission-text p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
   }
 
   .team-grid {
@@ -183,7 +192,8 @@
     padding: 2rem;
     border-radius: 15px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px var(--shadow-light);
+    border: 1px solid var(--border-primary);
   }
 
   .member-avatar {
@@ -192,7 +202,7 @@
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto 1rem;
-    border: 4px solid var(--accent-color);
+    border: 4px solid var(--text-accent);
   }
 
   .member-avatar img {
@@ -202,7 +212,7 @@
   }
 
   .member-role {
-    color: var(--accent-color);
+    color: var(--text-accent);
     font-weight: 600;
     margin-bottom: 1rem;
   }
@@ -223,16 +233,23 @@
     display: inline-block;
     padding: 0.5rem 1rem;
     background: var(--bg-primary);
-    color: var(--accent-color);
+    color: var(--text-accent);
     text-decoration: none;
     border-radius: 5px;
     font-size: 0.9rem;
     transition: all 0.3s ease;
+    border: 1px solid var(--border-primary);
   }
 
   .member-link:hover {
-    background: var(--accent-color);
+    background: var(--text-accent);
     color: white;
+    transform: translateY(-1px);
+  }
+
+  .member-link:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
   }
 
   .sponsorship-section {
@@ -243,12 +260,13 @@
     background: var(--bg-secondary);
     padding: 3rem;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px var(--shadow-medium);
     display: flex;
     align-items: center;
     gap: 2rem;
     max-width: 800px;
     margin: 0 auto;
+    border: 1px solid var(--border-primary);
   }
 
   .sponsor-avatar {
@@ -256,7 +274,7 @@
     height: 150px;
     border-radius: 50%;
     overflow: hidden;
-    border: 6px solid var(--accent-color);
+    border: 6px solid var(--text-accent);
     flex-shrink: 0;
   }
 
@@ -271,7 +289,7 @@
   }
 
   .sponsor-info h3 {
-    color: var(--accent-color);
+    color: var(--text-accent);
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
   }
@@ -291,7 +309,7 @@
   .sponsor-link {
     display: inline-block;
     padding: 0.75rem 1.5rem;
-    background: var(--accent-color);
+    background: var(--text-accent);
     color: white;
     text-decoration: none;
     border-radius: 25px;
@@ -300,12 +318,17 @@
   }
 
   .sponsor-link:hover {
-    background: var(--accent-hover);
+    background: var(--text-accent-hover);
     transform: translateY(-2px);
   }
 
+  .sponsor-link:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
   .cta-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--text-accent) 0%, var(--text-accent-hover) 100%);
     color: white;
     text-align: center;
     border-radius: 15px;
@@ -329,13 +352,18 @@
   }
 
   .cta-button.primary {
-    background: #ffd700;
-    color: #333;
+    background: var(--text-accent);
+    color: white;
   }
 
   .cta-button.primary:hover {
-    background: #ffed4e;
+    background: var(--text-accent-hover);
     transform: translateY(-2px);
+  }
+
+  .cta-button.primary:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
   }
 
   .cta-button.secondary {
@@ -346,7 +374,12 @@
 
   .cta-button.secondary:hover {
     background: white;
-    color: #667eea;
+    color: var(--text-accent);
+  }
+
+  .cta-button.secondary:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
   }
 
   @media (max-width: 768px) {
@@ -368,6 +401,35 @@
     .cta-buttons {
       flex-direction: column;
       align-items: center;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .team-member,
+    .sponsor-card {
+      border: 2px solid var(--border-primary);
+    }
+    
+    .member-link,
+    .sponsor-link,
+    .cta-button {
+      border: 2px solid currentColor;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .member-link,
+    .sponsor-link,
+    .cta-button {
+      transition: none;
+    }
+    
+    .member-link:hover,
+    .sponsor-link:hover,
+    .cta-button:hover {
+      transform: none;
     }
   }
 </style> 
