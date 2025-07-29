@@ -155,14 +155,14 @@ function getRelevantQuotes(userMessage: string): string[] {
       process.cwd(),
       "downloads",
       "training_data",
-      "holmes_quotes.json",
+      "enhanced_holmes_quotes.json",
     );
     const quotesData = fs.readFileSync(quotesPath, "utf-8");
     const quotesJson = JSON.parse(quotesData);
     const allQuotes: string[] = quotesJson.quotes || [];
 
     if (allQuotes.length === 0) {
-      console.warn("No quotes found in training data");
+      console.warn("No quotes found in enhanced training data");
       return [];
     }
 
@@ -175,7 +175,8 @@ function getRelevantQuotes(userMessage: string): string[] {
       'god', 'spirit', 'divine', 'infinite', 'mind', 'consciousness', 'prayer', 'meditation',
       'healing', 'health', 'abundance', 'prosperity', 'love', 'fear', 'faith', 'principle',
       'law', 'creative', 'power', 'intelligence', 'substance', 'truth', 'wisdom', 'purpose',
-      'relationship', 'challenge', 'difficulty', 'death', 'life', 'oneness', 'unity'
+      'relationship', 'challenge', 'difficulty', 'death', 'life', 'oneness', 'unity',
+      'practice', 'understanding', 'guidance', 'path', 'trust', 'transformation'
     ];
 
     // Score quotes based on relevance
@@ -215,6 +216,15 @@ function getRelevantQuotes(userMessage: string): string[] {
       if (userMessage.toLowerCase().includes('god') && quoteLower.includes('infinite mind')) {
         score += 3;
       }
+      if (userMessage.toLowerCase().includes('purpose') && quoteLower.includes('purpose')) {
+        score += 4;
+      }
+      if (userMessage.toLowerCase().includes('practice') && quoteLower.includes('practice')) {
+        score += 3;
+      }
+      if (userMessage.toLowerCase().includes('faith') && quoteLower.includes('faith')) {
+        score += 4;
+      }
       
       return { quote, score };
     });
@@ -234,7 +244,7 @@ function getRelevantQuotes(userMessage: string): string[] {
 
     return relevantQuotes;
   } catch (error) {
-    console.error("Error loading quotes:", error);
+    console.error("Error loading enhanced quotes:", error);
     return [];
   }
 }
@@ -246,7 +256,7 @@ function getRelevantQAExamples(userMessage: string): string[] {
       process.cwd(),
       "downloads",
       "training_data",
-      "holmes_qa_pairs.json",
+      "enhanced_holmes_qa_pairs.json",
     );
     const qaData = fs.readFileSync(qaPath, "utf-8");
     const qaJson = JSON.parse(qaData);
@@ -256,23 +266,48 @@ function getRelevantQAExamples(userMessage: string): string[] {
       return [];
     }
 
-    // Simple keyword matching for Q&A relevance
+    // Enhanced keyword matching for Q&A relevance
     const userWords = userMessage.toLowerCase().split(/\s+/);
     const meaningfulWords = userWords.filter(word => word.length > 3);
 
-    const relevantQA = allQA.filter(qa => 
-      meaningfulWords.some(word => 
-        qa.question.toLowerCase().includes(word) || 
-        qa.answer.toLowerCase().includes(word)
-      )
-    );
+    // Score Q&A pairs based on relevance
+    const scoredQA = allQA.map(qa => {
+      let score = 0;
+      const questionLower = qa.question.toLowerCase();
+      const answerLower = qa.answer.toLowerCase();
+      
+      // Check question relevance
+      meaningfulWords.forEach(word => {
+        if (questionLower.includes(word)) {
+          score += 3; // Questions are weighted higher
+        }
+        if (answerLower.includes(word)) {
+          score += 2;
+        }
+      });
+      
+      // Check for spiritual concept matches
+      const spiritualConcepts = ['prayer', 'meditation', 'purpose', 'faith', 'practice', 'guidance', 'understanding'];
+      spiritualConcepts.forEach(concept => {
+        if (userMessage.toLowerCase().includes(concept) && 
+            (questionLower.includes(concept) || answerLower.includes(concept))) {
+          score += 4;
+        }
+      });
+      
+      return { qa, score };
+    });
 
     // Return relevant Q&A examples (up to 1 for context)
-    return relevantQA.slice(0, 1).map(qa => 
-      `Q: ${qa.question}\nA: ${qa.answer}`
-    );
+    const relevantQA = scoredQA
+      .filter(item => item.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 1)
+      .map(item => `Q: ${item.qa.question}\nA: ${item.qa.answer}`);
+
+    return relevantQA;
   } catch (error) {
-    console.error("Error loading Q&A examples:", error);
+    console.error("Error loading enhanced Q&A examples:", error);
     return [];
   }
 }
@@ -284,7 +319,7 @@ function getRelevantTreatments(userMessage: string): string[] {
       process.cwd(),
       "downloads",
       "training_data",
-      "holmes_treatments.json",
+      "enhanced_holmes_treatments.json",
     );
     const treatmentsData = fs.readFileSync(treatmentsPath, "utf-8");
     const treatmentsJson = JSON.parse(treatmentsData);
@@ -294,23 +329,53 @@ function getRelevantTreatments(userMessage: string): string[] {
       return [];
     }
 
-    // Keyword matching for treatment relevance
+    // Enhanced keyword matching for treatment relevance
     const userWords = userMessage.toLowerCase().split(/\s+/);
     const meaningfulWords = userWords.filter(word => word.length > 3);
 
-    const relevantTreatments = allTreatments.filter(treatment => 
-      meaningfulWords.some(word => 
-        treatment.title.toLowerCase().includes(word) || 
-        treatment.treatment.toLowerCase().includes(word)
-      )
-    );
+    // Score treatments based on relevance
+    const scoredTreatments = allTreatments.map(treatment => {
+      let score = 0;
+      const titleLower = treatment.title.toLowerCase();
+      const treatmentLower = treatment.treatment.toLowerCase();
+      
+      // Check title and treatment content relevance
+      meaningfulWords.forEach(word => {
+        if (titleLower.includes(word)) {
+          score += 3; // Titles are weighted higher
+        }
+        if (treatmentLower.includes(word)) {
+          score += 2;
+        }
+      });
+      
+      // Check for specific spiritual needs
+      if (userMessage.toLowerCase().includes('purpose') && titleLower.includes('purpose')) {
+        score += 5;
+      }
+      if (userMessage.toLowerCase().includes('healing') && titleLower.includes('healing')) {
+        score += 5;
+      }
+      if (userMessage.toLowerCase().includes('prosperity') && titleLower.includes('prosperity')) {
+        score += 5;
+      }
+      if (userMessage.toLowerCase().includes('practice') && titleLower.includes('practice')) {
+        score += 4;
+      }
+      
+      return { treatment, score };
+    });
 
     // Return relevant treatments (up to 1 for context)
-    return relevantTreatments.slice(0, 1).map(treatment => 
-      `${treatment.title}:\n${treatment.treatment}`
-    );
+    const relevantTreatments = scoredTreatments
+      .filter(item => item.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 1)
+      .map(item => `${item.treatment.title}:\n${item.treatment.treatment}`);
+
+    return relevantTreatments;
   } catch (error) {
-    console.error("Error loading treatments:", error);
+    console.error("Error loading enhanced treatments:", error);
     return [];
   }
 }

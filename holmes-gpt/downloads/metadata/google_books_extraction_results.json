@@ -1,0 +1,40 @@
+{
+  "science_of_mind": {
+    "extracted": true,
+    "file_path": "texts/science-of-mind-google.txt",
+    "timestamp": "2025-07-28 18:32:00"
+  },
+  "found_books": [
+    {
+      "title": "Living the Science of Mind: The Only Writings by the Founder ...books.google.com\u203a books",
+      "book_id": "0zU9DgAAQBAJ",
+      "url": "https://books.google.mehttps://books.google.com/books?id=0zU9DgAAQBAJ&printsec=frontcover&dq=Ernest+Holmes+Science+of+Mind&hl=en&newbks=1&newbks_redir=1&sa=X&ved=2ahUKEwjQpZD49eCOAxXEL0QIHfKrELUQ6AF6BAgHEAM",
+      "search_term": "Ernest Holmes Science of Mind"
+    },
+    {
+      "title": "Creative Mind and Successbooks.google.com\u203a books",
+      "book_id": "q8s5mIrS6WsC",
+      "url": "https://books.google.mehttps://books.google.com/books?id=q8s5mIrS6WsC&printsec=frontcover&dq=Ernest+Holmes+Creative+Mind+and+Success&hl=en&newbks=1&newbks_redir=1&sa=X&ved=2ahUKEwiMssL59eCOAxWXle4BHd0_CHgQ6AF6BAgFEAM",
+      "search_term": "Ernest Holmes Creative Mind and Success"
+    },
+    {
+      "title": "Creative Mind and Successbooks.google.com\u203a books",
+      "book_id": "UGf4Of1-rScC",
+      "url": "https://books.google.mehttps://books.google.com/books?id=UGf4Of1-rScC&printsec=frontcover&dq=Ernest+Holmes+Creative+Mind+and+Success&hl=en&newbks=1&newbks_redir=1&sa=X&ved=2ahUKEwiMssL59eCOAxWXle4BHd0_CHgQ6AF6BAgGEAM",
+      "search_term": "Ernest Holmes Creative Mind and Success"
+    },
+    {
+      "title": "The Essential Ernest Holmes - Page 248books.google.com\u203a books",
+      "book_id": "qlzODgAAQBAJ",
+      "url": "https://books.google.mehttps://books.google.com/books?id=qlzODgAAQBAJ&pg=PA248&dq=Ernest+Holmes+Words+That+Heal+Today&hl=en&newbks=1&newbks_redir=1&sa=X&ved=2ahUKEwjr0sL89eCOAxWwl-4BHcZeDuIQ6AF6BAgGEAM",
+      "search_term": "Ernest Holmes Words That Heal Today"
+    },
+    {
+      "title": "The Hidden Power of the Bible: What Science of Mind Reveals ...books.google.com\u203a books",
+      "book_id": "IXk_qCfUFDwC",
+      "url": "https://books.google.mehttps://books.google.com/books?id=IXk_qCfUFDwC&printsec=frontcover&dq=Ernest+Holmes+Hidden+Power+of+the+Bible&hl=en&newbks=1&newbks_redir=1&sa=X&ved=2ahUKEwiPpYD-9eCOAxVtM0QIHfa8FA0Q6AF6BAgGEAM",
+      "search_term": "Ernest Holmes Hidden Power of the Bible"
+    }
+  ],
+  "extraction_timestamp": "2025-07-28 18:32:00"
+}
