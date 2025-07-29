@@ -1,0 +1,50 @@
+[
+  {
+    "url": "https://books.google.me/books?id=0-C7o-AK1OwC&printsec=frontcover&source=gbs_ge_summary_r&cad=0",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 293106,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html><html><head><title>The Science of the Mind - Ernest Holmes - Google Books</title><link rel=\"stylesheet\" href=\"/books/css/_5a9599182b4b590b246b54d7fe7d66ad/kl_viewport_kennedy_full_bundle.css\" type=\"text/css\" /><link rel=\"stylesheet\"href=\"https://fonts.googleapis.com/css2?family=Product+Sans:wght@400\"><script src=\"/books/javascript/v2_5a9599182b4b590b246b54d7fe7d66ad.js\"></script><script>_OC_Hooks = [\"_OC_Page\", \"_OC_SearchReload\", \"_OC_TocReload\", \"_OC_EmptyFunc\", \"_OC_SearchPage\"..."
+  },
+  {
+    "url": "https://books.google.me/books?id=0-C7o-AK1OwC&printsec=frontcover&source=gbs_toc_r&cad=0",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 293085,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html><html><head><title>The Science of the Mind - Ernest Holmes - Google Books</title><link rel=\"stylesheet\" href=\"/books/css/_5a9599182b4b590b246b54d7fe7d66ad/kl_viewport_kennedy_full_bundle.css\" type=\"text/css\" /><link rel=\"stylesheet\"href=\"https://fonts.googleapis.com/css2?family=Product+Sans:wght@400\"><script src=\"/books/javascript/v2_5a9599182b4b590b246b54d7fe7d66ad.js\"></script><script>_OC_Hooks = [\"_OC_Page\", \"_OC_SearchReload\", \"_OC_TocReload\", \"_OC_EmptyFunc\", \"_OC_SearchPage\"..."
+  },
+  {
+    "url": "https://books.google.me/books?id=0-C7o-AK1OwC&printsec=frontcover&source=gbs_ge_summary_r&cad=0#v=onepage&q&f=false",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 293113,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html><html><head><title>The Science of the Mind - Ernest Holmes - Google Books</title><link rel=\"stylesheet\" href=\"/books/css/_5a9599182b4b590b246b54d7fe7d66ad/kl_viewport_kennedy_full_bundle.css\" type=\"text/css\" /><link rel=\"stylesheet\"href=\"https://fonts.googleapis.com/css2?family=Product+Sans:wght@400\"><script src=\"/books/javascript/v2_5a9599182b4b590b246b54d7fe7d66ad.js\"></script><script>_OC_Hooks = [\"_OC_Page\", \"_OC_SearchReload\", \"_OC_TocReload\", \"_OC_EmptyFunc\", \"_OC_SearchPage\"..."
+  },
+  {
+    "url": "https://books.google.me/books?id=0-C7o-AK1OwC&printsec=frontcover&source=gbs_toc_r&cad=0#v=onepage&q&f=false",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 293084,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html><html><head><title>The Science of the Mind - Ernest Holmes - Google Books</title><link rel=\"stylesheet\" href=\"/books/css/_5a9599182b4b590b246b54d7fe7d66ad/kl_viewport_kennedy_full_bundle.css\" type=\"text/css\" /><link rel=\"stylesheet\"href=\"https://fonts.googleapis.com/css2?family=Product+Sans:wght@400\"><script src=\"/books/javascript/v2_5a9599182b4b590b246b54d7fe7d66ad.js\"></script><script>_OC_Hooks = [\"_OC_Page\", \"_OC_SearchReload\", \"_OC_TocReload\", \"_OC_EmptyFunc\", \"_OC_SearchPage\"..."
+  },
+  {
+    "url": "https://books.google.me/books?id=0-C7o-AK1OwC&printsec=frontcover&source=gbs_ge_summary_r&cad=0#v=snippet&q&f=false",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 293103,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html><html><head><title>The Science of the Mind - Ernest Holmes - Google Books</title><link rel=\"stylesheet\" href=\"/books/css/_5a9599182b4b590b246b54d7fe7d66ad/kl_viewport_kennedy_full_bundle.css\" type=\"text/css\" /><link rel=\"stylesheet\"href=\"https://fonts.googleapis.com/css2?family=Product+Sans:wght@400\"><script src=\"/books/javascript/v2_5a9599182b4b590b246b54d7fe7d66ad.js\"></script><script>_OC_Hooks = [\"_OC_Page\", \"_OC_SearchReload\", \"_OC_TocReload\", \"_OC_EmptyFunc\", \"_OC_SearchPage\"..."
+  },
+  {
+    "url": "https://books.google.me/books?id=0-C7o-AK1OwC&printsec=frontcover&source=gbs_toc_r&cad=0#v=snippet&q&f=false",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 293084,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html><html><head><title>The Science of the Mind - Ernest Holmes - Google Books</title><link rel=\"stylesheet\" href=\"/books/css/_5a9599182b4b590b246b54d7fe7d66ad/kl_viewport_kennedy_full_bundle.css\" type=\"text/css\" /><link rel=\"stylesheet\"href=\"https://fonts.googleapis.com/css2?family=Product+Sans:wght@400\"><script src=\"/books/javascript/v2_5a9599182b4b590b246b54d7fe7d66ad.js\"></script><script>_OC_Hooks = [\"_OC_Page\", \"_OC_SearchReload\", \"_OC_TocReload\", \"_OC_EmptyFunc\", \"_OC_SearchPage\"..."
+  }
+]

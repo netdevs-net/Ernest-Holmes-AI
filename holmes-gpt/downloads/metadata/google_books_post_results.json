@@ -1,0 +1,974 @@
+[
+  {
+    "endpoint": "https://books.google.me/books/preview",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1570,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/preview",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1570,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/preview",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1570,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/preview",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1570,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/preview",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1570,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/preview",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1570,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/preview",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1570,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/preview",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1570,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/content",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1570,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/content",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1570,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/content",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1570,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/content",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1570,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/content",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1570,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/content",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1570,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/content",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1570,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/content",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1570,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/text",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1567,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/text",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1567,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/text",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1567,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/text",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1567,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/text",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1567,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/text",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1567,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/text",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1567,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/text",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1567,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/content",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1574,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/content",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1574,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/content",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1574,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/content",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1574,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/content",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1574,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/content",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1574,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/content",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1574,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/content",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1574,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/preview",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1574,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/preview",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1574,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/preview",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1574,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/preview",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1574,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/preview",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1574,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/preview",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1574,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/preview",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1574,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/preview",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1574,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/text",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1571,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/text",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1571,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/text",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1571,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/text",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1571,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/text",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1571,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/text",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1571,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/text",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1571,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/api/text",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1571,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/content",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1575,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/content",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1575,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/content",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1575,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/content",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1575,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/content",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1575,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/content",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1575,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/content",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1575,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/content",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1575,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/preview",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1575,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/preview",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1575,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/preview",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1575,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/preview",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1575,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/preview",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1575,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/preview",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1575,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/preview",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1575,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/preview",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1575,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/text",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1572,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/text",
+    "data": {
+      "book_id": "0-C7o-AK1OwC",
+      "format": "text",
+      "action": "get_content"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1572,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/text",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1572,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/text",
+    "data": {
+      "id": "0-C7o-AK1OwC",
+      "type": "content",
+      "format": "plain"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1572,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/text",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1572,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/text",
+    "data": {
+      "bookId": "0-C7o-AK1OwC",
+      "contentType": "text",
+      "method": "getContent"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1572,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/text",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1572,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  },
+  {
+    "endpoint": "https://books.google.me/books/ajax/text",
+    "data": {
+      "bid": "0-C7o-AK1OwC",
+      "ct": "text",
+      "op": "get"
+    },
+    "method": "JSON",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1572,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error 404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 ..."
+  }
+]

@@ -1,0 +1,62 @@
+{
+  "url": "https://books.google.me/books?id=0-C7o-AK1OwC",
+  "form_data": [
+    {
+      "action": "https://www.google.me/search",
+      "method": "GET",
+      "fields": [
+        {
+          "name": "tbm",
+          "type": "hidden",
+          "value": "bks",
+          "id": "",
+          "class": []
+        },
+        {
+          "name": "q",
+          "type": "text",
+          "value": "",
+          "id": "gbqfq",
+          "class": [
+            "gbqfif"
+          ]
+        }
+      ]
+    },
+    {
+      "action": "/books",
+      "method": "GET",
+      "fields": [
+        {
+          "name": "id",
+          "type": "hidden",
+          "value": "0-C7o-AK1OwC",
+          "id": "",
+          "class": []
+        },
+        {
+          "name": "q",
+          "type": "text",
+          "value": "",
+          "id": "search_form_input",
+          "class": [
+            "text_flat",
+            "swv-input-search"
+          ]
+        },
+        {
+          "name": "",
+          "type": "submit",
+          "value": "Search inside",
+          "id": "",
+          "class": []
+        }
+      ]
+    }
+  ],
+  "ajax_endpoints": [],
+  "post_endpoints": [
+    "PUT"
+  ],
+  "html_length": 322790
+}

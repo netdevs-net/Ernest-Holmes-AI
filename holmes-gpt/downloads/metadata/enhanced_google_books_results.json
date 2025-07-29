@@ -1,0 +1,46 @@
+{
+  "science_of_mind": {
+    "success": false,
+    "pages_extracted": 0,
+    "total_characters": 0,
+    "file_path": null,
+    "metadata": {
+      "title": "The Science of the Mind",
+      "author": "Ernest Holmes",
+      "book_id": "0-C7o-AK1OwC"
+    }
+  },
+  "living_science_of_mind": {
+    "success": false,
+    "pages_extracted": 0,
+    "total_characters": 0,
+    "file_path": null,
+    "metadata": {
+      "title": "Living the Science of Mind:The Only Writings by the Founder of SCIENCE OF MIND to Help You Understand His Classic Textbook",
+      "author": "Ernest Holmes",
+      "book_id": "0zU9DgAAQBAJ"
+    }
+  },
+  "creative_mind_success": {
+    "success": false,
+    "pages_extracted": 0,
+    "total_characters": 0,
+    "file_path": null,
+    "metadata": {
+      "title": "Creative Mind and Success",
+      "author": "Ernest Holmes",
+      "book_id": "q8s5mIrS6WsC"
+    }
+  },
+  "hidden_power_bible": {
+    "success": false,
+    "pages_extracted": 0,
+    "total_characters": 0,
+    "file_path": null,
+    "metadata": {
+      "title": "The Hidden Power of the Bible:What Science of Mind Reveals About the Bible & You",
+      "author": "Ernest Holmes",
+      "book_id": "IXk_qCfUFDwC"
+    }
+  }
+}

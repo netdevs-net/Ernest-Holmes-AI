@@ -1,0 +1,42 @@
+[
+  {
+    "endpoint": "https://www.googleapis.com/books/v1/volumes/0-C7o-AK1OwC",
+    "status_code": 200,
+    "content_type": "application/json; charset=UTF-8",
+    "content_length": 5073,
+    "has_content": true,
+    "content_preview": "{\n  \"kind\": \"books#volume\",\n  \"id\": \"0-C7o-AK1OwC\",\n  \"etag\": \"KB+kgX1XtZg\",\n  \"selfLink\": \"https://www.googleapis.com/books/v1/volumes/0-C7o-AK1OwC\",\n  \"volumeInfo\": {\n    \"title\": \"The Science of the Mind\",\n    \"authors\": [\n      \"Ernest Holmes\"\n    ],\n    \"publisher\": \"Cosimo, Inc.\",\n    \"publishedDate\": \"2007-06-01\",\n    \"description\": \"\\u003cp\\u003eFirst published in 1926, this book is the most important writing from preacher Ernest Shurtleff Holmes. In it, he strives to introduce man to hi..."
+  },
+  {
+    "endpoint": "https://books.google.com/books?id=0-C7o-AK1OwC&printsec=frontcover&source=gbs_ge_summary_r&cad=0&output=json",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 298353,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html><html><head><title>The Science of the Mind - Ernest Holmes - Google Books</title><link rel=\"stylesheet\" href=\"/books/css/_5a9599182b4b590b246b54d7fe7d66ad/kl_viewport_kennedy_full_bundle.css\" type=\"text/css\" /><link rel=\"stylesheet\"href=\"https://fonts.googleapis.com/css2?family=Product+Sans:wght@400\"><script src=\"/books/javascript/v2_5a9599182b4b590b246b54d7fe7d66ad__en.js\"></script><script>_OC_Hooks = [\"_OC_Page\", \"_OC_SearchReload\", \"_OC_TocReload\", \"_OC_EmptyFunc\", \"_OC_SearchP..."
+  },
+  {
+    "endpoint": "https://books.google.com/books?id=0-C7o-AK1OwC&printsec=frontcover&source=gbs_toc_r&cad=0&output=json",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 298339,
+    "has_content": true,
+    "content_preview": "<!DOCTYPE html><html><head><title>The Science of the Mind - Ernest Holmes - Google Books</title><link rel=\"stylesheet\" href=\"/books/css/_5a9599182b4b590b246b54d7fe7d66ad/kl_viewport_kennedy_full_bundle.css\" type=\"text/css\" /><link rel=\"stylesheet\"href=\"https://fonts.googleapis.com/css2?family=Product+Sans:wght@400\"><script src=\"/books/javascript/v2_5a9599182b4b590b246b54d7fe7d66ad__en.js\"></script><script>_OC_Hooks = [\"_OC_Page\", \"_OC_SearchReload\", \"_OC_TocReload\", \"_OC_EmptyFunc\", \"_OC_SearchP..."
+  },
+  {
+    "endpoint": "https://books.google.com/books?id=0-C7o-AK1OwC&printsec=frontcover&source=gbs_ge_summary_r&cad=0&output=text",
+    "status_code": 403,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1103,
+    "has_content": true,
+    "content_preview": "<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/><title>Sorry...</title><style> body { font-family: verdana, arial, sans-serif; background-color: #fff; color: #000; }</style></head><body><div><table><tr><td><b><font face=sans-serif size=10><font color=#4285f4>G</font><font color=#ea4335>o</font><font color=#fbbc05>o</font><font color=#4285f4>g</font><font color=#34a853>l</font><font color=#ea4335>e</font></font></b></td><td style=\"text-align: left; vertical-align: ..."
+  },
+  {
+    "endpoint": "https://books.google.com/books?id=0-C7o-AK1OwC&printsec=frontcover&source=gbs_toc_r&cad=0&output=text",
+    "status_code": 403,
+    "content_type": "text/html; charset=UTF-8",
+    "content_length": 1103,
+    "has_content": true,
+    "content_preview": "<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/><title>Sorry...</title><style> body { font-family: verdana, arial, sans-serif; background-color: #fff; color: #000; }</style></head><body><div><table><tr><td><b><font face=sans-serif size=10><font color=#4285f4>G</font><font color=#ea4335>o</font><font color=#fbbc05>o</font><font color=#4285f4>g</font><font color=#34a853>l</font><font color=#ea4335>e</font></font></b></td><td style=\"text-align: left; vertical-align: ..."
+  }
+]
