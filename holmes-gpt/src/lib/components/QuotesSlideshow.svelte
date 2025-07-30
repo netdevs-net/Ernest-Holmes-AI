@@ -265,15 +265,16 @@
 
 <style>
 	.quotes-slideshow-container {
-		background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+		background: var(--glass-bg);
 		border-radius: 20px;
 		padding: 2rem;
 		max-width: 800px;
 		width: 100%;
 		max-height: 90vh;
 		overflow-y: auto;
-		box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		box-shadow: 0 25px 50px var(--shadow-medium);
+		border: 1px solid var(--border-primary);
+		backdrop-filter: blur(20px);
 		position: relative;
 	}
 
@@ -283,20 +284,20 @@
 		align-items: center;
 		margin-bottom: 2rem;
 		padding-bottom: 1rem;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+		border-bottom: 1px solid var(--border-primary);
 	}
 
 	.quotes-title {
-		color: #fbbf24;
+		color: var(--text-accent);
 		font-size: 1.8rem;
 		font-weight: 700;
 		margin: 0;
-		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+		text-shadow: 0 2px 4px var(--shadow-light);
 	}
 
 	.quotes-count {
 		font-size: 1rem;
-		color: #9ca3af;
+		color: var(--text-secondary);
 		font-weight: 400;
 	}
 
@@ -306,19 +307,19 @@
 	}
 
 	.control-btn {
-		background: rgba(255, 255, 255, 0.1);
-		border: 1px solid rgba(255, 255, 255, 0.2);
+		background: var(--bg-secondary);
+		border: 1px solid var(--border-secondary);
 		border-radius: 8px;
 		padding: 0.5rem;
-		color: #e5e7eb;
+		color: var(--text-primary);
 		cursor: pointer;
 		transition: all 0.2s;
 		font-size: 1.2rem;
 	}
 
 	.control-btn:hover {
-		background: rgba(255, 255, 255, 0.2);
-		border-color: rgba(255, 255, 255, 0.3);
+		background: var(--bg-tertiary);
+		border-color: var(--text-accent);
 	}
 
 	.control-btn:disabled {
@@ -334,15 +335,15 @@
 		align-items: center;
 		justify-content: center;
 		min-height: 300px;
-		color: #e5e7eb;
+		color: var(--text-primary);
 		text-align: center;
 	}
 
 	.loading-spinner {
 		width: 40px;
 		height: 40px;
-		border: 3px solid rgba(251, 191, 36, 0.3);
-		border-top: 3px solid #fbbf24;
+		border: 3px solid var(--border-secondary);
+		border-top: 3px solid var(--text-accent);
 		border-radius: 50%;
 		animation: spin 1s linear infinite;
 		margin-bottom: 1rem;
@@ -354,11 +355,11 @@
 	}
 
 	.retry-btn {
-		background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+		background: linear-gradient(135deg, var(--text-accent) 0%, var(--text-accent-hover) 100%);
 		border: none;
 		border-radius: 8px;
 		padding: 0.75rem 1.5rem;
-		color: #1a1a2e;
+		color: var(--bg-primary);
 		font-weight: 600;
 		cursor: pointer;
 		transition: all 0.2s;
@@ -367,7 +368,7 @@
 
 	.retry-btn:hover {
 		transform: translateY(-2px);
-		box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+		box-shadow: 0 4px 12px var(--shadow-light);
 	}
 
 	.slideshow-content {
@@ -378,12 +379,12 @@
 	}
 
 	.nav-btn {
-		background: rgba(255, 255, 255, 0.1);
-		border: 1px solid rgba(255, 255, 255, 0.2);
+		background: var(--bg-secondary);
+		border: 1px solid var(--border-secondary);
 		border-radius: 50%;
 		width: 50px;
 		height: 50px;
-		color: #e5e7eb;
+		color: var(--text-primary);
 		font-size: 1.5rem;
 		cursor: pointer;
 		transition: all 0.2s;
@@ -393,8 +394,8 @@
 	}
 
 	.nav-btn:hover:not(:disabled) {
-		background: rgba(255, 255, 255, 0.2);
-		border-color: rgba(255, 255, 255, 0.3);
+		background: var(--bg-tertiary);
+		border-color: var(--text-accent);
 		transform: scale(1.1);
 	}
 
@@ -419,15 +420,15 @@
 	.quote-text {
 		font-size: 1.4rem;
 		line-height: 1.6;
-		color: #e5e7eb;
+		color: var(--text-primary);
 		margin: 0 0 1rem 0;
 		font-style: italic;
-		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+		text-shadow: 0 2px 4px var(--shadow-light);
 	}
 
 	.quote-source {
 		font-size: 1rem;
-		color: #fbbf24;
+		color: var(--text-accent);
 		font-weight: 600;
 		font-style: normal;
 		display: block;
@@ -451,23 +452,23 @@
 		width: 12px;
 		height: 12px;
 		border-radius: 50%;
-		background: rgba(255, 255, 255, 0.3);
+		background: var(--border-secondary);
 		border: none;
 		cursor: pointer;
 		transition: all 0.2s;
 	}
 
 	.progress-dot.active {
-		background: #fbbf24;
+		background: var(--text-accent);
 		transform: scale(1.2);
 	}
 
 	.progress-dot:hover:not(.active) {
-		background: rgba(255, 255, 255, 0.5);
+		background: var(--border-primary);
 	}
 
 	.progress-text {
-		color: #9ca3af;
+		color: var(--text-secondary);
 		font-size: 0.9rem;
 	}
 
@@ -475,8 +476,8 @@
 		text-align: center;
 		margin-top: 1.5rem;
 		padding-top: 1rem;
-		border-top: 1px solid rgba(255, 255, 255, 0.1);
-		color: #9ca3af;
+		border-top: 1px solid var(--border-primary);
+		color: var(--text-secondary);
 		font-size: 0.8rem;
 	}
 
