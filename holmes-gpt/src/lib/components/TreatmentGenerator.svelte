@@ -235,38 +235,68 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 		isGenerating = true;
 		
 		try {
-			// Get base template
-			const template = treatmentTemplates[selectedCategory];
-			let treatment = template.template;
+			let treatment = '';
 			
-			// If custom elements are selected, incorporate them
-			if (selectedElements.length > 0) {
-				const customStatements = selectedElements.map(element => {
-					return `I recognize that ${element} flows through me, and that I am one with this divine quality.`;
+			// If custom treatment is provided, use AI to expand it
+			if (showCustomInput && customTreatment.trim()) {
+				// Call HolmesGPT API to expand the custom treatment
+				const prompt = `Please expand and enhance this spiritual treatment in Ernest Holmes' style, following the Science of Mind principles. Organize it into the five sections: RECOGNITION, AFFIRMATION, DECLARATION, GRATITUDE, and ACCEPTANCE. Make it comprehensive and deeply spiritual while maintaining the essence of what I've written:
+
+${customTreatment}
+
+Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATITUDE**, and **ACCEPTANCE** section headers.`;
+
+				console.log('Sending custom treatment to AI:', { customTreatment, prompt });
+				
+				const response = await fetch('/api/chat', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						message: prompt,
+						category: 'spiritual'
+					})
 				});
 				
-				// Insert custom statements before the final affirmation
-				const parts = treatment.split('. ');
-				const lastPart = parts.pop();
-				treatment = [...parts, ...customStatements, lastPart].join('. ');
-			}
-			
-			// If custom treatment is provided, use it as base
-			if (showCustomInput && customTreatment.trim()) {
-				treatment = customTreatment;
+				if (response.ok) {
+					const data = await response.json();
+					console.log('AI response received:', data);
+					treatment = data.response;
+					
+					if (!treatment || treatment.trim() === '') {
+						throw new Error('AI returned empty response');
+					}
+				} else {
+					const errorText = await response.text();
+					console.error('API error response:', errorText);
+					throw new Error(`API error: ${response.status} - ${errorText}`);
+				}
+			} else {
+				// Use template-based generation
+				const template = treatmentTemplates[selectedCategory];
+				treatment = template.template;
+				
+				// If custom elements are selected, incorporate them
+				if (selectedElements.length > 0) {
+					const customStatements = selectedElements.map(element => {
+						return `I recognize that ${element} flows through me, and that I am one with this divine quality.`;
+					});
+					
+					// Insert custom statements before the final affirmation
+					const parts = treatment.split('. ');
+					const lastPart = parts.pop();
+					treatment = [...parts, ...customStatements, lastPart].join('. ');
+				}
+				
+				// Enhance with Holmes' characteristic language patterns
+				treatment = enhanceWithHolmesStyle(treatment);
 			}
 			
 			generatedTreatment = treatment;
 			
-			// Simulate AI enhancement (in real implementation, this would call the HolmesGPT API)
-			await new Promise(resolve => setTimeout(resolve, 1000));
-			
-			// Enhance with Holmes' characteristic language patterns
-			generatedTreatment = enhanceWithHolmesStyle(treatment);
-			
 		} catch (error) {
 			console.error('Error generating treatment:', error);
-			generatedTreatment = 'I recognize that Divine Intelligence guides me in creating this treatment, and that Spiritual Law operates for my highest good.';
+			const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+			generatedTreatment = `Error generating treatment: ${errorMessage}. Please try again or check your connection.`;
 		} finally {
 			isGenerating = false;
 		}
@@ -460,7 +490,7 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 						class:active={showCustomInput}
 						on:click={toggleCustomInput}
 					>
-						{showCustomInput ? 'Use Template' : 'Write Custom Treatment'}
+						{showCustomInput ? 'Use Template' : 'AI-Enhanced Custom Treatment'}
 					</button>
 				</div>
 
@@ -468,9 +498,12 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 				{#if showCustomInput}
 					<div class="custom-input-section">
 						<h3 class="section-title">Write Your Custom Treatment</h3>
+						<p class="custom-description">
+							Write your spiritual treatment idea, and AI will expand it into a comprehensive treatment in Ernest Holmes' style with all five sections.
+						</p>
 						<textarea 
 							bind:value={customTreatment}
-							placeholder="Write your spiritual treatment in Holmes' style..."
+							placeholder="Write your spiritual treatment idea or starting point... AI will expand this into a full treatment with RECOGNITION, AFFIRMATION, DECLARATION, GRATITUDE, and ACCEPTANCE sections."
 							class="custom-treatment-input"
 							rows="6"
 							aria-label="Custom spiritual treatment input"
@@ -533,7 +566,7 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.treatment-generator-container {
-		background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+		background: var(--glass-bg);
 		border-radius: 20px;
 		padding: 2rem;
 		max-width: 800px;
@@ -541,8 +574,9 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 		max-height: 90vh;
 		overflow-y: auto;
 		overflow-x: hidden;
-		box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		box-shadow: 0 25px 50px var(--shadow-medium);
+		border: 1px solid var(--border-primary);
+		backdrop-filter: blur(20px);
 		/* Prevent box-shadows from extending beyond container */
 		clip-path: inset(0);
 	}
@@ -553,7 +587,7 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 		align-items: center;
 		margin-bottom: 2rem;
 		padding-bottom: 1rem;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+		border-bottom: 1px solid var(--border-primary);
 	}
 
 	.generator-title {
@@ -567,7 +601,7 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	.close-btn {
 		background: none;
 		border: none;
-		color: #9ca3af;
+		color: var(--text-secondary);
 		cursor: pointer;
 		padding: 0.5rem;
 		border-radius: 8px;
@@ -575,7 +609,7 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.close-btn:hover {
-		background: rgba(255, 255, 255, 0.1);
+		background: var(--bg-secondary);
 		color: var(--text-accent);
 	}
 
@@ -599,8 +633,8 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.category-btn {
-		background: rgba(255, 255, 255, 0.05);
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		background: var(--bg-secondary);
+		border: 1px solid var(--border-secondary);
 		border-radius: 12px;
 		padding: 1rem;
 		cursor: pointer;
@@ -609,15 +643,15 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.category-btn:hover {
-		background: rgba(251, 191, 36, 0.1);
+		background: var(--bg-tertiary);
 		border-color: var(--text-accent);
 		transform: translateY(-2px);
 	}
 
 	.category-btn.active {
-		background: rgba(251, 191, 36, 0.2);
+		background: var(--bg-tertiary);
 		border-color: var(--text-accent);
-		box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+		box-shadow: 0 4px 12px var(--shadow-light);
 		/* Prevent shadow from extending beyond container */
 		clip-path: inset(0);
 	}
@@ -641,8 +675,8 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.element-btn {
-		background: rgba(255, 255, 255, 0.05);
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		background: var(--bg-secondary);
+		border: 1px solid var(--border-secondary);
 		border-radius: 8px;
 		padding: 0.75rem;
 		cursor: pointer;
@@ -652,12 +686,12 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.element-btn:hover {
-		background: rgba(251, 191, 36, 0.1);
+		background: var(--bg-tertiary);
 		border-color: var(--text-accent);
 	}
 
 	.element-btn.selected {
-		background: rgba(251, 191, 36, 0.2);
+		background: var(--bg-tertiary);
 		border-color: var(--text-accent);
 		color: var(--text-accent);
 	}
@@ -668,8 +702,8 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.toggle-btn {
-		background: rgba(255, 255, 255, 0.05);
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		background: var(--bg-secondary);
+		border: 1px solid var(--border-secondary);
 		border-radius: 8px;
 		padding: 0.75rem 1.5rem;
 		cursor: pointer;
@@ -678,14 +712,21 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.toggle-btn:hover {
-		background: rgba(251, 191, 36, 0.1);
+		background: var(--bg-tertiary);
 		border-color: var(--text-accent);
 	}
 
 	.toggle-btn.active {
-		background: rgba(251, 191, 36, 0.2);
+		background: var(--bg-tertiary);
 		border-color: var(--text-accent);
 		color: var(--text-accent);
+	}
+
+	.custom-description {
+		color: var(--text-secondary);
+		font-size: 0.9rem;
+		margin-bottom: 1rem;
+		line-height: 1.5;
 	}
 
 	.custom-treatment-input {
@@ -718,26 +759,26 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.generate-btn {
-		background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+		background: linear-gradient(135deg, var(--text-accent) 0%, var(--text-accent-hover) 100%);
 		border: none;
 		border-radius: 12px;
 		padding: 1rem 2rem;
 		cursor: pointer;
 		transition: all 0.3s ease;
-		color: #1a1a2e;
+		color: var(--bg-primary);
 		font-weight: 600;
 		font-size: 1.1rem;
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
-		box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+		box-shadow: 0 4px 12px var(--shadow-light);
 		/* Prevent shadow from extending beyond container */
 		clip-path: inset(0);
 	}
 
 	.generate-btn:hover:not(:disabled) {
 		transform: translateY(-2px);
-		box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
+		box-shadow: 0 6px 20px var(--shadow-medium);
 		/* Prevent shadow from extending beyond container */
 		clip-path: inset(0);
 	}
@@ -750,8 +791,8 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	.loading-spinner {
 		width: 20px;
 		height: 20px;
-		border: 2px solid rgba(26, 26, 46, 0.3);
-		border-top: 2px solid #1a1a2e;
+		border: 2px solid var(--border-secondary);
+		border-top: 2px solid var(--text-accent);
 		border-radius: 50%;
 		animation: spin 1s linear infinite;
 	}
@@ -762,8 +803,8 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.treatment-result {
-		background: rgba(255, 255, 255, 0.05);
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		background: var(--bg-secondary);
+		border: 1px solid var(--border-secondary);
 		border-radius: 12px;
 		padding: 1.5rem;
 		margin-top: 1rem;
@@ -783,7 +824,7 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	.treatment-section {
 		margin-bottom: 2rem;
 		padding: 1rem;
-		background: rgba(255, 255, 255, 0.03);
+		background: var(--bg-tertiary);
 		border-radius: 8px;
 		border-left: 4px solid var(--text-accent);
 	}
@@ -799,28 +840,28 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.section-header.recognition {
-		color: #10b981;
-		border-left-color: #10b981;
+		color: var(--text-success);
+		border-left-color: var(--text-success);
 	}
 
 	.section-header.affirmation {
-		color: #3b82f6;
-		border-left-color: #3b82f6;
+		color: var(--text-info);
+		border-left-color: var(--text-info);
 	}
 
 	.section-header.declaration {
-		color: #8b5cf6;
-		border-left-color: #8b5cf6;
+		color: var(--text-accent);
+		border-left-color: var(--text-accent);
 	}
 
 	.section-header.gratitude {
-		color: #f59e0b;
-		border-left-color: #f59e0b;
+		color: var(--text-warning);
+		border-left-color: var(--text-warning);
 	}
 
 	.section-header.acceptance {
-		color: #ef4444;
-		border-left-color: #ef4444;
+		color: var(--text-error);
+		border-left-color: var(--text-error);
 	}
 
 	.treatment-section p {
@@ -837,8 +878,8 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.action-btn {
-		background: rgba(255, 255, 255, 0.1);
-		border: 1px solid rgba(255, 255, 255, 0.2);
+		background: var(--bg-secondary);
+		border: 1px solid var(--border-secondary);
 		border-radius: 8px;
 		padding: 0.75rem 1.5rem;
 		cursor: pointer;
@@ -848,22 +889,22 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	}
 
 	.action-btn:hover {
-		background: rgba(251, 191, 36, 0.1);
+		background: var(--bg-tertiary);
 		border-color: var(--text-accent);
 		color: var(--text-accent);
 		transform: translateY(-1px);
 	}
 
 	.copy-btn:hover {
-		background: rgba(34, 197, 94, 0.1);
-		border-color: #22c55e;
-		color: #22c55e;
+		background: var(--bg-tertiary);
+		border-color: var(--text-success);
+		color: var(--text-success);
 	}
 
 	.save-btn:hover {
-		background: rgba(59, 130, 246, 0.1);
-		border-color: #3b82f6;
-		color: #3b82f6;
+		background: var(--bg-tertiary);
+		border-color: var(--text-info);
+		color: var(--text-info);
 	}
 
 	@media (max-width: 768px) {

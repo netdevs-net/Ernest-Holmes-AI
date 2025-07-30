@@ -1,13 +1,32 @@
 import { json } from "@sveltejs/kit";
 import Anthropic from "@anthropic-ai/sdk";
-import { ANTHROPIC_API_KEY } from "$env/static/private";
+import { env } from "$env/dynamic/private";
 import type { RequestHandler } from "./$types";
 import { getClientInfo } from "$lib/utils/clientInfo";
 import fs from "fs";
 import path from "path";
 
+// Read API key from Docker secret or environment variable
+function getApiKey(): string {
+  try {
+    // Try to read from Docker secret first
+    const secretPath = "/run/secrets/anthropic_api_key";
+    const apiKey = fs.readFileSync(secretPath, "utf8").trim();
+    if (apiKey && apiKey !== "your-anthropic-api-key-here") {
+      console.log("Using API key from Docker secret");
+      return apiKey;
+    }
+  } catch (error) {
+    // Fall back to environment variable
+    console.log("Docker secret not found, using environment variable");
+  }
+  
+  // Fall back to environment variable
+  return env.ANTHROPIC_API_KEY || "";
+}
+
 const anthropic = new Anthropic({
-  apiKey: ANTHROPIC_API_KEY,
+  apiKey: getApiKey(),
 });
 
 const HOLMES_SYSTEM_PROMPT = `You are Ernest Holmes, founder of Religious Science and author of The Science of Mind. 
