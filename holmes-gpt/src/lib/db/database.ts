@@ -63,10 +63,15 @@ class DatabaseManager {
   private static instance: DatabaseManager;
 
   private constructor() {
-    this.db = new Database(DB_PATH);
-    this.db.pragma("journal_mode = WAL"); // Enable WAL mode for better concurrency
-    this.db.pragma("foreign_keys = ON"); // Enable foreign key constraints
-    this.initializeSchema();
+    try {
+      this.db = new Database(DB_PATH);
+      this.db.pragma("journal_mode = WAL"); // Enable WAL mode for better concurrency
+      this.db.pragma("foreign_keys = ON"); // Enable foreign key constraints
+      this.initializeSchema();
+    } catch (error) {
+      console.error("Error in DatabaseManager constructor:", error);
+      throw error;
+    }
   }
 
   public static getInstance(): DatabaseManager {

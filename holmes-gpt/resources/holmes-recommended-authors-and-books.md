@@ -569,7 +569,7 @@
    - Internet Archive
    - Project Gutenberg
    - Sacred Texts Archive
-   - Esoteric Archives
+   - Esoteric Archivesif there
 
 ### **📊 Priority Categories for Research**
 
