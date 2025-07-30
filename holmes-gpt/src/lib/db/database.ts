@@ -2,13 +2,16 @@ import Database from "better-sqlite3";
 import { join } from "path";
 import { existsSync, mkdirSync, statSync } from "fs";
 
-// Database configuration
-const DB_DIR = join(process.cwd(), "data");
+// Database configuration - flexible for volume mounts
+const DB_DIR = process.env.DB_DIR || join(process.cwd(), "data");
 const DB_PATH = join(DB_DIR, "holmes.db");
 
 // Ensure data directory exists
 if (!existsSync(DB_DIR)) {
   mkdirSync(DB_DIR, { recursive: true });
+  console.log(`Created database directory: ${DB_DIR}`);
+} else {
+  console.log(`Using existing database directory: ${DB_DIR}`);
 }
 
 // Database schema
@@ -64,10 +67,12 @@ class DatabaseManager {
 
   private constructor() {
     try {
+      console.log(`Connecting to database at: ${DB_PATH}`);
       this.db = new Database(DB_PATH);
       this.db.pragma("journal_mode = WAL"); // Enable WAL mode for better concurrency
       this.db.pragma("foreign_keys = ON"); // Enable foreign key constraints
       this.initializeSchema();
+      console.log(`Database connection established successfully`);
     } catch (error) {
       console.error("Error in DatabaseManager constructor:", error);
       throw error;
@@ -98,6 +103,37 @@ class DatabaseManager {
   public close(): void {
     if (this.db) {
       this.db.close();
+    }
+  }
+
+  // Database health check
+  public healthCheck(): { status: string; path: string; size?: string } {
+    try {
+      if (!this.db) {
+        return { status: 'error', path: DB_PATH, size: 'Database not initialized' };
+      }
+      
+      // Test a simple query
+      const result = this.db.prepare('SELECT COUNT(*) as count FROM questions').get() as { count: number };
+      
+      // Get file size if it exists
+      let size = 'unknown';
+      if (existsSync(DB_PATH)) {
+        const stats = statSync(DB_PATH);
+        size = `${(stats.size / 1024 / 1024).toFixed(2)} MB`;
+      }
+      
+      return { 
+        status: 'healthy', 
+        path: DB_PATH, 
+        size 
+      };
+    } catch (error) {
+      return { 
+        status: 'error', 
+        path: DB_PATH, 
+        size: error instanceof Error ? error.message : 'Unknown error' 
+      };
     }
   }
 

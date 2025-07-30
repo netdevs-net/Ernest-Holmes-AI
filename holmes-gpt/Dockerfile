@@ -44,11 +44,16 @@ COPY --from=builder /app/package-lock.json ./package-lock.json
 # Install production dependencies (now includes SvelteKit packages)
 RUN npm ci --omit=dev
 
-# Create data directory and set permissions
+# Create data directory and set permissions for volume mounts
 RUN mkdir -p /app/data && chown -R svelte:nodejs /app
+# Ensure the svelte user can write to the data directory
+RUN chmod 755 /app/data
 
 # Create a non-root user
 USER svelte
+
+# Volume for persistent database storage
+VOLUME ["/app/data"]
 
 EXPOSE 3000
 
