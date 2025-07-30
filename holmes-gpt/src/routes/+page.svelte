@@ -34,8 +34,10 @@
 			}
 		];
 		
-		// Create floating particles
+			// Create floating particles after DOM is ready
+	setTimeout(() => {
 		createFloatingParticles();
+	}, 100);
 	});
 	
 	// Handle response style changes
@@ -66,7 +68,9 @@
 	// Theme is automatically initialized by the theme store
 	
 	function createFloatingParticles() {
-		const container = document.body;
+		const container = document.querySelector('.floating-particles');
+		if (!container) return;
+		
 		for (let i = 0; i < 15; i++) {
 			const particle = document.createElement('div');
 			particle.className = 'particle';

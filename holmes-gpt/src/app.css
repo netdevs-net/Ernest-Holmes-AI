@@ -63,6 +63,11 @@
     --shadow-medium: rgba(0, 0, 0, 0.4);
   }
 
+  html, body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
   body {
     background: var(--bg-primary);
     color: var(--text-primary);
@@ -167,13 +172,16 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     pointer-events: none;
     z-index: -1;
     overflow: hidden;
     /* Ensure particles don't cause viewport scrollbars */
     contain: layout style paint;
+    /* Prevent any overflow from causing scrollbars */
+    max-width: 100vw;
+    max-height: 100vh;
   }
   
   .particle {
@@ -181,6 +189,11 @@
     background: radial-gradient(circle, rgba(251, 191, 36, 0.2) 0%, transparent 70%);
     border-radius: 50%;
     animation: float 6s ease-in-out infinite;
+    /* Ensure particles stay within bounds */
+    max-width: 150px;
+    max-height: 150px;
+    /* Prevent particles from causing overflow */
+    transform-origin: center;
   }
 }
 
