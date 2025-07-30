@@ -182,6 +182,9 @@
     /* Prevent any overflow from causing scrollbars */
     max-width: 100vw;
     max-height: 100vh;
+    /* Additional containment */
+    clip-path: inset(0);
+    transform: translateZ(0);
   }
   
   .particle {
@@ -190,10 +193,13 @@
     border-radius: 50%;
     animation: float 6s ease-in-out infinite;
     /* Ensure particles stay within bounds */
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 110px;
+    max-height: 110px;
     /* Prevent particles from causing overflow */
     transform-origin: center;
+    /* Additional containment */
+    will-change: transform;
+    backface-visibility: hidden;
   }
 }
 
@@ -213,7 +219,7 @@
     transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-20px) rotate(180deg);
+    transform: translateY(-15px) rotate(180deg);
   }
 }
 

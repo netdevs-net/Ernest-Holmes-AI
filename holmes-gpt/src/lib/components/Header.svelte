@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 	import { theme, toggleTheme } from '$lib/stores/themeStore';
 	import ResponseStyleToggle from './ResponseStyleToggle.svelte';
 	import { page } from '$app/stores';
@@ -7,13 +7,17 @@
 	const dispatch = createEventDispatcher();
 	
 	let isMenuOpen = false;
+	let showAdminButton = false; // Control admin button visibility
+	
+	// Debug: Log initial state
+	console.log('Initial admin button state:', showAdminButton);
 	
 	function handleThemeToggle() {
 		toggleTheme();
 		dispatch('themeToggle');
 	}
 	
-	function handleKeydown(event: KeyboardEvent) {
+	function handleThemeKeydown(event: KeyboardEvent) {
 		if (event.key === 'Enter' || event.key === ' ') {
 			event.preventDefault();
 			handleThemeToggle();
@@ -27,6 +31,31 @@
 	function closeMenu() {
 		isMenuOpen = false;
 	}
+	
+	// Handle keyboard shortcuts
+	function handleKeydown(event: KeyboardEvent) {
+		// CMD+K (or Ctrl+K on Windows/Linux) to toggle admin button
+		if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+			event.preventDefault();
+			event.stopPropagation();
+			showAdminButton = !showAdminButton;
+			console.log('Admin button visibility:', showAdminButton ? 'shown' : 'hidden');
+		}
+	}
+	
+	// Add keyboard event listener
+	onMount(() => {
+		// Ensure we're in the browser environment
+		if (typeof document !== 'undefined') {
+			document.addEventListener('keydown', handleKeydown, true);
+			console.log('Admin keyboard shortcut listener added');
+			
+			return () => {
+				document.removeEventListener('keydown', handleKeydown, true);
+				console.log('Admin keyboard shortcut listener removed');
+			};
+		}
+	});
 </script>
 
 <header class="glass-effect sticky top-0 z-50 w-full" style="border-bottom: 1px solid var(--border-primary);">
@@ -49,6 +78,12 @@
 		
 		<!-- Right side - Navigation -->
 		<nav class="flex items-center space-x-4" aria-label="Main navigation">
+			<!-- Admin Mode Indicator -->
+			{#if showAdminButton}
+				<div class="admin-indicator" title="Admin mode active - Press CMD+K to hide">
+					🔐
+				</div>
+			{/if}
 			<!-- Hamburger Menu Button -->
 			<button 
 				on:click={toggleMenu}
@@ -72,7 +107,7 @@
 			
 			<button 
 				on:click={handleThemeToggle}
-				on:keydown={handleKeydown}
+				on:keydown={handleThemeKeydown}
 				class="p-3 rounded-xl glass-effect hover:bg-white/10 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-transparent"
 				title="Toggle theme between dark and light mode"
 				aria-label="Toggle theme - Switch between dark and light mode"
@@ -130,17 +165,19 @@
 					</svg>
 					<span>Privacy</span>
 				</a>
-				<a 
-					href="/admin" 
-					class="mobile-nav-link" 
-					class:active={$page.url.pathname === '/admin'}
-					on:click={closeMenu}
-				>
-					<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-					</svg>
-					<span>Admin</span>
-				</a>
+				{#if showAdminButton}
+					<a 
+						href="/admin" 
+						class="mobile-nav-link" 
+						class:active={$page.url.pathname === '/admin'}
+						on:click={closeMenu}
+					>
+						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+						</svg>
+						<span>Admin</span>
+					</a>
+				{/if}
 			</div>
 		</nav>
 	{/if}
@@ -207,6 +244,28 @@
 	.mobile-nav-link:focus-visible {
 		outline: 2px solid var(--focus-ring);
 		outline-offset: 2px;
+	}
+	
+	.admin-indicator {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.5rem;
+		border-radius: 0.5rem;
+		background: rgba(239, 68, 68, 0.1);
+		border: 1px solid rgba(239, 68, 68, 0.3);
+		color: #ef4444;
+		font-size: 0.875rem;
+		animation: pulse 2s infinite;
+	}
+	
+	@keyframes pulse {
+		0%, 100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0.7;
+		}
 	}
 	
 	/* Responsive adjustments for the header layout */

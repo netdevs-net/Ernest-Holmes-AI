@@ -11,8 +11,7 @@
 		{ id: 'peace', name: 'Peace Treatment', description: 'For inner peace and calm' },
 		{ id: 'gratitude', name: 'Gratitude Treatment', description: 'For appreciation and thankfulness' },
 		{ id: 'forgiveness', name: 'Forgiveness Treatment', description: 'For releasing and forgiving' },
-		{ id: 'courage', name: 'Courage Treatment', description: 'For strength and bravery' },
-		{ id: 'wisdom', name: 'Wisdom Treatment', description: 'For divine guidance and insight' }
+		{ id: 'courage', name: 'Courage Treatment', description: 'For strength and bravery' }
 	];
 
 	// Holmes' core principles for treatments
@@ -21,11 +20,9 @@
 		'Divine Mind',
 		'Spiritual Law',
 		'Creative Power',
-		'Spiritual Substance',
 		'Divine Love',
 		'Perfect Life',
 		'Infinite Good',
-		'Divine Order',
 		'Spiritual Harmony'
 	];
 
@@ -196,24 +193,6 @@ I give thanks for the courage that lives within me, for the Divine Intelligence 
 **ACCEPTANCE**
 I accept that I am one with Infinite Intelligence, which knows no fear, that Divine Mind gives me strength, and that Spiritual Law operates for my highest good. I embrace the Truth that courage is my divine birthright, that Divine Power flows through me abundantly, and that I am equal to every challenge that comes into my life.`,
 			keyElements: ['Infinite Intelligence fearlessness', 'Divine Mind strength', 'Spiritual Law support', 'Divine power consciousness', 'Perfect courage']
-		},
-		wisdom: {
-			title: 'Wisdom Treatment',
-			template: `**RECOGNITION**
-I recognize that Divine Intelligence guides me in all things, that Spiritual Law reveals the truth to me, and that I am one with the Infinite Source of all wisdom. I acknowledge that wisdom is my divine birthright, that Divine Intelligence knows all things, and that I am here to demonstrate the Truth of divine understanding.
-
-**AFFIRMATION**
-I affirm that I am open to divine guidance, that I trust the Creative Power within me, and that I walk in the consciousness of infinite understanding. I declare that wisdom flows through me abundantly, that Divine Intelligence reveals the truth to me, and that I make perfect decisions in all things.
-
-**DECLARATION**
-I declare that Divine Intelligence guides me in all things, that Spiritual Law reveals the truth to me, and that I am one with the Infinite Source of all wisdom. I proclaim that wisdom is my natural state, that Divine Intelligence knows the way, and that I walk in perfect understanding.
-
-**GRATITUDE**
-I give thanks for the wisdom that lives within me, for the Divine Intelligence that guides me, and for the Spiritual Law that reveals the truth to me. I am grateful for the opportunity to demonstrate the Truth of divine understanding, for the guidance that flows through me, and for the perfect decisions that come from Divine Intelligence.
-
-**ACCEPTANCE**
-I accept that Divine Intelligence guides me in all things, that Spiritual Law reveals the truth to me, and that I am one with the Infinite Source of all wisdom. I embrace the Truth that wisdom is my divine birthright, that Divine Intelligence knows the way, and that I walk in perfect understanding.`,
-			keyElements: ['Divine Intelligence guidance', 'Spiritual Law truth', 'Infinite wisdom source', 'Divine understanding', 'Perfect wisdom']
 		}
 	};
 
@@ -225,6 +204,7 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 	let showCustomInput = false;
 	let customElements: string[] = [];
 	let selectedElements: string[] = [];
+	let showTreatmentDisplay = false; // New state to control view mode
 
 	// Props
 	export let isVisible = false;
@@ -232,6 +212,7 @@ I accept that Divine Intelligence guides me in all things, that Spiritual Law re
 
 	// Generate treatment based on selected category and custom elements
 	async function generateTreatment() {
+
 		isGenerating = true;
 		
 		try {
@@ -292,11 +273,13 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 			}
 			
 			generatedTreatment = treatment;
+			showTreatmentDisplay = true; // Switch to treatment display mode
 			
 		} catch (error) {
 			console.error('Error generating treatment:', error);
 			const errorMessage = error instanceof Error ? error.message : 'Unknown error';
 			generatedTreatment = `Error generating treatment: ${errorMessage}. Please try again or check your connection.`;
+			showTreatmentDisplay = true; // Show error in treatment mode
 		} finally {
 			isGenerating = false;
 		}
@@ -331,6 +314,7 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 	function handleCategoryChange() {
 		selectedElements = [];
 		generatedTreatment = '';
+		showTreatmentDisplay = false; // Reset to selection mode
 		if (!showCustomInput) {
 			customTreatment = treatmentTemplates[selectedCategory].template;
 		}
@@ -345,6 +329,7 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 			customTreatment = treatmentTemplates[selectedCategory].template;
 		}
 		generatedTreatment = '';
+		showTreatmentDisplay = false; // Reset to selection mode
 	}
 
 	// Handle element selection
@@ -353,6 +338,11 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 			selectedElements = selectedElements.filter(e => e !== element);
 		} else {
 			selectedElements = [...selectedElements, element];
+		}
+		// Reset to selection mode when elements change
+		if (showTreatmentDisplay) {
+			showTreatmentDisplay = false;
+			generatedTreatment = '';
 		}
 	}
 
@@ -373,8 +363,13 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		formatted = formatted.replace(/\n\n/g, '</p><p>');
 		formatted = formatted.replace(/\n/g, '<br>');
 		
+		// Add line break above section headers and remove line break below
+		formatted = formatted.replace(/<div class="treatment-section"><h4/g, '<br><div class="treatment-section"><h4');
+		formatted = formatted.replace(/<\/h4>/g, '</h4>');
+		formatted = formatted.replace(/<\/div>$/g, '</div>');
+		
 		// Wrap in paragraphs
-		formatted = formatted.replace(/<div class="treatment-section"><h4/g, '</p><div class="treatment-section"><h4');
+		formatted = formatted.replace(/<br><div class="treatment-section"><h4/g, '</p><br><div class="treatment-section"><h4');
 		formatted = formatted.replace(/<\/div>$/g, '</div><p>');
 		
 		// Clean up any empty paragraphs
@@ -421,6 +416,12 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		}
 	}
 
+	// Go back to selection mode
+	function backToSelection() {
+		showTreatmentDisplay = false;
+		generatedTreatment = '';
+	}
+	
 	// Initialize
 	onMount(() => {
 		customTreatment = treatmentTemplates[selectedCategory].template;
@@ -450,98 +451,113 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 
 			<!-- Generator Content -->
 			<div class="generator-content">
-				<!-- Category Selection -->
-				<div class="category-section">
-					<h3 class="section-title">Choose Treatment Category</h3>
-					<div class="category-grid">
-						{#each treatmentCategories as category}
+				{#if !showTreatmentDisplay}
+					<!-- Selection Mode -->
+					<div class="selection-mode">
+						<!-- Category Selection -->
+						<div class="category-section">
+							<h3 class="section-title">Choose Treatment Category</h3>
+							<div class="category-grid">
+								{#each treatmentCategories as category}
+									<button 
+										class="category-btn" 
+										class:active={selectedCategory === category.id}
+										on:click={() => { selectedCategory = category.id; handleCategoryChange(); }}
+									>
+										<div class="category-name">{category.name}</div>
+										<div class="category-description">{category.description}</div>
+									</button>
+								{/each}
+							</div>
+						</div>
+
+						<!-- Custom Elements -->
+						<div class="elements-section">
+							<h3 class="section-title">Add Spiritual Elements (Optional)</h3>
+							<div class="elements-grid">
+								{#each corePrinciples as element}
+									<button 
+										class="element-btn" 
+										class:selected={selectedElements.includes(element)}
+										on:click={() => toggleElement(element)}
+									>
+										{element}
+									</button>
+								{/each}
+							</div>
+						</div>
+
+						<!-- Custom Input Toggle -->
+						<div class="custom-toggle">
 							<button 
-								class="category-btn" 
-								class:active={selectedCategory === category.id}
-								on:click={() => { selectedCategory = category.id; handleCategoryChange(); }}
+								class="toggle-btn" 
+								class:active={showCustomInput}
+								on:click={toggleCustomInput}
 							>
-								<div class="category-name">{category.name}</div>
-								<div class="category-description">{category.description}</div>
+								{showCustomInput ? 'Use Template' : 'AI-Enhanced Custom Treatment'}
 							</button>
-						{/each}
-					</div>
-				</div>
+						</div>
 
-				<!-- Custom Elements -->
-				<div class="elements-section">
-					<h3 class="section-title">Add Spiritual Elements (Optional)</h3>
-					<div class="elements-grid">
-						{#each corePrinciples as element}
-							<button 
-								class="element-btn" 
-								class:selected={selectedElements.includes(element)}
-								on:click={() => toggleElement(element)}
-							>
-								{element}
-							</button>
-						{/each}
-					</div>
-				</div>
-
-				<!-- Custom Input Toggle -->
-				<div class="custom-toggle">
-					<button 
-						class="toggle-btn" 
-						class:active={showCustomInput}
-						on:click={toggleCustomInput}
-					>
-						{showCustomInput ? 'Use Template' : 'AI-Enhanced Custom Treatment'}
-					</button>
-				</div>
-
-				<!-- Custom Treatment Input -->
-				{#if showCustomInput}
-					<div class="custom-input-section">
-						<h3 class="section-title">Write Your Custom Treatment</h3>
-						<p class="custom-description">
-							Write your spiritual treatment idea, and AI will expand it into a comprehensive treatment in Ernest Holmes' style with all five sections.
-						</p>
-						<textarea 
-							bind:value={customTreatment}
-							placeholder="Write your spiritual treatment idea or starting point... AI will expand this into a full treatment with RECOGNITION, AFFIRMATION, DECLARATION, GRATITUDE, and ACCEPTANCE sections."
-							class="custom-treatment-input"
-							rows="6"
-							aria-label="Custom spiritual treatment input"
-						></textarea>
-					</div>
-				{/if}
-
-				<!-- Generate Button -->
-				<div class="generate-section">
-					<button 
-						class="generate-btn" 
-						on:click={generateTreatment}
-						disabled={isGenerating}
-					>
-						{#if isGenerating}
-							<div class="loading-spinner"></div>
-							Generating Treatment...
-						{:else}
-							✨ Generate Treatment
+						<!-- Custom Treatment Input -->
+						{#if showCustomInput}
+							<div class="custom-input-section">
+								<h3 class="section-title">Write Your Custom Treatment</h3>
+								<p class="custom-description">
+									Write your spiritual treatment idea, and AI will expand it into a comprehensive treatment in Ernest Holmes' style with all five sections.
+								</p>
+								<textarea 
+									bind:value={customTreatment}
+									placeholder="Write your spiritual treatment idea or starting point... AI will expand this into a full treatment with RECOGNITION, AFFIRMATION, DECLARATION, GRATITUDE, and ACCEPTANCE sections."
+									class="custom-treatment-input"
+									rows="6"
+									aria-label="Custom spiritual treatment input"
+								></textarea>
+							</div>
 						{/if}
-					</button>
-				</div>
 
-				<!-- Generated Treatment -->
-				{#if generatedTreatment}
-					<div class="treatment-result">
-						<h3 class="section-title">Your Spiritual Treatment</h3>
-						<div class="treatment-text">
-							{@html formatTreatment(generatedTreatment)}
-						</div>
-						<div class="treatment-actions">
-							<button class="action-btn copy-btn" on:click={copyTreatment}>
-								📋 Copy Treatment
+						<!-- Generate Button -->
+						<div class="generate-section">
+							<button 
+								class="generate-btn" 
+								on:click={generateTreatment}
+								disabled={isGenerating}
+							>
+								{#if isGenerating}
+									<div class="loading-spinner"></div>
+									Generating Treatment...
+								{:else}
+									✨ Generate Treatment
+								{/if}
 							</button>
-							<button class="action-btn save-btn" on:click={saveTreatment}>
-								💾 Save to History
+						</div>
+					</div>
+				{:else}
+					<!-- Treatment Display Mode -->
+					<div class="treatment-display-mode">
+						<!-- Back Button -->
+						<div class="back-section">
+							<button class="back-btn" on:click={backToSelection}>
+								← Back to Generator
 							</button>
 						</div>
+
+						<!-- Generated Treatment -->
+						{#if generatedTreatment}
+							<div class="treatment-result">
+								<h3 class="section-title">Your Spiritual Treatment</h3>
+								<div class="treatment-text">
+									{@html formatTreatment(generatedTreatment)}
+								</div>
+								<div class="treatment-actions">
+									<button class="action-btn copy-btn" on:click={copyTreatment}>
+										📋 Copy Treatment
+									</button>
+									<button class="action-btn save-btn" on:click={saveTreatment}>
+										💾 Save to History
+									</button>
+								</div>
+							</div>
+						{/if}
 					</div>
 				{/if}
 			</div>
@@ -824,49 +840,44 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 	.treatment-section {
 		margin-bottom: 2rem;
 		padding: 1rem;
-		background: var(--bg-tertiary);
+		background: #f8f9fa;
 		border-radius: 8px;
-		border-left: 4px solid var(--text-accent);
+		border-left: 4px solid #fbbf24;
 	}
 
 	.section-header {
 		color: var(--text-accent);
 		font-size: 1.1rem;
 		font-weight: 700;
-		margin: 0 0 1rem 0;
+		margin: 0.5rem 0 0.5rem 0;
 		text-transform: uppercase;
 		letter-spacing: 1px;
 		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 	}
 
 	.section-header.recognition {
-		color: var(--text-success);
-		border-left-color: var(--text-success);
+		color: #10b981;
 	}
 
 	.section-header.affirmation {
-		color: var(--text-info);
-		border-left-color: var(--text-info);
+		color: #3b82f6;
 	}
 
 	.section-header.declaration {
-		color: var(--text-accent);
-		border-left-color: var(--text-accent);
+		color: #fbbf24;
 	}
 
 	.section-header.gratitude {
-		color: var(--text-warning);
-		border-left-color: var(--text-warning);
+		color: #f59e0b;
 	}
 
 	.section-header.acceptance {
-		color: var(--text-error);
-		border-left-color: var(--text-error);
+		color: #ef4444;
 	}
 
 	.treatment-section p {
 		margin: 0.5rem 0;
-		color: var(--text-primary);
+		color: #333;
 		line-height: 1.7;
 		font-size: 1rem;
 	}
@@ -905,6 +916,46 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		background: var(--bg-tertiary);
 		border-color: var(--text-info);
 		color: var(--text-info);
+	}
+
+	/* Treatment Display Mode Styles */
+	.treatment-display-mode {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.back-section {
+		display: flex;
+		justify-content: flex-start;
+		margin-bottom: 1rem;
+	}
+
+	.back-btn {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border-secondary);
+		border-radius: 8px;
+		padding: 0.75rem 1.5rem;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		color: var(--text-primary);
+		font-weight: 500;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.back-btn:hover {
+		background: var(--bg-tertiary);
+		border-color: var(--text-accent);
+		color: var(--text-accent);
+		transform: translateY(-1px);
+	}
+
+	.selection-mode {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
 	}
 
 	@media (max-width: 768px) {
