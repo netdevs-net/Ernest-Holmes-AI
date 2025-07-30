@@ -8,6 +8,7 @@ yarn-error.log*
 .svelte-kit
 build
 dist
+build/
 
 # Environment files
 .env
@@ -73,4 +74,31 @@ storybook-static
 
 # Temporary folders
 tmp/
-temp/ 
+temp/
+
+# Downloads and temporary files
+downloads/
+*.pdf
+*.cbz
+*.jpg
+*.png
+# *.webp
+
+# Database files
+data/
+*.db
+*.db-wal
+*.db-shm
+
+# Additional exclusions for faster builds
+.git
+.github
+docs/
+*.md
+test/
+tests/
+__tests__/
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts 

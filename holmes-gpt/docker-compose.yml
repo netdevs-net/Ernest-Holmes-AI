@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  holmes-gpt:
+    image: holmes-gpt:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    secrets:
+      - anthropic_api_key
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+secrets:
+  anthropic_api_key:
+    external: true 
