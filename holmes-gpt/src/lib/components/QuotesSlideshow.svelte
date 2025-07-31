@@ -305,10 +305,6 @@
 		gap: 0.5rem;
 	}
 
-	.book-icon {
-		color: var(--text-accent);
-		flexShrink: 0;
-	}
 
 	.quotes-count {
 		font-size: 1rem;
@@ -355,9 +351,6 @@
 		gap: 0.5rem;
 	}
 
-	.error-icon {
-		color: var(--text-error);
-	}
 
 	.loading-spinner {
 		width: 40px;

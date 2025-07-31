@@ -1541,17 +1541,19 @@
  }
 
 .tier-badge {
-   position: absolute;
-   top: -15px;
-   right: 20px;
-   background: linear-gradient(135deg, var(--text-accent), var(--text-accent-hover));
-   color: white;
-   padding: 0.5rem 1rem;
-   border-radius: 15px;
-   font-size: 0.8rem;
-   font-weight: 600;
-   box-shadow: 0 4px 15px rgba(var(--text-accent-rgb), 0.3);
- }
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: linear-gradient(135deg, var(--text-accent), var(--text-accent-hover));
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(var(--text-accent-rgb), 0.3);
+  z-index: 100;
+  white-space: nowrap;
+}
 
 .support-tier h3 {
    color: var(--text-accent);

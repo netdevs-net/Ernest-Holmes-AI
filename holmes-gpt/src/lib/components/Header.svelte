@@ -250,7 +250,7 @@
 	
 	/* Mobile Toggle Container */
 	.mobile-toggle-container {
-		display: flex;
+		display: none; /* Hidden by default (desktop) */
 		flex-direction: column;
 		align-items: center;
 		gap: 0.5rem;
@@ -361,6 +361,13 @@
 		header {
 			max-height: 40vh;
 			overflow: visible;
+		}
+	}
+
+	/* Show mobile toggle container on small screens */
+	@media (max-width: 1024px) {
+		.mobile-toggle-container {
+			display: flex;
 		}
 	}
 	

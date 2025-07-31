@@ -631,10 +631,6 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		gap: 0.5rem;
 	}
 	
-	.title-icon {
-		color: var(--text-accent);
-		flex-shrink: 0;
-	}
 
 	.close-btn {
 		background: none;
@@ -870,32 +866,6 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		word-wrap: break-word;
 	}
 
-	/* Treatment section styling */
-	.treatment-section {
-		margin-bottom: 1.5rem;
-	}
-
-	.section-header {
-		color: var(--text-accent);
-		font-weight: 600;
-		font-size: 1.1rem;
-		margin-bottom: 0.75rem;
-		padding: 0.5rem 0;
-		border-bottom: 2px solid var(--border-secondary);
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-	}
-
-	.section-icon {
-		font-size: 1rem;
-	}
-
-	.treatment-section p {
-		margin: 0;
-		padding: 0.5rem 0;
-		line-height: 1.7;
-	}
 
 
 	.treatment-actions {
@@ -1130,20 +1100,6 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 			justify-content: center;
 		}
 
-		/* Treatment section headers for mobile */
-		.treatment-section {
-			margin-bottom: 1rem;
-		}
-
-		.section-header {
-			font-size: 1rem;
-			padding: 0.5rem 0.75rem;
-			margin-bottom: 0.5rem;
-		}
-
-		.section-icon {
-			font-size: 0.9rem;
-		}
 
 		.selection-mode {
 			gap: 1.5rem;
@@ -1266,19 +1222,6 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 			font-size: 0.85rem;
 		}
 
-		.treatment-section {
-			margin-bottom: 0.75rem;
-		}
-
-		.section-header {
-			font-size: 0.9rem;
-			padding: 0.375rem 0.625rem;
-			margin-bottom: 0.375rem;
-		}
-
-		.section-icon {
-			font-size: 0.8rem;
-		}
 
 		.selection-mode {
 			gap: 1.25rem;

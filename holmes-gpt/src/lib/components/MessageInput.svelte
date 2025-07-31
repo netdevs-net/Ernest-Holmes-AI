@@ -165,11 +165,6 @@
 		box-shadow: 0 4px 12px rgba(239, 100, 72, 0.2);
 	}
 	
-	.btn-icon {
-		flexShrink: 0;
-		width: 20px;
-		height: 20px;
-	}
 	
 	.btn-text {
 		white-space: nowrap;
@@ -307,10 +302,6 @@
 			border-radius: 6px;
 		}
 		
-		.btn-icon {
-			width: 18px;
-			height: 18px;
-		}
 		
 		.btn-text {
 			display: none; /* Hide text on mobile, show only icons */
@@ -364,10 +355,6 @@
 			border-radius: 5px;
 		}
 		
-		.btn-icon {
-			width: 16px;
-			height: 16px;
-		}
 		
 		.category-select {
 			padding: 3px 4px;
@@ -414,10 +401,6 @@
 			padding: 4px 5px;
 		}
 		
-		.btn-icon {
-			width: 15px;
-			height: 15px;
-		}
 		
 		.category-selection {
 			align-self: flex-end;
