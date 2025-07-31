@@ -19,20 +19,24 @@
 	}
 </script>
 
-<div class="flex flex-col h-[calc(100vh-120px)] max-w-4xl mx-auto">
+<div class="flex flex-col h-[calc(100vh-140px)] max-w-5xl mx-auto">
 	<!-- Messages Container -->
-	<div class="flex-1 overflow-y-auto p-4 space-y-4">
+	<div class="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
 		{#each messages as message (message.timestamp.getTime())}
-			<MessageBubble {message} />
+			<div class="animate-fade-in-up">
+				<MessageBubble {message} />
+			</div>
 		{/each}
 		
 		{#if isLoading}
-			<TypingIndicator />
+			<div class="animate-fade-in-up">
+				<TypingIndicator />
+			</div>
 		{/if}
 	</div>
 	
 	<!-- Input Container -->
-	<div class="border-t border-holmes-gold/20 bg-white/50 backdrop-blur-sm p-4">
+	<div class="border-t border-primary/10 glass-effect p-4 md:p-6 backdrop-blur-glass">
 		<MessageInput 
 			on:sendMessage={({ detail }) => handleSendMessage(detail)} 
 			{isLoading}
@@ -43,4 +47,4 @@
 			{selectedCategory}
 		/>
 	</div>
-</div> 
+</div>

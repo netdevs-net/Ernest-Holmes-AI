@@ -348,32 +348,26 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 
 	// Format treatment with proper HTML styling for sections
 	function formatTreatment(treatment: string): string {
-		// Convert markdown-style section headers to HTML
+		// Convert markdown-style section headers to HTML with proper structure
 		let formatted = treatment
-			.replace(/\*\*(RECOGNITION)\*\*/g, '<div class="treatment-section"><h4 class="section-header recognition">🌟 RECOGNITION</h4>')
-			.replace(/\*\*(AFFIRMATION)\*\*/g, '<div class="treatment-section"><h4 class="section-header affirmation">✨ AFFIRMATION</h4>')
-			.replace(/\*\*(DECLARATION)\*\*/g, '<div class="treatment-section"><h4 class="section-header declaration">🔮 DECLARATION</h4>')
-			.replace(/\*\*(GRATITUDE)\*\*/g, '<div class="treatment-section"><h4 class="section-header gratitude">🙏 GRATITUDE</h4>')
-			.replace(/\*\*(ACCEPTANCE)\*\*/g, '<div class="treatment-section"><h4 class="section-header acceptance">💫 ACCEPTANCE</h4>');
+			.replace(/\*\*(RECOGNITION)\*\*/g, '</div><div class="treatment-section"><h4 class="section-header recognition">🌟 RECOGNITION</h4><p>')
+			.replace(/\*\*(AFFIRMATION)\*\*/g, '</p></div><div class="treatment-section"><h4 class="section-header affirmation">✨ AFFIRMATION</h4><p>')
+			.replace(/\*\*(DECLARATION)\*\*/g, '</p></div><div class="treatment-section"><h4 class="section-header declaration">🔮 DECLARATION</h4><p>')
+			.replace(/\*\*(GRATITUDE)\*\*/g, '</p></div><div class="treatment-section"><h4 class="section-header gratitude">🙏 GRATITUDE</h4><p>')
+			.replace(/\*\*(ACCEPTANCE)\*\*/g, '</p></div><div class="treatment-section"><h4 class="section-header acceptance">💫 ACCEPTANCE</h4><p>');
 		
-		// Close the last section
-		formatted += '</div>';
+		// Close the final paragraph and section
+		formatted += '</p></div>';
 		
-		// Convert line breaks to paragraphs
-		formatted = formatted.replace(/\n\n/g, '</p><p>');
+		// Remove the initial closing div that was added by the first replacement
+		formatted = formatted.replace(/^<\/div>/, '');
+		
+		// Convert line breaks within paragraphs
 		formatted = formatted.replace(/\n/g, '<br>');
 		
-		// Add line break above section headers and remove line break below
-		formatted = formatted.replace(/<div class="treatment-section"><h4/g, '<br><div class="treatment-section"><h4');
-		formatted = formatted.replace(/<\/h4>/g, '</h4>');
-		formatted = formatted.replace(/<\/div>$/g, '</div>');
-		
-		// Wrap in paragraphs
-		formatted = formatted.replace(/<br><div class="treatment-section"><h4/g, '</p><br><div class="treatment-section"><h4');
-		formatted = formatted.replace(/<\/div>$/g, '</div><p>');
-		
-		// Clean up any empty paragraphs
+		// Clean up any empty paragraphs or double breaks
 		formatted = formatted.replace(/<p><\/p>/g, '');
+		formatted = formatted.replace(/<br><br>/g, '<br>');
 		
 		return formatted;
 	}
@@ -840,9 +834,10 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 	.treatment-section {
 		margin-bottom: 2rem;
 		padding: 1rem;
-		background: #f8f9fa;
+		background: var(--bg-secondary);
 		border-radius: 8px;
-		border-left: 4px solid #fbbf24;
+		border-left: 4px solid var(--text-accent);
+		transition: all 0.3s ease;
 	}
 
 	.section-header {
@@ -877,9 +872,41 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 
 	.treatment-section p {
 		margin: 0.5rem 0;
-		color: #333;
+		color: var(--text-primary);
 		line-height: 1.7;
 		font-size: 1rem;
+	}
+
+	/* Dark mode specific improvements */
+	:global([data-theme="dark"]) .treatment-section {
+		background: var(--bg-tertiary);
+		border-left: 4px solid var(--text-accent);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+	}
+
+	:global([data-theme="dark"]) .section-header.recognition {
+		color: #d4af37;
+		text-shadow: none;
+	}
+
+	:global([data-theme="dark"]) .section-header.affirmation {
+		color: #e6c35c;
+		text-shadow: none;
+	}
+
+	:global([data-theme="dark"]) .section-header.declaration {
+		color: #daa520;
+		text-shadow: none;
+	}
+
+	:global([data-theme="dark"]) .section-header.gratitude {
+		color: #32cd32;
+		text-shadow: none;
+	}
+
+	:global([data-theme="dark"]) .section-header.acceptance {
+		color: #4682b4;
+		text-shadow: none;
 	}
 
 	.treatment-actions {

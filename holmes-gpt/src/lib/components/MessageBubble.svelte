@@ -28,16 +28,16 @@
 	$: formattedContent = isUser ? message.content : parseFormatting(message.content);
 </script>
 
-<div class="flex {isUser ? 'justify-end' : 'justify-start'}">
-	<div class="chat-bubble {isUser ? 'user-message' : 'holmes-message'}">
+<div class="flex {isUser ? 'justify-end' : 'justify-start'} mb-6">
+	<div class="chat-bubble {isUser ? 'user-message' : 'holmes-message'} max-w-3xl">
 		<div class="prose prose-sm max-w-none">
 			{#if !isUser}
-				<div class="flex items-center space-x-2 mb-3">
-					<div class="w-8 h-8 bg-gradient-to-br from-amber-400 via-orange-500 to-red-600 rounded-full flex items-center justify-center">
-						<span class="text-white text-sm font-bold">H</span>
+				<div class="flex items-center space-x-3 mb-4">
+					<div class="w-10 h-10 bg-gradient-to-br from-primary via-primary-600 to-secondary-purple-500 rounded-glass-lg flex items-center justify-center shadow-button">
+						<span class="text-white text-sm font-bold font-display">H</span>
 					</div>
 					<div>
-						<div class="text-xs" style="color: var(--text-secondary);">AI Practitioner</div>
+						<div class="text-small font-medium text-secondary-blue-700 dark:text-secondary-purple-300">AI Practitioner</div>
 					</div>
 				</div>
 			{/if}

@@ -42,27 +42,30 @@
 		<div class="header-buttons">
 			<button 
 				type="button"
-				class="history-btn" 
+				class="feature-btn glass-effect" 
 				on:click={onHistoryClick}
 				title="View Question History"
 			>
-				📚 Question History ({questionCount})
+				<span class="btn-icon">📚</span>
+				<span class="btn-text">History ({questionCount})</span>
 			</button>
 			<button 
 				type="button"
-				class="quotes-btn" 
+				class="feature-btn glass-effect" 
 				on:click={onQuotesClick}
 				title="View Quotes Slideshow"
 			>
-				🎬 Quotes Slideshow
+				<span class="btn-icon">🎬</span>
+				<span class="btn-text">Quotes</span>
 			</button>
 			<button 
 				type="button"
-				class="treatment-btn" 
+				class="feature-btn glass-effect" 
 				on:click={onTreatmentClick}
 				title="Generate Spiritual Treatment"
 			>
-				🧘‍♀️ Treatment Generator
+				<span class="btn-icon">🧘‍♀️</span>
+				<span class="btn-text">Treatment</span>
 			</button>
 		</div>
 	</div>
@@ -134,26 +137,38 @@
 		flex-wrap: wrap;
 	}
 	
-	.history-btn, .quotes-btn, .treatment-btn {
-		padding: 8px 16px;
-		background: var(--bg-secondary);
+	.feature-btn {
+		padding: 12px 16px;
+		background: var(--glass-bg);
 		border: 1px solid var(--border-primary);
-		border-radius: 8px;
+		border-radius: 12px;
 		color: var(--text-primary);
-		font-size: 0.9rem;
+		font-size: 0.875rem;
+		font-weight: 500;
 		cursor: pointer;
 		transition: all 0.3s ease;
-		backdrop-filter: blur(4px);
-		position: relative;
-		overflow: hidden;
+		backdrop-filter: blur(10px);
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 	}
 	
-	.history-btn:hover, .quotes-btn:hover, .treatment-btn:hover {
-		background: var(--text-accent) !important;
-		border-color: var(--text-accent) !important;
-		color: white !important;
-		transform: translateY(-1px);
-		box-shadow: 0 4px 12px var(--shadow-medium);
+	.feature-btn:hover {
+		background: linear-gradient(135deg, var(--text-accent), var(--text-accent-hover));
+		border-color: var(--text-accent);
+		color: white;
+		transform: translateY(-2px);
+		box-shadow: 0 8px 20px rgba(239, 100, 72, 0.2);
+	}
+	
+	.btn-icon {
+		font-size: 16px;
+		line-height: 1;
+	}
+	
+	.btn-text {
+		white-space: nowrap;
 	}
 	
 	.input-actions {

@@ -225,15 +225,17 @@
 
 <style>
   .question-history-panel {
-    background: white;
+    background: var(--glass-bg);
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px var(--shadow-medium);
     max-height: 80vh;
     width: 60vw;
     max-width: 800px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-primary);
   }
   
   .history-header {
@@ -241,13 +243,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    border-bottom: 1px solid #e5e7eb;
-    background: #f9fafb;
+    border-bottom: 1px solid var(--border-primary);
+    background: var(--bg-secondary);
   }
   
   .history-header h3 {
     margin: 0;
-    color: #374151;
+    color: var(--text-accent);
     font-size: 1.1rem;
     font-weight: 600;
   }
@@ -267,29 +269,29 @@
   }
   
   .export-btn {
-    background: #3b82f6;
-    color: white;
+    background: var(--text-accent);
+    color: var(--bg-primary);
   }
   
   .export-btn:hover {
-    background: #2563eb;
+    background: var(--text-accent-hover);
   }
   
   .close-btn {
-    background: #6b7280;
-    color: white;
+    background: var(--text-secondary);
+    color: var(--bg-primary);
     font-size: 1.2rem;
     padding: 8px 12px;
   }
   
   .close-btn:hover {
-    background: #4b5563;
+    background: var(--text-muted);
   }
   
   .filters {
     padding: 16px 20px;
-    border-bottom: 1px solid #e5e7eb;
-    background: #f9fafb;
+    border-bottom: 1px solid var(--border-primary);
+    background: var(--bg-secondary);
   }
   
   .filter-group {
@@ -300,9 +302,11 @@
   
   .category-select, .search-input {
     padding: 8px 12px;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--border-secondary);
     border-radius: 6px;
     font-size: 0.9rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
   }
   
   .category-select {
@@ -324,20 +328,21 @@
     align-items: center;
     gap: 6px;
     font-size: 0.9rem;
-    color: #6b7280;
+    color: var(--text-secondary);
   }
   
   .clear-filters-btn {
     padding: 6px 12px;
-    border: 1px solid #d1d5db;
-    background: white;
+    border: 1px solid var(--border-secondary);
+    background: var(--bg-primary);
     border-radius: 4px;
     font-size: 0.8rem;
     cursor: pointer;
+    color: var(--text-primary);
   }
   
   .clear-filters-btn:hover {
-    background: #f3f4f6;
+    background: var(--bg-secondary);
   }
   
   .question-list {
@@ -348,7 +353,7 @@
   
   .question-item {
     padding: 16px 20px;
-    border-bottom: 1px solid #f3f4f6;
+    border-bottom: 1px solid var(--border-secondary);
     cursor: pointer;
     transition: background-color 0.2s;
     display: flex;
@@ -357,11 +362,12 @@
   }
   
   .question-item:hover {
-    background: #f9fafb;
+    background: var(--bg-secondary);
   }
   
   .question-item.bookmarked {
-    background: #fef3c7;
+    background: var(--bg-tertiary);
+    border-left: 4px solid var(--text-accent);
   }
   
   .question-content {
@@ -423,7 +429,7 @@
   
   .timestamp {
     font-size: 0.8rem;
-    color: #6b7280;
+    color: var(--text-secondary);
   }
   
   .question-actions {
@@ -439,11 +445,11 @@
     border-radius: 4px;
     font-size: 1rem;
     transition: all 0.2s ease;
-    color: #6b7280;
+    color: var(--text-secondary);
   }
   
   .bookmark-btn {
-    color: #fbbf24;
+    color: var(--text-accent);
     font-size: 1.2rem;
     display: flex;
     align-items: center;
@@ -453,13 +459,13 @@
   }
   
   .bookmark-btn.bookmarked {
-    color: #f59e0b;
+    color: var(--text-accent-hover);
     transform: scale(1.1);
   }
   
   .bookmark-btn:hover {
-    background: #f3f4f6;
-    color: #f59e0b;
+    background: var(--bg-secondary);
+    color: var(--text-accent-hover);
   }
   
   .delete-btn {
@@ -467,14 +473,15 @@
   }
   
   .delete-btn:hover {
-    background: #fee2e2;
+    background: var(--bg-tertiary);
     opacity: 1;
+    color: var(--text-error);
   }
 
   .question-text {
     font-size: 1.1rem;
     line-height: 1.4;
-    color: #374151;
+    color: var(--text-primary);
     margin-bottom: 0;
     background: none;
     border: none;
@@ -487,7 +494,7 @@
   }
   
   .question-text:hover {
-    color: #1f2937;
+    color: var(--text-accent);
   }
   
   .tags {
@@ -499,28 +506,28 @@
   
   .tag {
     padding: 2px 6px;
-    background: #e5e7eb;
-    color: #374151;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
     border-radius: 4px;
     font-size: 0.75rem;
   }
   
   .response-preview {
     font-size: 0.85rem;
-    color: #6b7280;
+    color: var(--text-secondary);
     font-style: italic;
     margin-bottom: 4px;
   }
   
   .source-info {
     font-size: 0.8rem;
-    color: #9ca3af;
+    color: var(--text-muted);
   }
   
   .empty-state {
     padding: 40px 20px;
     text-align: center;
-    color: #6b7280;
+    color: var(--text-secondary);
   }
   
   .empty-state p {

@@ -131,12 +131,12 @@
 
 <style>
 	.quotes-container {
-		background: rgba(255, 255, 255, 0.95);
+		background: var(--glass-bg);
 		border-radius: 16px;
 		padding: 1.5rem;
-		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 8px 32px var(--shadow-medium);
 		backdrop-filter: blur(10px);
-		border: 1px solid rgba(255, 255, 255, 0.2);
+		border: 1px solid var(--border-primary);
 		max-width: 100%;
 		width: 600px;
 		max-height: 80vh;
@@ -149,13 +149,13 @@
 		align-items: center;
 		margin-bottom: 1.5rem;
 		padding-bottom: 1rem;
-		border-bottom: 2px solid #f0f0f0;
+		border-bottom: 2px solid var(--border-primary);
 	}
 	
 	.quotes-title {
 		font-size: 1.25rem;
 		font-weight: 600;
-		color: #2d3748;
+		color: var(--text-accent);
 		margin: 0;
 		display: flex;
 		align-items: center;
@@ -165,7 +165,7 @@
 	.quotes-count {
 		font-size: 0.875rem;
 		font-weight: 400;
-		color: #718096;
+		color: var(--text-secondary);
 	}
 	
 	.header-actions {
@@ -175,8 +175,8 @@
 	}
 	
 	.refresh-btn, .close-btn {
-		background: #667eea;
-		color: white;
+		background: var(--text-accent);
+		color: var(--bg-primary);
 		border: none;
 		border-radius: 8px;
 		padding: 0.5rem;
@@ -186,7 +186,7 @@
 	}
 	
 	.refresh-btn:hover:not(:disabled), .close-btn:hover {
-		background: #5a67d8;
+		background: var(--text-accent-hover);
 		transform: scale(1.05);
 	}
 	
@@ -196,24 +196,25 @@
 	}
 	
 	.close-btn {
-		background: #e53e3e;
+		background: var(--text-error);
 	}
 	
 	.close-btn:hover {
-		background: #c53030;
+		background: var(--text-error);
+		opacity: 0.8;
 	}
 	
 	.loading, .error, .no-quotes {
 		text-align: center;
 		padding: 2rem;
-		color: #718096;
+		color: var(--text-secondary);
 	}
 	
 	.spinner {
 		width: 40px;
 		height: 40px;
-		border: 4px solid #f3f3f3;
-		border-top: 4px solid #667eea;
+		border: 4px solid var(--border-secondary);
+		border-top: 4px solid var(--text-accent);
 		border-radius: 50%;
 		animation: spin 1s linear infinite;
 		margin: 0 auto 1rem;
@@ -225,7 +226,7 @@
 	}
 	
 	.error {
-		color: #e53e3e;
+		color: var(--text-error);
 	}
 	
 	.quotes-list {
@@ -235,11 +236,11 @@
 	}
 	
 	.quote-card {
-		background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+		background: var(--bg-secondary);
 		border-radius: 12px;
 		padding: 1.5rem;
-		border-left: 4px solid #667eea;
-		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+		border-left: 4px solid var(--text-accent);
+		box-shadow: 0 4px 16px var(--shadow-light);
 		transition: all 0.3s ease;
 		animation: fadeInUp 0.6s ease forwards;
 		opacity: 0;
@@ -248,7 +249,7 @@
 	
 	.quote-card:hover {
 		transform: translateY(-2px);
-		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 8px 24px var(--shadow-medium);
 	}
 	
 	@keyframes fadeInUp {
@@ -261,7 +262,7 @@
 	.quote-text {
 		font-size: 1.1rem;
 		line-height: 1.6;
-		color: #2d3748;
+		color: var(--text-primary);
 		margin: 0 0 1rem 0;
 		font-style: italic;
 		font-weight: 500;
@@ -269,7 +270,7 @@
 	
 	.quote-source {
 		font-size: 0.875rem;
-		color: #718096;
+		color: var(--text-accent);
 		font-weight: 500;
 		text-align: right;
 		display: block;

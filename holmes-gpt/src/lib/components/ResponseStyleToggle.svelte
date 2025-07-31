@@ -94,20 +94,20 @@
 	}
 
 	.label:hover {
-		color: #fbbf24;
-		background: rgba(251, 191, 36, 0.05);
-		border-color: rgba(251, 191, 36, 0.2);
+		color: var(--text-accent);
+		background: rgba(239, 100, 72, 0.05);
+		border-color: rgba(239, 100, 72, 0.2);
 	}
 
 	.label.active {
-		color: #fbbf24;
-		background: rgba(251, 191, 36, 0.15);
-		border-color: rgba(251, 191, 36, 0.3);
+		color: var(--text-accent);
+		background: rgba(239, 100, 72, 0.15);
+		border-color: rgba(239, 100, 72, 0.3);
 	}
 
 	.label:focus {
 		outline: none;
-		box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.3);
+		box-shadow: 0 0 0 2px var(--focus-ring);
 	}
 
 	.toggle-switch {
@@ -127,22 +127,22 @@
 
 	.toggle-switch:focus {
 		outline: none;
-		box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.5);
+		box-shadow: 0 0 0 3px var(--focus-ring);
 	}
 
 	.toggle-track {
 		position: absolute;
 		width: 100%;
 		height: 100%;
-		background: rgba(0, 0, 0, 0.3);
-		border: 2px solid rgba(255, 255, 255, 0.3);
+		background: var(--bg-tertiary);
+		border: 2px solid var(--border-primary);
 		border-radius: 1rem;
 		transition: all 0.3s ease;
 	}
 
 	.toggle-switch:hover .toggle-track {
-		border-color: #fbbf24;
-		background: rgba(251, 191, 36, 0.1);
+		border-color: var(--text-accent);
+		background: rgba(239, 100, 72, 0.1);
 	}
 
 	.toggle-slider {
@@ -150,7 +150,7 @@
 		left: 0.3125rem;
 		width: 1.5rem;
 		height: 1.5rem;
-		background: linear-gradient(135deg, #fbbf24, #f59e0b);
+		background: linear-gradient(135deg, var(--text-accent), var(--text-accent-hover));
 		border-radius: 50%;
 		transition: transform 0.3s ease;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
