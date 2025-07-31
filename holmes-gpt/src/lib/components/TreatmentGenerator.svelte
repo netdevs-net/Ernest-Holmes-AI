@@ -626,7 +626,6 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		font-size: 1.8rem;
 		font-weight: 700;
 		margin: 0;
-		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
@@ -903,6 +902,8 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		display: flex;
 		gap: 1rem;
 		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
 	}
 
 	.action-btn {
@@ -914,6 +915,11 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		transition: all 0.3s ease;
 		color: var(--text-primary);
 		font-weight: 500;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		min-width: 140px;
+		justify-content: center;
 	}
 
 	.action-btn:hover {
@@ -921,18 +927,19 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		border-color: var(--text-accent);
 		color: var(--text-accent);
 		transform: translateY(-1px);
+		box-shadow: 0 2px 8px var(--shadow-light);
 	}
 
 	.copy-btn:hover {
 		background: var(--bg-tertiary);
-		border-color: var(--text-success);
-		color: var(--text-success);
+		border-color: var(--text-accent);
+		color: var(--text-accent);
 	}
 
 	.save-btn:hover {
 		background: var(--bg-tertiary);
-		border-color: var(--text-info);
-		color: var(--text-info);
+		border-color: var(--text-accent);
+		color: var(--text-accent);
 	}
 
 	/* Treatment Display Mode Styles */
@@ -1105,6 +1112,7 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		.treatment-actions {
 			flex-direction: column;
 			gap: 0.75rem;
+			align-items: stretch;
 		}
 
 		.action-btn {
@@ -1112,6 +1120,7 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 			font-size: 0.9rem;
 			width: 100%;
 			justify-content: center;
+			min-width: auto;
 		}
 
 		.back-btn {
@@ -1243,11 +1252,13 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 
 		.treatment-actions {
 			gap: 0.5rem;
+			align-items: stretch;
 		}
 
 		.action-btn {
 			padding: 0.625rem 0.875rem;
 			font-size: 0.85rem;
+			min-width: auto;
 		}
 
 		.back-btn {

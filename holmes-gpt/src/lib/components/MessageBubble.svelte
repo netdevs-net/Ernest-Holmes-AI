@@ -31,24 +31,23 @@
 <div class="flex {isUser ? 'justify-end' : 'justify-start'} mb-2 sm:mb-3">
 	<div class="chat-bubble {isUser ? 'user-message' : 'holmes-message'} max-w-full lg:max-w-4xl xl:max-w-5xl">
 		<div class="prose prose-sm max-w-none">
-			{#if !isUser}
-				<div class="flex items-center space-x-2 mb-2">
-					<img src="/images/logo.png" alt="Holmes AI Logo" class="w-6 h-6 sm:w-8 sm:h-8" />
-					<div>
-						<div class="text-xs font-medium" style="color: var(--text-accent);">AI Practitioner</div>
+			{#if isUser}
+				<div class="text-sm sm:text-base leading-relaxed" style="color: var(--text-primary);">
+					{message.content}
+				</div>
+			{:else}
+				<div class="flex items-start space-x-2">
+					<img src="/images/logo.png" alt="Holmes AI Logo" class="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 mt-0.5" />
+					<div class="flex-1 min-w-0">
+						<div class="text-xs font-medium mb-0.5" style="color: var(--text-accent);">AI Practitioner</div>
+						<div class="text-sm sm:text-base leading-relaxed" style="color: var(--text-primary);" class:formatted-content={!isUser}>
+							{@html formattedContent}
+						</div>
 					</div>
 				</div>
 			{/if}
 			
-			<div class="text-sm sm:text-base leading-relaxed" style="color: var(--text-primary);" class:formatted-content={!isUser}>
-				{#if isUser}
-					{message.content}
-				{:else}
-					{@html formattedContent}
-				{/if}
-			</div>
-			
-			<div class="text-xs mt-1.5 {isUser ? 'text-right' : 'text-left'} flex items-center space-x-1 sm:space-x-2" style="color: var(--text-secondary);">
+			<div class="text-xs mt-1 {isUser ? 'text-right' : 'text-left'} flex items-center space-x-1 sm:space-x-2" style="color: var(--text-secondary);">
 				<span>{formattedTime}</span>
 				{#if !isUser}
 					<span>•</span>

@@ -94,8 +94,8 @@
 			</div>
 		</a>
 		
-		<!-- Center - Response Style Toggle -->
-		<div class="flex-1 flex justify-center">
+		<!-- Center - Response Style Toggle (Desktop) -->
+		<div class="flex-1 flex justify-center desktop-only">
 			<ResponseStyleToggle on:styleChanged={({ detail }) => dispatch('styleChanged', detail)} />
 		</div>
 		
@@ -138,6 +138,12 @@
 				<!-- Navigation Dropdown -->
 				{#if isMenuOpen}
 					<div class="nav-dropdown">
+						<!-- Mobile Response Style Toggle -->
+						<div class="mobile-toggle-container">
+							<span class="toggle-label">Response Style</span>
+							<ResponseStyleToggle on:styleChanged={({ detail }) => dispatch('styleChanged', detail)} />
+						</div>
+						<div class="dropdown-divider"></div>
 						<a href="/about" class="nav-dropdown-item" class:active={$page.url.pathname === '/about'} on:click={closeAllMenus}>
 							<Info size={16} class="dropdown-icon" />
 							<span>About</span>
@@ -242,6 +248,44 @@
 		}
 	}
 	
+	/* Mobile Toggle Container */
+	.mobile-toggle-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.75rem 1rem;
+		border-radius: 8px;
+		background: rgba(239, 100, 72, 0.05);
+		border: 1px solid rgba(239, 100, 72, 0.1);
+		margin-bottom: 0.25rem;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.toggle-label {
+		color: var(--text-primary);
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		text-align: center;
+		margin: 0;
+		width: 100%;
+	}
+
+	.dropdown-divider {
+		height: 1px;
+		background: var(--border-primary);
+		margin: 0.5rem 0;
+		opacity: 0.5;
+	}
+
+	/* Desktop only class */
+	.desktop-only {
+		display: flex;
+	}
+
 	.admin-indicator {
 		display: flex;
 		align-items: center;
@@ -273,9 +317,9 @@
 			padding: 0.5rem;
 		}
 		
-		/* Hide center content on tablet and mobile */
-		.container > div:nth-child(2) {
-			display: none;
+		/* Hide desktop-only elements on tablet and mobile */
+		.desktop-only {
+			display: none !important;
 		}
 		
 		/* Logo stays on left */
