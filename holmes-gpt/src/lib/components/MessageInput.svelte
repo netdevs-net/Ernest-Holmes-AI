@@ -92,7 +92,7 @@
 				bind:this={textarea}
 				bind:value={message}
 				on:keydown={handleKeydown}
-				placeholder="Ask Ernest Holmes a spiritual question..."
+				placeholder="Ask Ernest Holmes"
 				class="message-textarea"
 				rows="1"
 				disabled={isLoading}
@@ -221,13 +221,16 @@
 		resize: none;
 		outline: none;
 		backdrop-filter: blur(4px);
-		font-size: 0.875rem;
+		font-size: 16px; /* Prevent mobile zoom */
 		line-height: 1.3;
 		border: 1px solid var(--border-primary);
 		background: var(--glass-bg);
 		color: var(--text-primary);
 		min-height: 44px;
 		max-height: 120px;
+		/* Prevent zoom while ensuring good UX */
+		-webkit-user-select: text;
+		user-select: text;
 	}
 	
 	.send-icon-btn {
@@ -339,7 +342,7 @@
 		
 		.message-textarea {
 			padding: 14px 16px;
-			font-size: 0.875rem;
+			font-size: 16px; /* Prevent mobile zoom */
 			min-height: 48px;
 			line-height: 1.2;
 		}
@@ -378,7 +381,7 @@
 		
 		.message-textarea {
 			padding: 12px 14px;
-			font-size: 0.8rem;
+			font-size: 16px; /* Prevent mobile zoom */
 			min-height: 44px;
 			line-height: 1.2;
 		}
