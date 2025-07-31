@@ -3,6 +3,7 @@
 	import { theme, toggleTheme } from '$lib/stores/themeStore';
 	import ResponseStyleToggle from './ResponseStyleToggle.svelte';
 	import { page } from '$app/stores';
+	import { Sun, Moon, Menu, Info, Heart, Shield, BarChart3, Lock } from 'lucide-svelte';
 	
 	const dispatch = createEventDispatcher();
 	
@@ -119,13 +120,9 @@
 				aria-pressed={$theme === 'dark'}
 			>
 				{#if $theme === 'dark'}
-					<svg class="w-4 h-4" style="color: var(--text-secondary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-					</svg>
+					<Sun size={20} class="theme-icon" />
 				{:else}
-					<svg class="w-4 h-4" style="color: var(--text-secondary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-					</svg>
+					<Moon size={20} class="theme-icon" />
 				{/if}
 			</button>
 
@@ -137,37 +134,27 @@
 					aria-label="Navigation menu"
 					aria-expanded={isMenuOpen}
 				>
-					<svg class="w-4 h-4" style="color: var(--text-secondary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-					</svg>
+					<Menu size={20} class="menu-icon" />
 				</button>
 
 				<!-- Navigation Dropdown -->
 				{#if isMenuOpen}
 					<div class="nav-dropdown">
 						<a href="/about" class="nav-dropdown-item" class:active={$page.url.pathname === '/about'} on:click={closeAllMenus}>
-							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-							</svg>
+							<Info size={16} class="dropdown-icon" />
 							<span>About</span>
 						</a>
 						<a href="/support" class="nav-dropdown-item" class:active={$page.url.pathname === '/support'} on:click={closeAllMenus}>
-							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-							</svg>
+							<Heart size={16} class="dropdown-icon" />
 							<span>Support</span>
 						</a>
 						<a href="/privacy" class="nav-dropdown-item" class:active={$page.url.pathname === '/privacy'} on:click={closeAllMenus}>
-							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-							</svg>
+							<Shield size={16} class="dropdown-icon" />
 							<span>Privacy</span>
 						</a>
 						{#if showAdminButton}
 							<a href="/admin" class="nav-dropdown-item" class:active={$page.url.pathname === '/admin'} on:click={closeAllMenus}>
-								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-								</svg>
+								<BarChart3 size={16} class="dropdown-icon" />
 								<span>Admin</span>
 							</a>
 						{/if}
@@ -297,17 +284,25 @@
 	/* Responsive adjustments for the header layout */
 	@media (max-width: 1024px) {
 		.container {
-			flex-direction: column;
-			gap: 0.5rem;
+			flex-direction: row;
+			justify-content: space-between;
+			gap: 1rem;
 			padding: 0.5rem;
 		}
 		
-		.container > div {
-			width: 100%;
+		/* Hide center content on tablet and mobile */
+		.container > div:nth-child(2) {
+			display: none;
 		}
 		
-		.container > div:nth-child(2) {
-			order: -1;
+		/* Logo stays on left */
+		.container > a {
+			flex: 0 0 auto;
+		}
+		
+		/* Navigation stays on right */
+		.container > nav {
+			flex: 0 0 auto;
 		}
 		
 		/* Ensure header doesn't get too tall */
@@ -320,11 +315,19 @@
 	@media (max-width: 768px) {
 		.container {
 			padding: 0.25rem;
-			gap: 0.25rem;
+			gap: 0.5rem;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
 		}
 		
 		h1 {
 			font-size: 1.25rem;
+		}
+		
+		/* Keep logo and navigation on same line */
+		.container > div:nth-child(2) {
+			display: none;
 		}
 		
 		/* Further reduce height on mobile */
@@ -334,7 +337,17 @@
 		}
 	}
 	
-	@media (max-width: 480px) {
+@media (max-width: 320px) {
+  h1 {
+    font-size: 1rem;
+  }
+
+  header {
+    max-height: 25vh;
+  }
+}
+
+@media (max-width: 480px) {
 		.container {
 			padding: 0.125rem;
 			gap: 0.125rem;
