@@ -59,12 +59,12 @@
 	});
 </script>
 
-<div class="flex flex-col h-[calc(100vh-140px)] max-w-5xl mx-auto">
+<div class="flex flex-col h-[calc(100vh-140px)] max-w-6xl mx-auto">
 	<!-- Messages Container -->
 	<div 
 		bind:this={messagesContainer}
 		on:scroll={handleScroll}
-		class="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent"
+		class="flex-1 overflow-y-auto p-1 sm:p-2 md:p-4 lg:p-6 space-y-3 sm:space-y-4 md:space-y-6 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent"
 	>
 		{#each messages as message (message.timestamp.getTime())}
 			<div class="animate-fade-in-up">
@@ -80,7 +80,7 @@
 	</div>
 	
 	<!-- Input Container -->
-	<div class="border-t border-primary/10 glass-effect p-4 md:p-6 backdrop-blur-glass">
+	<div class="border-t border-primary/10 glass-effect p-1 sm:p-2 md:p-4 lg:p-6 backdrop-blur-glass">
 		<MessageInput 
 			on:sendMessage={({ detail }) => handleSendMessage(detail)} 
 			{isLoading}

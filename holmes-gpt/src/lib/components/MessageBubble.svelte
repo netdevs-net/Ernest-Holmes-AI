@@ -28,21 +28,21 @@
 	$: formattedContent = isUser ? message.content : parseFormatting(message.content);
 </script>
 
-<div class="flex {isUser ? 'justify-end' : 'justify-start'} mb-6">
-	<div class="chat-bubble {isUser ? 'user-message' : 'holmes-message'} max-w-3xl">
+<div class="flex {isUser ? 'justify-end' : 'justify-start'} mb-3 sm:mb-4 md:mb-6">
+	<div class="chat-bubble {isUser ? 'user-message' : 'holmes-message'} max-w-full lg:max-w-4xl xl:max-w-5xl">
 		<div class="prose prose-sm max-w-none">
 			{#if !isUser}
-				<div class="flex items-center space-x-3 mb-4">
-					<div class="w-10 h-10 bg-gradient-to-br from-primary via-primary-600 to-secondary-purple-500 rounded-glass-lg flex items-center justify-center shadow-button">
-						<span class="text-white text-sm font-bold font-display">H</span>
+				<div class="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+					<div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary via-primary-600 to-secondary-purple-500 rounded-glass-lg flex items-center justify-center shadow-button">
+						<span class="text-white text-xs sm:text-sm font-bold font-display">H</span>
 					</div>
 					<div>
-						<div class="text-small font-medium text-secondary-blue-700 dark:text-secondary-purple-300">AI Practitioner</div>
+						<div class="text-xs sm:text-small font-medium text-secondary-blue-700 dark:text-secondary-purple-300">AI Practitioner</div>
 					</div>
 				</div>
 			{/if}
 			
-			<div class="text-base leading-relaxed" style="color: var(--text-primary);" class:formatted-content={!isUser}>
+			<div class="text-sm sm:text-base leading-relaxed" style="color: var(--text-primary);" class:formatted-content={!isUser}>
 				{#if isUser}
 					{message.content}
 				{:else}
@@ -50,7 +50,7 @@
 				{/if}
 			</div>
 			
-			<div class="text-xs mt-3 {isUser ? 'text-right' : 'text-left'} flex items-center space-x-2" style="color: var(--text-secondary);">
+			<div class="text-xs mt-2 sm:mt-3 {isUser ? 'text-right' : 'text-left'} flex items-center space-x-1 sm:space-x-2" style="color: var(--text-secondary);">
 				<span>{formattedTime}</span>
 				{#if !isUser}
 					<span>•</span>

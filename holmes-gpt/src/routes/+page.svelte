@@ -237,8 +237,8 @@
 	<div class="relative z-10 flex flex-col">
 		<Header on:styleChanged={handleStyleChange} />
 		
-		<div class="container mx-auto px-4 pt-2 pb-4 max-w-5xl flex-1">
-			<div class="chat-container rounded-3xl p-4 relative">
+		<div class="container mx-auto px-1 sm:px-2 md:px-4 pt-2 pb-4 max-w-6xl flex-1">
+			<div class="chat-container rounded-2xl sm:rounded-3xl p-1 sm:p-2 md:p-4 relative">
 				<ChatInterface 
 					{messages} 
 					{isLoading} 
@@ -308,31 +308,47 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background: rgba(0, 0, 0, 0.5);
+		background: rgba(0, 0, 0, 0.8);
 		z-index: 9999;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding: 1rem;
+		padding: 2rem 1rem;
+		backdrop-filter: blur(8px);
 		pointer-events: auto;
 	}
 	
 	.history-overlay > :global(*),
 	.quotes-overlay > :global(*) {
 		max-width: 90vw;
-		max-height: 90vh;
+		max-height: 70vh;
 	}
 	
 	@media (max-width: 768px) {
 		.history-overlay,
 		.quotes-overlay {
-			padding: 0.5rem;
+			padding: 2rem 0.5rem;
 		}
 		
 		.history-overlay > :global(*),
 		.quotes-overlay > :global(*) {
-			width: 100%;
-			max-width: 100%;
+			width: 95%;
+			max-width: 95%;
+			max-height: 70vh;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.history-overlay,
+		.quotes-overlay {
+			padding: 1.5rem 0.5rem;
+		}
+		
+		.history-overlay > :global(*),
+		.quotes-overlay > :global(*) {
+			width: 95%;
+			max-width: 95%;
+			max-height: 70vh;
 		}
 	}
 </style> 

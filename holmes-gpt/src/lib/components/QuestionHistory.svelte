@@ -226,9 +226,9 @@
 <style>
   .question-history-panel {
     background: var(--glass-bg);
-    border-radius: 12px;
-    box-shadow: 0 4px 20px var(--shadow-medium);
-    max-height: 80vh;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px var(--shadow-medium);
+    max-height: 70vh;
     width: 60vw;
     max-width: 800px;
     overflow: hidden;
@@ -236,13 +236,15 @@
     flex-direction: column;
     backdrop-filter: blur(20px);
     border: 1px solid var(--border-primary);
+    margin: auto;
+    clip-path: inset(0);
   }
   
   .history-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 2.5rem 2rem 1.5rem;
     border-bottom: 1px solid var(--border-primary);
     background: var(--bg-secondary);
   }
@@ -250,22 +252,26 @@
   .history-header h3 {
     margin: 0;
     color: var(--text-accent);
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
   
   .header-actions {
     display: flex;
-    gap: 10px;
+    gap: 1rem;
   }
   
   .export-btn, .close-btn {
-    padding: 8px 16px;
+    padding: 0.75rem 1.5rem;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.2s;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px var(--shadow-light);
+    clip-path: inset(0);
   }
   
   .export-btn {
@@ -275,21 +281,25 @@
   
   .export-btn:hover {
     background: var(--text-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-medium);
   }
   
   .close-btn {
     background: var(--text-secondary);
     color: var(--bg-primary);
     font-size: 1.2rem;
-    padding: 8px 12px;
+    padding: 0.75rem 1rem;
   }
   
   .close-btn:hover {
     background: var(--text-muted);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-medium);
   }
   
   .filters {
-    padding: 16px 20px;
+    padding: 1.5rem 2rem;
     border-bottom: 1px solid var(--border-primary);
     background: var(--bg-secondary);
   }
@@ -534,4 +544,335 @@
     margin: 0;
     font-size: 0.95rem;
   }
-</style> 
+
+  /* Mobile Responsive Design */
+  @media (max-width: 768px) {
+    .question-history-panel {
+      width: 95vw;
+      max-width: 95%;
+      height: 70vh;
+      max-height: 70vh;
+      border-radius: 12px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .history-header {
+      padding: 1rem 0.75rem 0.75rem;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      min-height: auto;
+    }
+
+    .history-header h3 {
+      font-size: 1rem;
+      line-height: 1.1;
+      margin: 0;
+      padding-right: 0.5rem;
+      flex: 1;
+      font-weight: 600;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.375rem;
+      flex-shrink: 0;
+    }
+
+    .export-btn, .close-btn {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border-radius: 6px;
+    }
+
+    .close-btn {
+      padding: 0.5rem 0.625rem;
+      font-size: 0.9rem;
+    }
+
+    .filters {
+      padding: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .filter-group {
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .category-select, .search-input {
+      min-width: unset;
+      width: 100%;
+      padding: 0.625rem 0.75rem;
+      font-size: 0.9rem;
+      border-radius: 6px;
+      height: 2.5rem;
+    }
+
+    .filter-actions {
+      flex-direction: row;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .bookmark-filter {
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .clear-filters-btn {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .question-list {
+      flex: 1;
+      overflow-y: auto;
+      min-height: 0;
+    }
+
+    .question-item {
+      padding: 0.75rem;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: stretch;
+    }
+
+    .question-content {
+      width: 100%;
+    }
+
+    .question-header {
+      margin-bottom: 0.375rem;
+      gap: 0.5rem;
+    }
+
+    .question-text {
+      font-size: 0.9rem;
+      line-height: 1.3;
+      font-weight: 500;
+    }
+
+    .bookmark-btn {
+      font-size: 1rem;
+      min-width: 18px;
+      height: 18px;
+    }
+
+    .tags {
+      gap: 0.25rem;
+      margin-bottom: 0.375rem;
+    }
+
+    .tag {
+      padding: 0.125rem 0.375rem;
+      font-size: 0.7rem;
+      border-radius: 3px;
+    }
+
+    .response-preview {
+      font-size: 0.8rem;
+      margin-bottom: 0.25rem;
+      line-height: 1.2;
+    }
+
+    .question-meta {
+      align-items: flex-start;
+      width: 100%;
+      gap: 0.375rem;
+    }
+
+    .meta-top {
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+    }
+
+    .category-badge {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.7rem;
+      border-radius: 8px;
+    }
+
+    .timestamp {
+      font-size: 0.7rem;
+    }
+
+    .question-actions {
+      align-self: flex-end;
+      margin-top: 0.25rem;
+    }
+
+    .delete-btn {
+      font-size: 0.9rem;
+      padding: 0.25rem;
+    }
+
+    .empty-state {
+      padding: 1.5rem 0.75rem;
+      text-align: center;
+    }
+
+    .empty-state p {
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .question-history-panel {
+      width: 95vw;
+      max-width: 95%;
+      height: 70vh;
+      max-height: 70vh;
+      border-radius: 10px;
+      margin: 0 auto;
+    }
+
+    .history-header {
+      padding: 0.875rem 0.625rem 0.625rem;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      min-height: auto;
+    }
+
+    .history-header h3 {
+      font-size: 0.9rem;
+      line-height: 1;
+      margin: 0;
+      padding-right: 0.25rem;
+      flex: 1;
+      font-weight: 600;
+    }
+
+    .header-actions {
+      gap: 0.25rem;
+      flex-shrink: 0;
+    }
+
+    .export-btn, .close-btn {
+      padding: 0.375rem 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border-radius: 4px;
+    }
+
+    .close-btn {
+      padding: 0.375rem 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .filters {
+      padding: 0.625rem;
+    }
+
+    .filter-group {
+      gap: 0.375rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .category-select, .search-input {
+      padding: 0.5rem 0.625rem;
+      font-size: 0.85rem;
+      border-radius: 5px;
+      height: 2.25rem;
+    }
+
+    .filter-actions {
+      flex-direction: column;
+      gap: 0.375rem;
+      align-items: stretch;
+    }
+
+    .bookmark-filter {
+      font-size: 0.8rem;
+      justify-content: center;
+    }
+
+    .clear-filters-btn {
+      padding: 0.5rem;
+      font-size: 0.75rem;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    .question-item {
+      padding: 0.625rem;
+      gap: 0.375rem;
+    }
+
+    .question-header {
+      margin-bottom: 0.25rem;
+      gap: 0.375rem;
+    }
+
+    .question-text {
+      font-size: 0.85rem;
+      line-height: 1.3;
+      font-weight: 500;
+    }
+
+    .bookmark-btn {
+      font-size: 0.9rem;
+      min-width: 16px;
+      height: 16px;
+    }
+
+    .tags {
+      gap: 0.1875rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .tag {
+      padding: 0.125rem 0.25rem;
+      font-size: 0.65rem;
+      border-radius: 2px;
+    }
+
+    .response-preview {
+      font-size: 0.75rem;
+      margin-bottom: 0.1875rem;
+      line-height: 1.2;
+    }
+
+    .question-meta {
+      gap: 0.25rem;
+    }
+
+    .category-badge {
+      padding: 0.1875rem 0.375rem;
+      font-size: 0.65rem;
+      border-radius: 6px;
+    }
+
+    .timestamp {
+      font-size: 0.65rem;
+    }
+
+    .question-actions {
+      margin-top: 0.1875rem;
+    }
+
+    .delete-btn {
+      font-size: 0.8rem;
+      padding: 0.1875rem;
+    }
+
+    .empty-state {
+      padding: 1.25rem 0.625rem;
+    }
+
+    .empty-state p {
+      font-size: 0.85rem;
+      line-height: 1.3;
+    }
+  }
+</style>

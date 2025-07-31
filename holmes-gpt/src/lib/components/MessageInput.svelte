@@ -120,7 +120,7 @@
 	.message-input-container {
 		display: flex;
 		flex-direction: column;
-		gap: 12px;
+		gap: 6px;
 	}
 	
 	/* 1st Row (Top) */
@@ -128,13 +128,13 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: 12px;
+		gap: 6px;
 		flex-wrap: wrap;
 	}
 	
 	.icon-buttons {
 		display: flex;
-		gap: 8px;
+		gap: 4px;
 		flex: 1;
 		min-width: 0;
 	}
@@ -142,10 +142,10 @@
 	.icon-btn {
 		padding: 8px 12px;
 		background: var(--glass-bg);
-		border: 1px solid var(--border-primary);
+		border: 0.5px solid var(--border-primary);
 		border-radius: 8px;
 		color: var(--text-primary);
-		font-size: 0.875rem;
+		font-size: 0.8rem;
 		font-weight: 500;
 		cursor: pointer;
 		transition: all 0.3s ease;
@@ -153,7 +153,7 @@
 		display: flex;
 		align-items: center;
 		gap: 6px;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 		flex-shrink: 0;
 	}
 	
@@ -167,11 +167,13 @@
 	
 	.btn-icon {
 		flexShrink: 0;
+		width: 20px;
+		height: 20px;
 	}
 	
 	.btn-text {
 		white-space: nowrap;
-		font-size: 0.75rem;
+		font-size: 0.65rem;
 	}
 	
 	.category-selection {
@@ -179,12 +181,12 @@
 	}
 	
 	.category-select {
-		padding: 8px 12px;
-		border-radius: 8px;
-		font-size: 0.875rem;
+		padding: 4px 6px;
+		border-radius: 4px;
+		font-size: 0.7rem;
 		backdrop-filter: blur(4px);
-		min-width: 100px;
-		border: 1px solid var(--border-primary);
+		min-width: 70px;
+		border: 0.5px solid var(--border-primary);
 		background: var(--glass-bg);
 		color: var(--text-primary);
 	}
@@ -198,7 +200,7 @@
 	/* 2nd Row (Bottom) */
 	.bottom-row {
 		display: flex;
-		gap: 12px;
+		gap: 6px;
 		align-items: flex-end;
 	}
 	
@@ -211,14 +213,14 @@
 	
 	.message-textarea {
 		width: 100%;
-		padding: 12px 16px;
-		border-radius: 12px;
+		padding: 8px 10px;
+		border-radius: 8px;
 		resize: none;
 		outline: none;
 		backdrop-filter: blur(4px);
 		font-size: 16px; /* Prevent mobile zoom */
 		line-height: 1.3;
-		border: 1px solid var(--border-primary);
+		border: 0.5px solid var(--border-primary);
 		background: var(--glass-bg);
 		color: var(--text-primary);
 		min-height: 44px;
@@ -229,10 +231,10 @@
 	}
 	
 	.send-icon-btn {
-		padding: 12px;
+		padding: 8px;
 		background: linear-gradient(135deg, var(--text-accent), var(--text-accent-hover));
 		border: none;
-		border-radius: 12px;
+		border-radius: 8px;
 		color: white;
 		cursor: pointer;
 		transition: all 0.2s;
@@ -251,23 +253,6 @@
 		outline: none;
 		border-color: var(--text-accent);
 		box-shadow: 0 0 0 2px var(--focus-ring);
-	}
-	
-	.send-icon-btn {
-		padding: 12px;
-		background: linear-gradient(135deg, var(--text-accent), var(--text-accent-hover));
-		border: none;
-		border-radius: 12px;
-		color: white;
-		cursor: pointer;
-		transition: all 0.2s;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		backdrop-filter: blur(4px);
-		flex-shrink: 0;
-		min-width: 44px;
-		min-height: 44px;
 	}
 	
 	.send-icon-btn:hover:not(:disabled) {
@@ -304,22 +289,27 @@
 	
 	/* Mobile-first responsive design */
 	@media (max-width: 640px) {
+		.message-input-container {
+			gap: 4px;
+		}
+		
 		.top-row {
-			gap: 8px;
+			gap: 4px;
 		}
 		
 		.icon-buttons {
-			gap: 6px;
+			gap: 3px;
 		}
 		
 		.icon-btn {
 			padding: 6px 8px;
 			font-size: 0.75rem;
+			border-radius: 6px;
 		}
 		
 		.btn-icon {
-			width: 14px;
-			height: 14px;
+			width: 18px;
+			height: 18px;
 		}
 		
 		.btn-text {
@@ -327,20 +317,23 @@
 		}
 		
 		.category-select {
-			padding: 6px 8px;
-			font-size: 0.75rem;
-			min-width: 80px;
+			padding: 4px 6px;
+			font-size: 0.7rem;
+			min-width: 70px;
+			border-radius: 4px;
 		}
 		
 		.bottom-row {
 			align-items: flex-end;
+			gap: 4px;
 		}
 		
 		.message-textarea {
-			padding: 14px 16px;
+			padding: 10px 12px;
 			font-size: 16px; /* Prevent mobile zoom */
 			min-height: 48px;
 			line-height: 1.2;
+			border-radius: 6px;
 		}
 		
 		.send-icon-btn {
@@ -349,45 +342,60 @@
 			min-height: 48px;
 			height: 48px;
 			align-self: flex-end;
+			border-radius: 6px;
 		}
 	}
 	
 	@media (max-width: 480px) {
+		.message-input-container {
+			gap: 3px;
+		}
+		
 		.top-row {
-			gap: 6px;
+			gap: 3px;
 		}
 		
 		.icon-buttons {
-			gap: 4px;
+			gap: 2px;
 		}
 		
 		.icon-btn {
-			padding: 4px 6px;
+			padding: 5px 6px;
+			border-radius: 5px;
+		}
+		
+		.btn-icon {
+			width: 16px;
+			height: 16px;
 		}
 		
 		.category-select {
-			padding: 4px 6px;
-			font-size: 0.7rem;
-			min-width: 70px;
+			padding: 3px 4px;
+			font-size: 0.65rem;
+			min-width: 60px;
+			border-radius: 3px;
 		}
 		
 		.bottom-row {
 			align-items: flex-end;
+			gap: 3px;
 		}
 		
 		.message-textarea {
-			padding: 12px 14px;
+			padding: 8px 10px;
 			font-size: 16px; /* Prevent mobile zoom */
 			min-height: 44px;
 			line-height: 1.2;
+			border-radius: 4px;
 		}
 		
 		.send-icon-btn {
-			padding: 10px;
+			padding: 8px;
 			min-width: 44px;
 			min-height: 44px;
 			height: 44px;
 			align-self: flex-end;
+			border-radius: 4px;
 		}
 	}
 	
@@ -395,11 +403,20 @@
 		.top-row {
 			flex-direction: column;
 			align-items: stretch;
-			gap: 6px;
+			gap: 3px;
 		}
 		
 		.icon-buttons {
 			justify-content: space-between;
+		}
+		
+		.icon-btn {
+			padding: 4px 5px;
+		}
+		
+		.btn-icon {
+			width: 15px;
+			height: 15px;
 		}
 		
 		.category-selection {

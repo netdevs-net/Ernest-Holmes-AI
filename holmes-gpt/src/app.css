@@ -118,7 +118,7 @@
 
 @layer components {
   .chat-bubble {
-    @apply rounded-glass p-4 md:p-6 mb-4 md:mb-6 max-w-4xl shadow-card backdrop-blur-glass;
+    @apply rounded-glass p-2 sm:p-3 md:p-4 lg:p-6 mb-2 sm:mb-3 md:mb-4 lg:mb-6 max-w-6xl shadow-card backdrop-blur-glass;
     animation: fadeInUp 0.5s ease-out;
     transition: all 0.3s ease;
   }
@@ -153,15 +153,24 @@
   .chat-container {
     background: var(--glass-bg);
     backdrop-filter: blur(glass-bg);
-    border: 1px solid var(--border-primary);
-    padding: 0.5rem;
+    border: 0.5px solid var(--border-primary);
+    padding: 0.125rem;
     transition: all 0.3s ease;
   }
 
   @media (max-width: 768px) {
     .chat-container {
-      padding: 0.5rem;
-      margin: 0.5rem;
+      padding: 0.125rem;
+      margin: 0.125rem;
+      border-radius: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .chat-container {
+      padding: 0.0625rem;
+      margin: 0.0625rem;
+      border-radius: 0.75rem;
     }
   }
 

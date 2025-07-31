@@ -91,7 +91,7 @@
 				<span class="text-white font-bold text-lg">H</span>
 			</div>
 			<div>
-				<h1 class="text-xl font-serif font-semibold gradient-text">Holmes AI</h1>
+				<h1 class="text-2xl font-serif font-semibold gradient-text">Holmes AI</h1>
 				<p class="text-xs" style="color: var(--text-secondary);">Ernest Holmes AI Practitioner</p>
 			</div>
 		</a>
@@ -307,7 +307,7 @@
 		}
 		
 		h1 {
-			font-size: 1.25rem;
+			font-size: 1.5rem;
 		}
 		
 		/* Keep logo and navigation on same line */
@@ -324,7 +324,7 @@
 	
 @media (max-width: 320px) {
   h1 {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
 
   header {
@@ -339,7 +339,7 @@
 		}
 		
 		h1 {
-			font-size: 1rem;
+			font-size: 1.125rem;
 		}
 		
 		/* Minimal height on very small screens */
