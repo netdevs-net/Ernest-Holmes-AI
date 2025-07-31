@@ -59,7 +59,7 @@
 	});
 </script>
 
-<div class="flex flex-col h-[calc(100vh-140px)] max-w-6xl mx-auto">
+<div class="flex flex-col h-full max-w-6xl mx-auto">
 	<!-- Messages Container -->
 	<div 
 		bind:this={messagesContainer}

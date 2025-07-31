@@ -229,16 +229,16 @@
 	<meta name="description" content="A conversational AI inspired by Ernest Holmes, founder of Religious Science and author of The Science of Mind." />
 </svelte:head>
 
-<main class="min-h-screen relative overflow-hidden">
+<main class="h-screen relative overflow-hidden flex flex-col">
 	<!-- Floating particles background -->
 	<div class="floating-particles" aria-hidden="true"></div>
 	
 	<!-- Main content -->
-	<div class="relative z-10 flex flex-col">
+	<div class="relative z-10 flex flex-col h-full">
 		<Header on:styleChanged={handleStyleChange} />
 		
-		<div class="container mx-auto px-1 sm:px-2 md:px-4 pt-2 pb-4 max-w-6xl flex-1">
-			<div class="chat-container rounded-2xl sm:rounded-3xl p-1 sm:p-2 md:p-4 relative">
+		<div class="container mx-auto px-1 sm:px-2 md:px-4 pt-2 pb-4 max-w-6xl flex-1 flex flex-col">
+			<div class="chat-container rounded-2xl sm:rounded-3xl p-1 sm:p-2 md:p-4 relative flex-1 flex flex-col">
 				<ChatInterface 
 					{messages} 
 					{isLoading} 
