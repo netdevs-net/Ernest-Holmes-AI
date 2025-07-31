@@ -271,17 +271,6 @@
     z-index: 0;
   }
 
-  .hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-      radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
-  }
 
   .hero-content {
     position: relative;
@@ -815,9 +804,6 @@
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
 
-  .link-icon {
-    font-size: 1.2rem;
-  }
 
   /* Sponsorship Section */
   .sponsorship-section {

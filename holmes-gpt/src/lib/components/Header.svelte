@@ -232,21 +232,6 @@
 		outline-offset: 2px;
 	}
 
-	.nav-dropdown-header {
-		color: var(--text-secondary);
-		font-weight: 600;
-		border-bottom: 1px solid var(--border-secondary);
-		margin-bottom: 0.5rem;
-		padding-bottom: 0.5rem;
-		cursor: default;
-	}
-
-	.nav-dropdown-header:hover {
-		background: transparent;
-		color: var(--text-secondary);
-		transform: none;
-		box-shadow: none;
-	}
 
 	@keyframes dropdownIn {
 		from {

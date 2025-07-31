@@ -105,9 +105,17 @@
       <div class="development-content">
       <div class="development-phase">
         <div class="phase-glow"></div>
-        <h3 on:click={togglePhase}>Phase 1: Foundation & Core Development <ChevronDown size={16} /></h3>
+        <button 
+          on:click={togglePhase}
+          on:keydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); togglePhase(e); } }}
+          class="phase-button"
+          aria-expanded={phase1Expanded}
+          aria-controls="phase1-details"
+        >
+          <h3>Phase 1: Foundation & Core Development <ChevronDown size={16} /></h3>
+        </button>
         {#if phase1Expanded}
-        <div class="phase-details">
+        <div class="phase-details" id="phase1-details">
           <div class="achievement-item">
               <div class="achievement-icon"><Check size={24} /></div>
               <div class="achievement-content">
@@ -150,9 +158,17 @@
         
         <div class="development-phase">
           <div class="phase-glow"></div>
-          <h3 on:click={togglePhase}>Phase 2: User Experience & Accessibility <ChevronDown size={16} /></h3>
+          <button 
+            on:click={togglePhase}
+            on:keydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); togglePhase(e); } }}
+            class="phase-button"
+            aria-expanded={phase2Expanded}
+            aria-controls="phase2-details"
+          >
+            <h3>Phase 2: User Experience & Accessibility <ChevronDown size={16} /></h3>
+          </button>
           {#if phase2Expanded}
-          <div class="phase-details">
+          <div class="phase-details" id="phase2-details">
             <div class="achievement-item">
               <div class="achievement-icon"><Accessibility size={24} /></div>
               <div class="achievement-content">
@@ -193,9 +209,17 @@
 
         <div class="development-phase">
           <div class="phase-glow"></div>
-          <h3 on:click={togglePhase}>Phase 3: Privacy & Security Excellence <ChevronDown size={16} /></h3>
+          <button 
+            on:click={togglePhase}
+            on:keydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); togglePhase(e); } }}
+            class="phase-button"
+            aria-expanded={phase3Expanded}
+            aria-controls="phase3-details"
+          >
+            <h3>Phase 3: Privacy & Security Excellence <ChevronDown size={16} /></h3>
+          </button>
           {#if phase3Expanded}
-          <div class="phase-details">
+          <div class="phase-details" id="phase3-details">
             <div class="achievement-item">
               <div class="achievement-icon"><Lock size={24} /></div>
               <div class="achievement-content">
@@ -1053,7 +1077,16 @@
    border-radius: 25px 25px 0 0;
  }
 
-.development-phase h3 {
+.phase-button {
+   background: transparent;
+   border: none;
+   padding: 0;
+   width: 100%;
+   cursor: pointer;
+   text-align: left;
+ }
+
+ .phase-button h3 {
    color: var(--text-accent);
    margin-bottom: 1.5rem;
    font-size: 1.3rem;
@@ -1063,13 +1096,15 @@
    align-items: center;
    justify-content: space-between;
    transition: color 0.3s ease;
+   margin: 0;
+   padding: 0;
  }
 
- .development-phase h3:hover {
+ .phase-button:hover h3 {
    color: var(--text-accent-hover);
  }
 
- .development-phase h3:focus {
+ .phase-button:focus-visible {
    outline: 3px solid var(--focus-ring);
    outline-offset: 3px;
    border-radius: 8px;

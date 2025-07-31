@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import { onMount } from 'svelte';
+	import { BookOpen, Film, UserCheck, Send, Loader2 } from 'lucide-svelte';
 	
 	export let isLoading = false;
 	export let onHistoryClick: () => void = () => {};
@@ -47,7 +48,7 @@
 				on:click={onHistoryClick}
 				title="View Question History ({questionCount})"
 			>
-				<span class="btn-icon">📚</span>
+				<BookOpen size={16} class="btn-icon" />
 				<span class="btn-text">History</span>
 			</button>
 			<button 
@@ -56,7 +57,7 @@
 				on:click={onQuotesClick}
 				title="View Quotes Slideshow"
 			>
-				<span class="btn-icon">🎬</span>
+				<Film size={16} class="btn-icon" />
 				<span class="btn-text">Quotes</span>
 			</button>
 			<button 
@@ -65,7 +66,7 @@
 				on:click={onTreatmentClick}
 				title="Generate Spiritual Treatment"
 			>
-				<span class="btn-icon">🧘‍♀️</span>
+				<UserCheck size={16} class="btn-icon" />
 				<span class="btn-text">Treatment</span>
 			</button>
 		</div>
@@ -107,14 +108,9 @@
 			title="Send message"
 		>
 			{#if isLoading}
-				<svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-					<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-					<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-				</svg>
+				<Loader2 size={20} class="animate-spin" />
 			{:else}
-				<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-				</svg>
+				<Send size={20} />
 			{/if}
 		</button>
 	</form>
@@ -170,8 +166,7 @@
 	}
 	
 	.btn-icon {
-		font-size: 14px;
-		line-height: 1;
+		flexShrink: 0;
 	}
 	
 	.btn-text {
@@ -323,7 +318,8 @@
 		}
 		
 		.btn-icon {
-			font-size: 12px;
+			width: 14px;
+			height: 14px;
 		}
 		
 		.btn-text {

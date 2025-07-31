@@ -852,27 +852,6 @@
     color: var(--text-secondary);
   }
 
-  .important-note {
-    background: linear-gradient(135deg, rgba(var(--text-accent-rgb), 0.1), rgba(var(--text-accent-rgb), 0.05));
-    border: 1px solid rgba(var(--text-accent-rgb), 0.3);
-    border-left: 4px solid var(--text-accent);
-    padding: 1.5rem;
-    border-radius: 15px;
-    margin-top: 1.5rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .note-icon {
-    color: var(--text-accent);
-    flex-shrink: 0;
-  }
-
-  .important-note p {
-    margin: 0;
-    color: var(--text-primary);
-  }
 
   /* Usage Grid */
   .usage-grid {
@@ -1596,12 +1575,5 @@
     display: none;
   }
   
-  .shimmer,
-  .highlight-flow,
-  .stat-glow,
-  .float,
-  .bounce {
-    animation: none;
-  }
 }
 </style>

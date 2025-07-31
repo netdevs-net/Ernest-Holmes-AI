@@ -1,31 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" %sveltekit.theme%>
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-			rel="stylesheet"
-		/>
-		%sveltekit.head%
-		
-		<!-- Polyfill for crypto.randomUUID() for older browsers -->
-		<script>
-			if (typeof crypto !== 'undefined' && !crypto.randomUUID) {
-				crypto.randomUUID = function() {
-					return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-						const r = Math.random() * 16 | 0;
-						const v = c === 'x' ? r : (r & 0x3 | 0x8);
-						return v.toString(16);
-					});
-				};
-			}
-		</script>
-	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    %sveltekit.head%
+
+    <!-- Polyfill for crypto.randomUUID() for older browsers -->
+    <script>
+      if (typeof crypto !== "undefined" && !crypto.randomUUID) {
+        crypto.randomUUID = function () {
+          return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+            /[xy]/g,
+            function (c) {
+              const r = (Math.random() * 16) | 0;
+              const v = c === "x" ? r : (r & 0x3) | 0x8;
+              return v.toString(16);
+            },
+          );
+        };
+      }
+    </script>
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
 </html>

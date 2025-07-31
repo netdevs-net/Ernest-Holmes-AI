@@ -47,13 +47,13 @@ async function loadQuestions() {
       const data = await response.json();
       const questions = data.questions || [];
       const total = data.total || questions.length;
-      
-      console.log("Loading questions from API:", { 
-        questionsCount: questions.length, 
-        total, 
-        sessionId 
+
+      console.log("Loading questions from API:", {
+        questionsCount: questions.length,
+        total,
+        sessionId,
       });
-      
+
       questionsData.set(questions);
       questionCountData.set(total);
     }
@@ -70,9 +70,9 @@ async function loadCounts() {
       const data = await response.json();
       const total = data.questions?.total || 0;
       const bookmarked = data.questions?.bookmarked || 0;
-      
+
       console.log("Loading counts from API:", { total, bookmarked, data });
-      
+
       questionCountData.set(total);
       bookmarkedCountData.set(bookmarked);
     }
@@ -93,9 +93,9 @@ export async function saveQuestion(
     });
     if (response.ok) {
       // Update the local count immediately for better UX
-      questionCountData.update(count => count + 1);
+      questionCountData.update((count) => count + 1);
       triggerQuestionUpdate();
-      
+
       // Then refresh from server to ensure accuracy
       await loadQuestions();
       await loadCounts();
@@ -223,7 +223,7 @@ if (typeof window !== "undefined") {
   // Load data immediately
   loadQuestions();
   loadCounts();
-  
+
   // Also refresh data when the page becomes visible (in case data was added in another tab)
   if (typeof document !== "undefined") {
     document.addEventListener("visibilitychange", () => {
@@ -232,9 +232,9 @@ if (typeof window !== "undefined") {
       }
     });
   }
-  
+
   // Debug subscription to track question count changes
-  questionCount.subscribe(count => {
+  questionCount.subscribe((count) => {
     console.log("Question count updated:", count);
   });
 }
