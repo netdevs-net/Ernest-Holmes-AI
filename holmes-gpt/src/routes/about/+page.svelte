@@ -1064,7 +1064,112 @@
     }
   }
 
-  @media (max-width: 768px) {
+  /* Adjustments for mobile responsiveness */
+  @media (max-width: 640px) {
+    .hero {
+      padding: 3rem 1rem;
+      margin: 1rem;
+    }
+    
+    .hero h1, .hero-title-glow {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .hero-stats {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .stat-divider {
+      display: none;
+    }
+
+    .hero-scroll-indicator {
+      margin-top: 2rem;
+    }
+
+    .section {
+      padding: 3rem 0;
+    }
+
+    .section h2 {
+      font-size: 1.8rem;
+    }
+
+    .lead {
+      font-size: 1.2rem;
+    }
+
+    .text-block {
+      padding: 1.5rem;
+    }
+
+    .member-card {
+      padding: 1.5rem;
+    }
+
+    .member-header {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .member-avatar {
+      width: 100px;
+      height: 100px;
+    }
+
+    .sponsor-card {
+      flex-direction: column;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      gap: 1.5rem;
+    }
+
+    .sponsor-avatar {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto;
+    }
+
+    .sponsor-info h3 {
+      font-size: 1.5rem;
+    }
+
+    .sponsor-role {
+      font-size: 1rem;
+    }
+
+    .sponsor-message {
+      font-size: 1rem;
+    }
+    
+    .cta-content {
+      padding: 3rem 1rem;
+    }
+
+    .cta-content h2 {
+      font-size: 1.8rem;
+    }
+
+    .cta-buttons {
+      gap: 0.5rem;
+    }  
+
+    .cta-button {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      max-width: 250px;
+    }
+  }
+
+  @media (min-width: 768px) {
     .hero {
       padding: 4rem 1rem;
     }

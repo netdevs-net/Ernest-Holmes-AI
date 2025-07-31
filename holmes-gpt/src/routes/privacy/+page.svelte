@@ -1229,36 +1229,11 @@
 }
 
 /* Contact Section */
-  .contact-section {
-    position: relative;
-    background: 
-      linear-gradient(rgba(30, 41, 59, 0.3), rgba(51, 65, 85, 0.3)),
-      url('/images/privacy.webp');
-    background-size: cover;
-    background-position: center;
-    border-radius: 30px;
-    margin: 1rem;
-    overflow: hidden;
-    box-shadow: 
-      0 25px 50px rgba(0, 0, 0, 0.25),
-      0 0 0 1px rgba(255, 255, 255, 0.1);
-  }
-
-.contact-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  backdrop-filter: blur(3px);
-  background: rgba(30, 41, 59, 0.6);
-  z-index: 1;
+.contact-section {
+  background: var(--bg-primary);
 }
 
 .contact-content {
-  position: relative;
-  z-index: 20;
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
@@ -1266,52 +1241,41 @@
 
 .contact-intro {
   font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-secondary);
   margin-bottom: 3rem;
   line-height: 1.6;
 }
 
-  .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-  }
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
 
-  .contact-card {
-    background: var(--bg-secondary);
-    padding: 1.5rem;
-    border-radius: 20px;
-    box-shadow: 
-      0 10px 30px rgba(0, 0, 0, 0.1),
-      0 0 0 1px rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-primary);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    z-index: 25;
-  }
+.contact-card {
+  text-align: center;
+  transition: transform 0.3s ease;
+  position: relative;
+}
 
 .contact-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 .contact-icon {
   color: var(--text-accent);
-  background: rgba(var(--text-accent-rgb), 0.1);
-  padding: 1rem;
-  border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
+  filter: drop-shadow(0 2px 8px rgba(var(--text-accent-rgb), 0.3));
 }
 
 .contact-info h4 {
   color: var(--text-primary);
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
@@ -1319,26 +1283,38 @@
 .contact-link {
   color: var(--text-accent);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
   transition: all 0.3s ease;
   display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  background: rgba(var(--text-accent-rgb), 0.1);
-  border: 1px solid rgba(var(--text-accent-rgb), 0.2);
+  position: relative;
+  font-size: 0.9rem;
+}
+
+.contact-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--text-accent), var(--text-accent-hover));
+  transition: width 0.3s ease;
 }
 
 .contact-link:hover {
-  color: white;
-  background: var(--text-accent);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(var(--text-accent-rgb), 0.3);
+  color: var(--text-accent-hover);
+  transform: translateY(-1px);
+}
+
+.contact-link:hover::after {
+  width: 100%;
 }
 
 .contact-info p {
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.4;
   margin: 0;
+  font-size: 0.85rem;
 }
 
 /* Last Updated */
@@ -1354,6 +1330,115 @@
 }
 
 /* Responsive Design */
+@media (max-width: 640px) {
+  .hero {
+    padding: 3rem 1rem;
+    margin: 1rem;
+  }
+  
+  .hero h1, .hero-title-glow {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-stats {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .stat-divider {
+    display: none;
+  }
+
+  .section {
+    padding: 2rem 0;
+  }
+  
+  .section h2 {
+    font-size: 1.8rem;
+  }
+
+  .lead {
+    font-size: 1.2rem;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .policy-grid,
+  .usage-grid,
+  .protection-grid,
+  .sharing-details,
+  .additional-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .policy-card,
+  .usage-card,
+  .protection-card,
+  .sharing-card,
+  .additional-card {
+    padding: 1.5rem;
+  }
+
+  .contact-card {
+    padding: 1rem;
+  }
+
+  .contact-icon {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .contact-info h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-link {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .contact-intro {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .ownership-card {
+    padding: 1.5rem;
+  }
+  
+  .ownership-lists {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .no-sell-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  
+  .important-notice {
+    padding: 1.5rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .text-block {
+    padding: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .hero {
     padding: 4rem 1rem;
@@ -1383,7 +1468,7 @@
   }
   
   .section {
-    padding: 4rem 0;
+    padding: 3rem 0;
   }
   
   .section h2 {
