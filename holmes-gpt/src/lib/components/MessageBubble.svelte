@@ -28,16 +28,14 @@
 	$: formattedContent = isUser ? message.content : parseFormatting(message.content);
 </script>
 
-<div class="flex {isUser ? 'justify-end' : 'justify-start'} mb-3 sm:mb-4 md:mb-6">
+<div class="flex {isUser ? 'justify-end' : 'justify-start'} mb-2 sm:mb-3">
 	<div class="chat-bubble {isUser ? 'user-message' : 'holmes-message'} max-w-full lg:max-w-4xl xl:max-w-5xl">
 		<div class="prose prose-sm max-w-none">
 			{#if !isUser}
-				<div class="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
-					<div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary via-primary-600 to-secondary-purple-500 rounded-glass-lg flex items-center justify-center shadow-button">
-						<span class="text-white text-xs sm:text-sm font-bold font-display">H</span>
-					</div>
+				<div class="flex items-center space-x-2 mb-2">
+					<img src="/images/logo.png" alt="Holmes AI Logo" class="w-6 h-6 sm:w-8 sm:h-8" />
 					<div>
-						<div class="text-xs sm:text-small font-medium text-secondary-blue-700 dark:text-secondary-purple-300">AI Practitioner</div>
+						<div class="text-xs font-medium" style="color: var(--text-accent);">AI Practitioner</div>
 					</div>
 				</div>
 			{/if}
@@ -50,7 +48,7 @@
 				{/if}
 			</div>
 			
-			<div class="text-xs mt-2 sm:mt-3 {isUser ? 'text-right' : 'text-left'} flex items-center space-x-1 sm:space-x-2" style="color: var(--text-secondary);">
+			<div class="text-xs mt-1.5 {isUser ? 'text-right' : 'text-left'} flex items-center space-x-1 sm:space-x-2" style="color: var(--text-secondary);">
 				<span>{formattedTime}</span>
 				{#if !isUser}
 					<span>•</span>
@@ -81,22 +79,22 @@
 	}
 	
 	.formatted-content :global(p) {
-		margin-bottom: 1rem;
+		margin-bottom: 0.75rem;
 		color: var(--text-primary);
 	}
 	
 	.formatted-content :global(ul) {
-		margin: 1rem 0;
-		padding-left: 1.5rem;
+		margin: 0.75rem 0;
+		padding-left: 1.25rem;
 	}
 	
 	.formatted-content :global(li) {
-		margin-bottom: 0.5rem;
+		margin-bottom: 0.375rem;
 		color: var(--text-primary);
 	}
 	
 	.formatted-content :global(br) {
-		margin-bottom: 0.5rem;
+		margin-bottom: 0.375rem;
 	}
 
 	/* Ensure proper contrast for user messages */
@@ -111,6 +109,15 @@
 	/* Holmes message styling */
 	.holmes-message {
 		color: var(--text-primary);
+		border: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+	/* Enhanced border visibility for light mode */
+	@media (prefers-color-scheme: light) {
+		.holmes-message {
+			border: 1px solid rgba(0, 0, 0, 0.15);
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+		}
 	}
 
 	/* Focus styles for interactive elements */

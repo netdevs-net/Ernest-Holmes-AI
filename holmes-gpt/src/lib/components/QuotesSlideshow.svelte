@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 	import { slide } from 'svelte/transition';
+	import { BookOpen, RotateCcw, X, Play, Pause, ChevronLeft, ChevronRight, AlertCircle } from 'lucide-svelte';
 	
 	interface Quote {
 		quote: string;
@@ -152,7 +153,8 @@
 <div class="quotes-slideshow-container" tabindex="-1">
 	<div class="quotes-header">
 		<h3 class="quotes-title">
-			📖 Wisdom from Ernest Holmes
+			<BookOpen size={20} class="book-icon" />
+			Wisdom from Ernest Holmes
 			{#if totalQuotes > 0}
 				<span class="quotes-count">({totalQuotes} quotes available)</span>
 			{/if}
@@ -164,7 +166,11 @@
 				title="Pause/Resume slideshow"
 				aria-label="Pause slideshow"
 			>
-				{#if isPaused}▶️{:else}⏸️{/if}
+				{#if isPaused}
+					<Play size={16} />
+				{:else}
+					<Pause size={16} />
+				{/if}
 			</button>
 			<button 
 				class="control-btn refresh-btn" 
@@ -173,7 +179,7 @@
 				title="Refresh quotes"
 				aria-label="Refresh quotes"
 			>
-				🔄
+				<RotateCcw size={16} />
 			</button>
 			<button 
 				class="control-btn close-btn" 
@@ -181,7 +187,7 @@
 				title="Close slideshow"
 				aria-label="Close quotes slideshow"
 			>
-				✕
+				<X size={16} />
 			</button>
 		</div>
 	</div>
@@ -193,7 +199,8 @@
 		</div>
 	{:else if error}
 		<div class="error-container">
-			<p>❌ {error}</p>
+			<AlertCircle size={24} class="error-icon" />
+			<p>{error}</p>
 			<button class="retry-btn" on:click={loadQuotes}>Try Again</button>
 		</div>
 	{:else if quotes.length === 0}
@@ -210,7 +217,7 @@
 				title="Previous quote"
 				aria-label="Previous quote"
 			>
-				‹
+				<ChevronLeft size={24} />
 			</button>
 			
 			<!-- Quote Display -->
@@ -232,7 +239,7 @@
 				title="Next quote"
 				aria-label="Next quote"
 			>
-				›
+				<ChevronRight size={24} />
 			</button>
 		</div>
 		
@@ -293,6 +300,14 @@
 		font-weight: 700;
 		margin: 0;
 		text-shadow: 0 2px 4px var(--shadow-light);
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.book-icon {
+		color: var(--text-accent);
+		flexShrink: 0;
 	}
 
 	.quotes-count {
@@ -337,6 +352,11 @@
 		min-height: 300px;
 		color: var(--text-primary);
 		text-align: center;
+		gap: 0.5rem;
+	}
+
+	.error-icon {
+		color: var(--text-error);
 	}
 
 	.loading-spinner {

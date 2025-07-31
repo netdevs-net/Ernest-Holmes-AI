@@ -87,9 +87,7 @@
 	<div class="container mx-auto px-6 py-2 flex items-center justify-between max-h-screen">
 		<!-- Left side - Logo -->
 		<a href="/" class="flex items-center space-x-4 group focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-transparent rounded-xl p-2 transition-all duration-300 hover:bg-white/5" aria-label="Home - Holmes AI Chat">
-			<div class="w-10 h-10 bg-gradient-to-br from-amber-400 via-orange-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-105" role="img" aria-label="HolmesGPT Logo">
-				<span class="text-white font-bold text-lg">H</span>
-			</div>
+			<img src="/images/logo.png" alt="Holmes AI Logo" class="w-10 h-10 transition-transform group-hover:scale-105" />
 			<div>
 				<h1 class="text-2xl font-serif font-semibold gradient-text">Holmes AI</h1>
 				<p class="text-xs" style="color: var(--text-secondary);">Ernest Holmes AI Practitioner</p>

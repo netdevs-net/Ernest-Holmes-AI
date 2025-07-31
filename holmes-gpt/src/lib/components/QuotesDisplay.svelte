@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { BookOpen, RotateCcw, X, AlertCircle } from 'lucide-svelte';
 	
 	interface Quote {
 		quote: string;
@@ -76,7 +77,8 @@
 	<div class="quotes-container">
 		<div class="quotes-header">
 			<h3 class="quotes-title">
-				📖 Wisdom from Ernest Holmes
+				<BookOpen size={20} class="book-icon" />
+				Wisdom from Ernest Holmes
 				{#if totalQuotes > 0}
 					<span class="quotes-count">({totalQuotes} quotes available)</span>
 				{/if}
@@ -88,14 +90,14 @@
 					disabled={loading}
 					title="Refresh quotes"
 				>
-					🔄
+					<RotateCcw size={16} />
 				</button>
 				<button 
 					class="close-btn" 
 					on:click={onClose}
 					title="Close quotes"
 				>
-					✕
+					<X size={16} />
 				</button>
 			</div>
 		</div>
@@ -107,7 +109,8 @@
 		</div>
 	{:else if error}
 		<div class="error">
-			<p>❌ {error}</p>
+			<AlertCircle size={24} class="error-icon" />
+			<p>{error}</p>
 		</div>
 	{:else if quotes.length === 0}
 		<div class="no-quotes">
@@ -160,6 +163,11 @@
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
+	}
+
+	.book-icon {
+		color: var(--text-accent);
+		flexShrink: 0;
 	}
 	
 	.quotes-count {
@@ -226,6 +234,14 @@
 	}
 	
 	.error {
+		color: var(--text-error);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.error-icon {
 		color: var(--text-error);
 	}
 	
