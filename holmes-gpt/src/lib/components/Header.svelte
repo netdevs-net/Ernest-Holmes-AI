@@ -87,17 +87,15 @@
 	<div class="container mx-auto px-6 py-2 flex items-center justify-between max-h-screen">
 		<!-- Left side - Logo -->
 		<a href="/" class="flex items-center space-x-4 group focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-transparent rounded-xl p-2 transition-all duration-300 hover:bg-white/5" aria-label="Home - Holmes AI Chat">
-			<div class="w-10 h-10 bg-gradient-to-br from-amber-400 via-orange-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-105" role="img" aria-label="HolmesGPT Logo">
-				<span class="text-white font-bold text-lg">H</span>
-			</div>
+			<img src="/images/logo.png" alt="Holmes AI Logo" class="w-10 h-10 transition-transform group-hover:scale-105" />
 			<div>
-				<h1 class="text-xl font-serif font-semibold gradient-text">Holmes AI</h1>
+				<h1 class="text-2xl font-serif font-semibold gradient-text">Holmes AI</h1>
 				<p class="text-xs" style="color: var(--text-secondary);">Ernest Holmes AI Practitioner</p>
 			</div>
 		</a>
 		
-		<!-- Center - Response Style Toggle -->
-		<div class="flex-1 flex justify-center">
+		<!-- Center - Response Style Toggle (Desktop) -->
+		<div class="flex-1 flex justify-center desktop-only">
 			<ResponseStyleToggle on:styleChanged={({ detail }) => dispatch('styleChanged', detail)} />
 		</div>
 		
@@ -140,6 +138,12 @@
 				<!-- Navigation Dropdown -->
 				{#if isMenuOpen}
 					<div class="nav-dropdown">
+						<!-- Mobile Response Style Toggle -->
+						<div class="mobile-toggle-container">
+							<span class="toggle-label">Response Style</span>
+							<ResponseStyleToggle on:styleChanged={({ detail }) => dispatch('styleChanged', detail)} />
+						</div>
+						<div class="dropdown-divider"></div>
 						<a href="/about" class="nav-dropdown-item" class:active={$page.url.pathname === '/about'} on:click={closeAllMenus}>
 							<Info size={16} class="dropdown-icon" />
 							<span>About</span>
@@ -244,6 +248,44 @@
 		}
 	}
 	
+	/* Mobile Toggle Container */
+	.mobile-toggle-container {
+		display: none; /* Hidden by default (desktop) */
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.75rem 1rem;
+		border-radius: 8px;
+		background: rgba(239, 100, 72, 0.05);
+		border: 1px solid rgba(239, 100, 72, 0.1);
+		margin-bottom: 0.25rem;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.toggle-label {
+		color: var(--text-primary);
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		text-align: center;
+		margin: 0;
+		width: 100%;
+	}
+
+	.dropdown-divider {
+		height: 1px;
+		background: var(--border-primary);
+		margin: 0.5rem 0;
+		opacity: 0.5;
+	}
+
+	/* Desktop only class */
+	.desktop-only {
+		display: flex;
+	}
+
 	.admin-indicator {
 		display: flex;
 		align-items: center;
@@ -275,9 +317,9 @@
 			padding: 0.5rem;
 		}
 		
-		/* Hide center content on tablet and mobile */
-		.container > div:nth-child(2) {
-			display: none;
+		/* Hide desktop-only elements on tablet and mobile */
+		.desktop-only {
+			display: none !important;
 		}
 		
 		/* Logo stays on left */
@@ -307,7 +349,7 @@
 		}
 		
 		h1 {
-			font-size: 1.25rem;
+			font-size: 1.5rem;
 		}
 		
 		/* Keep logo and navigation on same line */
@@ -321,10 +363,17 @@
 			overflow: visible;
 		}
 	}
+
+	/* Show mobile toggle container on small screens */
+	@media (max-width: 1024px) {
+		.mobile-toggle-container {
+			display: flex;
+		}
+	}
 	
 @media (max-width: 320px) {
   h1 {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
 
   header {
@@ -339,7 +388,7 @@
 		}
 		
 		h1 {
-			font-size: 1rem;
+			font-size: 1.125rem;
 		}
 		
 		/* Minimal height on very small screens */

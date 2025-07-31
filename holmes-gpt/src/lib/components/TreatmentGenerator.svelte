@@ -570,17 +570,17 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding: 1rem;
+		padding: 2rem 1rem;
 		backdrop-filter: blur(8px);
 	}
 
 	.treatment-generator-container {
 		background: var(--glass-bg);
 		border-radius: 20px;
-		padding: 2rem;
+		padding: 2.5rem;
 		max-width: 800px;
 		width: 100%;
-		max-height: 90vh;
+		max-height: 70vh;
 		overflow-y: auto;
 		overflow-x: hidden;
 		box-shadow: 0 25px 50px var(--shadow-medium);
@@ -588,15 +588,37 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		backdrop-filter: blur(20px);
 		/* Prevent box-shadows from extending beyond container */
 		clip-path: inset(0);
+		position: relative;
+		scrollbar-width: thin;
+		scrollbar-color: var(--border-secondary) transparent;
+		margin: auto;
+	}
+
+	.treatment-generator-container::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	.treatment-generator-container::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	.treatment-generator-container::-webkit-scrollbar-thumb {
+		background: var(--border-secondary);
+		border-radius: 3px;
+	}
+
+	.treatment-generator-container::-webkit-scrollbar-thumb:hover {
+		background: var(--text-secondary);
 	}
 
 	.generator-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		margin-bottom: 2rem;
-		padding-bottom: 1rem;
+		margin-bottom: 2.5rem;
+		padding-bottom: 1.5rem;
 		border-bottom: 1px solid var(--border-primary);
+		position: relative;
 	}
 
 	.generator-title {
@@ -604,16 +626,11 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		font-size: 1.8rem;
 		font-weight: 700;
 		margin: 0;
-		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
 	}
 	
-	.title-icon {
-		color: var(--text-accent);
-		flex-shrink: 0;
-	}
 
 	.close-btn {
 		background: none;
@@ -633,14 +650,14 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 	.generator-content {
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
+		gap: 2.5rem;
 	}
 
 	.section-title {
 		color: var(--text-accent);
 		font-size: 1.2rem;
 		font-weight: 600;
-		margin: 0 0 1rem 0;
+		margin: 0 0 1.5rem 0;
 	}
 
 	.category-grid {
@@ -657,6 +674,8 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		cursor: pointer;
 		transition: all 0.3s ease;
 		text-align: left;
+		touch-action: manipulation;
+		-webkit-tap-highlight-color: transparent;
 	}
 
 	.category-btn:hover {
@@ -700,6 +719,8 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		transition: all 0.3s ease;
 		color: var(--text-primary);
 		font-size: 0.9rem;
+		touch-action: manipulation;
+		-webkit-tap-highlight-color: transparent;
 	}
 
 	.element-btn:hover {
@@ -757,6 +778,9 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		line-height: 1.6;
 		resize: vertical;
 		transition: all 0.3s ease;
+		font-family: inherit;
+		-webkit-appearance: none;
+		appearance: none;
 	}
 
 	.custom-treatment-input:focus {
@@ -791,6 +815,8 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		box-shadow: 0 4px 12px var(--shadow-light);
 		/* Prevent shadow from extending beyond container */
 		clip-path: inset(0);
+		touch-action: manipulation;
+		-webkit-tap-highlight-color: transparent;
 	}
 
 	.generate-btn:hover:not(:disabled) {
@@ -836,13 +862,18 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		background: var(--glass-bg);
 		border-radius: 8px;
 		border-left: 4px solid var(--text-accent);
+		overflow-wrap: break-word;
+		word-wrap: break-word;
 	}
+
 
 
 	.treatment-actions {
 		display: flex;
 		gap: 1rem;
 		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
 	}
 
 	.action-btn {
@@ -854,6 +885,11 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		transition: all 0.3s ease;
 		color: var(--text-primary);
 		font-weight: 500;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		min-width: 140px;
+		justify-content: center;
 	}
 
 	.action-btn:hover {
@@ -861,18 +897,19 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		border-color: var(--text-accent);
 		color: var(--text-accent);
 		transform: translateY(-1px);
+		box-shadow: 0 2px 8px var(--shadow-light);
 	}
 
 	.copy-btn:hover {
 		background: var(--bg-tertiary);
-		border-color: var(--text-success);
-		color: var(--text-success);
+		border-color: var(--text-accent);
+		color: var(--text-accent);
 	}
 
 	.save-btn:hover {
 		background: var(--bg-tertiary);
-		border-color: var(--text-info);
-		color: var(--text-info);
+		border-color: var(--text-accent);
+		color: var(--text-accent);
 	}
 
 	/* Treatment Display Mode Styles */
@@ -912,29 +949,282 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 	.selection-mode {
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
+		gap: 1.5rem;
 	}
 
 	@media (max-width: 768px) {
+		.treatment-generator-overlay {
+			padding: 2rem 0.5rem;
+			align-items: center;
+		}
+
 		.treatment-generator-container {
-			padding: 1rem;
-			margin: 0.5rem;
+			padding: 1.5rem;
+			margin: 0 auto;
+			max-width: 95%;
+			max-height: 70vh;
+			border-radius: 16px;
+		}
+
+		.generator-header {
+			margin-bottom: 1.5rem;
+			padding-bottom: 1rem;
+			flex-direction: column;
+			gap: 0.75rem;
+			align-items: flex-start;
+			position: relative;
 		}
 
 		.generator-title {
-			font-size: 1.5rem;
+			font-size: 1.2rem;
+			line-height: 1.2;
+			text-align: left;
+			width: 100%;
+			justify-content: flex-start;
+			padding-right: 3rem;
+		}
+
+		.close-btn {
+			position: absolute;
+			top: 0;
+			right: 0;
+			background: var(--bg-secondary);
+			border-radius: 50%;
+			width: 36px;
+			height: 36px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.generator-content {
+			gap: 1.5rem;
+		}
+
+		.section-title {
+			font-size: 1rem;
+			margin-bottom: 1rem;
 		}
 
 		.category-grid {
-			grid-template-columns: 1fr;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 0.375rem;
+		}
+
+		.category-btn {
+			padding: 0.5rem;
+			border-radius: 8px;
+		}
+
+		.category-name {
+			font-size: 0.9rem;
+			margin-bottom: 0.25rem;
+		}
+
+		.category-description {
+			font-size: 0.75rem;
+			line-height: 1.3;
 		}
 
 		.elements-grid {
-			grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+			grid-template-columns: repeat(2, 1fr);
+			gap: 0.5rem;
+		}
+
+		.element-btn {
+			padding: 0.625rem;
+			font-size: 0.85rem;
+			border-radius: 6px;
+		}
+
+		.custom-toggle {
+			margin: 1rem 0;
+		}
+
+		.toggle-btn {
+			padding: 0.75rem 1rem;
+			font-size: 0.9rem;
+			width: 100%;
+			text-align: center;
+		}
+
+		.custom-description {
+			font-size: 0.85rem;
+			margin-bottom: 0.75rem;
+		}
+
+		.custom-treatment-input {
+			padding: 0.875rem;
+			font-size: 0.95rem;
+			border-radius: 10px;
+			min-height: 120px;
+		}
+
+		.generate-btn {
+			padding: 0.875rem 1.5rem;
+			font-size: 1rem;
+			width: 100%;
+			justify-content: center;
+		}
+
+		.treatment-result {
+			padding: 1rem;
+			margin-top: 0.75rem;
+		}
+
+		.treatment-text {
+			font-size: 1rem;
+			line-height: 1.6;
+			padding: 0.875rem;
+			margin-bottom: 1rem;
 		}
 
 		.treatment-actions {
 			flex-direction: column;
+			gap: 0.75rem;
+			align-items: stretch;
+		}
+
+		.action-btn {
+			padding: 0.75rem 1rem;
+			font-size: 0.9rem;
+			width: 100%;
+			justify-content: center;
+			min-width: auto;
+		}
+
+		.back-btn {
+			padding: 0.75rem 1rem;
+			font-size: 0.9rem;
+			width: 100%;
+			justify-content: center;
+		}
+
+
+		.selection-mode {
+			gap: 1.5rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.treatment-generator-overlay {
+			padding: 1.5rem 0.5rem;
+		}
+
+		.treatment-generator-container {
+			padding: 1.25rem;
+			max-width: 95%;
+			max-height: 70vh;
+			border-radius: 12px;
+		}
+
+		.generator-header {
+			margin-bottom: 1.25rem;
+			padding-bottom: 0.75rem;
+		}
+
+		.generator-title {
+			font-size: 1.1rem;
+			line-height: 1.1;
+		}
+
+		.close-btn {
+			width: 32px;
+			height: 32px;
+		}
+
+		.generator-content {
+			gap: 1.25rem;
+		}
+
+		.section-title {
+			font-size: 0.95rem;
+			margin-bottom: 0.75rem;
+		}
+
+		.category-grid {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 0.375rem;
+		}
+
+		.category-btn {
+			padding: 0.5rem;
+		}
+
+		.category-name {
+			font-size: 0.85rem;
+		}
+
+		.category-description {
+			font-size: 0.75rem;
+		}
+
+		.elements-grid {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 0.375rem;
+		}
+
+		.element-btn {
+			padding: 0.5rem;
+			font-size: 0.8rem;
+		}
+
+		.custom-toggle {
+			margin: 0.75rem 0;
+		}
+
+		.toggle-btn {
+			padding: 0.625rem 0.875rem;
+			font-size: 0.85rem;
+		}
+
+		.custom-description {
+			font-size: 0.8rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.custom-treatment-input {
+			padding: 0.625rem;
+			font-size: 0.85rem;
+			min-height: 70px;
+		}
+
+		.generate-btn {
+			padding: 0.75rem 1.25rem;
+			font-size: 0.95rem;
+		}
+
+		.treatment-result {
+			padding: 0.75rem;
+			margin-top: 0.375rem;
+		}
+
+		.treatment-text {
+			font-size: 0.85rem;
+			line-height: 1.4;
+			padding: 0.625rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.treatment-actions {
+			gap: 0.5rem;
+			align-items: stretch;
+		}
+
+		.action-btn {
+			padding: 0.625rem 0.875rem;
+			font-size: 0.85rem;
+			min-width: auto;
+		}
+
+		.back-btn {
+			padding: 0.625rem 0.875rem;
+			font-size: 0.85rem;
+		}
+
+
+		.selection-mode {
+			gap: 1.25rem;
 		}
 	}
 </style> 

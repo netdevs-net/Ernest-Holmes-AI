@@ -7,7 +7,7 @@ export default {
       colors: {
         // Primary color - keep existing orange
         primary: {
-          DEFAULT: "#EF6448",
+          DEFAULT: "#febb00",
           50: "#FEF3F1",
           100: "#FDE7E3",
           200: "#FBCFC7",

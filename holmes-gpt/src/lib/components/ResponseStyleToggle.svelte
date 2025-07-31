@@ -188,32 +188,51 @@
 	@media (max-width: 768px) {
 		.response-style-toggle-container {
 			gap: 0.5rem;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			padding: 0.25rem;
 		}
 
 		.label {
-			font-size: 0.75rem;
+			font-size: 0.7rem;
+			padding: 0.2rem 0.4rem;
 		}
 
 		.toggle-switch {
-			width: 3.5rem;
-			height: 1.75rem;
+			width: 3rem;
+			height: 1.5rem;
+			flex-shrink: 0;
 		}
 
 		.toggle-slider {
-			width: 1.25rem;
-			height: 1.25rem;
+			left: 0.25rem;
+			width: 1rem;
+			height: 1rem;
 		}
 
 		.toggle-switch.modern .toggle-slider {
-			transform: translateX(1.875rem);
+			transform: translateX(1.5rem);
+		}
+
+		.toggle-switch.his-words .toggle-slider {
+			transform: translateX(0);
 		}
 
 		.toggle-switch.modern:hover .toggle-slider {
-			transform: translateX(1.875rem) scale(1.05);
+			transform: translateX(1.5rem) scale(1.05);
 		}
 
 		.toggle-switch.modern:active .toggle-slider {
-			transform: translateX(2rem) scale(0.95);
+			transform: translateX(1.5rem) scale(0.95);
+		}
+
+		.toggle-switch.his-words:hover .toggle-slider {
+			transform: translateX(0) scale(1.05);
+		}
+
+		.toggle-switch.his-words:active .toggle-slider {
+			transform: translateX(0) scale(0.95);
 		}
 	}
 </style> 
