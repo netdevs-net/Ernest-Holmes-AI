@@ -606,31 +606,4 @@
 		background: #94a3b8;
 	}
 	
-	/* Formatted content styles */
-	.formatted-content strong {
-		color: #d97706;
-		font-weight: 600;
-	}
-	
-	.formatted-content em {
-		color: #6b7280;
-		font-style: italic;
-	}
-	
-	.formatted-content p {
-		margin-bottom: 1rem;
-	}
-	
-	.formatted-content ul {
-		margin-left: 1rem;
-		margin-bottom: 1rem;
-	}
-	
-	.formatted-content li {
-		margin-bottom: 0.5rem;
-	}
-	
-	.formatted-content br {
-		margin-bottom: 0.5rem;
-	}
 </style> 

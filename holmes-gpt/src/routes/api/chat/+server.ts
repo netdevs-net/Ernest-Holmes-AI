@@ -20,7 +20,7 @@ function getApiKey(): string {
     // Fall back to environment variable
     console.log("Docker secret not found, using environment variable");
   }
-  
+
   // Fall back to environment variable
   return env.ANTHROPIC_API_KEY || "";
 }
@@ -187,73 +187,132 @@ function getRelevantQuotes(userMessage: string): string[] {
 
     // Enhanced keyword matching for relevance
     const userWords = userMessage.toLowerCase().split(/\s+/);
-    const meaningfulWords = userWords.filter(word => word.length > 3);
-    
+    const meaningfulWords = userWords.filter((word) => word.length > 3);
+
     // Define spiritual keywords for better matching
     const spiritualKeywords = [
-      'god', 'spirit', 'divine', 'infinite', 'mind', 'consciousness', 'prayer', 'meditation',
-      'healing', 'health', 'abundance', 'prosperity', 'love', 'fear', 'faith', 'principle',
-      'law', 'creative', 'power', 'intelligence', 'substance', 'truth', 'wisdom', 'purpose',
-      'relationship', 'challenge', 'difficulty', 'death', 'life', 'oneness', 'unity',
-      'practice', 'understanding', 'guidance', 'path', 'trust', 'transformation'
+      "god",
+      "spirit",
+      "divine",
+      "infinite",
+      "mind",
+      "consciousness",
+      "prayer",
+      "meditation",
+      "healing",
+      "health",
+      "abundance",
+      "prosperity",
+      "love",
+      "fear",
+      "faith",
+      "principle",
+      "law",
+      "creative",
+      "power",
+      "intelligence",
+      "substance",
+      "truth",
+      "wisdom",
+      "purpose",
+      "relationship",
+      "challenge",
+      "difficulty",
+      "death",
+      "life",
+      "oneness",
+      "unity",
+      "practice",
+      "understanding",
+      "guidance",
+      "path",
+      "trust",
+      "transformation",
     ];
 
     // Score quotes based on relevance
-    const scoredQuotes = allQuotes.map(quote => {
+    const scoredQuotes = allQuotes.map((quote) => {
       let score = 0;
       const quoteLower = quote.toLowerCase();
-      
+
       // Direct keyword matches
-      meaningfulWords.forEach(word => {
+      meaningfulWords.forEach((word) => {
         if (quoteLower.includes(word)) {
           score += 2;
         }
       });
-      
+
       // Spiritual keyword matches (weighted higher)
-      spiritualKeywords.forEach(keyword => {
-        if (quoteLower.includes(keyword) && userWords.some(word => 
-          word.includes(keyword) || keyword.includes(word)
-        )) {
+      spiritualKeywords.forEach((keyword) => {
+        if (
+          quoteLower.includes(keyword) &&
+          userWords.some(
+            (word) => word.includes(keyword) || keyword.includes(word),
+          )
+        ) {
           score += 3;
         }
       });
-      
+
       // Semantic similarity for common spiritual concepts
-      if (userMessage.toLowerCase().includes('fear') && quoteLower.includes('fear')) {
+      if (
+        userMessage.toLowerCase().includes("fear") &&
+        quoteLower.includes("fear")
+      ) {
         score += 4;
       }
-      if (userMessage.toLowerCase().includes('pray') && quoteLower.includes('prayer')) {
+      if (
+        userMessage.toLowerCase().includes("pray") &&
+        quoteLower.includes("prayer")
+      ) {
         score += 4;
       }
-      if (userMessage.toLowerCase().includes('heal') && quoteLower.includes('healing')) {
+      if (
+        userMessage.toLowerCase().includes("heal") &&
+        quoteLower.includes("healing")
+      ) {
         score += 4;
       }
-      if (userMessage.toLowerCase().includes('abundance') && quoteLower.includes('abundance')) {
+      if (
+        userMessage.toLowerCase().includes("abundance") &&
+        quoteLower.includes("abundance")
+      ) {
         score += 4;
       }
-      if (userMessage.toLowerCase().includes('god') && quoteLower.includes('infinite mind')) {
+      if (
+        userMessage.toLowerCase().includes("god") &&
+        quoteLower.includes("infinite mind")
+      ) {
         score += 3;
       }
-      if (userMessage.toLowerCase().includes('purpose') && quoteLower.includes('purpose')) {
+      if (
+        userMessage.toLowerCase().includes("purpose") &&
+        quoteLower.includes("purpose")
+      ) {
         score += 4;
       }
-      if (userMessage.toLowerCase().includes('practice') && quoteLower.includes('practice')) {
+      if (
+        userMessage.toLowerCase().includes("practice") &&
+        quoteLower.includes("practice")
+      ) {
         score += 3;
       }
-      if (userMessage.toLowerCase().includes('faith') && quoteLower.includes('faith')) {
+      if (
+        userMessage.toLowerCase().includes("faith") &&
+        quoteLower.includes("faith")
+      ) {
         score += 4;
       }
-      
+
       return { quote, score };
     });
 
     // Sort by relevance score and return top matches
     const relevantQuotes = scoredQuotes
-      .filter(item => item.score > 0)
+      .filter((item) => item.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, 2)
-      .map(item => item.quote);
+      .map((item) => item.quote);
 
     // If no relevant quotes found, return random meaningful quotes
     if (relevantQuotes.length === 0) {
@@ -279,7 +338,8 @@ function getRelevantQAExamples(userMessage: string): string[] {
     );
     const qaData = fs.readFileSync(qaPath, "utf-8");
     const qaJson = JSON.parse(qaData);
-    const allQA: Array<{ question: string; answer: string }> = qaJson.qa_pairs || [];
+    const allQA: Array<{ question: string; answer: string }> =
+      qaJson.qa_pairs || [];
 
     if (allQA.length === 0) {
       return [];
@@ -287,16 +347,16 @@ function getRelevantQAExamples(userMessage: string): string[] {
 
     // Enhanced keyword matching for Q&A relevance
     const userWords = userMessage.toLowerCase().split(/\s+/);
-    const meaningfulWords = userWords.filter(word => word.length > 3);
+    const meaningfulWords = userWords.filter((word) => word.length > 3);
 
     // Score Q&A pairs based on relevance
-    const scoredQA = allQA.map(qa => {
+    const scoredQA = allQA.map((qa) => {
       let score = 0;
       const questionLower = qa.question.toLowerCase();
       const answerLower = qa.answer.toLowerCase();
-      
+
       // Check question relevance
-      meaningfulWords.forEach(word => {
+      meaningfulWords.forEach((word) => {
         if (questionLower.includes(word)) {
           score += 3; // Questions are weighted higher
         }
@@ -304,25 +364,35 @@ function getRelevantQAExamples(userMessage: string): string[] {
           score += 2;
         }
       });
-      
+
       // Check for spiritual concept matches
-      const spiritualConcepts = ['prayer', 'meditation', 'purpose', 'faith', 'practice', 'guidance', 'understanding'];
-      spiritualConcepts.forEach(concept => {
-        if (userMessage.toLowerCase().includes(concept) && 
-            (questionLower.includes(concept) || answerLower.includes(concept))) {
+      const spiritualConcepts = [
+        "prayer",
+        "meditation",
+        "purpose",
+        "faith",
+        "practice",
+        "guidance",
+        "understanding",
+      ];
+      spiritualConcepts.forEach((concept) => {
+        if (
+          userMessage.toLowerCase().includes(concept) &&
+          (questionLower.includes(concept) || answerLower.includes(concept))
+        ) {
           score += 4;
         }
       });
-      
+
       return { qa, score };
     });
 
     // Return relevant Q&A examples (up to 1 for context)
     const relevantQA = scoredQA
-      .filter(item => item.score > 0)
+      .filter((item) => item.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, 1)
-      .map(item => `Q: ${item.qa.question}\nA: ${item.qa.answer}`);
+      .map((item) => `Q: ${item.qa.question}\nA: ${item.qa.answer}`);
 
     return relevantQA;
   } catch (error) {
@@ -342,7 +412,8 @@ function getRelevantTreatments(userMessage: string): string[] {
     );
     const treatmentsData = fs.readFileSync(treatmentsPath, "utf-8");
     const treatmentsJson = JSON.parse(treatmentsData);
-    const allTreatments: Array<{ title: string; treatment: string }> = treatmentsJson.treatments || [];
+    const allTreatments: Array<{ title: string; treatment: string }> =
+      treatmentsJson.treatments || [];
 
     if (allTreatments.length === 0) {
       return [];
@@ -350,16 +421,16 @@ function getRelevantTreatments(userMessage: string): string[] {
 
     // Enhanced keyword matching for treatment relevance
     const userWords = userMessage.toLowerCase().split(/\s+/);
-    const meaningfulWords = userWords.filter(word => word.length > 3);
+    const meaningfulWords = userWords.filter((word) => word.length > 3);
 
     // Score treatments based on relevance
-    const scoredTreatments = allTreatments.map(treatment => {
+    const scoredTreatments = allTreatments.map((treatment) => {
       let score = 0;
       const titleLower = treatment.title.toLowerCase();
       const treatmentLower = treatment.treatment.toLowerCase();
-      
+
       // Check title and treatment content relevance
-      meaningfulWords.forEach(word => {
+      meaningfulWords.forEach((word) => {
         if (titleLower.includes(word)) {
           score += 3; // Titles are weighted higher
         }
@@ -367,30 +438,42 @@ function getRelevantTreatments(userMessage: string): string[] {
           score += 2;
         }
       });
-      
+
       // Check for specific spiritual needs
-      if (userMessage.toLowerCase().includes('purpose') && titleLower.includes('purpose')) {
+      if (
+        userMessage.toLowerCase().includes("purpose") &&
+        titleLower.includes("purpose")
+      ) {
         score += 5;
       }
-      if (userMessage.toLowerCase().includes('healing') && titleLower.includes('healing')) {
+      if (
+        userMessage.toLowerCase().includes("healing") &&
+        titleLower.includes("healing")
+      ) {
         score += 5;
       }
-      if (userMessage.toLowerCase().includes('prosperity') && titleLower.includes('prosperity')) {
+      if (
+        userMessage.toLowerCase().includes("prosperity") &&
+        titleLower.includes("prosperity")
+      ) {
         score += 5;
       }
-      if (userMessage.toLowerCase().includes('practice') && titleLower.includes('practice')) {
+      if (
+        userMessage.toLowerCase().includes("practice") &&
+        titleLower.includes("practice")
+      ) {
         score += 4;
       }
-      
+
       return { treatment, score };
     });
 
     // Return relevant treatments (up to 1 for context)
     const relevantTreatments = scoredTreatments
-      .filter(item => item.score > 0)
+      .filter((item) => item.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, 1)
-      .map(item => `${item.treatment.title}:\n${item.treatment.treatment}`);
+      .map((item) => `${item.treatment.title}:\n${item.treatment.treatment}`);
 
     return relevantTreatments;
   } catch (error) {
@@ -409,36 +492,40 @@ async function makeApiCall(
       responseStyle === "his-words"
         ? HOLMES_SYSTEM_PROMPT
         : MODERN_SYSTEM_PROMPT;
-    
+
     // Get relevant quotes and Q&A examples for context
     const relevantQuotes = getRelevantQuotes(message);
     const relevantQA = getRelevantQAExamples(message);
     const relevantTreatments = getRelevantTreatments(message);
-    
+
     // Debug: Log which prompt is being used
-    console.log(`Using ${responseStyle === "his-words" ? "HOLMES" : "MODERN"} prompt for response style: ${responseStyle}`);
-    console.log(`Found ${relevantQuotes.length} relevant quotes, ${relevantQA.length} Q&A examples, and ${relevantTreatments.length} treatments`);
+    console.log(
+      `Using ${responseStyle === "his-words" ? "HOLMES" : "MODERN"} prompt for response style: ${responseStyle}`,
+    );
+    console.log(
+      `Found ${relevantQuotes.length} relevant quotes, ${relevantQA.length} Q&A examples, and ${relevantTreatments.length} treatments`,
+    );
 
     // Enhance the system prompt with relevant context
     let enhancedSystemPrompt = systemPrompt;
-    
+
     if (relevantQuotes.length > 0) {
       enhancedSystemPrompt += `\n\n**RELEVANT QUOTES FOR CONTEXT:**
-${relevantQuotes.map((quote, index) => `${index + 1}. "${quote}"`).join('\n')}
+${relevantQuotes.map((quote, index) => `${index + 1}. "${quote}"`).join("\n")}
 
 Use these quotes as inspiration and reference them when appropriate in your response.`;
     }
-    
+
     if (relevantQA.length > 0) {
       enhancedSystemPrompt += `\n\n**RELEVANT Q&A EXAMPLE FOR CONTEXT:**
-${relevantQA.join('\n')}
+${relevantQA.join("\n")}
 
 Use this example as a reference for how to address similar questions.`;
     }
-    
+
     if (relevantTreatments.length > 0) {
       enhancedSystemPrompt += `\n\n**RELEVANT AFFIRMATIVE TREATMENT FOR CONTEXT:**
-${relevantTreatments.join('\n')}
+${relevantTreatments.join("\n")}
 
 Use this treatment as inspiration for creating affirmative statements or spiritual practices in your response.`;
     }
@@ -527,8 +614,10 @@ export const POST: RequestHandler = async ({
     }
 
     // Debug: Log the response style being used
-    console.log(`API Call - Response Style: ${responseStyle}, Message: ${message.substring(0, 50)}...`);
-    
+    console.log(
+      `API Call - Response Style: ${responseStyle}, Message: ${message.substring(0, 50)}...`,
+    );
+
     const response = await makeApiCall(message, responseStyle);
 
     return json({

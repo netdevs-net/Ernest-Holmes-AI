@@ -26,50 +26,89 @@ function loadQuotes(): Quote[] {
     const allQuotes: Quote[] = JSON.parse(quotesData);
 
     // Filter for strong, meaningful quotes under 100 characters
-    const meaningfulQuotes = allQuotes.filter(
-      (quote) => {
-        const cleanQuote = quote.quote.trim();
-        
-        // Length filter: between 30 and 100 characters
-        if (cleanQuote.length < 30 || cleanQuote.length > 100) {
+    const meaningfulQuotes = allQuotes.filter((quote) => {
+      const cleanQuote = quote.quote.trim();
+
+      // Length filter: between 30 and 100 characters
+      if (cleanQuote.length < 30 || cleanQuote.length > 100) {
+        return false;
+      }
+
+      // Quality filters: exclude metadata, corrections, etc.
+      const excludePatterns = [
+        "***",
+        "Transcriber",
+        "GUTENBERG",
+        "correction",
+        "printer",
+        "page",
+        "chapter",
+        "section",
+        "footnote",
+        "endnote",
+        "ibid",
+        "op cit",
+        "et al",
+        "vol",
+        "ed",
+        "p.",
+        "pp.",
+        "©",
+        "copyright",
+        "all rights reserved",
+        "public domain",
+      ];
+
+      const lowerQuote = cleanQuote.toLowerCase();
+      for (const pattern of excludePatterns) {
+        if (lowerQuote.includes(pattern.toLowerCase())) {
           return false;
         }
-        
-        // Quality filters: exclude metadata, corrections, etc.
-        const excludePatterns = [
-          "***", "Transcriber", "GUTENBERG", "correction", "printer",
-          "page", "chapter", "section", "footnote", "endnote",
-          "ibid", "op cit", "et al", "vol", "ed", "p.", "pp.",
-          "©", "copyright", "all rights reserved", "public domain"
-        ];
-        
-        const lowerQuote = cleanQuote.toLowerCase();
-        for (const pattern of excludePatterns) {
-          if (lowerQuote.includes(pattern.toLowerCase())) {
-            return false;
-          }
-        }
-        
-        // Strength filters: look for powerful words and concepts
-        const strengthWords = [
-          "power", "divine", "spirit", "mind", "consciousness", "truth",
-          "love", "wisdom", "faith", "belief", "reality", "creation",
-          "infinite", "eternal", "perfect", "harmony", "peace", "joy",
-          "abundance", "healing", "transformation", "awakening",
-          "presence", "essence", "nature", "principle", "law"
-        ];
-        
-        const hasStrengthWord = strengthWords.some(word => 
-          lowerQuote.includes(word.toLowerCase())
-        );
-        
-        // Must have at least one strength word or be a complete thought
-        return hasStrengthWord || 
-               (cleanQuote.includes(".") && cleanQuote.length > 40) ||
-               (cleanQuote.includes("!") && cleanQuote.length > 30) ||
-               (cleanQuote.includes("?") && cleanQuote.length > 35);
       }
-    );
+
+      // Strength filters: look for powerful words and concepts
+      const strengthWords = [
+        "power",
+        "divine",
+        "spirit",
+        "mind",
+        "consciousness",
+        "truth",
+        "love",
+        "wisdom",
+        "faith",
+        "belief",
+        "reality",
+        "creation",
+        "infinite",
+        "eternal",
+        "perfect",
+        "harmony",
+        "peace",
+        "joy",
+        "abundance",
+        "healing",
+        "transformation",
+        "awakening",
+        "presence",
+        "essence",
+        "nature",
+        "principle",
+        "law",
+      ];
+
+      const hasStrengthWord = strengthWords.some((word) =>
+        lowerQuote.includes(word.toLowerCase()),
+      );
+
+      // Must have at least one strength word or be a complete thought
+      return (
+        hasStrengthWord ||
+        (cleanQuote.includes(".") && cleanQuote.length > 40) ||
+        (cleanQuote.includes("!") && cleanQuote.length > 30) ||
+        (cleanQuote.includes("?") && cleanQuote.length > 35)
+      );
+    });
 
     quotesCache = meaningfulQuotes;
     return meaningfulQuotes;

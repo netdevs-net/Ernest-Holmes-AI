@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   holmes-gpt:
@@ -20,4 +20,4 @@ services:
 
 secrets:
   anthropic_api_key:
-    external: true 
+    external: true
