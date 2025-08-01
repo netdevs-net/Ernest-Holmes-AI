@@ -76,8 +76,9 @@ storybook-static
 tmp/
 temp/
 
-# Downloads and temporary files
-downloads/
+# Downloads and temporary files (keeping training data)
+downloads/*
+!downloads/training_data/
 *.pdf
 *.cbz
 *.jpg

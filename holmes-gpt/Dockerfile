@@ -41,6 +41,9 @@ COPY --from=builder /app/build ./build
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/package-lock.json ./package-lock.json
 
+# Copy the quotes data
+COPY --from=builder /app/downloads/training_data ./downloads/training_data
+
 # Install production dependencies (now includes SvelteKit packages)
 RUN npm ci --omit=dev
 
