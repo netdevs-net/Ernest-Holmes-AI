@@ -17,11 +17,19 @@
 	let aiResponse = '';
 	let responseError = '';
 	
+	// Email statistics
+	let emailStats: any = null;
+	let emailStatsLoading = false;
+	let emailStatsError = '';
+	
 	// Categories for filtering
 	const categories = ['all', 'spiritual', 'practical', 'metaphysical', 'personal', 'general'];
 	
 	onMount(async () => {
-		await loadQuestions();
+		await Promise.all([
+			loadQuestions(),
+			loadEmailStats()
+		]);
 	});
 	
 	async function loadQuestions() {
@@ -39,6 +47,24 @@
 			console.error('Error loading questions:', err);
 		} finally {
 			loading = false;
+		}
+	}
+	
+	async function loadEmailStats() {
+		try {
+			emailStatsLoading = true;
+			const response = await fetch('/api/emails?action=stats');
+			if (response.ok) {
+				const data = await response.json();
+				emailStats = data.data;
+			} else {
+				emailStatsError = 'Failed to load email statistics';
+			}
+		} catch (err) {
+			emailStatsError = 'Error loading email statistics';
+			console.error('Error loading email stats:', err);
+		} finally {
+			emailStatsLoading = false;
 		}
 	}
 	
@@ -239,7 +265,7 @@
 
 	<!-- Stats -->
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+		<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
 			<div class="bg-white rounded-lg shadow p-6">
 				<div class="flex items-center">
 					<div class="flex-shrink-0">
@@ -283,6 +309,79 @@
 					</div>
 				</div>
 			</div>
+			
+			<!-- Email Statistics -->
+			{#if emailStatsLoading}
+				<div class="bg-white rounded-lg shadow p-6">
+					<div class="flex items-center">
+						<div class="flex-shrink-0">
+							<div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+								<span class="text-white font-semibold">📧</span>
+							</div>
+						</div>
+						<div class="ml-4">
+							<p class="text-sm font-medium text-gray-500">Total Emails</p>
+							<p class="text-2xl font-semibold text-gray-900">Loading...</p>
+						</div>
+					</div>
+				</div>
+			{:else if emailStatsError}
+				<div class="bg-white rounded-lg shadow p-6">
+					<div class="flex items-center">
+						<div class="flex-shrink-0">
+							<div class="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
+								<span class="text-white font-semibold">❌</span>
+							</div>
+						</div>
+						<div class="ml-4">
+							<p class="text-sm font-medium text-gray-500">Email Stats</p>
+							<p class="text-sm text-red-600">Error loading</p>
+						</div>
+					</div>
+				</div>
+			{:else if emailStats}
+				<div class="bg-white rounded-lg shadow p-6">
+					<div class="flex items-center">
+						<div class="flex-shrink-0">
+							<div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+								<span class="text-white font-semibold">📧</span>
+							</div>
+						</div>
+						<div class="ml-4">
+							<p class="text-sm font-medium text-gray-500">Total Emails</p>
+							<p class="text-2xl font-semibold text-gray-900">{emailStats.total_emails}</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bg-white rounded-lg shadow p-6">
+					<div class="flex items-center">
+						<div class="flex-shrink-0">
+							<div class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
+								<span class="text-white font-semibold">👥</span>
+							</div>
+						</div>
+						<div class="ml-4">
+							<p class="text-sm font-medium text-gray-500">Unique Emails</p>
+							<p class="text-2xl font-semibold text-gray-900">{emailStats.unique_emails}</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bg-white rounded-lg shadow p-6">
+					<div class="flex items-center">
+						<div class="flex-shrink-0">
+							<div class="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
+								<span class="text-white font-semibold">📅</span>
+							</div>
+						</div>
+						<div class="ml-4">
+							<p class="text-sm font-medium text-gray-500">Today</p>
+							<p class="text-2xl font-semibold text-gray-900">{emailStats.emails_today}</p>
+						</div>
+					</div>
+				</div>
+			{/if}
 		</div>
 
 		<!-- Filters -->

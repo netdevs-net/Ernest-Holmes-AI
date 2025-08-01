@@ -44,9 +44,11 @@
     "@sveltejs/adapter-node": "^5.2.13",
     "@sveltejs/kit": "^2.26.1",
     "@types/better-sqlite3": "^7.6.13",
+    "@types/uuid": "^10.0.0",
     "better-sqlite3": "^12.2.0",
     "lucide-svelte": "^0.534.0",
     "svelte": "^5.37.1",
-    "tailwind-scrollbar": "^3.0.5"
+    "tailwind-scrollbar": "^3.0.5",
+    "uuid": "^11.1.0"
   }
 }

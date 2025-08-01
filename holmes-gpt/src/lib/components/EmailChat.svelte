@@ -31,6 +31,23 @@
 		isSending = true;
 		
 		try {
+			// Store email in database first
+			const response = await fetch('/api/emails', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					emailAddress: emailAddress.trim(),
+					messageContent: messageContent,
+					messageId: crypto.randomUUID() // Generate unique message ID
+				})
+			});
+
+			if (!response.ok) {
+				console.error('Failed to store email in database');
+			}
+
 			// Create mailto link with formatted content
 			const subject = encodeURIComponent('Holmes AI - Spiritual Guidance Response');
 			const body = encodeURIComponent(`Dear Friend,
