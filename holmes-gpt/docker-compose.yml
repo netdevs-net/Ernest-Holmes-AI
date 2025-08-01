@@ -1,8 +1,6 @@
-version: "3.8"
-
 services:
   holmes-gpt:
-    image: holmes-gpt:latest
+    image: ghcr.io/webdevs-net/holmes-gpt:latest
     ports:
       - "3000:3000"
     environment:
