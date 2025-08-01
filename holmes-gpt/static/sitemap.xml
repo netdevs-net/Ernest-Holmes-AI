@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Main page - Highest Priority -->
+  <url>
+    <loc>https://holmesai.com/</loc>
+    <lastmod>2024-12-19T10:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://holmesai.com/images/holmes-ai-social.jpg</image:loc>
+      <image:title>HolmesGPT - Ernest Holmes AI Spiritual Guidance</image:title>
+      <image:caption>Chat with Ernest Holmes AI for spiritual guidance and metaphysical wisdom</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- About page -->
+  <url>
+    <loc>https://holmesai.com/about</loc>
+    <lastmod>2024-12-19T10:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://holmesai.com/images/holmes-ai-about.jpg</image:loc>
+      <image:title>About Holmes AI - Ernest Holmes Legacy</image:title>
+      <image:caption>Discover how Holmes AI preserves Ernest Holmes' spiritual wisdom through AI technology</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Support page -->
+  <url>
+    <loc>https://holmesai.com/support</loc>
+    <lastmod>2024-12-19T10:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://holmesai.com/images/holmes-ai-support.jpg</image:loc>
+      <image:title>Support Holmes AI - Preserve Spiritual Wisdom</image:title>
+      <image:caption>Help preserve Ernest Holmes' spiritual wisdom for future generations</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Privacy page -->
+  <url>
+    <loc>https://holmesai.com/privacy</loc>
+    <lastmod>2024-12-19T10:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://holmesai.com/images/holmes-ai-privacy.jpg</image:loc>
+      <image:title>Privacy Policy - Holmes AI Data Protection</image:title>
+      <image:caption>Learn how Holmes AI protects your spiritual conversations and data</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- API endpoints for discovery -->
+  <url>
+    <loc>https://holmesai.com/api/quotes</loc>
+    <lastmod>2024-12-19T10:00:00+00:00</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://holmesai.com/api/stats</loc>
+    <lastmod>2024-12-19T10:00:00+00:00</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Health check endpoint -->
+  <url>
+    <loc>https://holmesai.com/api/health</loc>
+    <lastmod>2024-12-19T10:00:00+00:00</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset> 

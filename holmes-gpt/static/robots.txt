@@ -1,0 +1,46 @@
+User-agent: *
+Allow: /
+
+# Multiple sitemaps for faster indexing
+Sitemap: https://holmesai.com/sitemap.xml
+Sitemap: https://holmesai.com/news-sitemap.xml
+
+# Faster crawling for new sites
+Crawl-delay: 0.5
+
+# Allow all public pages
+Allow: /about/
+Allow: /support/
+Allow: /privacy/
+Allow: /api/health/
+Allow: /api/quotes/
+Allow: /api/stats/
+
+# Block sensitive areas
+Disallow: /admin/
+Disallow: /api/chat/
+Disallow: /api/questions/
+Disallow: /api/users/
+
+# Special instructions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0.1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 0.1
+
+# Block AI training crawlers (optional)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: / 
