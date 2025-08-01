@@ -38,7 +38,7 @@
 	<meta property="og:url" content="https://holmesai.com/support" />
 	<meta property="og:title" content="Support Holmes AI - Preserve Ernest Holmes' Spiritual Wisdom | Donate to Spiritual Technology" />
 	<meta property="og:description" content="Support Holmes AI and help preserve Ernest Holmes' spiritual wisdom for future generations. Your contribution makes authentic Science of Mind guidance accessible to spiritual seekers worldwide." />
-	<meta property="og:image" content="https://holmesai.com/images/holmes-ai-support.jpg" />
+	<!-- <meta property="og:image" content="https://holmesai.com/images/holmes-ai-support.jpg" /> -->
 	<meta property="og:site_name" content="Holmes AI" />
 	
 	<!-- Twitter -->
@@ -46,7 +46,7 @@
 	<meta property="twitter:url" content="https://holmesai.com/support" />
 	<meta property="twitter:title" content="Support Holmes AI - Preserve Ernest Holmes' Spiritual Wisdom | Donate to Spiritual Technology" />
 	<meta property="twitter:description" content="Support Holmes AI and help preserve Ernest Holmes' spiritual wisdom for future generations. Your contribution makes authentic Science of Mind guidance accessible to spiritual seekers worldwide." />
-	<meta property="twitter:image" content="https://holmesai.com/images/holmes-ai-support.jpg" />
+	<!-- <meta property="twitter:image" content="https://holmesai.com/images/holmes-ai-support.jpg" /> -->
 	
 	<!-- Canonical URL -->
 	<link rel="canonical" href="https://holmesai.com/support" />
@@ -804,8 +804,8 @@
   .hero {
     position: relative;
     background: 
-      linear-gradient(rgba(30, 41, 59, 0.7), rgba(51, 65, 85, 0.7)),
-      url('/images/support.jpg');
+      linear-gradient(rgba(30, 41, 59, 0.7), rgba(51, 65, 85, 0.7));
+      /* url('/images/support.jpg'); */
     background-size: cover;
     background-position: center;
     color: white;
@@ -1121,8 +1121,12 @@
   }
 
   .section-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     margin-bottom: 2rem;
+    gap: 1rem;
   }
 
  .section-badge {
@@ -1133,25 +1137,26 @@
    border-radius: 50px;
    font-size: 0.9rem;
    font-weight: 600;
-   margin-bottom: 1rem;
+   margin: 0;
  }
 
   .section h2 {
     font-size: 2rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin: 0;
     color: var(--text-primary);
     background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-accent) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-align: center;
   }
 
  .section-divider {
    width: 80px;
    height: 4px;
    background: linear-gradient(90deg, var(--text-accent), var(--text-accent-hover));
-   margin: 0 auto;
+   margin: 0;
    border-radius: 2px;
  }
 
@@ -1232,7 +1237,7 @@
  }
 
  .phase-button h3 {
-   color: var(--text-accent);
+   color: #6e6b64;
    margin-bottom: 1.5rem;
    font-size: 1.3rem;
    font-weight: 700;
@@ -1336,7 +1341,7 @@
  }
 
 .achievement-card h3 {
-   color: var(--text-accent);
+   color: #6e6b64;
    margin-bottom: 0.8rem;
    font-size: 1.2rem;
    font-weight: 700;
@@ -1820,8 +1825,8 @@
     right: 0;
     bottom: 0;
     background: 
-      linear-gradient(rgba(30, 41, 59, 0.7), rgba(51, 65, 85, 0.7)),
-      url('/images/support.jpg');
+      linear-gradient(rgba(30, 41, 59, 0.7), rgba(51, 65, 85, 0.7));
+      /* url('/images/support.jpg'); */
     background-size: cover;
     background-position: center;
     backdrop-filter: blur(5px);

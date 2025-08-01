@@ -381,6 +381,43 @@
   }
 }
 
+/* Mobile-specific header optimizations */
+@media (max-width: 768px) {
+  header {
+    /* Ensure proper mobile positioning */
+    position: relative;
+    /* Prevent mobile browser UI interference */
+    z-index: 100;
+    /* Mobile touch optimizations */
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .container {
+    /* Ensure proper mobile layout */
+    position: relative;
+    /* Mobile touch feedback */
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    /* Small mobile header optimization */
+    position: relative;
+    /* Prevent any overflow issues */
+    overflow: hidden;
+    /* Mobile touch handling */
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .container {
+    /* Small mobile layout optimization */
+    position: relative;
+    /* Prevent any overflow */
+    overflow: hidden;
+  }
+}
+
 @media (max-width: 480px) {
 		.container {
 			padding: 0.125rem;

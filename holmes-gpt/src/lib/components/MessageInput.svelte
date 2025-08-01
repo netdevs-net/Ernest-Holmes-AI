@@ -421,4 +421,46 @@
 			height: 44px;
 		}
 	}
+
+	/* Mobile-specific input optimizations */
+	@media (max-width: 768px) {
+		.message-input-container {
+			/* Ensure proper mobile layout */
+			position: relative;
+			/* Prevent mobile keyboard interference */
+			bottom: 0;
+			/* Mobile touch optimizations */
+			-webkit-tap-highlight-color: transparent;
+		}
+		
+		.message-textarea {
+			/* Prevent mobile zoom on focus */
+			font-size: 16px;
+			/* Ensure proper mobile input handling */
+			-webkit-appearance: none;
+			border-radius: 8px;
+			/* Mobile touch feedback */
+			-webkit-tap-highlight-color: transparent;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.message-input-container {
+			/* Small mobile optimizations */
+			padding: 0.5rem;
+			/* Ensure proper mobile positioning */
+			position: relative;
+			/* Prevent any overflow */
+			overflow: hidden;
+		}
+		
+		.message-textarea {
+			/* Small mobile input optimization */
+			font-size: 16px;
+			/* Ensure proper mobile handling */
+			-webkit-appearance: none;
+			/* Mobile touch feedback */
+			-webkit-tap-highlight-color: transparent;
+		}
+	}
 </style> 

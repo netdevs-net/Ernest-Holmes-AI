@@ -156,7 +156,7 @@
 			<BookOpen size={20} class="book-icon" />
 			Wisdom from Ernest Holmes
 			{#if totalQuotes > 0}
-				<span class="quotes-count">({totalQuotes} quotes available)</span>
+				
 			{/if}
 		</h3>
 		<div class="header-actions">

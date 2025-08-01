@@ -715,8 +715,12 @@
   }
 
   .section-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     margin-bottom: 4rem;
+    gap: 1rem;
   }
 
   .section-badge {
@@ -727,25 +731,26 @@
     border-radius: 50px;
     font-size: 0.9rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin: 0;
   }
 
   .section h2 {
     font-size: 3rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin: 0;
     color: var(--text-primary);
     background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-accent) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-align: center;
   }
 
   .section-divider {
     width: 80px;
     height: 4px;
     background: linear-gradient(90deg, var(--text-accent), var(--text-accent-hover));
-    margin: 0 auto;
+    margin: 0;
     border-radius: 2px;
   }
 
@@ -964,6 +969,11 @@
       radial-gradient(circle at 30% 70%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
   }
 
+  .sponsorship-content {
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+
   .sponsor-card {
     background: var(--bg-secondary);
     padding: 4rem;
@@ -972,9 +982,9 @@
       0 25px 50px rgba(0, 0, 0, 0.15),
       0 0 0 1px rgba(255, 255, 255, 0.05);
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 3rem;
-    max-width: 1000px;
+    max-width: 60rem;
     margin: 0 auto;
     border: 1px solid var(--border-primary);
     position: relative;

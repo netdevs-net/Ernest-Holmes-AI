@@ -71,6 +71,39 @@
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    /* Mobile viewport fixes */
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  /* Mobile-specific body adjustments */
+  @media (max-width: 768px) {
+    body {
+      /* Prevent horizontal scrolling on mobile */
+      overflow-x: hidden;
+      /* Ensure proper height handling */
+      min-height: 100vh;
+      height: 100vh;
+      /* Prevent mobile browser UI interference */
+      position: fixed;
+      width: 100%;
+      /* Smooth scrolling on mobile */
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+  }
+
+  @media (max-width: 480px) {
+    body {
+      /* Additional mobile optimizations */
+      font-size: 16px; /* Prevent zoom on input focus */
+      line-height: 1.4;
+      /* Ensure proper touch scrolling */
+      -webkit-overflow-scrolling: touch;
+      /* Prevent pull-to-refresh interference */
+      overscroll-behavior: contain;
+    }
   }
 
   body {
@@ -156,6 +189,10 @@
     border: 0.5px solid var(--border-primary);
     padding: 0.125rem;
     transition: all 0.3s ease;
+    /* Ensure proper height handling */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   @media (max-width: 768px) {
@@ -163,6 +200,13 @@
       padding: 0.125rem;
       margin: 0.125rem;
       border-radius: 1rem;
+      /* Mobile height optimization */
+      height: 100vh;
+      max-height: 100vh;
+      /* Prevent mobile browser UI interference */
+      position: relative;
+      /* Ensure proper scrolling */
+      overflow: hidden;
     }
   }
 
@@ -171,6 +215,13 @@
       padding: 0.0625rem;
       margin: 0.0625rem;
       border-radius: 0.75rem;
+      /* Small mobile optimizations */
+      height: 100vh;
+      max-height: 100vh;
+      /* Prevent any overflow issues */
+      overflow: hidden;
+      /* Ensure proper touch handling */
+      -webkit-overflow-scrolling: touch;
     }
   }
 
@@ -212,6 +263,38 @@
     /* Ensure no interference with scrolling */
     will-change: transform;
     backface-visibility: hidden;
+  }
+
+  /* Mobile-specific particle optimizations */
+  @media (max-width: 768px) {
+    .floating-particles {
+      /* Reduce particle count on mobile for performance */
+      opacity: 0.7;
+      /* Ensure no mobile interference */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      /* Prevent any mobile scrolling issues */
+      overflow: hidden;
+      /* Mobile performance optimizations */
+      will-change: auto;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .floating-particles {
+      /* Further reduce particles on small screens */
+      opacity: 0.5;
+      /* Ensure no interference with mobile UI */
+      pointer-events: none;
+      /* Prevent any overflow */
+      overflow: hidden;
+      /* Mobile-specific containment */
+      contain: strict;
+    }
   }
 
   .particle {
@@ -256,3 +339,51 @@
 }
 
 /* Scrollbar styles are now handled by tailwind-scrollbar plugin */
+
+/* Mobile-specific scrollbar optimizations */
+@media (max-width: 768px) {
+  /* Ensure scrollbars work properly on mobile */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-secondary) transparent;
+  }
+  
+  /* Webkit scrollbar styles for mobile */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--border-secondary);
+    border-radius: 2px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+  }
+  
+  /* Ensure proper touch scrolling on mobile */
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Smaller scrollbars for very small screens */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  /* Ensure smooth scrolling on small mobile devices */
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    /* Prevent pull-to-refresh interference */
+    overscroll-behavior: contain;
+  }
+}

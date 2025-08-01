@@ -853,8 +853,12 @@
   }
 
   .section-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     margin-bottom: 2rem;
+    gap: 1rem;
   }
 
   .contact-section .section-header {
@@ -870,25 +874,26 @@
     border-radius: 50px;
     font-size: 0.9rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin: 0;
   }
 
   .section h2 {
     font-size: 3rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin: 0;
     color: var(--text-primary);
     background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-accent) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-align: center;
   }
 
   .section-divider {
     width: 80px;
     height: 4px;
     background: linear-gradient(90deg, var(--text-accent), var(--text-accent-hover));
-    margin: 0 auto;
+    margin: 0;
     border-radius: 2px;
   }
 

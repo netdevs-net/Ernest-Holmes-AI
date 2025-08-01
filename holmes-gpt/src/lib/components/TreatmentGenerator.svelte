@@ -288,6 +288,11 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 
 	// Enhance treatment with Holmes' characteristic language patterns
 	function enhanceWithHolmesStyle(treatment: string): string {
+		// Don't enhance treatments that already have proper section headers
+		if (treatment.includes('**RECOGNITION**') || treatment.includes('**AFFIRMATION**')) {
+			return treatment;
+		}
+		
 		const enhancements = [
 			'The Science of Mind teaches us that ',
 			'Spiritual Law reveals that ',
@@ -299,7 +304,7 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 			'Spiritual Substance flows as '
 		];
 		
-		// Add some Holmes-style enhancements
+		// Add some Holmes-style enhancements only for non-structured treatments
 		const enhancedParts = treatment.split('. ');
 		const enhancedTreatment = enhancedParts.map((part, index) => {
 			if (index === 0 && !part.includes('Science of Mind')) {
@@ -351,11 +356,11 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 	function formatTreatment(treatment: string): string {
 		// Convert markdown-style section headers to HTML with proper structure  
 		let formatted = treatment
-			.replace(/\*\*(RECOGNITION)\*\*/g, '</div><div class="treatment-section"><h4 class="section-header recognition"><span class="section-icon">⭐</span> RECOGNITION</h4><p>')
-			.replace(/\*\*(AFFIRMATION)\*\*/g, '</p></div><div class="treatment-section"><h4 class="section-header affirmation"><span class="section-icon">✨</span> AFFIRMATION</h4><p>')
-			.replace(/\*\*(DECLARATION)\*\*/g, '</p></div><div class="treatment-section"><h4 class="section-header declaration"><span class="section-icon">💎</span> DECLARATION</h4><p>')
-			.replace(/\*\*(GRATITUDE)\*\*/g, '</p></div><div class="treatment-section"><h4 class="section-header gratitude"><span class="section-icon">🙏</span> GRATITUDE</h4><p>')
-			.replace(/\*\*(ACCEPTANCE)\*\*/g, '</p></div><div class="treatment-section"><h4 class="section-header acceptance"><span class="section-icon">⚡</span> ACCEPTANCE</h4><p>');
+			.replace(/\*\*(RECOGNITION)\*\*/g, '</div><div class="treatment-section"><div class="section-header recognition"><span class="section-icon">🔮</span> RECOGNITION</div><p style="margin-top: 0;">')
+			.replace(/\*\*(AFFIRMATION)\*\*/g, '</p></div><div class="treatment-section"><div class="section-header affirmation"><span class="section-icon">✨</span> AFFIRMATION</div><p style="margin-top: 0;">')
+			.replace(/\*\*(DECLARATION)\*\*/g, '</p></div><div class="treatment-section"><div class="section-header declaration"><span class="section-icon">💎</span> DECLARATION</div><p style="margin-top: 0;">')
+			.replace(/\*\*(GRATITUDE)\*\*/g, '</p></div><div class="treatment-section"><div class="section-header gratitude"><span class="section-icon">🙏</span> GRATITUDE</div><p style="margin-top: 0;">')
+			.replace(/\*\*(ACCEPTANCE)\*\*/g, '</p></div><div class="treatment-section"><div class="section-header acceptance"><span class="section-icon">⚡</span> ACCEPTANCE</div><p style="margin-top: 0;">');
 		
 		// Close the final paragraph and section
 		formatted += '</p></div>';
@@ -363,12 +368,15 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		// Remove the initial closing div that was added by the first replacement
 		formatted = formatted.replace(/^<\/div>/, '');
 		
-		// Convert line breaks within paragraphs
+		// Convert line breaks within paragraphs, but avoid adding <br> at the start
 		formatted = formatted.replace(/\n/g, '<br>');
 		
 		// Clean up any empty paragraphs or double breaks
 		formatted = formatted.replace(/<p><\/p>/g, '');
 		formatted = formatted.replace(/<br><br>/g, '<br>');
+		
+		// Remove <br> tags that appear at the very beginning of paragraphs
+		formatted = formatted.replace(/<p><br>/g, '<p>');
 		
 		return formatted;
 	}
@@ -1226,5 +1234,60 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		.selection-mode {
 			gap: 1.25rem;
 		}
+	}
+
+	/* Treatment section styling - using :global() for dynamically generated HTML */
+	:global(.treatment-section) {
+		margin-bottom: 1.5rem;
+	}
+
+	:global(.treatment-section:last-child) {
+		margin-bottom: 0;
+	}
+
+	:global(.section-header) {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin: 0 !important;
+		padding: 0 !important;
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: var(--text-accent);
+		line-height: 1;
+		margin-bottom: 0 !important;
+		margin-top: 0 !important;
+	}
+
+	:global(.section-header.recognition) {
+		color: #8b5cf6; /* Purple for recognition */
+	}
+
+	:global(.section-header.affirmation) {
+		color: #f59e0b; /* Amber for affirmation */
+	}
+
+	:global(.section-header.declaration) {
+		color: #06b6d4; /* Cyan for declaration */
+	}
+
+	:global(.section-header.gratitude) {
+		color: #10b981; /* Emerald for gratitude */
+	}
+
+	:global(.section-header.acceptance) {
+		color: #ef4444; /* Red for acceptance */
+	}
+
+	:global(.section-icon) {
+		font-size: 1.2rem;
+	}
+
+	:global(.treatment-section p) {
+		margin: 0.5rem 0 0 0;
+		padding: 0;
+		line-height: 1.6;
+		color: var(--text-primary);
+		font-size: 1rem;
 	}
 </style> 
