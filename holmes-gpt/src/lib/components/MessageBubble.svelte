@@ -1,8 +1,21 @@
 <script lang="ts">
+	import EmailChat from './EmailChat.svelte';
+	import { Mail } from 'lucide-svelte';
+	
 	export let message: { role: 'user' | 'assistant'; content: string; timestamp: Date; source?: string; error?: boolean };
 	
 	$: isUser = message.role === 'user';
 	$: formattedTime = message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+	
+	let showEmailModal = false;
+	
+	function handleEmailClick() {
+		showEmailModal = true;
+	}
+	
+	function handleEmailClose() {
+		showEmailModal = false;
+	}
 	
 	// Function to parse markdown-like formatting
 	function parseFormatting(text: string): string {
@@ -60,11 +73,27 @@
 						<span>•</span>
 						<span style="color: var(--text-error);">⚠️</span>
 					{/if}
+					
+					<!-- Email Share Button -->
+					<button 
+						class="email-share-button"
+						on:click={handleEmailClick}
+						title="Share this response via email"
+					>
+						<Mail class="w-3 h-3" />
+					</button>
 				{/if}
 			</div>
 		</div>
 	</div>
 </div>
+
+<!-- Email Modal -->
+<EmailChat 
+	messageContent={message.content}
+	isVisible={showEmailModal}
+	on:close={handleEmailClose}
+/>
 
 <style>
 	.formatted-content :global(strong) {
@@ -124,5 +153,32 @@
 		outline: 2px solid var(--focus-ring);
 		outline-offset: 2px;
 		border-radius: 1rem;
+	}
+	
+	/* Email share button */
+	.email-share-button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.25rem;
+		background: transparent;
+		border: none;
+		color: var(--text-secondary);
+		border-radius: 0.25rem;
+		cursor: pointer;
+		transition: all 0.2s ease;
+		opacity: 0.7;
+	}
+	
+	.email-share-button:hover {
+		background: var(--bg-secondary);
+		color: var(--text-accent);
+		opacity: 1;
+		transform: scale(1.1);
+	}
+	
+	.email-share-button:focus {
+		outline: 2px solid var(--focus-ring);
+		outline-offset: 2px;
 	}
 </style> 
