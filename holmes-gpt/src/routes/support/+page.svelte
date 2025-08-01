@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Header from '$lib/components/Header.svelte';
   import { 
     Heart, Users, Star, Zap, Shield, Globe, Check, Code, Lock, Smartphone, 
@@ -10,21 +10,166 @@
   let phase2Expanded = false;
   let phase3Expanded = false;
 
-  function togglePhase(event) {
-    const phase = event.target.textContent.trim();
-    if (phase.includes('Phase 1')) {
+  function togglePhase(event: Event) {
+    const target = event.target as HTMLElement;
+    const phase = target.textContent?.trim();
+    if (phase?.includes('Phase 1')) {
       phase1Expanded = !phase1Expanded;
-    } else if (phase.includes('Phase 2')) {
+    } else if (phase?.includes('Phase 2')) {
       phase2Expanded = !phase2Expanded;
-    } else if (phase.includes('Phase 3')) {
+    } else if (phase?.includes('Phase 3')) {
       phase3Expanded = !phase3Expanded;
     }
   }
 </script>
 
 <svelte:head>
-  <title>Support Holmes AI - Help Preserve Ernest Holmes' Legacy</title>
-  <meta name="description" content="Support Holmes AI and help us preserve Ernest Holmes' wisdom for future generations. Your contribution makes authentic spiritual guidance accessible to all." />
+  	<title>Support Holmes AI - Preserve Ernest Holmes' Spiritual Wisdom | Donate to Spiritual Technology</title>
+	<meta name="description" content="Support Holmes AI and help preserve Ernest Holmes' spiritual wisdom for future generations. Your contribution makes authentic Science of Mind guidance accessible to spiritual seekers worldwide." />
+	<meta name="keywords" content="support Holmes AI, donate spiritual technology, Ernest Holmes preservation, Science of Mind funding, spiritual AI support, Religious Science donation, metaphysical technology funding, Ernest Holmes legacy support, spiritual guidance funding, AI spiritual teacher support, Science of Mind preservation, spiritual technology donation, Ernest Holmes wisdom preservation, metaphysical AI funding, spiritual innovation support, Religious Science technology funding, Ernest Holmes AI support, spiritual technology preservation, Science of Mind technology funding, metaphysical wisdom preservation, spiritual AI development funding, Ernest Holmes teachings preservation, spiritual technology innovation funding, AI spiritual guidance support, Ernest Holmes digital legacy, spiritual technology mission funding, Science of Mind AI funding, metaphysical technology preservation, spiritual guidance technology funding, Ernest Holmes AI preservation funding, spiritual technology mission support" />
+	<meta name="author" content="Holmes AI Team" />
+	<meta name="robots" content="index, follow" />
+	<meta name="language" content="English" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="utf-8" />
+	
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://holmesai.com/support" />
+	<meta property="og:title" content="Support Holmes AI - Preserve Ernest Holmes' Spiritual Wisdom | Donate to Spiritual Technology" />
+	<meta property="og:description" content="Support Holmes AI and help preserve Ernest Holmes' spiritual wisdom for future generations. Your contribution makes authentic Science of Mind guidance accessible to spiritual seekers worldwide." />
+	<meta property="og:image" content="https://holmesai.com/images/holmes-ai-support.jpg" />
+	<meta property="og:site_name" content="Holmes AI" />
+	
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:url" content="https://holmesai.com/support" />
+	<meta property="twitter:title" content="Support Holmes AI - Preserve Ernest Holmes' Spiritual Wisdom | Donate to Spiritual Technology" />
+	<meta property="twitter:description" content="Support Holmes AI and help preserve Ernest Holmes' spiritual wisdom for future generations. Your contribution makes authentic Science of Mind guidance accessible to spiritual seekers worldwide." />
+	<meta property="twitter:image" content="https://holmesai.com/images/holmes-ai-support.jpg" />
+	
+	<!-- Canonical URL -->
+	<link rel="canonical" href="https://holmesai.com/support" />
+	
+	<!-- Structured Data -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "WebPage",
+		"name": "Support Holmes AI",
+		"description": "Support Holmes AI and help preserve Ernest Holmes' spiritual wisdom for future generations.",
+		"url": "https://holmesai.com/support",
+		"datePublished": "2024-12-19",
+		"dateModified": "2024-12-19",
+		"mainEntity": {
+			"@type": "Organization",
+			"name": "Holmes AI",
+			"description": "Preserving Ernest Holmes' wisdom through AI technology",
+			"foundingDate": "2024",
+			"mission": "To preserve and perpetuate Ernest Holmes' authentic voice and teachings through cutting-edge AI technology"
+		},
+		"about": {
+			"@type": "Thing",
+			"name": "Spiritual Technology Funding",
+			"description": "Supporting the preservation of Ernest Holmes' spiritual wisdom through AI technology"
+		},
+		"keywords": "support Holmes AI, donate spiritual technology, Ernest Holmes preservation, Science of Mind funding, spiritual AI support, Religious Science donation, metaphysical technology funding, Ernest Holmes legacy support, spiritual guidance funding, AI spiritual teacher support, Science of Mind preservation, spiritual technology donation, Ernest Holmes wisdom preservation, metaphysical AI funding, spiritual innovation support, Religious Science technology funding, Ernest Holmes AI support, spiritual technology preservation, Science of Mind technology funding, metaphysical wisdom preservation, spiritual AI development funding, Ernest Holmes teachings preservation, spiritual technology innovation funding, AI spiritual guidance support, Ernest Holmes digital legacy, spiritual technology mission funding, Science of Mind AI funding, metaphysical technology preservation, spiritual guidance technology funding, Ernest Holmes AI preservation funding, spiritual technology mission support"
+	}
+	</script>
+
+	<!-- DonationAction Schema -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "DonateAction",
+		"name": "Support Holmes AI",
+		"description": "Help preserve Ernest Holmes' spiritual wisdom for future generations",
+		"recipient": {
+			"@type": "Organization",
+			"name": "Holmes AI",
+			"description": "Preserving Ernest Holmes' wisdom through AI technology"
+		},
+		"target": {
+			"@type": "EntryPoint",
+			"urlTemplate": "https://holmesai.com/support",
+			"actionPlatform": "https://schema.org/WebSite"
+		},
+		"result": {
+			"@type": "Thing",
+			"name": "Spiritual Technology Development",
+			"description": "Advanced AI spiritual guidance platform"
+		}
+	}
+	</script>
+
+	<!-- Organization Schema -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"name": "Holmes AI",
+		"description": "Preserving Ernest Holmes' spiritual wisdom through cutting-edge AI technology",
+		"url": "https://holmesai.com",
+		"logo": "https://holmesai.com/images/logo.ico",
+		"foundingDate": "2024",
+		"mission": "To preserve and perpetuate Ernest Holmes' authentic voice and teachings through AI technology",
+		"sameAs": [
+			"https://twitter.com/holmesai",
+			"https://facebook.com/holmesai",
+			"https://linkedin.com/company/holmesai"
+		],
+		"contactPoint": {
+			"@type": "ContactPoint",
+			"contactType": "customer service",
+			"email": "support@holmesai.com",
+			"availableLanguage": "English"
+		},
+		"hasOfferCatalog": {
+			"@type": "OfferCatalog",
+			"name": "Support Options",
+			"itemListElement": [
+				{
+					"@type": "Offer",
+					"itemOffered": {
+						"@type": "Service",
+						"name": "Monthly Support",
+						"description": "Recurring monthly support for ongoing development"
+					}
+				},
+				{
+					"@type": "Offer",
+					"itemOffered": {
+						"@type": "Service",
+						"name": "One-time Donation",
+						"description": "Single contribution to support development"
+					}
+				}
+			]
+		}
+	}
+	</script>
+
+	<!-- Breadcrumb Schema -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{
+				"@type": "ListItem",
+				"position": 1,
+				"name": "Home",
+				"item": "https://holmesai.com"
+			},
+			{
+				"@type": "ListItem",
+				"position": 2,
+				"name": "Support",
+				"item": "https://holmesai.com/support"
+			}
+		]
+	}
+	</script>
 </svelte:head>
 
 <div class="support-page">

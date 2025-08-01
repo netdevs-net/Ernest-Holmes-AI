@@ -4,8 +4,161 @@
 </script>
 
 <svelte:head>
-  <title>About Holmes AI - The Story Behind the Technology</title>
-  <meta name="description" content="Learn about the creation of Holmes AI, our mission to preserve Ernest Holmes' wisdom, and the technology behind authentic spiritual guidance." />
+  <title>About Holmes AI - Ernest Holmes' Legacy in AI Technology | Spiritual Innovation</title>
+  <meta name="description" content="Discover how Holmes AI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology. Learn about our mission to make Science of Mind teachings accessible worldwide." />
+  <meta name="keywords" content="Ernest Holmes legacy, Science of Mind AI, spiritual technology, Religious Science AI, metaphysical AI, Ernest Holmes teachings, spiritual innovation, AI spiritual guidance, Ernest Holmes biography, Science of Mind technology, spiritual AI development, Ernest Holmes philosophy, metaphysical technology, spiritual wisdom preservation, AI spiritual teacher, Ernest Holmes quotes AI, spiritual technology innovation, Science of Mind preservation, Religious Science technology, metaphysical AI development, spiritual AI mission, Ernest Holmes AI story, spiritual technology company, AI spiritual wisdom, Ernest Holmes digital legacy, spiritual AI innovation, Science of Mind AI technology, metaphysical wisdom AI, spiritual guidance technology, Ernest Holmes AI preservation, spiritual technology mission" />
+  <meta name="author" content="Holmes AI Team" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="English" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://holmesai.com/about" />
+  <meta property="og:title" content="About Holmes AI - Ernest Holmes' Legacy in AI Technology | Spiritual Innovation" />
+  <meta property="og:description" content="Discover how Holmes AI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology. Learn about our mission to make Science of Mind teachings accessible worldwide." />
+  <meta property="og:image" content="https://holmesai.com/images/holmes-ai-about.jpg" />
+  <meta property="og:site_name" content="Holmes AI" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://holmesai.com/about" />
+  <meta property="twitter:title" content="About Holmes AI - Ernest Holmes' Legacy in AI Technology | Spiritual Innovation" />
+  <meta property="twitter:description" content="Discover how Holmes AI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology. Learn about our mission to make Science of Mind teachings accessible worldwide." />
+  <meta property="twitter:image" content="https://holmesai.com/images/holmes-ai-about.jpg" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://holmesai.com/about" />
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "About Holmes AI",
+    "description": "Discover how Holmes AI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology.",
+    "url": "https://holmesai.com/about",
+    "datePublished": "2024-12-19",
+    "dateModified": "2024-12-19",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Holmes AI",
+      "description": "Preserving Ernest Holmes' wisdom through AI technology",
+      "foundingDate": "2024",
+      "founder": {
+        "@type": "Person",
+        "name": "Ernest Holmes",
+        "description": "Founder of Religious Science and author of The Science of Mind"
+      },
+      "mission": "To preserve and perpetuate Ernest Holmes' authentic voice and teachings through cutting-edge AI technology"
+    },
+    "about": {
+      "@type": "Thing",
+      "name": "Spiritual Technology",
+      "description": "AI-powered spiritual guidance based on Ernest Holmes' teachings"
+    },
+    "keywords": "Ernest Holmes legacy, Science of Mind AI, spiritual technology, Religious Science AI, metaphysical AI, Ernest Holmes teachings, spiritual innovation, AI spiritual guidance, Ernest Holmes biography, Science of Mind technology, spiritual AI development, Ernest Holmes philosophy, metaphysical technology, spiritual wisdom preservation, AI spiritual teacher, Ernest Holmes quotes AI, spiritual technology innovation, Science of Mind preservation, Religious Science technology, metaphysical AI development, spiritual AI mission, Ernest Holmes AI story, spiritual technology company, AI spiritual wisdom, Ernest Holmes digital legacy, spiritual AI innovation, Science of Mind AI technology, metaphysical wisdom AI, spiritual guidance technology, Ernest Holmes AI preservation, spiritual technology mission"
+  }
+  </script>
+
+  <!-- Article Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "About Holmes AI - Ernest Holmes' Legacy in AI Technology",
+    "description": "Discover how Holmes AI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology. Learn about our mission to make Science of Mind teachings accessible worldwide.",
+    "image": "https://holmesai.com/images/holmes-ai-about.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "Holmes AI Team"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Holmes AI",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://holmesai.com/images/logo.ico"
+      }
+    },
+    "datePublished": "2024-12-19",
+    "dateModified": "2024-12-19",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://holmesai.com/about"
+    }
+  }
+  </script>
+
+  <!-- Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Holmes AI",
+    "description": "Preserving Ernest Holmes' spiritual wisdom through cutting-edge AI technology",
+    "url": "https://holmesai.com",
+    "logo": "https://holmesai.com/images/logo.ico",
+    "foundingDate": "2024",
+    "mission": "To preserve and perpetuate Ernest Holmes' authentic voice and teachings through AI technology",
+    "sameAs": [
+      "https://twitter.com/holmesai",
+      "https://facebook.com/holmesai",
+      "https://linkedin.com/company/holmesai"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "support@holmesai.com",
+      "availableLanguage": "English"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Spiritual AI Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "AI Spiritual Guidance",
+            "description": "Personalized spiritual counseling based on Ernest Holmes' teachings"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Metaphysical Wisdom",
+            "description": "Access to Ernest Holmes' metaphysical philosophy through AI"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://holmesai.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "About",
+        "item": "https://holmesai.com/about"
+      }
+    ]
+  }
+  </script>
 </svelte:head>
 
 <div class="about-page">
@@ -141,8 +294,7 @@
                       <Briefcase size={20} />
                     </div>
                     <p class="member-bio">
-                      <strong>Currently seeking full-time employment opportunities</strong> in DevOps, SRE, AI/ML engineering, 
-                      or technical leadership roles.
+                      <strong>Currently available for remote opportunities.</strong> Wears many hats like AI/ML specialist, Software Engineer, Mobile App Developer, DevSecOps, SRE, Source Code Auditor, and technical agile project manager.
                     </p>
                   </div>
                   <div class="member-links">

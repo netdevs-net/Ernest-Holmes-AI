@@ -238,8 +238,244 @@
 </script>
 
 <svelte:head>
-	<title>HolmesGPT - Ernest Holmes AI</title>
-	<meta name="description" content="A conversational AI inspired by Ernest Holmes, founder of Religious Science and author of The Science of Mind." />
+	<title>HolmesGPT - Ernest Holmes AI | Spiritual Guidance & Science of Mind</title>
+	<meta name="description" content="Chat with Ernest Holmes AI for spiritual guidance, metaphysical wisdom, and Science of Mind teachings. Get personalized spiritual advice, affirmations, and transformative insights from the founder of Religious Science." />
+	<meta name="keywords" content="Ernest Holmes AI, spiritual guidance, Science of Mind, Religious Science, metaphysical wisdom, spiritual counseling, positive thinking, law of attraction, spiritual healing, affirmations, meditation, consciousness, divine mind, spiritual transformation, New Thought, spiritual teacher, AI spiritual advisor, metaphysical philosophy, spiritual growth, inner peace, divine wisdom, spiritual practices, mind power, spiritual awakening, Ernest Holmes quotes, spiritual technology, AI meditation, spiritual AI chatbot, metaphysical counseling, spiritual development, consciousness expansion, divine guidance" />
+	<meta name="author" content="Holmes AI Team" />
+	<meta name="robots" content="index, follow" />
+	<meta name="language" content="English" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="utf-8" />
+	
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://holmesai.com/" />
+	<meta property="og:title" content="HolmesGPT - Ernest Holmes AI | Spiritual Guidance & Science of Mind" />
+	<meta property="og:description" content="Chat with Ernest Holmes AI for spiritual guidance, metaphysical wisdom, and Science of Mind teachings. Get personalized spiritual advice and transformative insights." />
+	<meta property="og:image" content="https://holmesai.com/images/holmes-ai-social.jpg" />
+	<meta property="og:site_name" content="Holmes AI" />
+	
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:url" content="https://holmesai.com/" />
+	<meta property="twitter:title" content="HolmesGPT - Ernest Holmes AI | Spiritual Guidance & Science of Mind" />
+	<meta property="twitter:description" content="Chat with Ernest Holmes AI for spiritual guidance, metaphysical wisdom, and Science of Mind teachings. Get personalized spiritual advice and transformative insights." />
+	<meta property="twitter:image" content="https://holmesai.com/images/holmes-ai-social.jpg" />
+	
+	<!-- Canonical URL -->
+	<link rel="canonical" href="https://holmesai.com/" />
+	
+	<!-- Structured Data -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "WebApplication",
+		"name": "HolmesGPT - Ernest Holmes AI",
+		"description": "A conversational AI inspired by Ernest Holmes, founder of Religious Science and author of The Science of Mind, providing spiritual guidance and metaphysical wisdom.",
+		"url": "https://holmesai.com/",
+		"applicationCategory": "Spiritual Guidance",
+		"operatingSystem": "Web Browser",
+		"offers": {
+			"@type": "Offer",
+			"price": "0",
+			"priceCurrency": "USD",
+			"availability": "https://schema.org/InStock"
+		},
+		"creator": {
+			"@type": "Organization",
+			"name": "Holmes AI",
+			"description": "Preserving Ernest Holmes' wisdom through AI technology",
+			"url": "https://holmesai.com",
+			"logo": "https://holmesai.com/images/logo.ico",
+			"sameAs": [
+				"https://twitter.com/holmesai",
+				"https://facebook.com/holmesai",
+				"https://linkedin.com/company/holmesai"
+			]
+		},
+		"about": {
+			"@type": "Thing",
+			"name": "Spiritual Guidance",
+			"description": "Metaphysical wisdom and spiritual counseling based on Ernest Holmes' teachings"
+		},
+		"keywords": "Ernest Holmes AI, spiritual guidance, Science of Mind, Religious Science, metaphysical wisdom, spiritual counseling, positive thinking, law of attraction, spiritual healing, affirmations, meditation, consciousness, divine mind, spiritual transformation, New Thought, spiritual teacher, AI spiritual advisor, metaphysical philosophy, spiritual growth, inner peace, divine wisdom, spiritual practices, mind power, spiritual awakening, Ernest Holmes quotes, spiritual technology, AI meditation, spiritual AI chatbot, metaphysical counseling, spiritual development, consciousness expansion, divine guidance",
+		"featureList": [
+			"AI-powered spiritual guidance",
+			"Personalized metaphysical counseling",
+			"Ernest Holmes wisdom integration",
+			"Question history tracking",
+			"Treatment generator",
+			"Quote slideshow",
+			"Multiple response styles"
+		],
+		"softwareVersion": "1.0.0",
+		"datePublished": "2024-12-19",
+		"dateModified": "2024-12-19"
+	}
+	</script>
+
+	<!-- Organization Schema -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"name": "Holmes AI",
+		"description": "Preserving Ernest Holmes' spiritual wisdom through cutting-edge AI technology",
+		"url": "https://holmesai.com",
+		"logo": "https://holmesai.com/images/logo.ico",
+		"foundingDate": "2024",
+		"mission": "To preserve and perpetuate Ernest Holmes' authentic voice and teachings through AI technology",
+		"sameAs": [
+			"https://twitter.com/holmesai",
+			"https://facebook.com/holmesai",
+			"https://linkedin.com/company/holmesai"
+		],
+		"contactPoint": {
+			"@type": "ContactPoint",
+			"contactType": "customer service",
+			"email": "support@holmesai.com",
+			"availableLanguage": "English"
+		}
+	}
+	</script>
+
+	<!-- Person Schema for Ernest Holmes -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Person",
+		"name": "Ernest Holmes",
+		"description": "Founder of Religious Science and author of The Science of Mind",
+		"birthDate": "1887-01-21",
+		"deathDate": "1960-04-07",
+		"nationality": "American",
+		"alumniOf": {
+			"@type": "Organization",
+			"name": "Religious Science"
+		},
+		"knowsAbout": [
+			"Religious Science",
+			"The Science of Mind",
+			"Metaphysical Philosophy",
+			"Spiritual Guidance",
+			"New Thought Movement"
+		],
+		"hasOccupation": {
+			"@type": "Occupation",
+			"name": "Spiritual Teacher and Author"
+		},
+		"author": {
+			"@type": "Book",
+			"name": "The Science of Mind",
+			"isbn": "978-0874779218"
+		}
+	}
+	</script>
+
+	<!-- Service Schema -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Service",
+		"name": "AI Spiritual Guidance",
+		"description": "Personalized spiritual counseling and metaphysical wisdom based on Ernest Holmes' teachings",
+		"provider": {
+			"@type": "Organization",
+			"name": "Holmes AI"
+		},
+		"serviceType": "Spiritual Counseling",
+		"areaServed": "Worldwide",
+		"availableChannel": {
+			"@type": "ServiceChannel",
+			"serviceUrl": "https://holmesai.com"
+		},
+		"hasOfferCatalog": {
+			"@type": "OfferCatalog",
+			"name": "Spiritual Services",
+			"itemListElement": [
+				{
+					"@type": "Offer",
+					"itemOffered": {
+						"@type": "Service",
+						"name": "Personal Spiritual Guidance"
+					}
+				},
+				{
+					"@type": "Offer",
+					"itemOffered": {
+						"@type": "Service",
+						"name": "Metaphysical Counseling"
+					}
+				},
+				{
+					"@type": "Offer",
+					"itemOffered": {
+						"@type": "Service",
+						"name": "Treatment Generation"
+					}
+				}
+			]
+		}
+	}
+	</script>
+
+	<!-- FAQ Schema -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"mainEntity": [
+			{
+				"@type": "Question",
+				"name": "What is HolmesGPT?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "HolmesGPT is an AI-powered spiritual guidance platform inspired by Ernest Holmes, founder of Religious Science and author of The Science of Mind. It provides personalized metaphysical counseling and spiritual wisdom."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "How does HolmesGPT work?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "HolmesGPT uses advanced AI technology trained on Ernest Holmes' writings to provide authentic spiritual guidance. You can ask questions and receive personalized responses based on Science of Mind principles."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Is HolmesGPT free to use?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Yes, HolmesGPT is completely free to use. We believe spiritual guidance should be accessible to everyone."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "What topics can I discuss with HolmesGPT?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "You can discuss spiritual growth, metaphysical principles, personal development, healing, abundance, relationships, and any other spiritual or life questions you may have."
+				}
+			}
+		]
+	}
+	</script>
+
+	<!-- Breadcrumb Schema -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{
+				"@type": "ListItem",
+				"position": 1,
+				"name": "Home",
+				"item": "https://holmesai.com"
+			}
+		]
+	}
+	</script>
 </svelte:head>
 
 <main class="h-screen relative">

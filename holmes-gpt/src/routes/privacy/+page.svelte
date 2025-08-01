@@ -4,8 +4,155 @@
 </script>
 
 <svelte:head>
-  <title>Privacy Policy - Holmes AI | Your Data Protection & Spiritual Privacy</title>
-  <meta name="description" content="Learn how Holmes AI protects your privacy and handles your data. We are committed to keeping your spiritual conversations secure and confidential." />
+  <title>Privacy Policy - Holmes AI | Secure Spiritual Guidance & Data Protection</title>
+  <meta name="description" content="Learn how Holmes AI protects your privacy and handles your spiritual conversations. We are committed to keeping your metaphysical guidance secure, confidential, and ethically managed." />
+  <meta name="keywords" content="Holmes AI privacy policy, spiritual AI privacy, metaphysical guidance privacy, Ernest Holmes AI data protection, spiritual counseling privacy, AI spiritual advisor privacy, Science of Mind privacy, Religious Science AI privacy, spiritual technology privacy, metaphysical AI data security, Ernest Holmes AI confidentiality, spiritual guidance privacy, AI spiritual teacher privacy, metaphysical counseling privacy, spiritual AI data protection, Ernest Holmes AI security, spiritual technology data privacy, metaphysical wisdom privacy, spiritual AI confidentiality, Ernest Holmes AI privacy protection, spiritual guidance data security, AI spiritual advisor confidentiality, Science of Mind AI privacy, Religious Science technology privacy, spiritual AI ethical data handling, metaphysical AI privacy policy, Ernest Holmes AI data ethics, spiritual technology privacy protection, metaphysical guidance data privacy, spiritual AI privacy security, Ernest Holmes AI confidential spiritual guidance" />
+  <meta name="author" content="Holmes AI Team" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="English" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://holmesai.com/privacy" />
+  <meta property="og:title" content="Privacy Policy - Holmes AI | Secure Spiritual Guidance & Data Protection" />
+  <meta property="og:description" content="Learn how Holmes AI protects your privacy and handles your spiritual conversations. We are committed to keeping your metaphysical guidance secure, confidential, and ethically managed." />
+  <meta property="og:image" content="https://holmesai.com/images/holmes-ai-privacy.jpg" />
+  <meta property="og:site_name" content="Holmes AI" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://holmesai.com/privacy" />
+  <meta property="twitter:title" content="Privacy Policy - Holmes AI | Secure Spiritual Guidance & Data Protection" />
+  <meta property="twitter:description" content="Learn how Holmes AI protects your privacy and handles your spiritual conversations. We are committed to keeping your metaphysical guidance secure, confidential, and ethically managed." />
+  <meta property="twitter:image" content="https://holmesai.com/images/holmes-ai-privacy.jpg" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://holmesai.com/privacy" />
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Privacy Policy - Holmes AI",
+    "description": "Learn how Holmes AI protects your privacy and handles your spiritual conversations.",
+    "url": "https://holmesai.com/privacy",
+    "datePublished": "2024-12-19",
+    "dateModified": "2024-12-19",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Holmes AI",
+      "description": "Preserving Ernest Holmes' wisdom through AI technology",
+      "privacyPolicy": "https://holmesai.com/privacy"
+    },
+    "about": {
+      "@type": "Thing",
+      "name": "Data Privacy",
+      "description": "Privacy protection for spiritual guidance and metaphysical counseling"
+    },
+    "keywords": "Holmes AI privacy policy, spiritual AI privacy, metaphysical guidance privacy, Ernest Holmes AI data protection, spiritual counseling privacy, AI spiritual advisor privacy, Science of Mind privacy, Religious Science AI privacy, spiritual technology privacy, metaphysical AI data security, Ernest Holmes AI confidentiality, spiritual guidance privacy, AI spiritual teacher privacy, metaphysical counseling privacy, spiritual AI data protection, Ernest Holmes AI security, spiritual technology data privacy, metaphysical wisdom privacy, spiritual AI confidentiality, Ernest Holmes AI privacy protection, spiritual guidance data security, AI spiritual advisor confidentiality, Science of Mind AI privacy, Religious Science technology privacy, spiritual AI ethical data handling, metaphysical AI privacy policy, Ernest Holmes AI data ethics, spiritual technology privacy protection, metaphysical guidance data privacy, spiritual AI privacy security, Ernest Holmes AI confidential spiritual guidance"
+  }
+  </script>
+
+  <!-- Article Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Privacy Policy - Holmes AI | Secure Spiritual Guidance & Data Protection",
+    "description": "Learn how Holmes AI protects your privacy and handles your spiritual conversations. We are committed to keeping your metaphysical guidance secure, confidential, and ethically managed.",
+    "image": "https://holmesai.com/images/holmes-ai-privacy.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "Holmes AI Team"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Holmes AI",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://holmesai.com/images/logo.ico"
+      }
+    },
+    "datePublished": "2024-12-19",
+    "dateModified": "2024-12-19",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://holmesai.com/privacy"
+    }
+  }
+  </script>
+
+  <!-- Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Holmes AI",
+    "description": "Preserving Ernest Holmes' spiritual wisdom through cutting-edge AI technology",
+    "url": "https://holmesai.com",
+    "logo": "https://holmesai.com/images/logo.ico",
+    "foundingDate": "2024",
+    "mission": "To preserve and perpetuate Ernest Holmes' authentic voice and teachings through AI technology",
+    "sameAs": [
+      "https://twitter.com/holmesai",
+      "https://facebook.com/holmesai",
+      "https://linkedin.com/company/holmesai"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "support@holmesai.com",
+      "availableLanguage": "English"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Privacy-Focused Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Secure Spiritual Guidance",
+            "description": "Privacy-protected spiritual counseling and metaphysical wisdom"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Confidential AI Counseling",
+            "description": "Secure and private AI-powered spiritual guidance"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://holmesai.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Privacy",
+        "item": "https://holmesai.com/privacy"
+      }
+    ]
+  }
+  </script>
 </svelte:head>
 
 <div class="privacy-page">
