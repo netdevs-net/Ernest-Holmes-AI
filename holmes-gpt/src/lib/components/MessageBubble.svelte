@@ -37,7 +37,7 @@
 				</div>
 			{:else}
 				<div class="flex items-start space-x-2">
-					<img src="/images/logo.png" alt="Holmes AI Logo" class="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 mt-0.5" />
+					<img src="/images/Holmes-AI-logo.png" alt="Holmes AI Logo" class="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 mt-0.5" />
 					<div class="flex-1 min-w-0">
 						<div class="text-xs font-medium mb-0.5" style="color: var(--text-accent);">AI Practitioner</div>
 						<div class="text-sm sm:text-base leading-relaxed" style="color: var(--text-primary);" class:formatted-content={!isUser}>

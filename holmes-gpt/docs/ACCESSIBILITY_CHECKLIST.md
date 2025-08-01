@@ -60,13 +60,13 @@
 
 ```html
 <!-- ✅ Good -->
-<img src="logo.png" alt="HolmesGPT Logo" />
+<img src="Holmes-AI-logo.png" alt="HolmesGPT Logo" />
 
 <!-- ✅ Good (Decorative) -->
 <img src="decoration.png" alt="" role="presentation" />
 
 <!-- ❌ Bad -->
-<img src="logo.png" />
+<img src="Holmes-AI-logo.png" />
 ```
 
 ### **CSS Best Practices**

@@ -2,9 +2,10 @@
 	import { onMount } from 'svelte';
 	import ChatInterface from '$lib/components/ChatInterface.svelte';
 	import Header from '$lib/components/Header.svelte';
-	import QuestionHistory from '$lib/components/QuestionHistory.svelte';
-	import QuotesSlideshow from '$lib/components/QuotesSlideshow.svelte';
-	import TreatmentGenerator from '$lib/components/TreatmentGenerator.svelte';
+	// Use dynamic imports for conditionally rendered components to reduce CSS preloading
+	let QuestionHistory: any;
+	let QuotesSlideshow: any;
+	let TreatmentGenerator: any;
 	import { questionCount, saveQuestion, updateQuestionSource, questions } from '$lib/stores/questionStore';
 	import { extractTags } from '$lib/utils/questionStorage';
 	import { getDeviceFingerprint, getSessionId, storeDeviceInfo } from '$lib/utils/macAddress';
@@ -176,17 +177,29 @@
 		showHistory = false; // Close history panel after selection
 	}
 	
-	function toggleHistory() {
+	async function toggleHistory() {
+		if (!QuestionHistory) {
+			const module = await import('$lib/components/QuestionHistory.svelte');
+			QuestionHistory = module.default;
+		}
 		showHistory = !showHistory;
 		showQuotes = false; // Close quotes when opening history
 	}
 	
-	function toggleQuotes() {
+	async function toggleQuotes() {
+		if (!QuotesSlideshow) {
+			const module = await import('$lib/components/QuotesSlideshow.svelte');
+			QuotesSlideshow = module.default;
+		}
 		showQuotes = !showQuotes;
 		showHistory = false; // Close history when opening quotes
 	}
 	
-	function toggleTreatment() {
+	async function toggleTreatment() {
+		if (!TreatmentGenerator) {
+			const module = await import('$lib/components/TreatmentGenerator.svelte');
+			TreatmentGenerator = module.default;
+		}
 		showTreatment = !showTreatment;
 		showHistory = false; // Close history when opening treatment
 		showQuotes = false; // Close quotes when opening treatment
@@ -229,7 +242,7 @@
 	<meta name="description" content="A conversational AI inspired by Ernest Holmes, founder of Religious Science and author of The Science of Mind." />
 </svelte:head>
 
-<main class="h-screen relative overflow-hidden flex flex-col">
+<main class="h-screen relative">
 	<!-- Floating particles background -->
 	<div class="floating-particles" aria-hidden="true"></div>
 	
@@ -254,7 +267,7 @@
 	</div>
 	
 	<!-- Modal Overlays (outside chat container) -->
-	{#if showHistory}
+			{#if showHistory && QuestionHistory}
 		<div 
 			class="history-overlay" 
 			on:click|self={toggleHistory}
@@ -266,7 +279,7 @@
 			tabindex="-1"
 		>
 			<div id="history-description" class="sr-only">Question history panel showing your previous spiritual questions</div>
-			<QuestionHistory 
+			<svelte:component this={QuestionHistory}
 				isVisible={showHistory}
 				onQuestionSelect={handleQuestionSelect}
 				onClose={toggleHistory}
@@ -274,7 +287,7 @@
 		</div>
 	{/if}
 	
-	{#if showQuotes}
+	{#if showQuotes && QuotesSlideshow}
 		<div 
 			class="quotes-overlay" 
 			on:click|self={toggleQuotes}
@@ -284,7 +297,7 @@
 			aria-label="Holmes Quotes"
 			tabindex="-1"
 		>
-			<QuotesSlideshow 
+			<svelte:component this={QuotesSlideshow}
 				onClose={toggleQuotes}
 				limit={10}
 				showRandom={true}
@@ -294,10 +307,12 @@
 		</div>
 	{/if}
 	
-	<TreatmentGenerator 
-		isVisible={showTreatment}
-		onClose={toggleTreatment}
-	/>
+	{#if TreatmentGenerator}
+		<svelte:component this={TreatmentGenerator}
+			isVisible={showTreatment}
+			onClose={toggleTreatment}
+		/>
+	{/if}
 </main>
 
 <style>

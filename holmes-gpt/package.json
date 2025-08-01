@@ -46,6 +46,7 @@
     "@types/better-sqlite3": "^7.6.13",
     "better-sqlite3": "^12.2.0",
     "lucide-svelte": "^0.534.0",
-    "svelte": "^5.37.1"
+    "svelte": "^5.37.1",
+    "tailwind-scrollbar": "^3.0.5"
   }
 }

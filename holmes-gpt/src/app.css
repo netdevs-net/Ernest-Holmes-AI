@@ -209,6 +209,9 @@
     /* Additional containment */
     clip-path: inset(0);
     transform: translateZ(0);
+    /* Ensure no interference with scrolling */
+    will-change: transform;
+    backface-visibility: hidden;
   }
 
   .particle {
@@ -252,29 +255,4 @@
   }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    135deg,
-    var(--text-accent),
-    var(--text-accent-hover)
-  );
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(
-    135deg,
-    var(--text-accent-hover),
-    var(--text-accent)
-  );
-}
+/* Scrollbar styles are now handled by tailwind-scrollbar plugin */

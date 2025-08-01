@@ -42,9 +42,10 @@
 	// Auto-scroll to bottom when messages change or loading state changes
 	function scrollToBottom() {
 		if (messagesContainer && shouldAutoScroll) {
-			setTimeout(() => {
+			// Use requestAnimationFrame for smoother scrolling
+			requestAnimationFrame(() => {
 				messagesContainer.scrollTop = messagesContainer.scrollHeight;
-			}, 100); // Small delay to ensure content is rendered
+			});
 		}
 	}
 	
@@ -57,6 +58,11 @@
 	afterUpdate(() => {
 		scrollToBottom();
 	});
+	
+	// Ensure scrolling works on mount
+	onMount(() => {
+		scrollToBottom();
+	});
 </script>
 
 <div class="flex flex-col h-full max-w-6xl mx-auto">
@@ -64,7 +70,7 @@
 	<div 
 		bind:this={messagesContainer}
 		on:scroll={handleScroll}
-		class="flex-1 overflow-y-auto p-1 sm:p-2 md:p-4 lg:p-6 space-y-3 sm:space-y-4 md:space-y-6 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent"
+		class="flex-1 overflow-y-auto p-1 sm:p-2 md:p-4 lg:p-6 space-y-3 sm:space-y-4 md:space-y-6 scrollbar-thin scrollbar-thumb-primary/30 scrollbar-track-transparent hover:scrollbar-thumb-primary/50 min-h-0"
 	>
 		{#each messages as message (message.timestamp.getTime())}
 			<div class="animate-fade-in-up">
