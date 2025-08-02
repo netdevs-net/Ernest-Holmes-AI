@@ -41,10 +41,12 @@
 	
 	// Auto-scroll to bottom when messages change or loading state changes
 	function scrollToBottom() {
-		if (messagesContainer && shouldAutoScroll) {
+		if (messagesContainer && shouldAutoScroll && messagesContainer.scrollHeight) {
 			// Use requestAnimationFrame for smoother scrolling
 			requestAnimationFrame(() => {
-				messagesContainer.scrollTop = messagesContainer.scrollHeight;
+				if (messagesContainer) {
+					messagesContainer.scrollTop = messagesContainer.scrollHeight;
+				}
 			});
 		}
 	}

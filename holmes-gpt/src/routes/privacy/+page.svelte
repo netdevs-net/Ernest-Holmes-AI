@@ -602,8 +602,8 @@
   .hero {
     position: relative;
     background: 
-      linear-gradient(rgba(30, 41, 59, 0.7), rgba(51, 65, 85, 0.7)),
-      url('/images/privacy.webp');
+      linear-gradient(rgba(30, 41, 59, 0.7), rgba(51, 65, 85, 0.7));
+      /* url('/images/privacy.webp'); */
     background-size: cover;
     background-position: center;
     color: white;
