@@ -35,21 +35,21 @@
 	
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://holmesai.com/support" />
+	<meta property="og:url" content="https://holmes-ai.netdevs.net/support" />
 	<meta property="og:title" content="Support Holmes AI - Preserve Ernest Holmes' Spiritual Wisdom | Donate to Spiritual Technology" />
 	<meta property="og:description" content="Support Holmes AI and help preserve Ernest Holmes' spiritual wisdom for future generations. Your contribution makes authentic Science of Mind guidance accessible to spiritual seekers worldwide." />
-	<!-- <meta property="og:image" content="https://holmesai.com/images/holmes-ai-support.jpg" /> -->
+	<!-- <meta property="og:image" content="https://holmes-ai.netdevs.net/images/holmes-ai-support.jpg" /> -->
 	<meta property="og:site_name" content="Holmes AI" />
 	
 	<!-- Twitter -->
 	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:url" content="https://holmesai.com/support" />
+	<meta property="twitter:url" content="https://holmes-ai.netdevs.net/support" />
 	<meta property="twitter:title" content="Support Holmes AI - Preserve Ernest Holmes' Spiritual Wisdom | Donate to Spiritual Technology" />
 	<meta property="twitter:description" content="Support Holmes AI and help preserve Ernest Holmes' spiritual wisdom for future generations. Your contribution makes authentic Science of Mind guidance accessible to spiritual seekers worldwide." />
-	<!-- <meta property="twitter:image" content="https://holmesai.com/images/holmes-ai-support.jpg" /> -->
+	<!-- <meta property="twitter:image" content="https://holmes-ai.netdevs.net/images/holmes-ai-support.jpg" /> -->
 	
 	<!-- Canonical URL -->
-	<link rel="canonical" href="https://holmesai.com/support" />
+	<link rel="canonical" href="https://holmes-ai.netdevs.net/support" />
 	
 	<!-- Structured Data -->
 	<script type="application/ld+json">
@@ -58,7 +58,7 @@
 		"@type": "WebPage",
 		"name": "Support Holmes AI",
 		"description": "Support Holmes AI and help preserve Ernest Holmes' spiritual wisdom for future generations.",
-		"url": "https://holmesai.com/support",
+		"url": "https://holmes-ai.netdevs.net/support",
 		"datePublished": "2024-12-19",
 		"dateModified": "2024-12-19",
 		"mainEntity": {
@@ -91,7 +91,7 @@
 		},
 		"target": {
 			"@type": "EntryPoint",
-			"urlTemplate": "https://holmesai.com/support",
+			"urlTemplate": "https://holmes-ai.netdevs.net/support",
 			"actionPlatform": "https://schema.org/WebSite"
 		},
 		"result": {
@@ -109,8 +109,8 @@
 		"@type": "Organization",
 		"name": "Holmes AI",
 		"description": "Preserving Ernest Holmes' spiritual wisdom through cutting-edge AI technology",
-		"url": "https://holmesai.com",
-		"logo": "https://holmesai.com/images/logo.ico",
+		"url": "https://holmes-ai.netdevs.net",
+		"logo": "https://holmes-ai.netdevs.net/images/logo.ico",
 		"foundingDate": "2024",
 		"mission": "To preserve and perpetuate Ernest Holmes' authentic voice and teachings through AI technology",
 		"sameAs": [
@@ -121,7 +121,7 @@
 		"contactPoint": {
 			"@type": "ContactPoint",
 			"contactType": "customer service",
-			"email": "support@holmesai.com",
+			"email": "support@holmes-ai.netdevs.net",
 			"availableLanguage": "English"
 		},
 		"hasOfferCatalog": {
@@ -159,13 +159,13 @@
 				"@type": "ListItem",
 				"position": 1,
 				"name": "Home",
-				"item": "https://holmesai.com"
+				"item": "https://holmes-ai.netdevs.net"
 			},
 			{
 				"@type": "ListItem",
 				"position": 2,
 				"name": "Support",
-				"item": "https://holmesai.com/support"
+				"item": "https://holmes-ai.netdevs.net/support"
 			}
 		]
 	}
@@ -1643,8 +1643,9 @@
 
  /* Technology Section */
  .tech-content {
-   max-width: 900px;
+   max-width: 100%;
    margin: 0 auto;
+   padding: 0 2rem;
  }
 
  .tech-features {

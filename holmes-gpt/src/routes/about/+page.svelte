@@ -15,21 +15,21 @@
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://holmesai.com/about" />
+  	<meta property="og:url" content="https://holmes-ai.netdevs.net/about" />
   <meta property="og:title" content="About Holmes AI - Ernest Holmes' Legacy in AI Technology | Spiritual Innovation" />
   <meta property="og:description" content="Discover how Holmes AI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology. Learn about our mission to make Science of Mind teachings accessible worldwide." />
-  <meta property="og:image" content="https://holmesai.com/images/holmes-ai-about.jpg" />
+  	<meta property="og:image" content="https://holmes-ai.netdevs.net/images/holmes-ai-about.jpg" />
   <meta property="og:site_name" content="Holmes AI" />
   
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://holmesai.com/about" />
+  	<meta property="twitter:url" content="https://holmes-ai.netdevs.net/about" />
   <meta property="twitter:title" content="About Holmes AI - Ernest Holmes' Legacy in AI Technology | Spiritual Innovation" />
   <meta property="twitter:description" content="Discover how Holmes AI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology. Learn about our mission to make Science of Mind teachings accessible worldwide." />
-  <meta property="twitter:image" content="https://holmesai.com/images/holmes-ai-about.jpg" />
+  	<meta property="twitter:image" content="https://holmes-ai.netdevs.net/images/holmes-ai-about.jpg" />
   
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://holmesai.com/about" />
+  	<link rel="canonical" href="https://holmes-ai.netdevs.net/about" />
   
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -38,7 +38,7 @@
     "@type": "WebPage",
     "name": "About Holmes AI",
     "description": "Discover how Holmes AI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology.",
-    "url": "https://holmesai.com/about",
+    		"url": "https://holmes-ai.netdevs.net/about",
     "datePublished": "2024-12-19",
     "dateModified": "2024-12-19",
     "mainEntity": {
@@ -69,7 +69,7 @@
     "@type": "Article",
     "headline": "About Holmes AI - Ernest Holmes' Legacy in AI Technology",
     "description": "Discover how Holmes AI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology. Learn about our mission to make Science of Mind teachings accessible worldwide.",
-    "image": "https://holmesai.com/images/holmes-ai-about.jpg",
+    		"image": "https://holmes-ai.netdevs.net/images/holmes-ai-about.jpg",
     "author": {
       "@type": "Organization",
       "name": "Holmes AI Team"
@@ -79,14 +79,14 @@
       "name": "Holmes AI",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://holmesai.com/images/logo.ico"
+        		"url": "https://holmes-ai.netdevs.net/images/logo.ico"
       }
     },
     "datePublished": "2024-12-19",
     "dateModified": "2024-12-19",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://holmesai.com/about"
+      		"@id": "https://holmes-ai.netdevs.net/about"
     }
   }
   </script>
@@ -98,8 +98,8 @@
     "@type": "Organization",
     "name": "Holmes AI",
     "description": "Preserving Ernest Holmes' spiritual wisdom through cutting-edge AI technology",
-    "url": "https://holmesai.com",
-    "logo": "https://holmesai.com/images/logo.ico",
+    		"url": "https://holmes-ai.netdevs.net",
+    		"logo": "https://holmes-ai.netdevs.net/images/logo.ico",
     "foundingDate": "2024",
     "mission": "To preserve and perpetuate Ernest Holmes' authentic voice and teachings through AI technology",
     "sameAs": [
@@ -110,7 +110,7 @@
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer service",
-      "email": "support@holmesai.com",
+      		"email": "support@holmes-ai.netdevs.net",
       "availableLanguage": "English"
     },
     "hasOfferCatalog": {
@@ -148,13 +148,13 @@
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://holmesai.com"
+        		"item": "https://holmes-ai.netdevs.net"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "About",
-        "item": "https://holmesai.com/about"
+        		"item": "https://holmes-ai.netdevs.net/about"
       }
     ]
   }

@@ -24,13 +24,13 @@
 ### Automated Submissions
 ```bash
 # Google
-curl "https://www.google.com/ping?sitemap=https://holmesai.com/sitemap.xml"
+curl "https://www.google.com/ping?sitemap=https://holmes-ai.netdevs.net/sitemap.xml"
 
 # Bing
-curl "https://www.bing.com/ping?sitemap=https://holmesai.com/sitemap.xml"
+curl "https://www.bing.com/ping?sitemap=https://holmes-ai.netdevs.net/sitemap.xml"
 
 # Yandex
-curl "https://blogs.yandex.com/pings/?status=success&url=https://holmesai.com/sitemap.xml"
+curl "https://blogs.yandex.com/pings/?status=success&url=https://holmes-ai.netdevs.net/sitemap.xml"
 ```
 
 ## 🌟 Spiritual & Religious Directories

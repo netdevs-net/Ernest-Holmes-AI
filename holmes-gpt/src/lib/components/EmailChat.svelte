@@ -52,7 +52,7 @@ ${messageContent}
 
 ---
 Shared from Holmes AI - Ernest Holmes' wisdom through AI technology
-https://holmesai.com
+https://holmes-ai.netdevs.net
 
 May this bring you peace and understanding.
 

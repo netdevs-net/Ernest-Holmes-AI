@@ -7,7 +7,7 @@ echo "🚀 Quick SEO Registration for Holmes AI"
 echo "========================================"
 
 # Configuration
-DOMAIN="https://holmesai.com"
+DOMAIN="https://holmes-ai.netdevs.net"
 SITEMAP_URL="$DOMAIN/sitemap.xml"
 NEWS_SITEMAP_URL="$DOMAIN/news-sitemap.xml"
 

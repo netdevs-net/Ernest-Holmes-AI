@@ -15,21 +15,21 @@
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://holmesai.com/privacy" />
+  	<meta property="og:url" content="https://holmes-ai.netdevs.net/privacy" />
   <meta property="og:title" content="Privacy Policy - Holmes AI | Secure Spiritual Guidance & Data Protection" />
   <meta property="og:description" content="Learn how Holmes AI protects your privacy and handles your spiritual conversations. We are committed to keeping your metaphysical guidance secure, confidential, and ethically managed." />
-  <meta property="og:image" content="https://holmesai.com/images/holmes-ai-privacy.jpg" />
+  	<meta property="og:image" content="https://holmes-ai.netdevs.net/images/holmes-ai-privacy.jpg" />
   <meta property="og:site_name" content="Holmes AI" />
   
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://holmesai.com/privacy" />
+  	<meta property="twitter:url" content="https://holmes-ai.netdevs.net/privacy" />
   <meta property="twitter:title" content="Privacy Policy - Holmes AI | Secure Spiritual Guidance & Data Protection" />
   <meta property="twitter:description" content="Learn how Holmes AI protects your privacy and handles your spiritual conversations. We are committed to keeping your metaphysical guidance secure, confidential, and ethically managed." />
-  <meta property="twitter:image" content="https://holmesai.com/images/holmes-ai-privacy.jpg" />
+  	<meta property="twitter:image" content="https://holmes-ai.netdevs.net/images/holmes-ai-privacy.jpg" />
   
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://holmesai.com/privacy" />
+  	<link rel="canonical" href="https://holmes-ai.netdevs.net/privacy" />
   
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -38,14 +38,14 @@
     "@type": "WebPage",
     "name": "Privacy Policy - Holmes AI",
     "description": "Learn how Holmes AI protects your privacy and handles your spiritual conversations.",
-    "url": "https://holmesai.com/privacy",
+    		"url": "https://holmes-ai.netdevs.net/privacy",
     "datePublished": "2024-12-19",
     "dateModified": "2024-12-19",
     "mainEntity": {
       "@type": "Organization",
       "name": "Holmes AI",
       "description": "Preserving Ernest Holmes' wisdom through AI technology",
-      "privacyPolicy": "https://holmesai.com/privacy"
+      		"privacyPolicy": "https://holmes-ai.netdevs.net/privacy"
     },
     "about": {
       "@type": "Thing",
@@ -63,7 +63,7 @@
     "@type": "Article",
     "headline": "Privacy Policy - Holmes AI | Secure Spiritual Guidance & Data Protection",
     "description": "Learn how Holmes AI protects your privacy and handles your spiritual conversations. We are committed to keeping your metaphysical guidance secure, confidential, and ethically managed.",
-    "image": "https://holmesai.com/images/holmes-ai-privacy.jpg",
+    		"image": "https://holmes-ai.netdevs.net/images/holmes-ai-privacy.jpg",
     "author": {
       "@type": "Organization",
       "name": "Holmes AI Team"
@@ -73,14 +73,14 @@
       "name": "Holmes AI",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://holmesai.com/images/logo.ico"
+        		"url": "https://holmes-ai.netdevs.net/images/logo.ico"
       }
     },
     "datePublished": "2024-12-19",
     "dateModified": "2024-12-19",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://holmesai.com/privacy"
+      		"@id": "https://holmes-ai.netdevs.net/privacy"
     }
   }
   </script>
@@ -92,8 +92,8 @@
     "@type": "Organization",
     "name": "Holmes AI",
     "description": "Preserving Ernest Holmes' spiritual wisdom through cutting-edge AI technology",
-    "url": "https://holmesai.com",
-    "logo": "https://holmesai.com/images/logo.ico",
+    		"url": "https://holmes-ai.netdevs.net",
+    		"logo": "https://holmes-ai.netdevs.net/images/logo.ico",
     "foundingDate": "2024",
     "mission": "To preserve and perpetuate Ernest Holmes' authentic voice and teachings through AI technology",
     "sameAs": [
@@ -104,7 +104,7 @@
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer service",
-      "email": "support@holmesai.com",
+      		"email": "support@holmes-ai.netdevs.net",
       "availableLanguage": "English"
     },
     "hasOfferCatalog": {
@@ -142,13 +142,13 @@
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://holmesai.com"
+        		"item": "https://holmes-ai.netdevs.net"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Privacy",
-        "item": "https://holmesai.com/privacy"
+        		"item": "https://holmes-ai.netdevs.net/privacy"
       }
     ]
   }

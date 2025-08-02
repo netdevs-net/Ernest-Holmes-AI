@@ -83,6 +83,15 @@
 						<Mail class="w-3 h-3" />
 						<span class="email-share-text">Share via Email</span>
 					</button>
+					
+					<!-- Support Holmes AI Link -->
+					<a 
+						href="/support" 
+						class="support-link"
+						title="Support Holmes AI"
+					>
+						<span class="support-text">Support Holmes AI</span>
+					</a>
 				{/if}
 			</div>
 		</div>
@@ -184,6 +193,40 @@
 	}
 	
 	.email-share-text {
+		font-size: 0.75rem;
+		font-weight: 500;
+		white-space: nowrap;
+	}
+	
+	/* Support link */
+	.support-link {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		padding: 0.25rem 0.5rem;
+		background: transparent;
+		border: none;
+		color: var(--text-secondary);
+		border-radius: 0.25rem;
+		cursor: pointer;
+		transition: all 0.2s ease;
+		opacity: 0.7;
+		text-decoration: none;
+	}
+	
+	.support-link:hover {
+		background: var(--bg-secondary);
+		color: var(--text-accent);
+		opacity: 1;
+		transform: scale(1.05);
+	}
+	
+	.support-link:focus {
+		outline: 2px solid var(--focus-ring);
+		outline-offset: 2px;
+	}
+	
+	.support-text {
 		font-size: 0.75rem;
 		font-weight: 500;
 		white-space: nowrap;

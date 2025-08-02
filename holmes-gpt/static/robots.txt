@@ -2,8 +2,8 @@ User-agent: *
 Allow: /
 
 # Multiple sitemaps for faster indexing
-Sitemap: https://holmesai.com/sitemap.xml
-Sitemap: https://holmesai.com/news-sitemap.xml
+Sitemap: https://holmes-ai.netdevs.net/sitemap.xml
+Sitemap: https://holmes-ai.netdevs.net/news-sitemap.xml
 
 # Faster crawling for new sites
 Crawl-delay: 0.5

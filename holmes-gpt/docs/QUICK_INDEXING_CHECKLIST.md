@@ -5,53 +5,53 @@
 ### 1. Search Engine Webmaster Tools (Priority 1)
 - [ ] **Google Search Console**
   - Go to: https://search.google.com/search-console
-  - Add property: `https://holmesai.com`
+  - Add property: `https://holmes-ai.netdevs.net`
   - Verify ownership (use HTML file method)
-  - Submit sitemap: `https://holmesai.com/sitemap.xml`
+  - Submit sitemap: `https://holmes-ai.netdevs.net/sitemap.xml`
   - Request indexing for main pages
 
 - [ ] **Bing Webmaster Tools**
   - Go to: https://www.bing.com/webmasters
-  - Add site: `https://holmesai.com`
+  - Add site: `https://holmes-ai.netdevs.net`
   - Verify ownership
-  - Submit sitemap: `https://holmesai.com/sitemap.xml`
+  - Submit sitemap: `https://holmes-ai.netdevs.net/sitemap.xml`
 
 - [ ] **Yandex Webmaster**
   - Go to: https://webmaster.yandex.com
-  - Add site: `https://holmesai.com`
-  - Submit sitemap: `https://holmesai.com/sitemap.xml`
+  - Add site: `https://holmes-ai.netdevs.net`
+  - Submit sitemap: `https://holmes-ai.netdevs.net/sitemap.xml`
 
 ### 2. Direct Sitemap Submission (Priority 1)
 ```bash
 # Run these commands immediately:
-curl "https://www.google.com/ping?sitemap=https://holmesai.com/sitemap.xml"
-curl "https://www.bing.com/ping?sitemap=https://holmesai.com/sitemap.xml"
+curl "https://www.google.com/ping?sitemap=https://holmes-ai.netdevs.net/sitemap.xml"
+curl "https://www.bing.com/ping?sitemap=https://holmes-ai.netdevs.net/sitemap.xml"
 ```
 
 ### 3. Social Media Validation (Priority 1)
 - [ ] **Facebook Debugger**
   - Go to: https://developers.facebook.com/tools/debug/
-  - Enter URL: `https://holmesai.com`
+  - Enter URL: `https://holmes-ai.netdevs.net`
   - Click "Scrape Again"
 
 - [ ] **Twitter Card Validator**
   - Go to: https://cards-dev.twitter.com/validator
-  - Enter URL: `https://holmesai.com`
+  - Enter URL: `https://holmes-ai.netdevs.net`
   - Preview and validate
 
 - [ ] **LinkedIn Post Inspector**
   - Go to: https://www.linkedin.com/post-inspector/
-  - Enter URL: `https://holmesai.com`
+  - Enter URL: `https://holmes-ai.netdevs.net`
 
 ### 4. Analytics Setup (Priority 1)
 - [ ] **Google Analytics**
   - Go to: https://analytics.google.com
-  - Create property for `https://holmesai.com`
+  - Create property for `https://holmes-ai.netdevs.net`
   - Add tracking code to site
 
 - [ ] **Google Tag Manager**
   - Go to: https://tagmanager.google.com
-  - Create container for `https://holmesai.com`
+  - Create container for `https://holmes-ai.netdevs.net`
 
 ## 🔥 URGENT ACTIONS (This Week)
 
@@ -76,8 +76,8 @@ curl "https://www.bing.com/ping?sitemap=https://holmesai.com/sitemap.xml"
 ### 8. Check Indexing Status
 - [ ] **Google Search Console** - Check "Coverage" report
 - [ ] **Bing Webmaster Tools** - Check "Sitemaps" status
-- [ ] **Google Search** - Search "site:holmesai.com"
-- [ ] **Bing Search** - Search "site:holmesai.com"
+- [ ] **Google Search** - Search "site:holmes-ai.netdevs.net"
+- [ ] **Bing Search** - Search "site:holmes-ai.netdevs.net"
 
 ### 9. Monitor Traffic
 - [ ] **Google Analytics** - Check real-time traffic
