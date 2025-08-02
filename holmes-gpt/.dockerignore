@@ -32,8 +32,8 @@ Thumbs.db
 .gitignore
 
 # Docker
-Dockerfile
-.dockerignore
+#Dockerfile
+#.dockerignore
 
 # Logs
 logs
