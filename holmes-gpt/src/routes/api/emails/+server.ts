@@ -17,7 +17,7 @@ function getEmailRepo(): EmailRepository {
 	return emailRepo;
 }
 
-export const POST: RequestHandler = async ({ request }) => {
+export const POST: RequestHandler = async ({ request, getClientAddress, cookies }) => {
 	try {
 		const { emailAddress, messageContent, messageId } = await request.json();
 
@@ -35,17 +35,19 @@ export const POST: RequestHandler = async ({ request }) => {
 			return json({ error: 'Invalid email address format' }, { status: 400 });
 		}
 
-		// Get client information
-		const clientInfo = getClientInfo(request);
+		// Get client information manually
+		const clientIP = getClientAddress();
+		const userAgent = request.headers.get('user-agent') || 'unknown';
+		const sessionId = cookies.get('holmes_session_id') || `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
 		// Store email in database
 		const emailRecord = getEmailRepo().storeEmail(
 			emailAddress,
 			messageContent,
 			messageId,
-			clientInfo.ip,
-			clientInfo.userAgent,
-			clientInfo.sessionId
+			clientIP,
+			userAgent,
+			sessionId
 		);
 
 		return json({

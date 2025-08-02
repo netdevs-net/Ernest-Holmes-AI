@@ -1,6 +1,6 @@
 <script lang="ts">
 	import EmailChat from './EmailChat.svelte';
-	import { Mail } from 'lucide-svelte';
+	import { Mail, Hand } from 'lucide-svelte';
 	
 	export let message: { role: 'user' | 'assistant'; content: string; timestamp: Date; source?: string; error?: boolean };
 	
@@ -90,6 +90,7 @@
 						class="support-link"
 						title="Support Holmes AI"
 					>
+						<Hand class="w-3 h-3" />
 						<span class="support-text">Support Holmes AI</span>
 					</a>
 				{/if}
