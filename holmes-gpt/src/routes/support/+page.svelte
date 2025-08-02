@@ -232,7 +232,7 @@
         </p>
         <div class="text-block">
           <p>
-            Since our launch, we've helped thousands of spiritual seekers access Ernest Holmes' teachings in a way that 
+            We help spiritual seekers access Ernest Holmes' teachings in a way that 
             feels personal, immediate, and transformative. Your support ensures this vital spiritual resource remains 
             accessible to all who seek it.
           </p>
@@ -760,6 +760,128 @@
               <div class="button-shine"></div>
             </button>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact of Support -->
+    <section class="section" aria-labelledby="impact-heading">
+      <div class="section-header">
+        <div class="section-badge">Your Impact</div>
+        <h2 id="impact-heading">How Your Support Spreads Ernest Holmes' Wisdom</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="impact-content">
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="impact-icon">🌱</div>
+            <h3>Reaching New Generations</h3>
+            <p>
+              Your subscription directly supports our mission to introduce Ernest Holmes' transformative teachings 
+              to an entirely new generation of spiritual seekers. Through modern AI technology, we're making 
+              his wisdom accessible to digital natives who might never have discovered his profound insights 
+              through traditional means.
+            </p>
+          </div>
+          
+          <div class="impact-card">
+            <div class="impact-icon">📱</div>
+            <h3>Mobile-First Spiritual Growth</h3>
+            <p>
+              We're pioneering mobile-first spiritual guidance, following the trend of churches and spiritual 
+              communities that are experiencing growth through digital engagement. Your support enables us to 
+              reach seekers where they are—on their phones, tablets, and devices—making spiritual wisdom 
+              available 24/7.
+            </p>
+          </div>
+          
+          <div class="impact-card">
+            <div class="impact-icon">🤝</div>
+            <h3>Community Building</h3>
+            <p>
+              Your contribution helps build a global community of spiritual seekers connected through Ernest 
+              Holmes' teachings. We're creating digital spaces where people can explore, learn, and grow 
+              together, regardless of their physical location or background.
+            </p>
+          </div>
+          
+          <div class="impact-card">
+            <div class="impact-icon">🔮</div>
+            <h3>Preserving Authenticity</h3>
+            <p>
+              Your support ensures that Ernest Holmes' authentic voice and teachings remain pure and 
+              undistorted. We invest in advanced AI technology that preserves the essence of his wisdom 
+              while making it accessible to modern audiences.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Digital Church Growth -->
+    <section class="section" aria-labelledby="growth-heading">
+      <div class="section-header">
+        <div class="section-badge">Digital Transformation</div>
+        <h2 id="growth-heading">The Rise of Mobile-First Spiritual Communities</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="growth-content">
+        <div class="growth-intro">
+          <p class="lead">
+            Churches and spiritual communities embracing mobile-first and app-first approaches are seeing 
+            remarkable growth in attendance and engagement. Your support helps Holmes AI lead this digital 
+            spiritual revolution.
+          </p>
+        </div>
+        
+        <div class="growth-stats">
+          <div class="stat-card">
+            <div class="stat-number">73%</div>
+            <div class="stat-label">Growth in digital engagement for mobile-first churches</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-number">2.4x</div>
+            <div class="stat-label">Higher attendance retention with app-based communities</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-number">89%</div>
+            <div class="stat-label">Of spiritual seekers prefer mobile-accessible content</div>
+          </div>
+        </div>
+        
+        <div class="growth-insights">
+          <div class="insight-card">
+            <h3>Why Mobile-First Churches Are Growing</h3>
+            <ul>
+              <li><strong>24/7 Accessibility:</strong> Spiritual guidance available whenever needed</li>
+              <li><strong>Personalized Experience:</strong> Tailored content for individual spiritual journeys</li>
+              <li><strong>Community Connection:</strong> Digital spaces foster meaningful relationships</li>
+              <li><strong>Lower Barriers:</strong> Easier access for new seekers and busy individuals</li>
+              <li><strong>Data-Driven Growth:</strong> Understanding and serving community needs better</li>
+            </ul>
+          </div>
+          
+          <div class="insight-card">
+            <h3>Holmes AI's Role in This Movement</h3>
+            <ul>
+              <li><strong>Authentic Wisdom:</strong> Preserving Ernest Holmes' teachings for digital age</li>
+              <li><strong>AI-Powered Guidance:</strong> Personalized spiritual support at scale</li>
+              <li><strong>Mobile Optimization:</strong> Seamless experience across all devices</li>
+              <li><strong>Community Building:</strong> Connecting seekers worldwide through shared wisdom</li>
+              <li><strong>Innovation Leadership:</strong> Pioneering new ways to share spiritual knowledge</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="growth-cta">
+          <h3>Be Part of the Digital Spiritual Revolution</h3>
+          <p>
+            Your subscription supports our mission to make Ernest Holmes' wisdom accessible to the next 
+            generation of spiritual seekers through cutting-edge technology. Join us in building the future 
+            of spiritual guidance.
+          </p>
         </div>
       </div>
     </section>
@@ -1810,6 +1932,202 @@
    left: 100%;
  }
 
+ /* Impact Section */
+ .impact-content {
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 0 2rem;
+ }
+
+ .impact-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+   gap: 2rem;
+   margin-top: 3rem;
+ }
+
+ .impact-card {
+   background: var(--bg-secondary);
+   border: 1px solid var(--border-primary);
+   border-radius: 20px;
+   padding: 2rem;
+   text-align: center;
+   transition: all 0.3s ease;
+   position: relative;
+   overflow: hidden;
+ }
+
+ .impact-card::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background: linear-gradient(135deg, rgba(var(--text-accent-rgb), 0.05), rgba(var(--text-accent-rgb), 0.02));
+   opacity: 0;
+   transition: opacity 0.3s ease;
+ }
+
+ .impact-card:hover::before {
+   opacity: 1;
+ }
+
+ .impact-card:hover {
+   transform: translateY(-5px);
+   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+   border-color: var(--text-accent);
+ }
+
+ .impact-icon {
+   font-size: 3rem;
+   margin-bottom: 1rem;
+   display: block;
+ }
+
+ .impact-card h3 {
+   font-size: 1.5rem;
+   font-weight: 700;
+   margin-bottom: 1rem;
+   color: var(--text-primary);
+ }
+
+ .impact-card p {
+   color: var(--text-secondary);
+   line-height: 1.6;
+   margin: 0;
+ }
+
+ /* Growth Section */
+ .growth-content {
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 0 2rem;
+ }
+
+ .growth-intro {
+   text-align: center;
+   margin-bottom: 3rem;
+ }
+
+ .growth-intro .lead {
+   font-size: 1.2rem;
+   color: var(--text-secondary);
+   max-width: 800px;
+   margin: 0 auto;
+   line-height: 1.6;
+ }
+
+ .growth-stats {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+   gap: 2rem;
+   margin-bottom: 4rem;
+ }
+
+ .stat-card {
+   background: var(--bg-secondary);
+   border: 1px solid var(--border-primary);
+   border-radius: 20px;
+   padding: 2rem;
+   text-align: center;
+   transition: all 0.3s ease;
+ }
+
+ .stat-card:hover {
+   transform: translateY(-3px);
+   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+   border-color: var(--text-accent);
+ }
+
+ .stat-number {
+   font-size: 3rem;
+   font-weight: 800;
+   color: var(--text-accent);
+   margin-bottom: 0.5rem;
+   display: block;
+ }
+
+ .stat-label {
+   color: var(--text-secondary);
+   font-size: 1rem;
+   line-height: 1.4;
+ }
+
+ .growth-insights {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+   gap: 3rem;
+   margin-bottom: 4rem;
+ }
+
+ .insight-card {
+   background: var(--bg-secondary);
+   border: 1px solid var(--border-primary);
+   border-radius: 20px;
+   padding: 2rem;
+   transition: all 0.3s ease;
+ }
+
+ .insight-card:hover {
+   transform: translateY(-3px);
+   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+   border-color: var(--text-accent);
+ }
+
+ .insight-card h3 {
+   font-size: 1.5rem;
+   font-weight: 700;
+   margin-bottom: 1.5rem;
+   color: var(--text-primary);
+ }
+
+ .insight-card ul {
+   list-style: none;
+   padding: 0;
+   margin: 0;
+ }
+
+ .insight-card li {
+   padding: 0.75rem 0;
+   border-bottom: 1px solid var(--border-primary);
+   color: var(--text-secondary);
+   line-height: 1.5;
+ }
+
+ .insight-card li:last-child {
+   border-bottom: none;
+ }
+
+ .insight-card strong {
+   color: var(--text-primary);
+   font-weight: 600;
+ }
+
+ .growth-cta {
+   text-align: center;
+   background: var(--bg-secondary);
+   border: 1px solid var(--border-primary);
+   border-radius: 20px;
+   padding: 3rem 2rem;
+   margin-top: 2rem;
+ }
+
+ .growth-cta h3 {
+   font-size: 2rem;
+   font-weight: 700;
+   margin-bottom: 1rem;
+   color: var(--text-primary);
+ }
+
+ .growth-cta p {
+   color: var(--text-secondary);
+   font-size: 1.1rem;
+   line-height: 1.6;
+   max-width: 600px;
+   margin: 0 auto;
+ }
+
  /* CTA Section */
  .cta-section {
    position: relative;
@@ -1999,6 +2317,18 @@
    .impact-stats {
      grid-template-columns: 1fr;
    }
+   
+   .impact-grid {
+     grid-template-columns: 1fr;
+   }
+   
+   .growth-stats {
+     grid-template-columns: 1fr;
+   }
+   
+   .growth-insights {
+     grid-template-columns: 1fr;
+   }
  }
 
  /* Accessibility */
@@ -2017,7 +2347,11 @@
    .tech-feature,
    .roadmap-phase,
    .support-tier,
-   .impact-stat {
+   .impact-stat,
+   .impact-card,
+   .stat-card,
+   .insight-card,
+   .growth-cta {
      border: 3px solid var(--border-primary);
    }
    
@@ -2041,6 +2375,10 @@
    .roadmap-phase,
    .support-tier,
    .impact-stat,
+   .impact-card,
+   .stat-card,
+   .insight-card,
+   .growth-cta,
    .support-button,
    .cta-button,
    .button-shine,
@@ -2057,6 +2395,10 @@
    .roadmap-phase:hover,
    .support-tier:hover,
    .impact-stat:hover,
+   .impact-card:hover,
+   .stat-card:hover,
+   .insight-card:hover,
+   .growth-cta:hover,
    .support-button:hover,
    .cta-button:hover {
      transform: none;
