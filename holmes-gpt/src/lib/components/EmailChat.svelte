@@ -10,14 +10,8 @@
 	let emailAddress = '';
 	let isSending = false;
 	let isSent = false;
-	let showForm = false;
-	
-	function handleEmailClick() {
-		showForm = true;
-	}
 	
 	function handleClose() {
-		showForm = false;
 		emailAddress = '';
 		isSent = false;
 		dispatch('close');
@@ -100,7 +94,7 @@ Your friend`);
 	}
 </script>
 
-{#if isVisible}
+	{#if isVisible}
 	<div 
 		class="email-overlay" 
 		on:click={handleClose}
@@ -116,85 +110,72 @@ Your friend`);
 			on:keydown={handleKeydown}
 			role="document"
 		>
-			{#if !showForm}
-				<!-- Email CTA Button -->
-				<button 
-					class="email-cta-button"
-					on:click={handleEmailClick}
-					title="Email this response to someone"
-				>
-					<Mail class="w-4 h-4" />
-					<span>Share via Email</span>
-				</button>
-			{:else}
-				<!-- Email Form -->
-				<div class="email-form">
-					<div class="email-header">
-						<h3 id="email-title" class="email-title">
-							<Mail class="w-5 h-5" />
-							Share This Response
-						</h3>
-						<button 
-							class="close-button"
-							on:click={handleClose}
-							title="Close"
-						>
-							<X class="w-4 h-4" />
-						</button>
-					</div>
-					
-					{#if !isSent}
-						<div class="email-content">
-							<p class="email-description">
-								Share this spiritual guidance with someone who might benefit from it.
-							</p>
-							
-							<div class="email-input-group">
-								<label for="email-input" class="email-label">
-									Recipient's Email Address
-								</label>
-								<input
-									id="email-input"
-									type="email"
-									bind:value={emailAddress}
-									placeholder="friend@example.com"
-									class="email-input"
-									on:keydown={handleKeydown}
-									disabled={isSending}
-									autocomplete="email"
-								/>
-							</div>
-							
-							<div class="email-actions">
-								<button 
-									class="email-send-button"
-									on:click={handleSendEmail}
-									disabled={!emailAddress.trim() || !emailAddress.includes('@') || isSending}
-								>
-									{#if isSending}
-										<div class="loading-spinner"></div>
-										Sending...
-									{:else}
-										<Send class="w-4 h-4" />
-										Send Email
-									{/if}
-								</button>
-							</div>
-						</div>
-					{:else}
-						<div class="email-success">
-							<Check class="w-8 h-8 text-green-500" />
-							<h3 class="success-title">Email Sent!</h3>
-							<p class="success-message">
-								Your email client should open with the message ready to send.
-							</p>
-						</div>
-					{/if}
+			<div class="email-form">
+				<div class="email-header">
+					<h3 id="email-title" class="email-title">
+						<Mail class="w-5 h-5" />
+						Share This Response
+					</h3>
+					<button 
+						class="close-button"
+						on:click={handleClose}
+						title="Close"
+					>
+						<X class="w-4 h-4" />
+					</button>
 				</div>
-			{/if}
+				
+				{#if !isSent}
+					<div class="email-content">
+						<p class="email-description">
+							Share this spiritual guidance with someone who might benefit from it.
+						</p>
+						
+						<div class="email-input-group">
+							<label for="email-input" class="email-label">
+								Recipient's Email Address
+							</label>
+							<input
+								id="email-input"
+								type="email"
+								bind:value={emailAddress}
+								placeholder="friend@example.com"
+								class="email-input"
+								on:keydown={handleKeydown}
+								disabled={isSending}
+								autocomplete="email"
+							/>
+						</div>
+						
+						<div class="email-actions">
+							<button 
+								class="email-send-button"
+								on:click={handleSendEmail}
+								disabled={!emailAddress.trim() || !emailAddress.includes('@') || isSending}
+							>
+								{#if isSending}
+									<div class="loading-spinner"></div>
+									Sending...
+								{:else}
+									<Send class="w-4 h-4" />
+									Send Email
+								{/if}
+							</button>
+						</div>
+					</div>
+				{:else}
+					<div class="email-success">
+						<Check class="w-8 h-8 text-green-500" />
+						<h3 class="success-title">Email Sent!</h3>
+						<p class="success-message">
+							Your email client should open with the message ready to send.
+						</p>
+					</div>
+				{/if}
+			</div>
 		</div>
 	</div>
-{/if}
+	{/if}
 
 <style>
 	.email-overlay {
@@ -225,30 +206,7 @@ Your friend`);
 		animation: slideUp 0.3s ease-out;
 	}
 	
-	.email-cta-button {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		padding: 0.75rem 1.5rem;
-		background: linear-gradient(135deg, var(--text-accent), var(--text-accent-hover));
-		color: white;
-		border: none;
-		border-radius: 0.75rem;
-		font-size: 0.875rem;
-		font-weight: 600;
-		cursor: pointer;
-		transition: all 0.2s ease;
-		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-	}
-	
-	.email-cta-button:hover {
-		transform: translateY(-1px);
-		box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.2);
-	}
-	
-	.email-cta-button:active {
-		transform: translateY(0);
-	}
+
 	
 	.email-form {
 		min-width: 400px;

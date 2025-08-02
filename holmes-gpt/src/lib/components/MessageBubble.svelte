@@ -81,6 +81,7 @@
 						title="Share this response via email"
 					>
 						<Mail class="w-3 h-3" />
+						<span class="email-share-text">Share via Email</span>
 					</button>
 				{/if}
 			</div>
@@ -159,8 +160,8 @@
 	.email-share-button {
 		display: flex;
 		align-items: center;
-		justify-content: center;
-		padding: 0.25rem;
+		gap: 0.25rem;
+		padding: 0.25rem 0.5rem;
 		background: transparent;
 		border: none;
 		color: var(--text-secondary);
@@ -174,11 +175,17 @@
 		background: var(--bg-secondary);
 		color: var(--text-accent);
 		opacity: 1;
-		transform: scale(1.1);
+		transform: scale(1.05);
 	}
 	
 	.email-share-button:focus {
 		outline: 2px solid var(--focus-ring);
 		outline-offset: 2px;
+	}
+	
+	.email-share-text {
+		font-size: 0.75rem;
+		font-weight: 500;
+		white-space: nowrap;
 	}
 </style> 
