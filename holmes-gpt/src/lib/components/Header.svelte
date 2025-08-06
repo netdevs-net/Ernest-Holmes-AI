@@ -3,15 +3,15 @@
 	import { theme, toggleTheme } from '$lib/stores/themeStore';
 	import ResponseStyleToggle from './ResponseStyleToggle.svelte';
 	import { page } from '$app/stores';
-	import { Sun, Moon, Menu, Info, Heart, Shield, BarChart3, Lock } from 'lucide-svelte';
+	import { Sun, Moon, Menu, Info, Heart, Shield, BarChart3, Lock, X } from 'lucide-svelte';
 	
 	const dispatch = createEventDispatcher();
 	
 	let isMenuOpen = false;
 	let isProfileMenuOpen = false;
 	let showAdminButton = false; // Control admin button visibility
-	let menuDropdown: HTMLElement;
-	let profileDropdown: HTMLElement;
+	let menuDropdown: HTMLElement | undefined;
+	let profileDropdown: HTMLElement | undefined;
 	
 	// Debug: Log initial state
 	console.log('Initial admin button state:', showAdminButton);
@@ -31,6 +31,15 @@
 	function toggleMenu() {
 		isMenuOpen = !isMenuOpen;
 		isProfileMenuOpen = false; // Close profile menu when opening main menu
+		
+		// Prevent body scroll when menu is open on mobile
+		if (typeof document !== 'undefined') {
+			if (isMenuOpen) {
+				document.body.style.overflow = 'hidden';
+			} else {
+				document.body.style.overflow = '';
+			}
+		}
 	}
 	
 	function toggleProfileMenu() {
@@ -41,6 +50,11 @@
 	function closeAllMenus() {
 		isMenuOpen = false;
 		isProfileMenuOpen = false;
+		
+		// Restore body scroll
+		if (typeof document !== 'undefined') {
+			document.body.style.overflow = '';
+		}
 	}
 	
 	// Handle clicks outside of dropdowns
@@ -77,6 +91,8 @@
 			return () => {
 				document.removeEventListener('keydown', handleKeydown, true);
 				document.removeEventListener('click', handleClickOutside);
+				// Clean up body overflow
+				document.body.style.overflow = '';
 				console.log('Admin keyboard shortcut listener removed');
 			};
 		}
@@ -132,18 +148,68 @@
 					aria-label="Navigation menu"
 					aria-expanded={isMenuOpen}
 				>
-					<Menu size={20} class="menu-icon" />
+					{#if isMenuOpen}
+						<X size={20} class="menu-icon" />
+					{:else}
+						<Menu size={20} class="menu-icon" />
+					{/if}
 				</button>
 
-				<!-- Navigation Dropdown -->
+				<!-- Mobile Navigation Overlay -->
 				{#if isMenuOpen}
-					<div class="nav-dropdown">
-						<!-- Mobile Response Style Toggle -->
-						<div class="mobile-toggle-container">
-							<span class="toggle-label">Response Style</span>
-							<ResponseStyleToggle on:styleChanged={({ detail }) => dispatch('styleChanged', detail)} />
+					<!-- Mobile Backdrop -->
+					<div class="mobile-nav-backdrop" on:click={closeAllMenus}></div>
+					
+					<!-- Mobile Navigation Panel -->
+					<div class="mobile-nav-panel">
+						<div class="mobile-nav-header">
+							<h2 class="mobile-nav-title">Explore</h2>
+							<button 
+								on:click={closeAllMenus}
+								class="mobile-nav-close"
+								aria-label="Close explore menu"
+							>
+								<X size={24} />
+							</button>
 						</div>
-						<div class="dropdown-divider"></div>
+						
+						<div class="mobile-nav-content">
+							<!-- Mobile Response Style Toggle -->
+							<div class="mobile-toggle-container">
+								<span class="toggle-label">Response Style</span>
+								<ResponseStyleToggle on:styleChanged={({ detail }) => dispatch('styleChanged', detail)} />
+							</div>
+							
+							<div class="mobile-nav-divider"></div>
+							
+							<!-- Navigation Links -->
+							<div class="mobile-nav-links">
+								<a href="/about" class="mobile-nav-item" class:active={$page.url.pathname === '/about'} on:click={closeAllMenus}>
+									<Info size={20} class="mobile-nav-icon" />
+									<span>About</span>
+								</a>
+								<a href="/support" class="mobile-nav-item" class:active={$page.url.pathname === '/support'} on:click={closeAllMenus}>
+									<Heart size={20} class="mobile-nav-icon" />
+									<span>Support</span>
+								</a>
+								<a href="/privacy" class="mobile-nav-item" class:active={$page.url.pathname === '/privacy'} on:click={closeAllMenus}>
+									<Shield size={20} class="mobile-nav-icon" />
+									<span>Privacy</span>
+								</a>
+								{#if showAdminButton}
+									<a href="/admin" class="mobile-nav-item" class:active={$page.url.pathname === '/admin'} on:click={closeAllMenus}>
+										<BarChart3 size={20} class="mobile-nav-icon" />
+										<span>Admin</span>
+									</a>
+								{/if}
+							</div>
+						</div>
+					</div>
+				{/if}
+
+				<!-- Desktop Navigation Dropdown -->
+				{#if isMenuOpen}
+					<div class="nav-dropdown desktop-only">
 						<a href="/about" class="nav-dropdown-item" class:active={$page.url.pathname === '/about'} on:click={closeAllMenus}>
 							<Info size={16} class="dropdown-icon" />
 							<span>About</span>
@@ -198,6 +264,9 @@
 		z-index: 1000;
 		animation: dropdownIn 0.15s ease-out;
 		transform-origin: top right;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
 	}
 
 	.nav-dropdown-item {
@@ -236,7 +305,6 @@
 		outline-offset: 2px;
 	}
 
-
 	@keyframes dropdownIn {
 		from {
 			opacity: 0;
@@ -253,32 +321,38 @@
 		display: none; /* Hidden by default (desktop) */
 		flex-direction: column;
 		align-items: center;
-		gap: 0.5rem;
-		padding: 0.75rem 1rem;
-		border-radius: 8px;
+		justify-content: center;
+		gap: 0.75rem;
+		padding: 1rem;
+		border-radius: 12px;
 		background: rgba(239, 100, 72, 0.05);
 		border: 1px solid rgba(239, 100, 72, 0.1);
-		margin-bottom: 0.25rem;
+		margin-bottom: 0.5rem;
 		width: 100%;
 		box-sizing: border-box;
+		text-align: center;
 	}
+	
+
 
 	.toggle-label {
 		color: var(--text-primary);
-		font-size: 0.75rem;
+		font-size: 0.875rem;
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
 		text-align: center;
 		margin: 0;
 		width: 100%;
+		line-height: 1.2;
 	}
 
 	.dropdown-divider {
 		height: 1px;
 		background: var(--border-primary);
-		margin: 0.5rem 0;
+		margin: 0.25rem 0;
 		opacity: 0.5;
+		width: 100%;
 	}
 
 	/* Desktop only class */
@@ -305,6 +379,156 @@
 		}
 		50% {
 			opacity: 0.7;
+		}
+	}
+	
+	/* Mobile Navigation Styles */
+	.mobile-nav-backdrop {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, 0.5);
+		backdrop-filter: blur(4px);
+		z-index: 9998;
+		animation: backdropIn 0.3s ease-out;
+		display: none; /* Hidden by default on desktop */
+	}
+	
+	.mobile-nav-panel {
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 50%;
+		max-width: 280px;
+		height: 100vh;
+		height: 100dvh;
+		background: var(--bg-primary);
+		backdrop-filter: blur(16px);
+		-webkit-backdrop-filter: blur(16px);
+		border-left: 1px solid var(--border-primary);
+		z-index: 9999;
+		transform: translateX(100%);
+		animation: slideIn 0.3s ease-out forwards;
+		display: none; /* Hidden by default on desktop */
+		flex-direction: column;
+		overflow: hidden;
+		box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+	}
+	
+	.mobile-nav-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 1rem 1.5rem;
+		border-bottom: 1px solid var(--border-primary);
+		background: var(--glass-bg);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+	}
+	
+	.mobile-nav-title {
+		font-size: 1.125rem;
+		font-weight: 600;
+		color: var(--text-primary);
+		margin: 0;
+	}
+	
+	.mobile-nav-close {
+		padding: 0.5rem;
+		border-radius: 8px;
+		background: transparent;
+		border: none;
+		color: var(--text-primary);
+		cursor: pointer;
+		transition: all 0.2s ease;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	.mobile-nav-close:hover {
+		background: var(--bg-secondary);
+		color: var(--text-accent);
+	}
+	
+	.mobile-nav-content {
+		flex: 1;
+		padding: 1.5rem;
+		overflow-y: auto;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		align-items: center;
+	}
+	
+	.mobile-nav-divider {
+		height: 1px;
+		background: var(--border-primary);
+		margin: 1rem 0;
+		opacity: 0.3;
+	}
+	
+	.mobile-nav-links {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		width: 100%;
+		align-items: center;
+	}
+	
+	.mobile-nav-item {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+		padding: 1rem;
+		border-radius: 12px;
+		text-decoration: none;
+		color: var(--text-primary);
+		font-weight: 500;
+		font-size: 1rem;
+		transition: all 0.2s ease;
+		border: none;
+		background: transparent;
+		width: 100%;
+		max-width: 200px;
+		text-align: center;
+		cursor: pointer;
+	}
+	
+	.mobile-nav-item:hover {
+		background: var(--bg-secondary);
+		color: var(--text-accent);
+		transform: translateX(4px);
+	}
+	
+	.mobile-nav-item.active {
+		background: var(--text-accent);
+		color: white;
+		box-shadow: 0 4px 12px rgba(128, 90, 213, 0.3);
+	}
+	
+	.mobile-nav-icon {
+		flex-shrink: 0;
+	}
+	
+	@keyframes slideIn {
+		from {
+			transform: translateX(100%);
+		}
+		to {
+			transform: translateX(0);
+		}
+	}
+	
+	@keyframes backdropIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
 		}
 	}
 	
@@ -337,6 +561,15 @@
 			max-height: 50vh;
 			overflow: visible;
 		}
+		
+		/* Show mobile navigation on smaller screens */
+		.mobile-nav-backdrop {
+			display: block;
+		}
+		
+		.mobile-nav-panel {
+			display: flex;
+		}
 	}
 	
 	@media (max-width: 768px) {
@@ -362,6 +595,46 @@
 			max-height: 40vh;
 			overflow: visible;
 		}
+		
+		/* Mobile navigation panel adjustments */
+		.mobile-nav-panel {
+			width: 50%;
+			max-width: 250px;
+		}
+		
+		.mobile-nav-header {
+			padding: 0.75rem 1rem;
+		}
+		
+		.mobile-nav-content {
+			padding: 1rem;
+			align-items: center;
+		}
+		
+		.mobile-nav-item {
+			padding: 0.75rem;
+			font-size: 0.875rem;
+			max-width: 180px;
+		}
+		
+		.mobile-toggle-container {
+			padding: 0.75rem;
+			gap: 0.5rem;
+		}
+		
+		.toggle-label {
+			font-size: 0.75rem;
+		}
+		
+		/* Mobile response style toggle adjustments */
+		.mobile-toggle-container :global(.response-style-toggle-container) {
+			gap: 0.4rem;
+		}
+		
+		.mobile-toggle-container :global(.label) {
+			font-size: 0.65rem;
+			padding: 0.15rem 0.3rem;
+		}
 	}
 
 	/* Show mobile toggle container on small screens */
@@ -371,54 +644,59 @@
 		}
 	}
 	
-@media (max-width: 320px) {
-  h1 {
-    font-size: 1.25rem;
-  }
+	@media (max-width: 320px) {
+		h1 {
+			font-size: 1.25rem;
+		}
 
-  header {
-    max-height: 25vh;
-  }
-}
+		header {
+			max-height: 25vh;
+		}
+		
+		.mobile-nav-panel {
+			width: 60%;
+			max-width: 200px;
+		}
+	}
 
-/* Mobile-specific header optimizations */
-@media (max-width: 768px) {
-  header {
-    /* Ensure proper mobile positioning */
-    position: relative;
-    /* Prevent mobile browser UI interference */
-    z-index: 100;
-    /* Mobile touch optimizations */
-    -webkit-tap-highlight-color: transparent;
-  }
+	/* Mobile-specific header optimizations */
+	@media (max-width: 768px) {
+		header {
+			/* Ensure proper mobile positioning */
+			position: relative;
+			/* Prevent mobile browser UI interference */
+			z-index: 100;
+			/* Mobile touch optimizations */
+			-webkit-tap-highlight-color: transparent;
+		}
   
-  .container {
-    /* Ensure proper mobile layout */
-    position: relative;
-    /* Mobile touch feedback */
-    -webkit-tap-highlight-color: transparent;
-  }
-}
+		.container {
+			/* Ensure proper mobile layout */
+			position: relative;
+			/* Mobile touch feedback */
+			-webkit-tap-highlight-color: transparent;
+		}
+	}
 
-@media (max-width: 480px) {
-  header {
-    /* Small mobile header optimization */
-    position: relative;
-    /* Prevent any overflow issues */
-    overflow: hidden;
-    /* Mobile touch handling */
-    -webkit-tap-highlight-color: transparent;
-  }
+	@media (max-width: 480px) {
+		header {
+			/* Small mobile header optimization */
+			position: relative;
+			/* Prevent any overflow issues */
+			overflow: hidden;
+			/* Mobile touch handling */
+			-webkit-tap-highlight-color: transparent;
+		}
   
-  .container {
-    /* Small mobile layout optimization */
-    position: relative;
-    /* Prevent any overflow */
-    overflow: hidden;
-  }
-}
+		.container {
+			/* Small mobile layout optimization */
+			position: relative;
+			/* Prevent any overflow */
+			overflow: hidden;
+		}
+	}
 
-@media (max-width: 480px) {
+	@media (max-width: 480px) {
 		.container {
 			padding: 0.125rem;
 			gap: 0.125rem;
@@ -432,6 +710,60 @@
 		header {
 			max-height: 30vh;
 			overflow: visible;
+		}
+		
+		.mobile-nav-panel {
+			width: 60%;
+			max-width: 200px;
+		}
+		
+		.mobile-nav-header {
+			padding: 0.5rem 0.75rem;
+		}
+		
+		.mobile-nav-content {
+			padding: 0.75rem;
+			align-items: center;
+		}
+		
+		.mobile-nav-item {
+			padding: 0.5rem 0.75rem;
+			font-size: 0.8rem;
+			max-width: 160px;
+		}
+		
+		.mobile-toggle-container {
+			padding: 0.5rem;
+			gap: 0.4rem;
+		}
+		
+		.toggle-label {
+			font-size: 0.7rem;
+		}
+		
+		/* Small mobile response style toggle adjustments */
+		.mobile-toggle-container :global(.response-style-toggle-container) {
+			gap: 0.3rem;
+		}
+		
+		.mobile-toggle-container :global(.label) {
+			font-size: 0.6rem;
+			padding: 0.1rem 0.25rem;
+		}
+	}
+
+	/* Mobile-specific dropdown positioning */
+	@media (max-width: 768px) {
+		.nav-dropdown {
+			/* Hide desktop dropdown on mobile */
+			display: none !important;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.nav-dropdown {
+			/* Hide desktop dropdown on small mobile */
+			display: none !important;
 		}
 	}
 </style> 

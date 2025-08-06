@@ -286,20 +286,34 @@
 	@media (max-width: 640px) {
 		.message-input-container {
 			gap: 4px;
+			/* Ensure input container fits within viewport */
+			max-height: 150px;
+			/* Mobile-specific positioning */
+			position: relative;
+			/* Prevent overflow */
+			overflow: hidden;
 		}
 		
 		.top-row {
 			gap: 4px;
+			/* Ensure top row doesn't take too much space */
+			max-height: 60px;
+			/* Mobile-specific layout */
+			flex-wrap: wrap;
 		}
 		
 		.icon-buttons {
 			gap: 3px;
+			/* Ensure buttons fit properly */
+			flex-wrap: wrap;
 		}
 		
 		.icon-btn {
 			padding: 6px 8px;
 			font-size: 0.75rem;
 			border-radius: 6px;
+			/* Ensure buttons don't overflow */
+			flex-shrink: 0;
 		}
 		
 		
@@ -317,14 +331,19 @@
 		.bottom-row {
 			align-items: flex-end;
 			gap: 4px;
+			/* Ensure bottom row fits properly */
+			max-height: 80px;
 		}
 		
 		.message-textarea {
 			padding: 10px 12px;
 			font-size: 16px; /* Prevent mobile zoom */
 			min-height: 48px;
+			max-height: 60px; /* Limit height on mobile */
 			line-height: 1.2;
 			border-radius: 6px;
+			/* Ensure textarea doesn't overflow */
+			resize: none;
 		}
 		
 		.send-icon-btn {
@@ -340,19 +359,33 @@
 	@media (max-width: 480px) {
 		.message-input-container {
 			gap: 3px;
+			/* Small mobile input container */
+			max-height: 120px;
+			/* Small mobile positioning */
+			position: relative;
+			/* Prevent overflow */
+			overflow: hidden;
 		}
 		
 		.top-row {
 			gap: 3px;
+			/* Small mobile top row */
+			max-height: 50px;
+			/* Small mobile layout */
+			flex-wrap: wrap;
 		}
 		
 		.icon-buttons {
 			gap: 2px;
+			/* Small mobile button layout */
+			flex-wrap: wrap;
 		}
 		
 		.icon-btn {
 			padding: 5px 6px;
 			border-radius: 5px;
+			/* Small mobile button sizing */
+			flex-shrink: 0;
 		}
 		
 		
@@ -366,14 +399,19 @@
 		.bottom-row {
 			align-items: flex-end;
 			gap: 3px;
+			/* Small mobile bottom row */
+			max-height: 60px;
 		}
 		
 		.message-textarea {
 			padding: 8px 10px;
 			font-size: 16px; /* Prevent mobile zoom */
 			min-height: 44px;
+			max-height: 50px; /* Limit height on small mobile */
 			line-height: 1.2;
 			border-radius: 4px;
+			/* Ensure textarea doesn't overflow */
+			resize: none;
 		}
 		
 		.send-icon-btn {
@@ -387,18 +425,30 @@
 	}
 	
 	@media (max-width: 360px) {
+		.message-input-container {
+			/* Very small mobile input container */
+			max-height: 100px;
+			gap: 2px;
+		}
+		
 		.top-row {
 			flex-direction: column;
 			align-items: stretch;
 			gap: 3px;
+			/* Very small mobile top row */
+			max-height: 40px;
 		}
 		
 		.icon-buttons {
 			justify-content: space-between;
+			/* Very small mobile button layout */
+			gap: 1px;
 		}
 		
 		.icon-btn {
 			padding: 4px 5px;
+			/* Very small mobile button sizing */
+			flex-shrink: 0;
 		}
 		
 		
@@ -408,17 +458,26 @@
 		
 		.bottom-row {
 			align-items: flex-end;
+			/* Very small mobile bottom row */
+			max-height: 50px;
+			gap: 2px;
 		}
 		
 		.message-textarea {
 			min-height: 44px;
+			max-height: 40px; /* Very limited height */
 			line-height: 1.2;
+			/* Very small mobile textarea */
+			padding: 6px 8px;
 		}
 		
 		.send-icon-btn {
 			align-self: flex-end;
 			min-height: 44px;
 			height: 44px;
+			/* Very small mobile send button */
+			padding: 6px;
+			min-width: 44px;
 		}
 	}
 
