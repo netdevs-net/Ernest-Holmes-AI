@@ -926,8 +926,8 @@
   .hero {
     position: relative;
     background: 
-      linear-gradient(rgba(30, 41, 59, 0.7), rgba(51, 65, 85, 0.7));
-      /* url('/images/support.jpg'); */
+      linear-gradient(rgba(30, 41, 59, 0.7), rgba(51, 65, 85, 0.7)),
+      url('/images/support.jpg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -2144,8 +2144,8 @@
     right: 0;
     bottom: 0;
     background: 
-      linear-gradient(rgba(30, 41, 59, 0.7), rgba(51, 65, 85, 0.7));
-      /* url('/images/support.jpg'); */
+      linear-gradient(rgba(30, 41, 59, 0.7), rgba(51, 65, 85, 0.7)),
+      url('/images/support.jpg');
     background-size: cover;
     background-position: center;
     backdrop-filter: blur(5px);
