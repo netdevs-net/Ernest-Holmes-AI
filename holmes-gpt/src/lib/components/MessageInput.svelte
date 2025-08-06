@@ -165,7 +165,6 @@
 		box-shadow: 0 4px 12px rgba(239, 100, 72, 0.2);
 	}
 	
-	
 	.btn-text {
 		white-space: nowrap;
 		font-size: 0.65rem;
@@ -213,14 +212,13 @@
 		resize: none;
 		outline: none;
 		backdrop-filter: blur(4px);
-		font-size: 16px; /* Prevent mobile zoom */
+		font-size: 16px;
 		line-height: 1.3;
 		border: 0.5px solid var(--border-primary);
 		background: var(--glass-bg);
 		color: var(--text-primary);
 		min-height: 44px;
 		max-height: 120px;
-		/* Prevent zoom while ensuring good UX */
 		-webkit-user-select: text;
 		user-select: text;
 	}
@@ -282,29 +280,23 @@
 		background: var(--bg-primary);
 	}
 	
-	/* Mobile-first responsive design */
+	/* Modern mobile-first responsive design */
 	@media (max-width: 640px) {
 		.message-input-container {
 			gap: 4px;
-			/* Ensure input container fits within viewport */
 			max-height: 150px;
-			/* Mobile-specific positioning */
 			position: relative;
-			/* Prevent overflow */
 			overflow: hidden;
 		}
 		
 		.top-row {
 			gap: 4px;
-			/* Ensure top row doesn't take too much space */
 			max-height: 60px;
-			/* Mobile-specific layout */
 			flex-wrap: wrap;
 		}
 		
 		.icon-buttons {
 			gap: 3px;
-			/* Ensure buttons fit properly */
 			flex-wrap: wrap;
 		}
 		
@@ -312,13 +304,11 @@
 			padding: 6px 8px;
 			font-size: 0.75rem;
 			border-radius: 6px;
-			/* Ensure buttons don't overflow */
 			flex-shrink: 0;
 		}
 		
-		
 		.btn-text {
-			display: none; /* Hide text on mobile, show only icons */
+			display: none;
 		}
 		
 		.category-select {
@@ -331,18 +321,16 @@
 		.bottom-row {
 			align-items: flex-end;
 			gap: 4px;
-			/* Ensure bottom row fits properly */
 			max-height: 80px;
 		}
 		
 		.message-textarea {
 			padding: 10px 12px;
-			font-size: 16px; /* Prevent mobile zoom */
+			font-size: 16px;
 			min-height: 48px;
-			max-height: 60px; /* Limit height on mobile */
+			max-height: 60px;
 			line-height: 1.2;
 			border-radius: 6px;
-			/* Ensure textarea doesn't overflow */
 			resize: none;
 		}
 		
@@ -359,35 +347,27 @@
 	@media (max-width: 480px) {
 		.message-input-container {
 			gap: 3px;
-			/* Small mobile input container */
 			max-height: 120px;
-			/* Small mobile positioning */
 			position: relative;
-			/* Prevent overflow */
 			overflow: hidden;
 		}
 		
 		.top-row {
 			gap: 3px;
-			/* Small mobile top row */
 			max-height: 50px;
-			/* Small mobile layout */
 			flex-wrap: wrap;
 		}
 		
 		.icon-buttons {
 			gap: 2px;
-			/* Small mobile button layout */
 			flex-wrap: wrap;
 		}
 		
 		.icon-btn {
 			padding: 5px 6px;
 			border-radius: 5px;
-			/* Small mobile button sizing */
 			flex-shrink: 0;
 		}
-		
 		
 		.category-select {
 			padding: 3px 4px;
@@ -399,18 +379,16 @@
 		.bottom-row {
 			align-items: flex-end;
 			gap: 3px;
-			/* Small mobile bottom row */
 			max-height: 60px;
 		}
 		
 		.message-textarea {
 			padding: 8px 10px;
-			font-size: 16px; /* Prevent mobile zoom */
+			font-size: 16px;
 			min-height: 44px;
-			max-height: 50px; /* Limit height on small mobile */
+			max-height: 50px;
 			line-height: 1.2;
 			border-radius: 4px;
-			/* Ensure textarea doesn't overflow */
 			resize: none;
 		}
 		
@@ -426,7 +404,6 @@
 	
 	@media (max-width: 360px) {
 		.message-input-container {
-			/* Very small mobile input container */
 			max-height: 100px;
 			gap: 2px;
 		}
@@ -435,22 +412,18 @@
 			flex-direction: column;
 			align-items: stretch;
 			gap: 3px;
-			/* Very small mobile top row */
 			max-height: 40px;
 		}
 		
 		.icon-buttons {
 			justify-content: space-between;
-			/* Very small mobile button layout */
 			gap: 1px;
 		}
 		
 		.icon-btn {
 			padding: 4px 5px;
-			/* Very small mobile button sizing */
 			flex-shrink: 0;
 		}
-		
 		
 		.category-selection {
 			align-self: flex-end;
@@ -458,16 +431,14 @@
 		
 		.bottom-row {
 			align-items: flex-end;
-			/* Very small mobile bottom row */
 			max-height: 50px;
 			gap: 2px;
 		}
 		
 		.message-textarea {
 			min-height: 44px;
-			max-height: 40px; /* Very limited height */
+			max-height: 40px;
 			line-height: 1.2;
-			/* Very small mobile textarea */
 			padding: 6px 8px;
 		}
 		
@@ -475,7 +446,6 @@
 			align-self: flex-end;
 			min-height: 44px;
 			height: 44px;
-			/* Very small mobile send button */
 			padding: 6px;
 			min-width: 44px;
 		}
@@ -484,41 +454,15 @@
 	/* Mobile-specific input optimizations */
 	@media (max-width: 768px) {
 		.message-input-container {
-			/* Ensure proper mobile layout */
 			position: relative;
-			/* Prevent mobile keyboard interference */
 			bottom: 0;
-			/* Mobile touch optimizations */
 			-webkit-tap-highlight-color: transparent;
 		}
 		
 		.message-textarea {
-			/* Prevent mobile zoom on focus */
 			font-size: 16px;
-			/* Ensure proper mobile input handling */
 			-webkit-appearance: none;
 			border-radius: 8px;
-			/* Mobile touch feedback */
-			-webkit-tap-highlight-color: transparent;
-		}
-	}
-
-	@media (max-width: 480px) {
-		.message-input-container {
-			/* Small mobile optimizations */
-			padding: 0.5rem;
-			/* Ensure proper mobile positioning */
-			position: relative;
-			/* Prevent any overflow */
-			overflow: hidden;
-		}
-		
-		.message-textarea {
-			/* Small mobile input optimization */
-			font-size: 16px;
-			/* Ensure proper mobile handling */
-			-webkit-appearance: none;
-			/* Mobile touch feedback */
 			-webkit-tap-highlight-color: transparent;
 		}
 	}

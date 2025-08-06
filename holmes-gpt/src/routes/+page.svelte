@@ -319,35 +319,36 @@
 </main>
 
 <style>
-	/* Mobile-first layout structure */
+	/* Modern mobile-first layout structure */
 	.mobile-main-layout {
-		/* Use 100vh for mobile but ensure proper handling */
 		height: 100vh;
-		height: 100dvh; /* Dynamic viewport height for mobile */
+		height: 100dvh;
 		width: 100vw;
 		position: relative;
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
+		z-index: 1;
 	}
 
 	.mobile-content-wrapper {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		position: relative;		/* Ensure proper mobile height */
+		position: relative;
 		height: 100%;
 		overflow: hidden;
+		z-index: 1;
 	}
 
 	.mobile-chat-container {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		/* Ensure chat container takes remaining space */
 		min-height: 0;
-		/* Mobile-specific padding */
 		padding: 0.5rem;
+		position: relative;
+		z-index: 1;
 	}
 
 	.history-overlay,
@@ -373,34 +374,19 @@
 		max-height: 70vh;
 	}
 	
+	/* Mobile optimizations */
 	@media (max-width: 768px) {
 		.mobile-main-layout {
-			/* Ensure proper mobile height */
-			height: 100vh;
-			height: 100dvh;
-			/* Prevent mobile browser UI interference */
 			position: fixed;
 			top: 0;
 			left: 0;
 			right: 0;
 			bottom: 0;
-			/* Mobile touch optimizations */
 			-webkit-overflow-scrolling: touch;
 		}
 
-		.mobile-content-wrapper {
-			/* Mobile height optimization */
-			height: 100%;
-			/* Prevent any overflow */
-			overflow: hidden;
-		}
-
 		.mobile-chat-container {
-			/* Mobile chat container optimization */
 			padding: 0.25rem;
-			/* Ensure proper mobile layout */
-			flex: 1;
-			min-height: 0;
 		}
 		
 		.history-overlay,
@@ -417,52 +403,13 @@
 	}
 
 	@media (max-width: 480px) {
-		.mobile-main-layout {
-			/* Small mobile height optimization */
-			height: 100vh;
-			height: 100dvh;
-			/* Prevent any overflow issues */
-			overflow: hidden;
-			/* Enhanced touch handling */
-			-webkit-overflow-scrolling: touch;
-			/* Prevent pull-to-refresh interference */
-			overscroll-behavior: contain;
-		}
-
 		.mobile-chat-container {
-			/* Small mobile chat container optimization */
 			padding: 0.125rem;
-			/* Ensure proper small mobile layout */
-			flex: 1;
-			min-height: 0;
 		}
 		
 		.history-overlay,
 		.quotes-overlay {
 			padding: 1.5rem 0.5rem;
-		}
-		
-		.history-overlay > :global(*),
-		.quotes-overlay > :global(*) {
-			width: 95%;
-			max-width: 95%;
-			max-height: 70vh;
-		}
-	}
-
-	/* Ensure proper mobile viewport handling */
-	@media (max-width: 320px) {
-		.mobile-main-layout {
-			/* Very small mobile optimization */
-			height: 100vh;
-			height: 100dvh;
-			/* Prevent any overflow */
-			overflow: hidden;
-		}
-
-		.mobile-chat-container {
-			/* Very small mobile chat container */
-			padding: 0.0625rem;
 		}
 	}
 </style> 

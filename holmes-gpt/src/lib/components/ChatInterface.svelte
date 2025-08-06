@@ -102,123 +102,61 @@
 </div>
 
 <style>
-	/* Mobile-first chat interface layout */
+	/* Modern mobile-first chat interface layout */
 	.mobile-chat-interface {
-		/* Ensure proper height on all devices */
 		height: 100%;
 		max-height: 100%;
-		/* Prevent overflow issues */
 		overflow: hidden;
-		/* Mobile touch optimizations */
 		-webkit-overflow-scrolling: touch;
+		position: relative;
+		z-index: 1;
 	}
 
 	.mobile-input-container {
-		/* Ensure input container stays at bottom */
 		flex-shrink: 0;
-		/* Mobile-specific input container */
 		position: relative;
-		/* Prevent input from extending beyond screen */
 		max-height: 200px;
-		/* Mobile touch feedback */
 		-webkit-tap-highlight-color: transparent;
+		z-index: 1;
 	}
 
-	/* Mobile-specific scroll optimizations */
 	.mobile-scroll-container {
-		/* Ensure proper height on mobile */
 		height: 100%;
 		max-height: 100%;
-		/* Mobile touch scrolling */
 		-webkit-overflow-scrolling: touch;
 		scroll-behavior: smooth;
-		/* Prevent pull-to-refresh interference */
 		overscroll-behavior: contain;
+		position: relative;
+		z-index: 1;
 	}
 
+	/* Mobile optimizations */
 	@media (max-width: 768px) {
-		.mobile-chat-interface {
-			/* Mobile height optimization */
-			height: 100%;
-			max-height: 100%;
-			/* Ensure proper mobile layout */
-			display: flex;
-			flex-direction: column;
-			/* Prevent any overflow */
-			overflow: hidden;
-		}
-
 		.mobile-scroll-container {
-			/* Mobile height calculation */
 			height: calc(100vh - 200px);
 			max-height: calc(100vh - 200px);
-			/* Ensure proper touch scrolling */
-			-webkit-overflow-scrolling: touch;
-			/* Prevent pull-to-refresh interference */
-			overscroll-behavior: contain;
-			/* Mobile-specific padding */
 			padding: 0.5rem;
 		}
 
 		.mobile-input-container {
-			/* Mobile input container optimization */
 			max-height: 180px;
-			/* Ensure input stays within viewport */
-			position: relative;
-			/* Mobile-specific padding */
 			padding: 0.5rem;
-			/* Prevent any overflow */
 			overflow: hidden;
 		}
 	}
 
 	@media (max-width: 480px) {
-		.mobile-chat-interface {
-			/* Small mobile height optimization */
-			height: 100%;
-			max-height: 100%;
-			/* Enhanced touch handling */
-			-webkit-overflow-scrolling: touch;
-			/* Prevent any overflow issues */
-			overflow: hidden;
-		}
-
 		.mobile-scroll-container {
-			/* Small mobile height calculation */
 			height: calc(100vh - 160px);
 			max-height: calc(100vh - 160px);
-			/* Enhanced touch scrolling */
-			-webkit-overflow-scrolling: touch;
-			/* Prevent any overflow */
 			overflow-x: hidden;
-			/* Small mobile padding */
 			padding: 0.25rem;
 		}
 
 		.mobile-input-container {
-			/* Small mobile input container */
 			max-height: 160px;
-			/* Small mobile padding */
 			padding: 0.25rem;
-			/* Prevent any overflow */
 			overflow: hidden;
-		}
-	}
-
-	@media (max-width: 320px) {
-		.mobile-scroll-container {
-			/* Very small mobile height calculation */
-			height: calc(100vh - 140px);
-			max-height: calc(100vh - 140px);
-			/* Very small mobile padding */
-			padding: 0.125rem;
-		}
-
-		.mobile-input-container {
-			/* Very small mobile input container */
-			max-height: 140px;
-			/* Very small mobile padding */
-			padding: 0.125rem;
 		}
 	}
 </style>
