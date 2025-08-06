@@ -67,46 +67,35 @@
   body {
     overflow-x: hidden;
     overflow-y: auto;
-    /* Prevent mobile zoom issues */
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     text-size-adjust: 100%;
-    /* Mobile viewport fixes */
     width: 100%;
     height: 100%;
     position: relative;
   }
 
-  /* Mobile-specific body adjustments */
+  /* Modern mobile-first body adjustments */
   @media (max-width: 768px) {
     body {
-      /* Prevent horizontal scrolling on mobile */
       overflow-x: hidden;
-      /* Ensure proper height handling */
       min-height: 100vh;
       height: 100vh;
-      height: 100dvh; /* Dynamic viewport height for mobile */
-      /* Prevent mobile browser UI interference */
+      height: 100dvh;
       position: fixed;
       width: 100%;
-      /* Smooth scrolling on mobile */
       -webkit-overflow-scrolling: touch;
       scroll-behavior: smooth;
-      /* Prevent pull-to-refresh interference */
       overscroll-behavior: contain;
     }
   }
 
   @media (max-width: 480px) {
     body {
-      /* Additional mobile optimizations */
-      font-size: 16px; /* Prevent zoom on input focus */
+      font-size: 16px;
       line-height: 1.4;
-      /* Ensure proper touch scrolling */
       -webkit-overflow-scrolling: touch;
-      /* Prevent pull-to-refresh interference */
       overscroll-behavior: contain;
-      /* Small mobile height optimization */
       height: 100vh;
       height: 100dvh;
     }
@@ -195,27 +184,22 @@
     border: 0.5px solid var(--border-primary);
     padding: 0.125rem;
     transition: all 0.3s ease;
-    /* Ensure proper height handling */
     height: 100%;
     display: flex;
     flex-direction: column;
   }
 
+  /* Modern mobile chat container optimizations */
   @media (max-width: 768px) {
     .chat-container {
       padding: 0.125rem;
       margin: 0.125rem;
       border-radius: 1rem;
-      /* Mobile height optimization */
       height: 100%;
       max-height: 100%;
-      /* Prevent mobile browser UI interference */
       position: relative;
-      /* Ensure proper scrolling */
       overflow: hidden;
-      /* Mobile touch optimizations */
       -webkit-overflow-scrolling: touch;
-      /* Prevent pull-to-refresh interference */
       overscroll-behavior: contain;
     }
   }
@@ -225,14 +209,10 @@
       padding: 0.0625rem;
       margin: 0.0625rem;
       border-radius: 0.75rem;
-      /* Small mobile optimizations */
       height: 100%;
       max-height: 100%;
-      /* Prevent any overflow issues */
       overflow: hidden;
-      /* Ensure proper touch handling */
       -webkit-overflow-scrolling: touch;
-      /* Small mobile touch optimizations */
       -webkit-tap-highlight-color: transparent;
     }
   }
@@ -264,33 +244,25 @@
     pointer-events: none;
     z-index: -1;
     overflow: hidden;
-    /* Ensure particles don't cause viewport scrollbars */
     contain: layout style paint;
-    /* Prevent any overflow from causing scrollbars */
     max-width: 100vw;
     max-height: 100vh;
-    /* Additional containment */
     clip-path: inset(0);
     transform: translateZ(0);
-    /* Ensure no interference with scrolling */
     will-change: transform;
     backface-visibility: hidden;
   }
 
-  /* Mobile-specific particle optimizations */
+  /* Modern mobile particle optimizations */
   @media (max-width: 768px) {
     .floating-particles {
-      /* Reduce particle count on mobile for performance */
       opacity: 0.7;
-      /* Ensure no mobile interference */
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      /* Prevent any mobile scrolling issues */
       overflow: hidden;
-      /* Mobile performance optimizations */
       will-change: auto;
       transform: none;
     }
@@ -298,13 +270,9 @@
 
   @media (max-width: 480px) {
     .floating-particles {
-      /* Further reduce particles on small screens */
       opacity: 0.5;
-      /* Ensure no interference with mobile UI */
       pointer-events: none;
-      /* Prevent any overflow */
       overflow: hidden;
-      /* Mobile-specific containment */
       contain: strict;
     }
   }
@@ -318,12 +286,9 @@
     );
     border-radius: 50%;
     animation: float 6s ease-in-out infinite;
-    /* Ensure particles stay within bounds */
     max-width: 110px;
     max-height: 110px;
-    /* Prevent particles from causing overflow */
     transform-origin: center;
-    /* Additional containment */
     will-change: transform;
     backface-visibility: hidden;
   }
@@ -350,17 +315,13 @@
   }
 }
 
-/* Scrollbar styles are now handled by tailwind-scrollbar plugin */
-
-/* Mobile-specific scrollbar optimizations */
+/* Modern mobile scrollbar optimizations */
 @media (max-width: 768px) {
-  /* Ensure scrollbars work properly on mobile */
   .scrollbar-thin {
     scrollbar-width: thin;
     scrollbar-color: var(--border-secondary) transparent;
   }
   
-  /* Webkit scrollbar styles for mobile */
   .scrollbar-thin::-webkit-scrollbar {
     width: 4px;
   }
@@ -378,7 +339,6 @@
     background: var(--text-secondary);
   }
   
-  /* Ensure proper touch scrolling on mobile */
   .overflow-y-auto {
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
@@ -386,16 +346,13 @@
 }
 
 @media (max-width: 480px) {
-  /* Smaller scrollbars for very small screens */
   .scrollbar-thin::-webkit-scrollbar {
     width: 3px;
   }
   
-  /* Ensure smooth scrolling on small mobile devices */
   .overflow-y-auto {
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
-    /* Prevent pull-to-refresh interference */
     overscroll-behavior: contain;
   }
 }

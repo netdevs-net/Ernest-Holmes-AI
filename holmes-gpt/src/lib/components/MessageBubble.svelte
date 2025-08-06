@@ -91,7 +91,7 @@
 						title="Support Holmes AI"
 					>
 						<Hand class="w-3 h-3" />
-						<span class="support-text">Support Holmes AI</span>
+						<span class="support-text">Support</span>
 					</a>
 				{/if}
 			</div>
