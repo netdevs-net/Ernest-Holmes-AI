@@ -10,8 +10,8 @@
 	let isMenuOpen = false;
 	let isProfileMenuOpen = false;
 	let showAdminButton = false; // Control admin button visibility
-	let menuDropdown: HTMLElement;
-	let profileDropdown: HTMLElement;
+	let menuDropdown: HTMLElement | undefined;
+	let profileDropdown: HTMLElement | undefined;
 	
 	// Debug: Log initial state
 	console.log('Initial admin button state:', showAdminButton);
@@ -432,6 +432,44 @@
 		header {
 			max-height: 30vh;
 			overflow: visible;
+		}
+	}
+
+	/* Mobile-specific dropdown positioning */
+	@media (max-width: 768px) {
+		.nav-dropdown {
+			/* Ensure dropdown appears above all content on mobile */
+			z-index: 10000;
+			/* Mobile-specific positioning */
+			position: fixed;
+			top: auto;
+			bottom: 1rem;
+			right: 1rem;
+			left: 1rem;
+			/* Mobile-friendly sizing */
+			min-width: auto;
+			width: calc(100vw - 2rem);
+			max-width: 400px;
+			/* Mobile backdrop */
+			background: var(--glass-bg);
+			backdrop-filter: blur(16px);
+			-webkit-backdrop-filter: blur(16px);
+			/* Mobile shadow */
+			box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+		}
+	}
+
+	@media (max-width: 480px) {
+		.nav-dropdown {
+			/* Small mobile dropdown optimization */
+			bottom: 0.5rem;
+			right: 0.5rem;
+			left: 0.5rem;
+			width: calc(100vw - 1rem);
+			/* Enhanced mobile backdrop */
+			background: var(--glass-bg);
+			backdrop-filter: blur(20px);
+			-webkit-backdrop-filter: blur(20px);
 		}
 	}
 </style> 

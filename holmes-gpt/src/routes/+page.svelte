@@ -245,15 +245,15 @@
 	<meta name="description" content="A conversational AI inspired by Ernest Holmes, founder of Religious Science and author of The Science of Mind." />
 </svelte:head>
 
-<main class="h-screen relative">
+<main class="mobile-main-layout">
 	<!-- Floating particles background -->
 	<div class="floating-particles" aria-hidden="true"></div>
 	
 	<!-- Main content -->
-	<div class="relative z-10 flex flex-col h-full">
+	<div class="mobile-content-wrapper">
 		<Header on:styleChanged={handleStyleChange} />
 		
-		<div class="container mx-auto px-1 sm:px-2 md:px-4 pt-2 pb-4 max-w-6xl flex-1 flex flex-col">
+		<div class="mobile-chat-container">
 			<div class="chat-container rounded-2xl sm:rounded-3xl p-1 sm:p-2 md:p-4 relative flex-1 flex flex-col">
 				<ChatInterface 
 					{messages} 
@@ -319,6 +319,39 @@
 </main>
 
 <style>
+	/* Mobile-first layout structure */
+	.mobile-main-layout {
+		/* Use 100vh for mobile but ensure proper handling */
+		height: 100vh;
+		height: 100dvh; /* Dynamic viewport height for mobile */
+		width: 100vw;
+		position: relative;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.mobile-content-wrapper {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		z-index: 10;
+		/* Ensure proper mobile height */
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.mobile-chat-container {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		/* Ensure chat container takes remaining space */
+		min-height: 0;
+		/* Mobile-specific padding */
+		padding: 0.5rem;
+	}
+
 	.history-overlay,
 	.quotes-overlay {
 		position: fixed;
@@ -343,6 +376,35 @@
 	}
 	
 	@media (max-width: 768px) {
+		.mobile-main-layout {
+			/* Ensure proper mobile height */
+			height: 100vh;
+			height: 100dvh;
+			/* Prevent mobile browser UI interference */
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			/* Mobile touch optimizations */
+			-webkit-overflow-scrolling: touch;
+		}
+
+		.mobile-content-wrapper {
+			/* Mobile height optimization */
+			height: 100%;
+			/* Prevent any overflow */
+			overflow: hidden;
+		}
+
+		.mobile-chat-container {
+			/* Mobile chat container optimization */
+			padding: 0.25rem;
+			/* Ensure proper mobile layout */
+			flex: 1;
+			min-height: 0;
+		}
+		
 		.history-overlay,
 		.quotes-overlay {
 			padding: 2rem 0.5rem;
@@ -357,6 +419,26 @@
 	}
 
 	@media (max-width: 480px) {
+		.mobile-main-layout {
+			/* Small mobile height optimization */
+			height: 100vh;
+			height: 100dvh;
+			/* Prevent any overflow issues */
+			overflow: hidden;
+			/* Enhanced touch handling */
+			-webkit-overflow-scrolling: touch;
+			/* Prevent pull-to-refresh interference */
+			overscroll-behavior: contain;
+		}
+
+		.mobile-chat-container {
+			/* Small mobile chat container optimization */
+			padding: 0.125rem;
+			/* Ensure proper small mobile layout */
+			flex: 1;
+			min-height: 0;
+		}
+		
 		.history-overlay,
 		.quotes-overlay {
 			padding: 1.5rem 0.5rem;
@@ -370,32 +452,19 @@
 		}
 	}
 
-	/* Mobile-specific main layout optimizations */
-	@media (max-width: 768px) {
-		main {
-			/* Ensure proper mobile height */
+	/* Ensure proper mobile viewport handling */
+	@media (max-width: 320px) {
+		.mobile-main-layout {
+			/* Very small mobile optimization */
 			height: 100vh;
-			max-height: 100vh;
-			/* Prevent mobile browser UI interference */
-			position: relative;
-			/* Ensure proper scrolling */
+			height: 100dvh;
+			/* Prevent any overflow */
 			overflow: hidden;
-			/* Mobile touch optimizations */
-			-webkit-overflow-scrolling: touch;
 		}
-	}
 
-	@media (max-width: 480px) {
-		main {
-			/* Small mobile height optimization */
-			height: 100vh;
-			max-height: 100vh;
-			/* Prevent any overflow issues */
-			overflow: hidden;
-			/* Enhanced touch handling */
-			-webkit-overflow-scrolling: touch;
-			/* Prevent pull-to-refresh interference */
-			overscroll-behavior: contain;
+		.mobile-chat-container {
+			/* Very small mobile chat container */
+			padding: 0.0625rem;
 		}
 	}
 </style> 
