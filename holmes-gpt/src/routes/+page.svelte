@@ -335,9 +335,7 @@
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		position: relative;
-		z-index: 10;
-		/* Ensure proper mobile height */
+		position: relative;		/* Ensure proper mobile height */
 		height: 100%;
 		overflow: hidden;
 	}
