@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 	import { slide } from 'svelte/transition';
-	import { BookOpen, RotateCcw, X, Play, Pause, ChevronLeft, ChevronRight, AlertCircle } from 'lucide-svelte';
+	import { BookOpen, RotateCcw, X, Play, Pause, ChevronLeft, ChevronRight, AlertCircle } from '@lucide/svelte';
 	
 	interface Quote {
 		quote: string;

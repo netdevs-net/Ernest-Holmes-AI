@@ -1,6 +1,6 @@
 <script lang="ts">
 	import EmailChat from './EmailChat.svelte';
-	import { Mail, Hand } from 'lucide-svelte';
+	import { Mail, Hand } from '@lucide/svelte';
 	
 	export let message: { role: 'user' | 'assistant'; content: string; timestamp: Date; source?: string; error?: boolean };
 	

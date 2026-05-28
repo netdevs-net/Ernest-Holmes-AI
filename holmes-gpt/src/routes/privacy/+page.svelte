@@ -1,6 +1,6 @@
 <script>
   import Header from '$lib/components/Header.svelte';
-  import { Shield, Lock, Users, Globe, Mail, Phone, MapPin } from 'lucide-svelte';
+  import { Shield, Lock, Users, Globe, Mail, Phone, MapPin } from '@lucide/svelte';
 </script>
 
 <svelte:head>

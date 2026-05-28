@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Star, Sparkles, Gem, Heart, Zap, Copy, Save, X, ArrowLeft } from 'lucide-svelte';
+	import { Star, Sparkles, Gem, Heart, Zap, Copy, Save, X, ArrowLeft } from '@lucide/svelte';
 	
 	// Treatment categories based on Holmes' teachings
 	const treatmentCategories = [

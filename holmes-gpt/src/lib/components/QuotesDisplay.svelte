@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { BookOpen, RotateCcw, X, AlertCircle } from 'lucide-svelte';
+	import { BookOpen, RotateCcw, X, AlertCircle } from '@lucide/svelte';
 	
 	interface Quote {
 		quote: string;

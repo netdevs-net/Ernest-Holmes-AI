@@ -1,7 +1,10 @@
+import typography from "@tailwindcss/typography";
+import forms from "@tailwindcss/forms";
+import tailwindScrollbar from "tailwind-scrollbar";
+
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{html,js,svelte,ts}"],
-  darkMode: "class",
+  darkMode: "selector",
   theme: {
     extend: {
       colors: {
@@ -155,5 +158,5 @@ export default {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography"), require("@tailwindcss/forms"), require("tailwind-scrollbar")],
+  plugins: [typography, forms, tailwindScrollbar],
 };

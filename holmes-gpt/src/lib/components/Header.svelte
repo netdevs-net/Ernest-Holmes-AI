@@ -3,7 +3,7 @@
 	import { theme, toggleTheme } from '$lib/stores/themeStore';
 	import ResponseStyleToggle from './ResponseStyleToggle.svelte';
 	import { page } from '$app/stores';
-	import { Sun, Moon, Menu, Info, Heart, Shield, BarChart3, Lock, X } from 'lucide-svelte';
+	import { Sun, Moon, Menu, Info, Heart, Shield, BarChart3, Lock, X } from '@lucide/svelte';
 	
 	const dispatch = createEventDispatcher();
 	

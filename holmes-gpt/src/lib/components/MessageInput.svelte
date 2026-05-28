@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import { onMount } from 'svelte';
-	import { BookOpen, Film, UserCheck, Send, Loader2 } from 'lucide-svelte';
+	import { BookOpen, Film, UserCheck, Send, Loader2 } from '@lucide/svelte';
 	
 	export let isLoading = false;
 	export let onHistoryClick: () => void = () => {};

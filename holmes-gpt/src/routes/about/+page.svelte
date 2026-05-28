@@ -1,6 +1,6 @@
 <script>
   import Header from '$lib/components/Header.svelte';
-  import { Globe, User, Briefcase, MapPin } from 'lucide-svelte';
+  import { Globe, User, Briefcase, MapPin } from '@lucide/svelte';
 </script>
 
 <svelte:head>

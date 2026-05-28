@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { Shield, AlertTriangle, Activity, DollarSign, Users, Clock } from 'lucide-svelte';
+  import { Shield, AlertTriangle, Activity, DollarSign, Users, Clock } from '@lucide/svelte';
 
   interface SecurityMetrics {
     totalRequests: number;

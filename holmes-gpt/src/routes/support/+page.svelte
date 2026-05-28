@@ -5,7 +5,7 @@
     BarChart3, RefreshCw, Mic, Brain, User, Handshake, BookOpen, Target, 
     Building, Plug, Palette, LineChart, ChevronDown, ArrowRight,
     Database, Accessibility, FileSearch, Sparkles, TrendingUp, Layers
-  } from 'lucide-svelte';
+  } from '@lucide/svelte';
   let phase1Expanded = false;
   let phase2Expanded = false;
   let phase3Expanded = false;

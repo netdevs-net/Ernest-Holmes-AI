@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { Mail, X, Check, Send } from 'lucide-svelte';
+	import { Mail, X, Check, Send } from '@lucide/svelte';
 	
 	export let messageContent: string = '';
 	export let isVisible = false;
