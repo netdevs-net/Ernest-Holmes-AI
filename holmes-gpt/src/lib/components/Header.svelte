@@ -3,7 +3,16 @@
 	import { theme, toggleTheme } from '$lib/stores/themeStore';
 	import ResponseStyleToggle from './ResponseStyleToggle.svelte';
 	import { page } from '$app/stores';
-	import { Sun, Moon, Menu, Info, Heart, Shield, BarChart3, Lock, X } from '@lucide/svelte';
+	import Sun from '@lucide/svelte/icons/sun';
+	import Moon from '@lucide/svelte/icons/moon';
+	import Menu from '@lucide/svelte/icons/menu';
+	import Info from '@lucide/svelte/icons/info';
+	import Heart from '@lucide/svelte/icons/heart';
+	import Shield from '@lucide/svelte/icons/shield';
+	import BarChart3 from '@lucide/svelte/icons/chart-column';
+	import Lock from '@lucide/svelte/icons/lock';
+	import X from '@lucide/svelte/icons/x';
+	import HolmesLogo from './HolmesLogo.svelte';
 	
 	const dispatch = createEventDispatcher();
 	
@@ -88,7 +97,7 @@
 	<div class="header-container">
 		<!-- Logo Section -->
 		<a href="/" class="logo-section" aria-label="Home - Holmes AI Chat">
-			<img src="/images/Holmes-AI-logo.png" alt="Holmes AI Logo" class="logo-image" />
+			<HolmesLogo priority alt="Holmes AI Logo" />
 			<div class="logo-text">
 				<h1 class="logo-title">Holmes AI</h1>
 				<p class="logo-subtitle">Ernest Holmes AI Practitioner</p>
@@ -142,11 +151,16 @@
 
 				<!-- Mobile Navigation -->
 				{#if isMenuOpen}
-					<div class="mobile-overlay" on:click={closeAllMenus}></div>
+					<button
+						type="button"
+						class="mobile-overlay"
+						on:click={closeAllMenus}
+						aria-label="Close menu"
+					></button>
 					<div class="mobile-menu">
 						<div class="mobile-menu-header">
 							<div class="mobile-menu-logo">
-								<img src="/images/Holmes-AI-logo.png" alt="Holmes AI Logo" class="mobile-logo-image" />
+								<HolmesLogo size="sm" alt="" />
 								<span class="mobile-logo-text">Holmes AI</span>
 							</div>
 							<button 
@@ -237,13 +251,11 @@
 		transform: translateY(-1px);
 	}
 
-	.logo-image {
-		width: 2.5rem;
-		height: 2.5rem;
+	.logo-section :global(.logo-image) {
 		transition: transform 0.3s ease;
 	}
 
-	.logo-section:hover .logo-image {
+	.logo-section:hover :global(.logo-image) {
 		transform: scale(1.05);
 	}
 
@@ -265,7 +277,8 @@
 
 	.logo-subtitle {
 		font-size: 0.75rem;
-		color: var(--text-secondary);
+		color: var(--text-primary);
+		opacity: 0.85;
 		margin: 0;
 	}
 
@@ -293,12 +306,7 @@
 		border: 1px solid rgba(239, 68, 68, 0.3);
 		color: #ef4444;
 		font-size: 0.875rem;
-		animation: pulse 2s infinite;
-	}
-	
-	@keyframes pulse {
-		0%, 100% { opacity: 1; }
-		50% { opacity: 0.7; }
+		opacity: 0.95;
 	}
 
 	/* Theme Button */
@@ -357,6 +365,10 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
+		margin: 0;
+		padding: 0;
+		border: none;
+		cursor: pointer;
 		background: rgba(0, 0, 0, 0.5);
 		backdrop-filter: blur(4px);
 		z-index: 999;

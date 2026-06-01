@@ -11,8 +11,19 @@
 	import { getDeviceFingerprint, getSessionId, storeDeviceInfo } from '$lib/utils/macAddress';
 	import { theme, initializeAutoTheme } from '$lib/stores/themeStore';
 	import { responseStyle } from '$lib/stores/responseStyleStore';
-	
-	let messages: Array<{ role: 'user' | 'assistant'; content: string; timestamp: Date; source?: string; error?: boolean }> = [];
+	import { createChatMessage, type ChatMessage } from '$lib/types/chat';
+
+	const WELCOME_MESSAGE =
+		'Welcome, dear friend. I am Ernest Holmes, and I am here to share with you the wisdom of the Science of Mind. What spiritual question stirs in your heart today?';
+
+	let messages: ChatMessage[] = [
+		{
+			id: 'welcome',
+			role: 'assistant',
+			content: WELCOME_MESSAGE,
+			timestamp: new Date(0),
+		},
+	];
 	let isLoading = false;
 	let showHistory = false;
 	let showQuotes = false;
@@ -23,25 +34,16 @@
 
 	
 	onMount(() => {
-		// Store device information on first load
-		storeDeviceInfo();
-		
-		// Initialize auto theme switching
 		initializeAutoTheme();
-		
-		// Initialize with a welcome message
-		messages = [
-			{
-				role: 'assistant',
-				content: 'Welcome, dear friend. I am Ernest Holmes, and I am here to share with you the wisdom of the Science of Mind. What spiritual question stirs in your heart today?',
-				timestamp: new Date()
+
+		const runWhenIdle = (fn: () => void) => {
+			if (typeof requestIdleCallback !== 'undefined') {
+				requestIdleCallback(fn, { timeout: 2000 });
+			} else {
+				setTimeout(fn, 1);
 			}
-		];
-		
-			// Create floating particles after DOM is ready
-	setTimeout(() => {
-		createFloatingParticles();
-	}, 100);
+		};
+		runWhenIdle(() => storeDeviceInfo());
 	});
 	
 	// Handle response style changes
@@ -71,103 +73,104 @@
 	
 	// Theme is automatically initialized by the theme store
 	
-	function createFloatingParticles() {
-		const container = document.querySelector('.floating-particles');
-		if (!container) return;
-		
-		for (let i = 0; i < 15; i++) {
-			const particle = document.createElement('div');
-			particle.className = 'particle';
-			particle.style.left = Math.random() * 100 + '%';
-			particle.style.top = Math.random() * 100 + '%';
-			// Reduce particle sizes to prevent overflow
-			const size = Math.random() * 80 + 30; // 30-110px instead of 50-150px
-			particle.style.width = size + 'px';
-			particle.style.height = size + 'px';
-			particle.style.animationDelay = Math.random() * 6 + 's';
-			particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
-			container.appendChild(particle);
-		}
-	}
-	
 	async function handleSendMessage(content: string) {
 		if (!content.trim()) return;
-		
-		// Store the last user message for potential resubmission
+
 		lastUserMessage = content;
-		
-		// Save question to history with user identification
-		await saveQuestion({
+
+		// Show user message immediately (do not wait on history API)
+		messages = [...messages, createChatMessage('user', content)];
+		isLoading = true;
+
+		// Persist question in background
+		void saveQuestion({
 			question: content,
 			category: selectedCategory,
 			isBookmarked: false,
 			tags: extractTags(content),
-			userIp: '', // Will be set by server
+			userIp: '',
 			userMac: getDeviceFingerprint(),
 			userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : 'server',
-			sessionId: getSessionId()
+			sessionId: getSessionId(),
 		});
-		
-		// Add user message
-		messages = [...messages, {
-			role: 'user',
-			content,
-			timestamp: new Date()
-		}];
-		
-		isLoading = true;
-		
+
 		try {
 			const response = await fetch('/api/chat', {
 				method: 'POST',
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({ 
+				body: JSON.stringify({
 					message: content,
 					userMac: getDeviceFingerprint(),
 					userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : 'server',
 					sessionId: getSessionId(),
-					responseStyle: $responseStyle
-				})
+					responseStyle: $responseStyle,
+				}),
 			});
-			
-			const data = await response.json();
-			
+
+			let data: {
+				error?: string;
+				fallbackResponse?: string;
+				response?: string;
+				source?: string;
+			} = {};
+
+			try {
+				data = await response.json();
+			} catch {
+				data = {
+					error: `Server returned an invalid response (${response.status}).`,
+				};
+			}
+
+			if (!response.ok && !data.error) {
+				data.error = `Request failed (${response.status}). Check API key and server logs.`;
+			}
+
 			if (data.error) {
-				// Handle error with fallback response
-				const errorContent = data.fallbackResponse || data.error;
-				messages = [...messages, {
-					role: 'assistant',
-					content: errorContent,
-					timestamp: new Date(),
-					source: data.source || 'fallback',
-					error: true
-				}];
-			} else {
-				// Update the last question with response preview and source
+				messages = [
+					...messages,
+					createChatMessage('assistant', data.fallbackResponse || data.error, {
+						source: data.source || 'fallback',
+						error: true,
+					}),
+				];
+			} else if (data.response) {
 				const lastQuestion = $questions[0];
 				if (lastQuestion && lastQuestion.question === content) {
-					await updateQuestionSource(lastQuestion.id, {
+					void updateQuestionSource(lastQuestion.id, {
 						responsePreview: data.response.substring(0, 100) + '...',
-						source: data.source || 'claude-3-haiku'
+						source: data.source || 'claude-haiku-4-5',
 					});
 				}
-				
-				messages = [...messages, {
-					role: 'assistant',
-					content: data.response,
-					timestamp: new Date(),
-					source: data.source || 'claude-3-haiku'
-				}];
+
+				messages = [
+					...messages,
+					createChatMessage('assistant', data.response, {
+						source: data.source || 'claude-haiku-4-5',
+					}),
+				];
+			} else {
+				messages = [
+					...messages,
+					createChatMessage(
+						'assistant',
+						'I apologize, but I received an empty response. Please try again.',
+						{ error: true },
+					),
+				];
 			}
 		} catch (error) {
-			console.error('Error:', error);
-			messages = [...messages, {
-				role: 'assistant',
-				content: 'I apologize, but I seem to be experiencing a moment of silence. Please try again, and let us continue our spiritual exploration together.',
-				timestamp: new Date()
-			}];
+			console.error('Chat request failed:', error);
+			messages = [
+				...messages,
+				createChatMessage(
+					'assistant',
+					'I apologize, but I seem to be experiencing a moment of silence. Please try again, and let us continue our spiritual exploration together.',
+					{ error: true },
+				),
+			];
 		} finally {
 			isLoading = false;
 		}
@@ -243,11 +246,15 @@
 <svelte:head>
 	<title>HolmesGPT - Ernest Holmes AI</title>
 	<meta name="description" content="A conversational AI inspired by Ernest Holmes, founder of Religious Science and author of The Science of Mind." />
+	<link rel="preload" href="/images/Holmes-AI-logo-96.png" as="image" type="image/png" />
 </svelte:head>
 
 <main class="mobile-main-layout">
-	<!-- Floating particles background -->
-	<div class="floating-particles" aria-hidden="true"></div>
+	<div class="floating-particles" aria-hidden="true">
+		<span class="particle particle-a"></span>
+		<span class="particle particle-b"></span>
+		<span class="particle particle-c"></span>
+	</div>
 	
 	<!-- Main content -->
 	<div class="mobile-content-wrapper">
@@ -333,22 +340,28 @@
 
 	.mobile-content-wrapper {
 		flex: 1;
-		display: flex;
-		flex-direction: column;
+		display: grid;
+		grid-template-rows: auto minmax(0, 1fr);
 		position: relative;
-		height: 100%;
+		min-height: 0;
 		overflow: hidden;
 		z-index: 1;
 	}
 
 	.mobile-chat-container {
-		flex: 1;
 		display: flex;
 		flex-direction: column;
 		min-height: 0;
 		padding: 0.5rem;
 		position: relative;
 		z-index: 1;
+	}
+
+	.mobile-chat-container .chat-container {
+		flex: 1;
+		min-height: 0;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.history-overlay,

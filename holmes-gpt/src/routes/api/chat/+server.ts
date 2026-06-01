@@ -112,10 +112,16 @@ function sanitizeInput(message: string): { sanitized: string; wasModified: boole
 // Bot detection
 function detectBot(userAgent: string, ip: string): boolean {
   const botPatterns = [
-    /bot/i, /crawler/i, /spider/i, /scraper/i,
-    /curl/i, /wget/i, /python/i, /node/i,
-    /postman/i, /insomnia/i, /thunder client/i,
-    /automated/i, /script/i, /programmatic/i
+    /bot/i,
+    /crawler/i,
+    /spider/i,
+    /scraper/i,
+    /^curl\//i,
+    /^wget\//i,
+    /python-requests/i,
+    /postman/i,
+    /insomnia/i,
+    /thunder client/i,
   ];
   
   const isBot = botPatterns.some(pattern => pattern.test(userAgent));

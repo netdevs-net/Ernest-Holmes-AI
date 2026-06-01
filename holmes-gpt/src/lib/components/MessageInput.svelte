@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { onMount } from 'svelte';
-	import { BookOpen, Film, UserCheck, Send, Loader2 } from '@lucide/svelte';
+	import BookOpen from '@lucide/svelte/icons/book-open';
+	import Film from '@lucide/svelte/icons/film';
+	import UserCheck from '@lucide/svelte/icons/user-check';
+	import Send from '@lucide/svelte/icons/send';
+	import Loader2 from '@lucide/svelte/icons/loader-circle';
 	
 	export let isLoading = false;
 	export let onHistoryClick: () => void = () => {};
@@ -13,12 +16,6 @@
 	const dispatch = createEventDispatcher();
 	let textarea: HTMLTextAreaElement | undefined;
 	let message = '';
-	
-	onMount(() => {
-		if (textarea) {
-			textarea.focus();
-		}
-	});
 	
 	function handleSubmit() {
 		if (message.trim() && !isLoading) {
@@ -72,7 +69,9 @@
 		</div>
 		
 		<div class="category-selection">
-			<select 
+			<label for="question-category" class="sr-only">Question category</label>
+			<select
+				id="question-category"
 				bind:value={selectedCategory}
 				class="category-select"
 				disabled={isLoading}
@@ -140,6 +139,8 @@
 	}
 	
 	.icon-btn {
+		min-height: 2.25rem;
+		min-width: 2.25rem;
 		padding: 8px 12px;
 		background: var(--glass-bg);
 		border: 0.5px solid var(--border-primary);

@@ -132,20 +132,18 @@ export default {
 
       animation: {
         "fade-in-up": "fadeInUp 0.5s ease-out",
-        "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "pulse-slow": "typingPulse 1.2s ease-in-out infinite",
         float: "float 6s ease-in-out infinite",
       },
 
       keyframes: {
         fadeInUp: {
-          "0%": {
-            opacity: "0",
-            transform: "translateY(30px)",
-          },
-          "100%": {
-            opacity: "1",
-            transform: "translateY(0)",
-          },
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        typingPulse: {
+          "0%, 100%": { opacity: "0.35", transform: "scale(1)" },
+          "50%": { opacity: "1", transform: "scale(1)" },
         },
         float: {
           "0%, 100%": {

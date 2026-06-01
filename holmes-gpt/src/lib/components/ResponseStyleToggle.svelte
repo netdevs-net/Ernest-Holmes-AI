@@ -80,7 +80,7 @@
 	}
 
 	.label {
-		color: var(--text-secondary);
+		color: var(--text-primary);
 		transition: all 0.3s ease;
 		padding: 0.25rem 0.5rem;
 		border-radius: 0.375rem;

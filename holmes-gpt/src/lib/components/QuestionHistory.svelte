@@ -120,7 +120,8 @@
     <!-- Filters -->
     <div class="filters">
       <div class="filter-group">
-        <select bind:value={selectedCategory} class="category-select">
+        <label for="history-category-filter" class="sr-only">Filter by category</label>
+        <select id="history-category-filter" bind:value={selectedCategory} class="category-select">
           <option value="">All Categories</option>
           <option value="spiritual">Spiritual</option>
           <option value="practical">Practical</option>

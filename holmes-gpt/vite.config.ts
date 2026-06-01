@@ -15,5 +15,18 @@ export default defineConfig({
   build: {
     outDir: "build",
     assetsDir: "assets",
+    cssMinify: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("@lucide/svelte")) {
+            return "lucide";
+          }
+          if (id.includes("node_modules")) {
+            return "vendor";
+          }
+        },
+      },
+    },
   },
 });
