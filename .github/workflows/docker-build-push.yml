@@ -10,7 +10,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: webdevs-net/holmes-gpt
+  IMAGE_NAME: netdevs-net/holmes-gpt
 
 jobs:
   build-and-push:
