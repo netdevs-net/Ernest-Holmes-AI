@@ -30,7 +30,6 @@ storybook-static
 
 # Node
 node_modules
-package-lock.json
 
 # Downloads and temporary files
 downloads/
