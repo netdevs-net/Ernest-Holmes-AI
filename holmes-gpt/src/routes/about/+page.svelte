@@ -1,6 +1,6 @@
 <script>
   import Header from '$lib/components/Header.svelte';
-  import { Globe, User, Briefcase, MapPin } from '@lucide/svelte';
+  import { Globe, User, Briefcase, MapPin, Mail } from '@lucide/svelte';
 </script>
 
 <svelte:head>
@@ -289,13 +289,27 @@
                     his wisdom to life. With expertise in AI, web development, and spiritual technology, Ryan created 
                     Holmes AI to make authentic spiritual guidance accessible to everyone.
                   </p>
-                  <div class="employment-note">
+                  <div class="contact-note">
                     <div class="note-icon">
-                      <Briefcase size={20} />
+                      <Mail size={20} />
                     </div>
-                    <p class="member-bio">
-                      <strong>Currently available for remote opportunities.</strong> Wears many hats like AI/ML specialist, Software Engineer, Mobile App Developer, DevSecOps, SRE, Source Code Auditor, and technical agile project manager.
-                    </p>
+                    <div class="contact-note-content">
+                      <p class="member-bio">
+                        <strong>I'm available for new projects</strong>
+                      </p>
+                      <p class="member-bio">
+                        Have a project in mind? A collaboration proposal? Or do you just want to get in touch?
+                      </p>
+                      <p class="member-bio">
+                        <a href="mailto:ryan@webdevs.net" class="contact-cta">Click here to send me a message.</a>
+                      </p>
+                      <p class="member-bio">
+                        You can also reach out to me via email, at
+                        <a href="mailto:ryan@webdevs.net" class="contact-inline">ryan@webdevs.net</a>,
+                        or by phone at
+                        <a href="tel:+17207729972" class="contact-inline">(720) 772-9972</a>.
+                      </p>
+                    </div>
                   </div>
                   <div class="member-links">
                     <a href="https://NetDevs.net" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit NetDevs.net (opens in new tab)">
@@ -912,7 +926,7 @@
     font-size: 1rem;
   }
 
-  .employment-note {
+  .contact-note {
     background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(251, 191, 36, 0.05));
     border: 1px solid rgba(251, 191, 36, 0.3);
     border-left: 4px solid var(--text-accent);
@@ -928,9 +942,36 @@
     flex-shrink: 0;
   }
 
-  .employment-note .member-bio {
+  .contact-note-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .contact-note .member-bio {
     margin: 0;
     color: var(--text-primary);
+  }
+
+  .contact-cta {
+    color: var(--text-accent);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .contact-cta:hover {
+    color: var(--text-primary);
+  }
+
+  .contact-inline {
+    color: var(--text-accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .contact-inline:hover {
+    text-decoration: underline;
   }
 
   .member-links {
