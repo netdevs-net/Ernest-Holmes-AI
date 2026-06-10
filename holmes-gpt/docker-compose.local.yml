@@ -1,0 +1,19 @@
+services:
+  holmes-gpt:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: holmes-gpt:local
+    ports:
+      - "3015:3000"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    volumes:
+      - holmes-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  holmes-data:
