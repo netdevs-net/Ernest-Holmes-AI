@@ -109,19 +109,18 @@ export async function getNetworkInfo(): Promise<Partial<DeviceInfo>> {
   return networkInfo;
 }
 
+/** Legacy IDs derived from fingerprint — collide across most browsers. */
+const LEGACY_FINGERPRINT_SESSION = /^session_[A-Za-z0-9+/=]{16}$/;
+
 /**
- * Create a unique session identifier
+ * Create a unique session identifier (per browser, persisted in localStorage).
  */
 export function createSessionId(): string {
   if (typeof window === "undefined") {
     return "server_session_" + Date.now();
   }
 
-  const fingerprint = generateDeviceFingerprint();
-
-  // Create a more stable session ID based on device fingerprint
-  // This will be the same for the same device across page reloads
-  return `session_${fingerprint}`;
+  return `session_${crypto.randomUUID()}`;
 }
 
 /**
@@ -183,11 +182,11 @@ export function getSessionId(): string {
   if (typeof window === "undefined") return "server";
 
   const stored = localStorage.getItem("holmes_session_id");
-  if (stored) {
+  if (stored && !LEGACY_FINGERPRINT_SESSION.test(stored)) {
     return stored;
   }
 
-  // Generate and store if not available
+  // Replace legacy fingerprint IDs (shared across many browsers)
   const sessionId = createSessionId();
   localStorage.setItem("holmes_session_id", sessionId);
   return sessionId;

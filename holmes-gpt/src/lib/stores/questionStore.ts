@@ -85,7 +85,10 @@ export async function saveQuestion(
     const response = await fetch("/api/questions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(question),
+      body: JSON.stringify({
+        ...question,
+        sessionId: question.sessionId || getSessionId(),
+      }),
     });
     if (response.ok) {
       // Update the local count immediately for better UX

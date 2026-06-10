@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { Star, Sparkles, Gem, Heart, Zap, Copy, Save, X, ArrowLeft } from '@lucide/svelte';
+	import { getDeviceFingerprint, getSessionId } from '$lib/utils/macAddress';
 	
 	// Treatment categories based on Holmes' teachings
 	const treatmentCategories = [
@@ -404,10 +405,9 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 					tags: ['treatment', selectedCategory, 'generated'],
 					responsePreview: generatedTreatment,
 					source: 'Treatment Generator',
-					userIp: '',
-					userMac: '',
+					userMac: getDeviceFingerprint(),
 					userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : 'server',
-					sessionId: ''
+					sessionId: getSessionId()
 				})
 			});
 			
