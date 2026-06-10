@@ -9,30 +9,33 @@ function getInitialTheme(): Theme {
   if (browser) {
     const saved = localStorage.getItem("holmes-theme");
     console.log("Initial theme from localStorage:", saved);
-    
+
     // If user has explicitly set a theme, use it
     if (saved === "light" || saved === "dark") {
       console.log("Using saved theme:", saved);
       return saved;
     }
-    
+
     // Check if user has enabled auto theme switching
     const autoTheme = localStorage.getItem("holmes-auto-theme");
-    if (autoTheme === "enabled" || autoTheme === null) { // Enable by default for new users
+    if (autoTheme === "enabled" || autoTheme === null) {
+      // Enable by default for new users
       const currentHour = new Date().getHours();
       const isDaytime = currentHour >= 7 && currentHour < 19; // 7am to 7pm
       const timeBasedTheme = isDaytime ? "light" : "dark";
-      console.log(`Time-based theme: ${timeBasedTheme} (current hour: ${currentHour})`);
-      
+      console.log(
+        `Time-based theme: ${timeBasedTheme} (current hour: ${currentHour})`,
+      );
+
       // Enable auto theme for new users
       if (autoTheme === null) {
         localStorage.setItem("holmes-auto-theme", "enabled");
         console.log("Auto theme enabled by default for new user");
       }
-      
+
       return timeBasedTheme;
     }
-    
+
     // Check system preference as fallback
     if (window.matchMedia("(prefers-color-scheme: light)").matches) {
       console.log("Using system preference: light");
@@ -84,7 +87,9 @@ export function enableAutoTheme() {
   const currentHour = new Date().getHours();
   const isDaytime = currentHour >= 7 && currentHour < 19; // 7am to 7pm
   const timeBasedTheme = isDaytime ? "light" : "dark";
-  console.log(`Auto theme enabled, applying: ${timeBasedTheme} (current hour: ${currentHour})`);
+  console.log(
+    `Auto theme enabled, applying: ${timeBasedTheme} (current hour: ${currentHour})`,
+  );
   theme.set(timeBasedTheme);
 }
 
@@ -115,13 +120,13 @@ export function getTimeInfo() {
   const currentHour = now.getHours();
   const isDaytime = currentHour >= 7 && currentHour < 19;
   const timeBasedTheme = isDaytime ? "light" : "dark";
-  
+
   return {
     currentHour,
     isDaytime,
     timeBasedTheme,
     currentTime: now.toLocaleTimeString(),
-    autoThemeEnabled: isAutoThemeEnabled()
+    autoThemeEnabled: isAutoThemeEnabled(),
   };
 }
 
@@ -140,15 +145,17 @@ export function initializeAutoTheme() {
     // Check for theme updates every minute
     setInterval(() => {
       const currentTheme = getTimeBasedTheme();
-      theme.update(existingTheme => {
+      theme.update((existingTheme) => {
         if (existingTheme !== currentTheme) {
-          console.log(`Auto theme: switching from ${existingTheme} to ${currentTheme}`);
+          console.log(
+            `Auto theme: switching from ${existingTheme} to ${currentTheme}`,
+          );
           return currentTheme;
         }
         return existingTheme;
       });
     }, 60000); // Check every minute
-    
+
     console.log("Auto theme checking initialized");
   }
 }

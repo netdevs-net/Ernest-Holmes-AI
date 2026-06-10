@@ -50,10 +50,10 @@ if [ $? -eq 0 ]; then
     echo "  --name holmes-gpt \\"
     echo "  --secret anthropic_api_key \\"
     echo "  --publish 3000:3000 \\"
-    echo "  ghcr.io/webdevs-net/holmes-gpt:latest"
+    echo "  ghcr.io/netdevs-net/holmes-gpt:latest"
     echo ""
     echo "📋 Or update existing service with:"
-    echo "docker service update --image ghcr.io/webdevs-net/holmes-gpt:latest holmes-gpt"
+    echo "docker service update --image ghcr.io/netdevs-net/holmes-gpt:latest holmes-gpt"
 else
     echo "❌ Failed to create Docker secret"
     exit 1

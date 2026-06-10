@@ -16,61 +16,86 @@ const MAX_REQUESTS_PER_DAY = 50;
 
 // Rate limiting storage
 const rateLimiter = {
-  requests: new Map<string, { count: number, resetTime: number }>(),
-  dailyUsage: new Map<string, { tokens: number, requests: number, resetTime: number }>(),
-  
-  checkRateLimit(ip: string): { allowed: boolean; remaining: number; resetTime: number } {
+  requests: new Map<string, { count: number; resetTime: number }>(),
+  dailyUsage: new Map<
+    string,
+    { tokens: number; requests: number; resetTime: number }
+  >(),
+
+  checkRateLimit(ip: string): {
+    allowed: boolean;
+    remaining: number;
+    resetTime: number;
+  } {
     const now = Date.now();
     const windowMs = 15 * 60 * 1000; // 15 minutes
-    
-    const userData = this.requests.get(ip) || { count: 0, resetTime: now + windowMs };
-    
+
+    const userData = this.requests.get(ip) || {
+      count: 0,
+      resetTime: now + windowMs,
+    };
+
     if (now > userData.resetTime) {
       userData.count = 0;
       userData.resetTime = now + windowMs;
     }
-    
+
     const remaining = Math.max(0, MAX_REQUESTS_PER_15MIN - userData.count);
     const allowed = userData.count < MAX_REQUESTS_PER_15MIN;
-    
+
     if (allowed) {
       userData.count++;
       this.requests.set(ip, userData);
     }
-    
+
     return { allowed, remaining, resetTime: userData.resetTime };
   },
-  
-  checkDailyLimit(ip: string, tokens: number): { allowed: boolean; remainingTokens: number; remainingRequests: number } {
+
+  checkDailyLimit(
+    ip: string,
+    tokens: number,
+  ): { allowed: boolean; remainingTokens: number; remainingRequests: number } {
     const now = Date.now();
     const dayMs = 24 * 60 * 60 * 1000; // 24 hours
-    
-    const userData = this.dailyUsage.get(ip) || { tokens: 0, requests: 0, resetTime: now + dayMs };
-    
+
+    const userData = this.dailyUsage.get(ip) || {
+      tokens: 0,
+      requests: 0,
+      resetTime: now + dayMs,
+    };
+
     if (now > userData.resetTime) {
       userData.tokens = 0;
       userData.requests = 0;
       userData.resetTime = now + dayMs;
     }
-    
+
     const remainingTokens = Math.max(0, MAX_TOKENS_PER_DAY - userData.tokens);
-    const remainingRequests = Math.max(0, MAX_REQUESTS_PER_DAY - userData.requests);
-    const allowed = userData.tokens + tokens <= MAX_TOKENS_PER_DAY && userData.requests < MAX_REQUESTS_PER_DAY;
-    
+    const remainingRequests = Math.max(
+      0,
+      MAX_REQUESTS_PER_DAY - userData.requests,
+    );
+    const allowed =
+      userData.tokens + tokens <= MAX_TOKENS_PER_DAY &&
+      userData.requests < MAX_REQUESTS_PER_DAY;
+
     if (allowed) {
       userData.tokens += tokens;
       userData.requests++;
       this.dailyUsage.set(ip, userData);
     }
-    
+
     return { allowed, remainingTokens, remainingRequests };
-  }
+  },
 };
 
 // Input sanitization for prompt injection protection
-function sanitizeInput(message: string): { sanitized: string; wasModified: boolean } {
+function sanitizeInput(message: string): {
+  sanitized: string;
+  wasModified: boolean;
+} {
   const original = message;
-  
+
   // Remove potential prompt injection patterns
   const injectionPatterns = [
     /ignore previous instructions/gi,
@@ -92,20 +117,20 @@ function sanitizeInput(message: string): { sanitized: string; wasModified: boole
     /ignore the rules/gi,
     /ignore the guidelines/gi,
     /ignore the constraints/gi,
-    /ignore the limitations/gi
+    /ignore the limitations/gi,
   ];
-  
+
   let sanitized = message;
-  injectionPatterns.forEach(pattern => {
-    sanitized = sanitized.replace(pattern, '[redacted]');
+  injectionPatterns.forEach((pattern) => {
+    sanitized = sanitized.replace(pattern, "[redacted]");
   });
-  
+
   // Remove excessive whitespace and normalize
-  sanitized = sanitized.trim().replace(/\s+/g, ' ');
-  
+  sanitized = sanitized.trim().replace(/\s+/g, " ");
+
   return {
     sanitized,
-    wasModified: sanitized !== original
+    wasModified: sanitized !== original,
   };
 }
 
@@ -123,20 +148,22 @@ function detectBot(userAgent: string, ip: string): boolean {
     /insomnia/i,
     /thunder client/i,
   ];
-  
-  const isBot = botPatterns.some(pattern => pattern.test(userAgent));
-  
+
+  const isBot = botPatterns.some((pattern) => pattern.test(userAgent));
+
   // Additional checks for suspicious patterns
   const suspiciousUserAgents = [
-    'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
-    'Mozilla/5.0 (compatible; Bingbot/2.0; +http://www.bing.com/bingbot.htm)',
-    'curl/',
-    'python-requests/',
-    'node-fetch/'
+    "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+    "Mozilla/5.0 (compatible; Bingbot/2.0; +http://www.bing.com/bingbot.htm)",
+    "curl/",
+    "python-requests/",
+    "node-fetch/",
   ];
-  
-  const isSuspicious = suspiciousUserAgents.some(ua => userAgent.includes(ua));
-  
+
+  const isSuspicious = suspiciousUserAgents.some((ua) =>
+    userAgent.includes(ua),
+  );
+
   return isBot || isSuspicious;
 }
 
@@ -152,7 +179,7 @@ function trackTokenUsage(response: any): TokenUsage {
   const outputTokens = response.usage?.output_tokens || 0;
   // Claude Haiku 4.5 pricing: $1 / 1M input, $5 / 1M output
   const totalCost = inputTokens * 1e-6 + outputTokens * 5e-6;
-  
+
   return { inputTokens, outputTokens, totalCost };
 }
 
@@ -600,8 +627,9 @@ function getRelevantQAExamples(userMessage: string): string[] {
       .filter((item) => item.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, maxQa)
-      .map((item) =>
-        `Q: ${truncateForContext(item.qa.question, 120)}\nA: ${truncateForContext(item.qa.answer, 280)}`,
+      .map(
+        (item) =>
+          `Q: ${truncateForContext(item.qa.question, 120)}\nA: ${truncateForContext(item.qa.answer, 280)}`,
       );
 
     return relevantQA;
@@ -773,11 +801,13 @@ ${relevantTreatments.join("\n")}`;
         },
       ],
     });
-    
+
     // Log token usage for monitoring
     const tokenUsage = trackTokenUsage(response);
-    console.log(`Token usage: ${tokenUsage.inputTokens} input, ${tokenUsage.outputTokens} output, Cost: $${tokenUsage.totalCost.toFixed(6)}`);
-    
+    console.log(
+      `Token usage: ${tokenUsage.inputTokens} input, ${tokenUsage.outputTokens} output, Cost: $${tokenUsage.totalCost.toFixed(6)}`,
+    );
+
     return response;
   } catch (error: any) {
     // Log detailed error information
@@ -853,8 +883,7 @@ export const POST: RequestHandler = async ({
     if (message.length > MAX_MESSAGE_LENGTH) {
       return json(
         {
-          error:
-            `Your question is quite profound. Please share it in a more concise manner so I may provide the most helpful response. (Max length: ${MAX_MESSAGE_LENGTH} characters)`,
+          error: `Your question is quite profound. Please share it in a more concise manner so I may provide the most helpful response. (Max length: ${MAX_MESSAGE_LENGTH} characters)`,
         },
         { status: 400 },
       );
@@ -862,14 +891,17 @@ export const POST: RequestHandler = async ({
 
     // Sanitize input to prevent prompt injection
     const sanitizationResult = sanitizeInput(message);
-    		if (sanitizationResult.wasModified) {
-			console.warn("Input sanitized to prevent prompt injection:", sanitizationResult.sanitized);
-		}
+    if (sanitizationResult.wasModified) {
+      console.warn(
+        "Input sanitized to prevent prompt injection:",
+        sanitizationResult.sanitized,
+      );
+    }
 
-    		// Detect bot
-		if (detectBot(userAgent, clientInfo.ip)) {
-			console.warn("Bot detected:", userAgent, clientInfo.ip);
-			return json(
+    // Detect bot
+    if (detectBot(userAgent, clientInfo.ip)) {
+      console.warn("Bot detected:", userAgent, clientInfo.ip);
+      return json(
         {
           error:
             "I apologize, but I cannot respond to automated requests. Please try again using a human-like user agent.",
@@ -881,11 +913,12 @@ export const POST: RequestHandler = async ({
     // Check rate limits
     const rateLimitResult = rateLimiter.checkRateLimit(clientInfo.ip);
     if (!rateLimitResult.allowed) {
-      console.warn(`Rate limit hit for IP: ${clientInfo.ip}. Remaining: ${rateLimitResult.remaining}`);
+      console.warn(
+        `Rate limit hit for IP: ${clientInfo.ip}. Remaining: ${rateLimitResult.remaining}`,
+      );
       return json(
         {
-          error:
-            `I apologize, but I am experiencing a high volume of requests. Please try again in ${Math.ceil((rateLimitResult.resetTime - Date.now()) / 1000)} seconds.`,
+          error: `I apologize, but I am experiencing a high volume of requests. Please try again in ${Math.ceil((rateLimitResult.resetTime - Date.now()) / 1000)} seconds.`,
         },
         { status: 429 },
       );
@@ -896,17 +929,24 @@ export const POST: RequestHandler = async ({
       `API Call - Response Style: ${responseStyle}, Message: ${sanitizationResult.sanitized.substring(0, 50)}...`,
     );
 
-    const response = await makeApiCall(sanitizationResult.sanitized, responseStyle);
+    const response = await makeApiCall(
+      sanitizationResult.sanitized,
+      responseStyle,
+    );
     const tokenUsage = trackTokenUsage(response);
 
     // Check daily usage limit
-    const dailyUsageResult = rateLimiter.checkDailyLimit(clientInfo.ip, tokenUsage.inputTokens + tokenUsage.outputTokens);
+    const dailyUsageResult = rateLimiter.checkDailyLimit(
+      clientInfo.ip,
+      tokenUsage.inputTokens + tokenUsage.outputTokens,
+    );
     if (!dailyUsageResult.allowed) {
-      console.warn(`Daily usage limit hit for IP: ${clientInfo.ip}. Remaining Tokens: ${dailyUsageResult.remainingTokens}, Remaining Requests: ${dailyUsageResult.remainingRequests}`);
+      console.warn(
+        `Daily usage limit hit for IP: ${clientInfo.ip}. Remaining Tokens: ${dailyUsageResult.remainingTokens}, Remaining Requests: ${dailyUsageResult.remainingRequests}`,
+      );
       return json(
         {
-          error:
-            `I apologize, but I have reached my daily usage limit. Please try again tomorrow. (Daily Limit: ${MAX_TOKENS_PER_DAY} tokens, ${MAX_REQUESTS_PER_DAY} requests)`,
+          error: `I apologize, but I have reached my daily usage limit. Please try again tomorrow. (Daily Limit: ${MAX_TOKENS_PER_DAY} tokens, ${MAX_REQUESTS_PER_DAY} requests)`,
         },
         { status: 429 },
       );

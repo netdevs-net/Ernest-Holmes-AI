@@ -1,6 +1,6 @@
 services:
   holmes-gpt:
-    image: ghcr.io/webdevs-net/holmes-gpt:latest
+    image: ghcr.io/netdevs-net/holmes-gpt:latest
     ports:
       - "3000:3000"
     environment:
@@ -8,6 +8,8 @@ services:
       - PORT=3000
       # Set in .env or replace — required for chat replies
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-}
+      - DB_DIR=/app/data
     secrets:
       - anthropic_api_key
     deploy:

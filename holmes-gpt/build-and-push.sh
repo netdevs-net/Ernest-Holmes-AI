@@ -1,14 +1,15 @@
 #!/bin/bash
 
 # Build and Push Script for HolmesGPT Docker Image
-# This script builds the Docker image and pushes it to ghcr.io/webdevs-net/holmes-gpt
+# This script builds the Docker image and pushes it to ghcr.io/netdevs-net/holmes-gpt
 
 set -e
 
 # Configuration
 REGISTRY="ghcr.io"
-IMAGE_NAME="webdevs-net/holmes-gpt"
+IMAGE_NAME="netdevs-net/holmes-gpt"
 FULL_IMAGE_NAME="${REGISTRY}/${IMAGE_NAME}"
+PLATFORM="linux/amd64"
 
 echo "🐳 Building and pushing HolmesGPT Docker image"
 echo "=============================================="
@@ -21,16 +22,16 @@ fi
 
 # Check if user is logged in to ghcr.io (optional check)
 echo "🔐 Checking authentication to GitHub Container Registry..."
-if docker pull ghcr.io/webdevs-net/holmes-gpt:latest > /dev/null 2>&1; then
+if docker pull "${FULL_IMAGE_NAME}:latest" > /dev/null 2>&1; then
     echo "✅ Authentication successful"
 else
     echo "⚠️  Authentication check failed, but proceeding with build..."
     echo "   If push fails, ensure you're logged in with: docker login ghcr.io"
 fi
 
-# Build the image
-echo "🔨 Building Docker image..."
-docker build -t "${FULL_IMAGE_NAME}:latest" .
+# Build the image for amd64 (production servers)
+echo "🔨 Building Docker image for ${PLATFORM}..."
+docker build --platform "${PLATFORM}" -t "${FULL_IMAGE_NAME}:latest" .
 
 if [ $? -eq 0 ]; then
     echo "✅ Docker image built successfully"
@@ -59,8 +60,8 @@ if [ $? -eq 0 ]; then
     echo "   docker pull ${FULL_IMAGE_NAME}:latest"
     echo ""
     echo "🔍 View the image on GitHub:"
-    echo "   https://github.com/webdevs-net/holmes-gpt/packages"
+    echo "   https://github.com/netdevs-net/HolmesAI/pkgs/container/holmes-gpt"
 else
     echo "❌ Docker push failed"
     exit 1
-fi 
+fi

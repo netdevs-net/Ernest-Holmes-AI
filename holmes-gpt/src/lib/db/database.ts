@@ -110,29 +110,35 @@ class DatabaseManager {
   public healthCheck(): { status: string; path: string; size?: string } {
     try {
       if (!this.db) {
-        return { status: 'error', path: DB_PATH, size: 'Database not initialized' };
+        return {
+          status: "error",
+          path: DB_PATH,
+          size: "Database not initialized",
+        };
       }
-      
+
       // Test a simple query
-      const result = this.db.prepare('SELECT COUNT(*) as count FROM questions').get() as { count: number };
-      
+      const result = this.db
+        .prepare("SELECT COUNT(*) as count FROM questions")
+        .get() as { count: number };
+
       // Get file size if it exists
-      let size = 'unknown';
+      let size = "unknown";
       if (existsSync(DB_PATH)) {
         const stats = statSync(DB_PATH);
         size = `${(stats.size / 1024 / 1024).toFixed(2)} MB`;
       }
-      
-      return { 
-        status: 'healthy', 
-        path: DB_PATH, 
-        size 
+
+      return {
+        status: "healthy",
+        path: DB_PATH,
+        size,
       };
     } catch (error) {
-      return { 
-        status: 'error', 
-        path: DB_PATH, 
-        size: error instanceof Error ? error.message : 'Unknown error' 
+      return {
+        status: "error",
+        path: DB_PATH,
+        size: error instanceof Error ? error.message : "Unknown error",
       };
     }
   }

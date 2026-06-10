@@ -1,5 +1,5 @@
-import DatabaseManager from './database';
-import { v4 as uuidv4 } from 'uuid';
+import DatabaseManager from "./database";
+import { v4 as uuidv4 } from "uuid";
 
 export interface EmailRecord {
   id: string;
@@ -48,9 +48,9 @@ class EmailRepository {
 
     try {
       this.db.exec(emailTableSchema);
-      console.log('Email table schema initialized successfully');
+      console.log("Email table schema initialized successfully");
     } catch (error) {
-      console.error('Error initializing email table schema:', error);
+      console.error("Error initializing email table schema:", error);
       throw error;
     }
   }
@@ -64,7 +64,7 @@ class EmailRepository {
     messageId?: string,
     userIp?: string,
     userAgent?: string,
-    sessionId?: string
+    sessionId?: string,
   ): EmailRecord {
     const id = uuidv4();
     const now = new Date().toISOString();
@@ -85,7 +85,7 @@ class EmailRepository {
         userIp || null,
         userAgent || null,
         sessionId || null,
-        now
+        now,
       );
 
       return {
@@ -96,11 +96,13 @@ class EmailRepository {
         user_ip: userIp,
         user_agent: userAgent,
         session_id: sessionId,
-        created_at: now
+        created_at: now,
       };
     } catch (error) {
-      console.error('Error storing email:', error);
-      throw new Error(`Failed to store email: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      console.error("Error storing email:", error);
+      throw new Error(
+        `Failed to store email: ${error instanceof Error ? error.message : "Unknown error"}`,
+      );
     }
   }
 
@@ -110,28 +112,34 @@ class EmailRepository {
   public getEmailStats(): EmailStats {
     try {
       const now = new Date();
-      const today = now.toISOString().split('T')[0];
-      const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
-      const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();
+      const today = now.toISOString().split("T")[0];
+      const weekAgo = new Date(
+        now.getTime() - 7 * 24 * 60 * 60 * 1000,
+      ).toISOString();
+      const monthAgo = new Date(
+        now.getTime() - 30 * 24 * 60 * 60 * 1000,
+      ).toISOString();
 
       const totalEmails = this.db
-        .prepare('SELECT COUNT(*) as count FROM emails')
+        .prepare("SELECT COUNT(*) as count FROM emails")
         .get() as { count: number };
 
       const uniqueEmails = this.db
-        .prepare('SELECT COUNT(DISTINCT email_address) as count FROM emails')
+        .prepare("SELECT COUNT(DISTINCT email_address) as count FROM emails")
         .get() as { count: number };
 
       const emailsToday = this.db
-        .prepare('SELECT COUNT(*) as count FROM emails WHERE DATE(created_at) = ?')
+        .prepare(
+          "SELECT COUNT(*) as count FROM emails WHERE DATE(created_at) = ?",
+        )
         .get(today) as { count: number };
 
       const emailsThisWeek = this.db
-        .prepare('SELECT COUNT(*) as count FROM emails WHERE created_at >= ?')
+        .prepare("SELECT COUNT(*) as count FROM emails WHERE created_at >= ?")
         .get(weekAgo) as { count: number };
 
       const emailsThisMonth = this.db
-        .prepare('SELECT COUNT(*) as count FROM emails WHERE created_at >= ?')
+        .prepare("SELECT COUNT(*) as count FROM emails WHERE created_at >= ?")
         .get(monthAgo) as { count: number };
 
       return {
@@ -139,11 +147,13 @@ class EmailRepository {
         unique_emails: uniqueEmails.count,
         emails_today: emailsToday.count,
         emails_this_week: emailsThisWeek.count,
-        emails_this_month: emailsThisMonth.count
+        emails_this_month: emailsThisMonth.count,
       };
     } catch (error) {
-      console.error('Error getting email stats:', error);
-      throw new Error(`Failed to get email stats: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      console.error("Error getting email stats:", error);
+      throw new Error(
+        `Failed to get email stats: ${error instanceof Error ? error.message : "Unknown error"}`,
+      );
     }
   }
 
@@ -160,8 +170,10 @@ class EmailRepository {
 
       return stmt.all(limit) as EmailRecord[];
     } catch (error) {
-      console.error('Error getting recent emails:', error);
-      throw new Error(`Failed to get recent emails: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      console.error("Error getting recent emails:", error);
+      throw new Error(
+        `Failed to get recent emails: ${error instanceof Error ? error.message : "Unknown error"}`,
+      );
     }
   }
 
@@ -178,8 +190,10 @@ class EmailRepository {
 
       return stmt.all(emailAddress.toLowerCase().trim()) as EmailRecord[];
     } catch (error) {
-      console.error('Error getting emails by address:', error);
-      throw new Error(`Failed to get emails by address: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      console.error("Error getting emails by address:", error);
+      throw new Error(
+        `Failed to get emails by address: ${error instanceof Error ? error.message : "Unknown error"}`,
+      );
     }
   }
 
@@ -193,10 +207,12 @@ class EmailRepository {
         WHERE email_address = ?
       `);
 
-      const result = stmt.get(emailAddress.toLowerCase().trim()) as { count: number };
+      const result = stmt.get(emailAddress.toLowerCase().trim()) as {
+        count: number;
+      };
       return result.count > 0;
     } catch (error) {
-      console.error('Error checking email existence:', error);
+      console.error("Error checking email existence:", error);
       return false;
     }
   }
@@ -214,7 +230,7 @@ class EmailRepository {
       const result = stmt.get(startDate, endDate) as { count: number };
       return result.count;
     } catch (error) {
-      console.error('Error getting email count by date range:', error);
+      console.error("Error getting email count by date range:", error);
       return 0;
     }
   }
@@ -224,11 +240,11 @@ class EmailRepository {
    */
   public deleteEmail(id: string): boolean {
     try {
-      const stmt = this.db.prepare('DELETE FROM emails WHERE id = ?');
+      const stmt = this.db.prepare("DELETE FROM emails WHERE id = ?");
       const result = stmt.run(id);
       return result.changes > 0;
     } catch (error) {
-      console.error('Error deleting email:', error);
+      console.error("Error deleting email:", error);
       return false;
     }
   }
@@ -238,14 +254,16 @@ class EmailRepository {
    */
   public deleteEmailsByAddress(emailAddress: string): number {
     try {
-      const stmt = this.db.prepare('DELETE FROM emails WHERE email_address = ?');
+      const stmt = this.db.prepare(
+        "DELETE FROM emails WHERE email_address = ?",
+      );
       const result = stmt.run(emailAddress.toLowerCase().trim());
       return result.changes;
     } catch (error) {
-      console.error('Error deleting emails by address:', error);
+      console.error("Error deleting emails by address:", error);
       return 0;
     }
   }
 }
 
-export default EmailRepository; 
+export default EmailRepository;

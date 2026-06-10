@@ -3,7 +3,7 @@ import type {
   QuestionHistory,
   QuestionFilters,
 } from "$lib/utils/questionStorage";
-import { getSessionId, getDeviceFingerprint } from "$lib/utils/macAddress";
+import { getSessionId } from "$lib/utils/macAddress";
 
 // Create writable stores for data
 const questionsData = writable<QuestionHistory[]>([]);
@@ -32,53 +32,49 @@ export function triggerQuestionUpdate() {
   questionUpdateTrigger.update((n) => n + 1);
 }
 
-// Function to load questions from API
+function getSessionQueryParams(): URLSearchParams | null {
+  const sessionId = getSessionId();
+  if (!sessionId) {
+    return null;
+  }
+
+  const params = new URLSearchParams();
+  params.append("sessionId", sessionId);
+  return params;
+}
+
+// Function to load questions from API (session-scoped only)
 async function loadQuestions() {
   try {
-    // Get user session information
-    const sessionId = getSessionId();
-    const userMac = getDeviceFingerprint();
-
-    const params = new URLSearchParams();
-    if (sessionId) params.append("sessionId", sessionId);
+    const params = getSessionQueryParams();
+    if (!params) {
+      questionsData.set([]);
+      questionCountData.set(0);
+      bookmarkedCountData.set(0);
+      return;
+    }
 
     const response = await fetch(`/api/questions?${params.toString()}`);
     if (response.ok) {
       const data = await response.json();
       const questions = data.questions || [];
-      const total = data.total || questions.length;
-
-      console.log("Loading questions from API:", {
-        questionsCount: questions.length,
-        total,
-        sessionId,
-      });
+      const total = data.total ?? questions.length;
+      const bookmarked = questions.filter(
+        (q: QuestionHistory) => q.isBookmarked,
+      ).length;
 
       questionsData.set(questions);
       questionCountData.set(total);
+      bookmarkedCountData.set(bookmarked);
     }
   } catch (error) {
     console.error("Failed to load questions:", error);
   }
 }
 
-// Function to load counts from API
+// Session-scoped counts for the chat UI (admin uses /api/stats directly)
 async function loadCounts() {
-  try {
-    const response = await fetch("/api/stats");
-    if (response.ok) {
-      const data = await response.json();
-      const total = data.questions?.total || 0;
-      const bookmarked = data.questions?.bookmarked || 0;
-
-      console.log("Loading counts from API:", { total, bookmarked, data });
-
-      questionCountData.set(total);
-      bookmarkedCountData.set(bookmarked);
-    }
-  } catch (error) {
-    console.error("Failed to load counts:", error);
-  }
+  await loadQuestions();
 }
 
 // Wrapper functions that make API calls
@@ -156,16 +152,14 @@ export async function updateQuestionSource(
 
 export async function searchQuestions(filters: QuestionFilters) {
   try {
-    // Get user session information
-    const sessionId = getSessionId();
-    const userMac = getDeviceFingerprint();
+    const params = getSessionQueryParams();
+    if (!params) {
+      return [];
+    }
 
-    const params = new URLSearchParams();
     if (filters.category) params.append("category", filters.category);
     if (filters.searchTerm) params.append("search", filters.searchTerm);
-    if (filters.bookmarkedOnly !== undefined)
-      params.append("bookmarked", filters.bookmarkedOnly.toString());
-    if (sessionId) params.append("sessionId", sessionId);
+    if (filters.bookmarkedOnly) params.append("bookmarked", "true");
 
     const response = await fetch(`/api/questions?${params.toString()}`);
     if (response.ok) {
@@ -185,7 +179,12 @@ export async function getQuestionsByCategory(category: string) {
 
 export async function exportQuestions() {
   try {
-    const response = await fetch("/api/questions");
+    const params = getSessionQueryParams();
+    if (!params) {
+      return "[]";
+    }
+
+    const response = await fetch(`/api/questions?${params.toString()}`);
     if (response.ok) {
       const data = await response.json();
       return JSON.stringify(data.questions || [], null, 2);

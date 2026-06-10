@@ -11,6 +11,7 @@ This guide explains how to build and push the HolmesGPT Docker image to GitHub C
 ## Authentication
 
 ### Option 1: Using GitHub CLI (Recommended)
+
 ```bash
 # Install GitHub CLI if not already installed
 # macOS: brew install gh
@@ -23,6 +24,7 @@ gh auth token | docker login ghcr.io -u USERNAME --password-stdin
 ```
 
 ### Option 2: Manual Login
+
 ```bash
 # Login to GitHub Container Registry
 docker login ghcr.io
@@ -32,6 +34,7 @@ docker login ghcr.io
 ## Building and Pushing
 
 ### Option 1: Using the Build Script (Recommended)
+
 ```bash
 # Make the script executable (if not already done)
 chmod +x build-and-push.sh
@@ -41,16 +44,17 @@ chmod +x build-and-push.sh
 ```
 
 ### Option 2: Manual Commands
+
 ```bash
 # Build the image
-docker build -t ghcr.io/webdevs-net/holmes-gpt:latest .
+docker build -t ghcr.io/netdevs-net/holmes-gpt:latest .
 
 # Tag with timestamp
-docker tag ghcr.io/webdevs-net/holmes-gpt:latest ghcr.io/webdevs-net/holmes-gpt:$(date +%Y%m%d-%H%M%S)
+docker tag ghcr.io/netdevs-net/holmes-gpt:latest ghcr.io/netdevs-net/holmes-gpt:$(date +%Y%m%d-%H%M%S)
 
 # Push to registry
-docker push ghcr.io/webdevs-net/holmes-gpt:latest
-docker push ghcr.io/webdevs-net/holmes-gpt:$(date +%Y%m%d-%H%M%S)
+docker push ghcr.io/netdevs-net/holmes-gpt:latest
+docker push ghcr.io/netdevs-net/holmes-gpt:$(date +%Y%m%d-%H%M%S)
 ```
 
 ## GitHub Actions (Automated)
@@ -63,6 +67,7 @@ The repository includes a GitHub Actions workflow (`.github/workflows/docker-bui
 - The workflow is manually triggered
 
 ### Manual Trigger
+
 1. Go to the GitHub repository
 2. Navigate to Actions tab
 3. Select "Build and Push Docker Image"
@@ -82,10 +87,10 @@ The following tags are automatically created:
 
 ```bash
 # Pull the latest version
-docker pull ghcr.io/webdevs-net/holmes-gpt:latest
+docker pull ghcr.io/netdevs-net/holmes-gpt:latest
 
 # Pull a specific version
-docker pull ghcr.io/webdevs-net/holmes-gpt:v1.0.0
+docker pull ghcr.io/netdevs-net/holmes-gpt:v1.0.0
 ```
 
 ## Running the Image
@@ -99,12 +104,13 @@ docker run -d \
   --name holmes-gpt \
   -p 3000:3000 \
   -e ANTHROPIC_API_KEY=your-api-key \
-  ghcr.io/webdevs-net/holmes-gpt:latest
+  ghcr.io/netdevs-net/holmes-gpt:latest
 ```
 
 ## Troubleshooting
 
 ### Permission Denied
+
 ```bash
 # Ensure you have write:packages permission in your GitHub token
 # Go to GitHub Settings > Developer settings > Personal access tokens
@@ -112,6 +118,7 @@ docker run -d \
 ```
 
 ### Authentication Failed
+
 ```bash
 # Re-login to ghcr.io
 docker logout ghcr.io
@@ -119,6 +126,7 @@ docker login ghcr.io
 ```
 
 ### Build Fails
+
 ```bash
 # Check Docker is running
 docker info
@@ -127,12 +135,12 @@ docker info
 docker system prune -a
 
 # Rebuild without cache
-docker build --no-cache -t ghcr.io/webdevs-net/holmes-gpt:latest .
+docker build --no-cache -t ghcr.io/netdevs-net/holmes-gpt:latest .
 ```
 
 ## Viewing the Image
 
-- **GitHub Packages**: https://github.com/webdevs-net/holmes-gpt/packages
+- **GitHub Packages**: https://github.com/netdevs-net/holmes-gpt/packages
 - **Docker Hub**: Not applicable (using ghcr.io)
 
 ## Security Notes
@@ -140,4 +148,4 @@ docker build --no-cache -t ghcr.io/webdevs-net/holmes-gpt:latest .
 - The image is built with a non-root user for security
 - Sensitive data (API keys) should be passed as environment variables
 - The image includes only production dependencies
-- Multi-stage build reduces final image size 
+- Multi-stage build reduces final image size

@@ -693,11 +693,16 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 	}
 
 	.category-btn.active {
-		background: var(--bg-tertiary);
+		background: var(--text-accent);
 		border-color: var(--text-accent);
 		box-shadow: 0 4px 12px var(--shadow-light);
 		/* Prevent shadow from extending beyond container */
 		clip-path: inset(0);
+	}
+
+	.category-btn.active:hover {
+		background: var(--text-accent-hover);
+		border-color: var(--text-accent-hover);
 	}
 
 	.category-name {
@@ -706,10 +711,19 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 		margin-bottom: 0.5rem;
 	}
 
+	.category-btn.active .category-name {
+		color: var(--bg-primary);
+	}
+
 	.category-description {
 		color: var(--text-secondary);
 		font-size: 0.9rem;
 		line-height: 1.4;
+	}
+
+	.category-btn.active .category-description {
+		color: var(--bg-primary);
+		opacity: 0.85;
 	}
 
 	.elements-grid {
@@ -737,9 +751,16 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 	}
 
 	.element-btn.selected {
-		background: var(--bg-tertiary);
+		background: var(--text-accent);
 		border-color: var(--text-accent);
-		color: var(--text-accent);
+		color: var(--bg-primary);
+		font-weight: 600;
+	}
+
+	.element-btn.selected:hover {
+		background: var(--text-accent-hover);
+		border-color: var(--text-accent-hover);
+		color: var(--bg-primary);
 	}
 
 	.custom-toggle {
@@ -763,9 +784,16 @@ Please format it with **RECOGNITION**, **AFFIRMATION**, **DECLARATION**, **GRATI
 	}
 
 	.toggle-btn.active {
-		background: var(--bg-tertiary);
+		background: var(--text-accent);
 		border-color: var(--text-accent);
-		color: var(--text-accent);
+		color: var(--bg-primary);
+		font-weight: 600;
+	}
+
+	.toggle-btn.active:hover {
+		background: var(--text-accent-hover);
+		border-color: var(--text-accent-hover);
+		color: var(--bg-primary);
 	}
 
 	.custom-description {

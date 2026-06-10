@@ -1,52 +1,73 @@
 import { json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
 import sqliteStorage from "$lib/utils/sqliteStorage";
-import { extractTags } from "$lib/utils/questionStorage";
+import { extractTags, type QuestionHistory } from "$lib/utils/questionStorage";
 import { getClientInfo } from "$lib/utils/clientInfo";
+import { isAdminQuestionsRequest } from "$lib/server/adminAuth";
 
-// GET /api/questions - Get all questions with optional filters
-export const GET: RequestHandler = async ({
-  url,
-  cookies,
-  getClientAddress,
-}) => {
+function applyQuestionFilters(
+  questions: QuestionHistory[],
+  filters: {
+    category?: string;
+    searchTerm?: string;
+    bookmarkedOnly?: boolean;
+  },
+): QuestionHistory[] {
+  let result = questions;
+
+  if (filters.category) {
+    result = result.filter((q) => q.category === filters.category);
+  }
+
+  if (filters.searchTerm) {
+    const term = filters.searchTerm.toLowerCase();
+    result = result.filter(
+      (q) =>
+        q.question.toLowerCase().includes(term) ||
+        q.tags.some((tag) => tag.toLowerCase().includes(term)),
+    );
+  }
+
+  if (filters.bookmarkedOnly) {
+    result = result.filter((q) => q.isBookmarked);
+  }
+
+  return result;
+}
+
+// GET /api/questions - Session-scoped history for users; full list for admin
+export const GET: RequestHandler = async ({ url }) => {
   try {
-    const category = url.searchParams.get("category");
-    const searchTerm = url.searchParams.get("search");
+    const category = url.searchParams.get("category") || undefined;
+    const searchTerm = url.searchParams.get("search") || undefined;
     const bookmarkedOnly = url.searchParams.get("bookmarked") === "true";
-    const limit = parseInt(url.searchParams.get("limit") || "50");
+    const limit = parseInt(url.searchParams.get("limit") || "50", 10);
     const sessionId = url.searchParams.get("sessionId");
 
-    const filters = {
-      category: category || undefined,
-      searchTerm: searchTerm || undefined,
-      bookmarkedOnly,
-      userSessionId: sessionId || undefined,
-      userMac: undefined,
-    };
+    let questions: QuestionHistory[];
 
-    let questions;
-    if (Object.values(filters).some((f) => f !== undefined)) {
-      questions = sqliteStorage.searchQuestions(filters);
+    if (sessionId) {
+      questions = sqliteStorage.getQuestionsForUser(sessionId);
+      questions = applyQuestionFilters(questions, {
+        category,
+        searchTerm,
+        bookmarkedOnly,
+      });
+    } else if (isAdminQuestionsRequest(url)) {
+      questions = sqliteStorage.getQuestions();
     } else {
-      questions = sqliteStorage.getQuestionsForUser(
-        filters.userSessionId,
-        filters.userMac,
-      );
+      questions = [];
     }
 
-    // Apply limit
-    if (limit && limit > 0) {
+    if (limit > 0) {
       questions = questions.slice(0, limit);
     }
 
-    // Always get user-specific count when sessionId is provided
-    const total = filters.userSessionId
-      ? sqliteStorage.getQuestionCountForUser(
-          filters.userSessionId,
-          filters.userMac,
-        )
-      : sqliteStorage.getQuestionCount();
+    const total = sessionId
+      ? sqliteStorage.getQuestionCountForUser(sessionId)
+      : isAdminQuestionsRequest(url)
+        ? sqliteStorage.getQuestionCount()
+        : 0;
 
     return json({
       questions,

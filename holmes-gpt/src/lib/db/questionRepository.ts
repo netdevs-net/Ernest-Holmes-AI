@@ -73,47 +73,21 @@ export class QuestionRepository {
     return rows.map(this.mapRecordToQuestion);
   }
 
-  // Get questions for specific user
-  getQuestionsForUser(sessionId?: string, userMac?: string): QuestionHistory[] {
-    let query = "SELECT * FROM questions WHERE 1=0"; // Start with false condition
-    const params: any[] = [];
-
-    if (sessionId) {
-      // Check for both new and old sessionId formats
-      if (
-        sessionId.startsWith("session_") &&
-        sessionId.split("_").length === 2
-      ) {
-        // New format: session_fingerprint (only 2 parts)
-        const fingerprint = sessionId.replace("session_", "");
-        query = "SELECT * FROM questions WHERE session_id = ? OR user_mac = ?";
-        params.push(sessionId, fingerprint);
-      } else if (
-        sessionId.startsWith("session_") &&
-        sessionId.split("_").length >= 3
-      ) {
-        // Old format: session_timestamp_random_fingerprint (4 parts)
-        const parts = sessionId.split("_");
-        const fingerprint = parts[parts.length - 1]; // Last part is the fingerprint
-        query = "SELECT * FROM questions WHERE session_id = ? OR user_mac = ?";
-        params.push(sessionId, fingerprint);
-      } else {
-        // Other format
-        query = "SELECT * FROM questions WHERE session_id = ?";
-        params.push(sessionId);
-      }
-    } else if (userMac) {
-      query = "SELECT * FROM questions WHERE user_mac = ?";
-      params.push(userMac);
-    } else {
-      // If no user identification, return empty array
+  // Get questions for a specific browser session only
+  getQuestionsForUser(
+    sessionId?: string,
+    _userMac?: string,
+  ): QuestionHistory[] {
+    if (!sessionId) {
       return [];
     }
 
-    query += " ORDER BY timestamp DESC";
-
-    const stmt = this.db.prepare(query);
-    const rows = stmt.all(...params) as QuestionRecord[];
+    const stmt = this.db.prepare(`
+      SELECT * FROM questions
+      WHERE session_id = ?
+      ORDER BY timestamp DESC
+    `);
+    const rows = stmt.all(sessionId) as QuestionRecord[];
     return rows.map(this.mapRecordToQuestion);
   }
 
@@ -208,45 +182,15 @@ export class QuestionRepository {
     return result.count;
   }
 
-  getQuestionCountForUser(sessionId?: string, userMac?: string): number {
-    let query = "SELECT COUNT(*) as count FROM questions WHERE 1=0"; // Start with false condition
-    const params: any[] = [];
-
-    if (sessionId) {
-      // Check for both new and old sessionId formats
-      if (
-        sessionId.startsWith("session_") &&
-        sessionId.split("_").length === 2
-      ) {
-        // New format: session_fingerprint (only 2 parts)
-        const fingerprint = sessionId.replace("session_", "");
-        query =
-          "SELECT COUNT(*) as count FROM questions WHERE session_id = ? OR user_mac = ?";
-        params.push(sessionId, fingerprint);
-      } else if (
-        sessionId.startsWith("session_") &&
-        sessionId.split("_").length >= 3
-      ) {
-        // Old format: session_timestamp_random_fingerprint (4 parts)
-        const parts = sessionId.split("_");
-        const fingerprint = parts[parts.length - 1]; // Last part is the fingerprint
-        query =
-          "SELECT COUNT(*) as count FROM questions WHERE session_id = ? OR user_mac = ?";
-        params.push(sessionId, fingerprint);
-      } else {
-        // Other format
-        query = "SELECT COUNT(*) as count FROM questions WHERE session_id = ?";
-        params.push(sessionId);
-      }
-    } else if (userMac) {
-      query = "SELECT COUNT(*) as count FROM questions WHERE user_mac = ?";
-      params.push(userMac);
-    } else {
+  getQuestionCountForUser(sessionId?: string, _userMac?: string): number {
+    if (!sessionId) {
       return 0;
     }
 
-    const stmt = this.db.prepare(query);
-    const result = stmt.get(...params) as { count: number };
+    const stmt = this.db.prepare(
+      "SELECT COUNT(*) as count FROM questions WHERE session_id = ?",
+    );
+    const result = stmt.get(sessionId) as { count: number };
     return result.count;
   }
 

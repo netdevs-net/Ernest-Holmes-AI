@@ -1,6 +1,56 @@
-import type { Handle } from "@sveltejs/kit";
+import { redirect, json, type Handle } from "@sveltejs/kit";
+import {
+  isAdminAuthConfigured,
+  isAdminAuthorized,
+  isProtectedAdminPage,
+  isProtectedApiRoute,
+  isValidSecurityBearer,
+} from "$lib/server/adminAuth";
 
 export const handle: Handle = async ({ event, resolve }) => {
+  const { pathname } = event.url;
+  const method = event.request.method;
+
+  if (isProtectedAdminPage(pathname)) {
+    if (!isAdminAuthConfigured()) {
+      return json(
+        { error: "Admin authentication is not configured" },
+        { status: 503 },
+      );
+    }
+
+    if (
+      !isAdminAuthorized(
+        event.cookies,
+        event.request.headers.get("authorization"),
+      )
+    ) {
+      throw redirect(303, "/admin/login");
+    }
+  }
+
+  if (pathname === "/api/security") {
+    if (!isValidSecurityBearer(event.request.headers.get("authorization"))) {
+      return json({ error: "Unauthorized" }, { status: 401 });
+    }
+  } else if (isProtectedApiRoute(pathname, event.url, method)) {
+    if (!isAdminAuthConfigured()) {
+      return json(
+        { error: "Admin authentication is not configured" },
+        { status: 503 },
+      );
+    }
+
+    if (
+      !isAdminAuthorized(
+        event.cookies,
+        event.request.headers.get("authorization"),
+      )
+    ) {
+      return json({ error: "Unauthorized" }, { status: 401 });
+    }
+  }
+
   const response = await resolve(event, {
     preload: ({ type }) => type === "js" || type === "css",
   });

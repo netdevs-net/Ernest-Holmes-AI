@@ -4,6 +4,7 @@
 	
 	export let messageContent: string = '';
 	export let isVisible = false;
+	export let onclose: (() => void) | undefined = undefined;
 	
 	const dispatch = createEventDispatcher();
 	
@@ -14,6 +15,7 @@
 	function handleClose() {
 		emailAddress = '';
 		isSent = false;
+		onclose?.();
 		dispatch('close');
 	}
 	

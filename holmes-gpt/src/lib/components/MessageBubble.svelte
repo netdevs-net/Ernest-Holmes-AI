@@ -2,8 +2,6 @@
 	import Mail from '@lucide/svelte/icons/mail';
 	import Hand from '@lucide/svelte/icons/hand';
 	import HolmesLogo from './HolmesLogo.svelte';
-	import type { Component } from 'svelte';
-
 	import type { ChatMessage } from '$lib/types/chat';
 	import { messageTimestamp } from '$lib/types/chat';
 
@@ -18,7 +16,8 @@
 	$: isWelcome = message.id === 'welcome';
 	
 	let showEmailModal = false;
-	let EmailChat: Component | null = null;
+	type EmailChatComponent = typeof import('./EmailChat.svelte').default;
+	let EmailChat: EmailChatComponent | null = null;
 	
 	async function handleEmailClick() {
 		if (!EmailChat) {
@@ -120,6 +119,7 @@
 		this={EmailChat}
 		messageContent={message.content}
 		isVisible={showEmailModal}
+		onclose={handleEmailClose}
 		on:close={handleEmailClose}
 	/>
 {/if}

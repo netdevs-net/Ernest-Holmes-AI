@@ -9,33 +9,68 @@ interface Quote {
 
 let quotesCache: Quote[] = [];
 
-// Load quotes from the JSON file
+const QUOTE_FILES = [
+  "holmes_powerful_quotes.json",
+  "enhanced_holmes_quotes.json",
+  "holmes_quotes.json",
+];
+
+function normalizeQuotes(data: unknown): Quote[] {
+  const raw = (data as { quotes?: unknown[] })?.quotes ?? [];
+  return raw
+    .map((entry) => {
+      if (typeof entry === "string") {
+        return { quote: entry, source: "The Science of Mind" };
+      }
+      if (entry && typeof entry === "object") {
+        const record = entry as {
+          quote?: string;
+          text?: string;
+          source?: string;
+        };
+        const quote = record.quote || record.text;
+        if (!quote) return null;
+        return {
+          quote,
+          source: record.source || "The Science of Mind",
+        };
+      }
+      return null;
+    })
+    .filter((entry): entry is Quote => entry !== null);
+}
+
+// Load quotes from training data JSON files
 function loadQuotes(): Quote[] {
   if (quotesCache.length > 0) {
     return quotesCache;
   }
 
-  try {
-    const quotesPath = path.join(
-      process.cwd(),
-      "downloads",
-      "training_data",
-      "holmes_powerful_quotes.json",
-    );
-    const quotesData = fs.readFileSync(quotesPath, "utf-8");
-    const data = JSON.parse(quotesData);
-    const allQuotes: Quote[] = data.quotes.map((q: any) => ({
-      quote: q.quote,
-      source: q.source
-    }));
+  const trainingDir = path.join(process.cwd(), "downloads", "training_data");
 
-    // Use the curated powerful quotes directly
-    quotesCache = allQuotes;
-    return allQuotes;
-  } catch (error) {
-    console.error("Error loading quotes:", error);
-    return [];
+  for (const fileName of QUOTE_FILES) {
+    try {
+      const quotesPath = path.join(trainingDir, fileName);
+      if (!fs.existsSync(quotesPath)) {
+        continue;
+      }
+
+      const quotesData = fs.readFileSync(quotesPath, "utf-8");
+      const data = JSON.parse(quotesData);
+      const allQuotes = normalizeQuotes(data);
+
+      if (allQuotes.length > 0) {
+        quotesCache = allQuotes;
+        console.log(`Loaded ${allQuotes.length} quotes from ${fileName}`);
+        return allQuotes;
+      }
+    } catch (error) {
+      console.error(`Error loading quotes from ${fileName}:`, error);
+    }
   }
+
+  console.error("No quote files could be loaded from downloads/training_data");
+  return [];
 }
 
 export async function GET({ url }) {
@@ -63,7 +98,6 @@ export async function GET({ url }) {
     const shuffled = [...filteredQuotes].sort(() => 0.5 - Math.random());
     filteredQuotes = shuffled.slice(0, limit);
   } else {
-    // Get latest quotes (assuming they're in chronological order)
     filteredQuotes = filteredQuotes.slice(0, limit);
   }
 

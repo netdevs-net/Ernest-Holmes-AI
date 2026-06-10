@@ -7,7 +7,7 @@ This guide explains how to deploy HolmesGPT to your remote server with proper Do
 ## Prerequisites
 
 - Docker installed on remote server
-- Access to GitHub Container Registry (ghcr.io/webdevs-net/holmes-gpt)
+- Access to GitHub Container Registry (ghcr.io/netdevs-net/holmes-gpt)
 - Anthropic API key
 
 ## Docker Secrets Configuration
@@ -64,17 +64,17 @@ docker service create \
   --secret anthropic_api_key \
   --publish 3000:3000 \
   --replicas 1 \
-  ghcr.io/webdevs-net/holmes-gpt:latest
+  ghcr.io/netdevs-net/holmes-gpt:latest
 ```
 
 #### For Existing Service Update:
 
 ```bash
 # Pull the latest image
-docker pull ghcr.io/webdevs-net/holmes-gpt:latest
+docker pull ghcr.io/netdevs-net/holmes-gpt:latest
 
 # Update the service
-docker service update --image ghcr.io/webdevs-net/holmes-gpt:latest holmes-gpt
+docker service update --image ghcr.io/netdevs-net/holmes-gpt:latest holmes-gpt
 ```
 
 ### Step 3: Verify Deployment
@@ -117,7 +117,7 @@ docker service logs holmes-gpt
 docker exec -it $(docker ps -q --filter "name=holmes-gpt") cat /run/secrets/anthropic_api_key
 
 # Update service with latest image
-docker service update --image ghcr.io/webdevs-net/holmes-gpt:latest holmes-gpt
+docker service update --image ghcr.io/netdevs-net/holmes-gpt:latest holmes-gpt
 ```
 
 #### 2. Service Won't Start

@@ -384,24 +384,24 @@
     scrollbar-width: thin;
     scrollbar-color: var(--border-secondary) transparent;
   }
-  
+
   .scrollbar-thin::-webkit-scrollbar {
     width: 4px;
   }
-  
+
   .scrollbar-thin::-webkit-scrollbar-track {
     background: transparent;
   }
-  
+
   .scrollbar-thin::-webkit-scrollbar-thumb {
     background: var(--border-secondary);
     border-radius: 2px;
   }
-  
+
   .scrollbar-thin::-webkit-scrollbar-thumb:hover {
     background: var(--text-secondary);
   }
-  
+
   .overflow-y-auto {
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
@@ -412,7 +412,7 @@
   .scrollbar-thin::-webkit-scrollbar {
     width: 3px;
   }
-  
+
   .overflow-y-auto {
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
