@@ -10,7 +10,7 @@
 
 ## 📖 **About Holmes AI**
 
-Holmes AI is a sophisticated spiritual AI platform that authentically embodies Ernest Holmes' teachings through modern technology. Built with SvelteKit and powered by Claude 3 Haiku, it provides users with authentic spiritual guidance in Ernest Holmes' voice and style.
+Ernest Holmes (1887-1960), founder of Religious Science, taught that wisdom lives in the moment it's applied — not preserved behind glass. Holmes AI is our attempt to keep that alive: trained on 463K+ words from his five core texts and 17K+ of his own quotes, it doesn't summarize Holmes, it *is* him, brought back to answer the question you bring him today, in a way that feels personal, immediate, and transformative — the same way he met seekers in his own time. Built with SvelteKit and powered by Claude Haiku 4.5, ask him directly in his own 1920s-40s cadence ("In His Words") or in modern language, and get guidance sourced straight from his real writings and speeches — not invented.
 
 ### **🎯 Mission**
 To make Ernest Holmes' profound spiritual wisdom accessible to everyone through an intuitive, AI-powered platform that maintains the authenticity and depth of his original teachings.
@@ -79,7 +79,7 @@ Holmes AI v1.0.0
 │   ├── Quotes Display
 │   └── Admin Dashboard
 ├── Backend (SvelteKit API)
-│   ├── AI Integration (Claude 3 Haiku)
+│   ├── AI Integration (Claude Haiku 4.5)
 │   ├── Database (SQLite)
 │   ├── Email Storage
 │   └── User Analytics
@@ -185,7 +185,7 @@ This project is private and proprietary. All rights reserved.
 ## 🙏 **Acknowledgments**
 
 - **Ernest Holmes** for his profound spiritual wisdom
-- **Anthropic** for Claude 3 Haiku AI capabilities
+- **Anthropic** for Claude Haiku 4.5 AI capabilities
 - **SvelteKit** team for the excellent framework
 - **Tailwind CSS** for the beautiful design system
 
