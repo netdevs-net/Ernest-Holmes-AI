@@ -1,6 +1,4 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
-  import { fade } from 'svelte/transition';
   import Header from '$lib/components/Header.svelte';
   import { Shield, Lock, Users, Globe, Mail, Phone, MapPin } from '@lucide/svelte';
 
@@ -10,18 +8,13 @@
     { Icon: Users, label: 'Trusted' }
   ];
   let heroStatIndex = 0;
-  /** @type {ReturnType<typeof setInterval>} */
-  let heroStatTimer;
 
-  onMount(() => {
-    heroStatTimer = setInterval(() => {
-      heroStatIndex = (heroStatIndex + 1) % heroStats.length;
-    }, 2600);
-  });
-
-  onDestroy(() => {
-    clearInterval(heroStatTimer);
-  });
+  // Advances in sync with the CSS animation's loop point (opacity trough),
+  // so the icon/label swap while invisible. A single persistent node is
+  // reused -- no keyed block, so there's nothing to leak.
+  function advanceHeroStat() {
+    heroStatIndex = (heroStatIndex + 1) % heroStats.length;
+  }
 </script>
 
 <svelte:head>
@@ -199,14 +192,12 @@
         <span class="subtitle-highlight">with Divine Wisdom</span>
       </p>
       <div class="hero-stats hero-stats-morph">
-        {#key heroStatIndex}
-          <div class="stat-item stat-item-morph" in:fade={{ duration: 900 }} out:fade={{ duration: 900 }}>
-            <div class="stat-icon stat-icon-morph">
-              <svelte:component this={heroStats[heroStatIndex].Icon} size={96} />
-            </div>
-            <div class="stat-label stat-label-morph">{heroStats[heroStatIndex].label}</div>
+        <div class="stat-item stat-item-morph" on:animationiteration={advanceHeroStat}>
+          <div class="stat-icon stat-icon-morph">
+            <svelte:component this={heroStats[heroStatIndex].Icon} size={96} />
           </div>
-        {/key}
+          <div class="stat-label stat-label-morph">{heroStats[heroStatIndex].label}</div>
+        </div>
       </div>
       <div class="hero-scroll-indicator">
         <div class="scroll-text">Learn More</div>
@@ -526,6 +517,22 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
+    animation: stat-crossfade 2.6s ease-in-out infinite;
+  }
+
+  @keyframes stat-crossfade {
+    0% {
+      opacity: 0;
+    }
+    12% {
+      opacity: 1;
+    }
+    88% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 
   .stat-icon-morph {
