@@ -96,10 +96,10 @@
 <header class="modern-header">
 	<div class="header-container">
 		<!-- Logo Section -->
-		<a href="/" class="logo-section" aria-label="Home - Holmes AI Chat">
-			<HolmesLogo priority alt="Holmes AI Logo" />
+		<a href="/" class="logo-section" aria-label="Home - HolmesAI Chat">
+			<HolmesLogo priority alt="HolmesAI Logo" />
 			<div class="logo-text">
-				<h1 class="logo-title">Holmes AI</h1>
+				<h1 class="logo-title">HolmesAI</h1>
 				<p class="logo-subtitle">Ernest Holmes AI Practitioner</p>
 			</div>
 		</a>
@@ -161,7 +161,7 @@
 						<div class="mobile-menu-header">
 							<div class="mobile-menu-logo">
 								<HolmesLogo size="sm" alt="" />
-								<span class="mobile-logo-text">Holmes AI</span>
+								<span class="mobile-logo-text">HolmesAI</span>
 							</div>
 							<button 
 								on:click={closeAllMenus}

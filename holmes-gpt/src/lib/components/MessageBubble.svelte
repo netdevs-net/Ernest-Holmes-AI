@@ -99,7 +99,7 @@
 							<Mail class="w-3 h-3" />
 							<span class="email-share-text">Email</span>
 						</button>
-						<a href="/support" class="support-link" title="Support Holmes AI">
+						<a href="/support" class="support-link" title="Support HolmesAI">
 							<Hand class="w-3 h-3" />
 							<span class="support-text">Support</span>
 						</a>

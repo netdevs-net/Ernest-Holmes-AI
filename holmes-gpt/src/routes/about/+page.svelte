@@ -4,10 +4,10 @@
 </script>
 
 <svelte:head>
-  <title>About Holmes AI - Ernest Holmes' Legacy in AI Technology | Spiritual Innovation</title>
-  <meta name="description" content="Discover how Holmes AI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology. Learn about our mission to make Science of Mind teachings accessible worldwide." />
+  <title>About HolmesAI - Ernest Holmes' Legacy in AI Technology | Spiritual Innovation</title>
+  <meta name="description" content="Discover how HolmesAI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology. Learn about our mission to make Science of Mind teachings accessible worldwide." />
   <meta name="keywords" content="Ernest Holmes legacy, Science of Mind AI, spiritual technology, Religious Science AI, metaphysical AI, Ernest Holmes teachings, spiritual innovation, AI spiritual guidance, Ernest Holmes biography, Science of Mind technology, spiritual AI development, Ernest Holmes philosophy, metaphysical technology, spiritual wisdom preservation, AI spiritual teacher, Ernest Holmes quotes AI, spiritual technology innovation, Science of Mind preservation, Religious Science technology, metaphysical AI development, spiritual AI mission, Ernest Holmes AI story, spiritual technology company, AI spiritual wisdom, Ernest Holmes digital legacy, spiritual AI innovation, Science of Mind AI technology, metaphysical wisdom AI, spiritual guidance technology, Ernest Holmes AI preservation, spiritual technology mission" />
-  <meta name="author" content="Holmes AI Team" />
+  <meta name="author" content="HolmesAI Team" />
   <meta name="robots" content="index, follow" />
   <meta name="language" content="English" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,16 +16,16 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   	<meta property="og:url" content="https://holmes-ai.netdevs.net/about" />
-  <meta property="og:title" content="About Holmes AI - Ernest Holmes' Legacy in AI Technology | Spiritual Innovation" />
-  <meta property="og:description" content="Discover how Holmes AI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology. Learn about our mission to make Science of Mind teachings accessible worldwide." />
+  <meta property="og:title" content="About HolmesAI - Ernest Holmes' Legacy in AI Technology | Spiritual Innovation" />
+  <meta property="og:description" content="Discover how HolmesAI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology. Learn about our mission to make Science of Mind teachings accessible worldwide." />
   	<meta property="og:image" content="https://holmes-ai.netdevs.net/images/holmes-ai-about.jpg" />
-  <meta property="og:site_name" content="Holmes AI" />
+  <meta property="og:site_name" content="HolmesAI" />
   
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   	<meta property="twitter:url" content="https://holmes-ai.netdevs.net/about" />
-  <meta property="twitter:title" content="About Holmes AI - Ernest Holmes' Legacy in AI Technology | Spiritual Innovation" />
-  <meta property="twitter:description" content="Discover how Holmes AI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology. Learn about our mission to make Science of Mind teachings accessible worldwide." />
+  <meta property="twitter:title" content="About HolmesAI - Ernest Holmes' Legacy in AI Technology | Spiritual Innovation" />
+  <meta property="twitter:description" content="Discover how HolmesAI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology. Learn about our mission to make Science of Mind teachings accessible worldwide." />
   	<meta property="twitter:image" content="https://holmes-ai.netdevs.net/images/holmes-ai-about.jpg" />
   
   <!-- Canonical URL -->
@@ -36,14 +36,14 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "About Holmes AI",
-    "description": "Discover how Holmes AI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology.",
+    "name": "About HolmesAI",
+    "description": "Discover how HolmesAI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology.",
     		"url": "https://holmes-ai.netdevs.net/about",
     "datePublished": "2024-12-19",
     "dateModified": "2024-12-19",
     "mainEntity": {
       "@type": "Organization",
-      "name": "Holmes AI",
+      "name": "HolmesAI",
       "description": "Preserving Ernest Holmes' wisdom through AI technology",
       "foundingDate": "2024",
       "founder": {
@@ -67,16 +67,16 @@
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "About Holmes AI - Ernest Holmes' Legacy in AI Technology",
-    "description": "Discover how Holmes AI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology. Learn about our mission to make Science of Mind teachings accessible worldwide.",
+    "headline": "About HolmesAI - Ernest Holmes' Legacy in AI Technology",
+    "description": "Discover how HolmesAI preserves Ernest Holmes' spiritual wisdom through cutting-edge AI technology. Learn about our mission to make Science of Mind teachings accessible worldwide.",
     		"image": "https://holmes-ai.netdevs.net/images/holmes-ai-about.jpg",
     "author": {
       "@type": "Organization",
-      "name": "Holmes AI Team"
+      "name": "HolmesAI Team"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Holmes AI",
+      "name": "HolmesAI",
       "logo": {
         "@type": "ImageObject",
         		"url": "https://holmes-ai.netdevs.net/images/logo.ico"
@@ -96,7 +96,7 @@
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Holmes AI",
+    "name": "HolmesAI",
     "description": "Preserving Ernest Holmes' spiritual wisdom through cutting-edge AI technology",
     		"url": "https://holmes-ai.netdevs.net",
     		"logo": "https://holmes-ai.netdevs.net/images/logo.ico",
@@ -177,7 +177,7 @@
     <div class="hero-content">
       <div class="hero-badge">Spiritual Technology</div>
       <h1>
-        <span class="hero-title-glow">About Holmes AI</span>
+        <span class="hero-title-glow">About HolmesAI</span>
       </h1>
       <p class="hero-subtitle">
         <span class="subtitle-highlight">Preserving</span> Ernest Holmes' Timeless Wisdom 
@@ -217,7 +217,7 @@
       <div class="mission-content">
         <div class="mission-text">
           <p class="lead">
-            Holmes AI was born from a deep reverence for Ernest Holmes' teachings and a vision to make his 
+            HolmesAI was born from a deep reverence for Ernest Holmes' teachings and a vision to make his 
             timeless wisdom accessible to spiritual seekers worldwide.
           </p>
           <div class="text-block">
@@ -247,7 +247,7 @@
       </div>
       <div class="team-content">
         <p class="lead">
-          Holmes AI is built with care to preserve Ernest Holmes' legacy.
+          HolmesAI is built with care to preserve Ernest Holmes' legacy.
         </p>
         
         <div class="team-grid">
@@ -256,7 +256,7 @@
               <div class="member-card-glow"></div>
               <div class="member-header">
                 <div class="member-avatar">
-                  <img src="/images/Ryan-streetsmart.jpg" alt="Ryan Iguchi, Developer of Holmes AI" />
+                  <img src="/images/Ryan-streetsmart.jpg" alt="Ryan Iguchi, Developer of HolmesAI" />
                   <div class="avatar-ring"></div>
                 </div>
                 <div class="member-info">
@@ -269,7 +269,7 @@
                 <div class="bio-column">
                   <p class="member-bio">
                     I've been a lifelong student of the Science of Mind, and I've long admired the clarity and depth
-                    of Ernest Holmes' own writing. Building Holmes AI grew out of that admiration — a way to keep
+                    of Ernest Holmes' own writing. Building HolmesAI grew out of that admiration — a way to keep
                     studying his work by putting his voice back into conversation.
                   </p>
                   <p class="member-bio">
@@ -277,7 +277,7 @@
                     MarTech and FinTech software.
                   </p>
                   <p class="member-bio">
-                    I created Holmes AI to make Ernest Holmes' wisdom feel accessible to everyone.
+                    I created HolmesAI to make Ernest Holmes' wisdom feel accessible to everyone.
                   </p>
                   <div class="contact-note">
                     <div class="note-icon">
@@ -336,14 +336,14 @@
             <p class="sponsor-role">Generous Supporter & Spiritual Practitioner</p>
             <div class="sponsor-messages">
               <p class="sponsor-message">
-                Thank you, Linda, for your generous sponsorship and support of Holmes AI. Your extraordinary 
+                Thank you, Linda, for your generous sponsorship and support of HolmesAI. Your extraordinary 
                 healing gifts and boundless compassion for all beings have been a guiding light in bringing 
                 this project to life. Through your spiritual healing practice, you've touched countless lives 
                 with your wisdom, empathy, and deep understanding of the human spirit.
               </p>
               <p class="sponsor-message">
                 Your commitment to making spiritual wisdom accessible to everyone, regardless of their 
-                background or circumstances, perfectly aligns with our mission at Holmes AI. Your dedication 
+                background or circumstances, perfectly aligns with our mission at HolmesAI. Your dedication 
                 to healing, your intuitive understanding of human suffering, and your unwavering belief in 
                 the power of spiritual transformation inspire us all to serve with greater compassion and love.
               </p>
@@ -364,17 +364,17 @@
       <div class="cta-background"></div>
       <div class="cta-content">
         <div class="cta-badge">Get Started</div>
-        <h2 id="cta-heading">Experience Holmes AI</h2>
+        <h2 id="cta-heading">Experience HolmesAI</h2>
         <p>
           Ready to experience authentic spiritual guidance from Ernest Holmes? 
-          Start your journey with Holmes AI today.
+          Start your journey with HolmesAI today.
         </p>
         <div class="cta-buttons">
-          <a href="/" class="cta-button primary" aria-label="Start chatting with Holmes AI">
+          <a href="/" class="cta-button primary" aria-label="Start chatting with HolmesAI">
             <span>Start Chatting</span>
             <div class="button-shine"></div>
           </a>
-          <a href="/support" class="cta-button secondary" aria-label="Learn how to support Holmes AI">
+          <a href="/support" class="cta-button secondary" aria-label="Learn how to support HolmesAI">
             <span>Support Us</span>
           </a>
         </div>

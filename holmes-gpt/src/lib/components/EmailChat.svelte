@@ -45,15 +45,15 @@
 			}
 
 			// Create mailto link with formatted content
-			const subject = encodeURIComponent('Holmes AI - Spiritual Guidance Response');
+			const subject = encodeURIComponent('HolmesAI - Spiritual Guidance Response');
 			const body = encodeURIComponent(`Dear Friend,
 
-I wanted to share this spiritual guidance from Holmes AI with you:
+I wanted to share this spiritual guidance from HolmesAI with you:
 
 ${messageContent}
 
 ---
-Shared from Holmes AI - Ernest Holmes' wisdom through AI technology
+Shared from HolmesAI - Ernest Holmes' wisdom through AI technology
 https://holmes-ai.netdevs.net
 
 May this bring you peace and understanding.

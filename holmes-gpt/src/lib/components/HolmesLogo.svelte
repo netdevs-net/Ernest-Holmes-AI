@@ -2,7 +2,7 @@
 	/** Optimized logo (96px max) — use instead of full 218KB PNG. */
 	export let size: 'sm' | 'md' = 'md';
 	export let priority = false;
-	export let alt = 'Holmes AI';
+	export let alt = 'HolmesAI';
 
 	const sizes = {
 		sm: { width: 24, height: 31, class: 'h-6 w-auto max-w-6 flex-shrink-0 mt-0.5' },

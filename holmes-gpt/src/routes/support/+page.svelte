@@ -24,10 +24,10 @@
 </script>
 
 <svelte:head>
-  	<title>Support Holmes AI - Preserve Ernest Holmes' Spiritual Wisdom | Donate to Spiritual Technology</title>
-	<meta name="description" content="Support Holmes AI and help preserve Ernest Holmes' spiritual wisdom for future generations. Your contribution makes authentic Science of Mind guidance accessible to spiritual seekers worldwide." />
-	<meta name="keywords" content="support Holmes AI, donate spiritual technology, Ernest Holmes preservation, Science of Mind funding, spiritual AI support, Religious Science donation, metaphysical technology funding, Ernest Holmes legacy support, spiritual guidance funding, AI spiritual teacher support, Science of Mind preservation, spiritual technology donation, Ernest Holmes wisdom preservation, metaphysical AI funding, spiritual innovation support, Religious Science technology funding, Ernest Holmes AI support, spiritual technology preservation, Science of Mind technology funding, metaphysical wisdom preservation, spiritual AI development funding, Ernest Holmes teachings preservation, spiritual technology innovation funding, AI spiritual guidance support, Ernest Holmes digital legacy, spiritual technology mission funding, Science of Mind AI funding, metaphysical technology preservation, spiritual guidance technology funding, Ernest Holmes AI preservation funding, spiritual technology mission support" />
-	<meta name="author" content="Holmes AI Team" />
+  	<title>Support HolmesAI - Preserve Ernest Holmes' Spiritual Wisdom | Donate to Spiritual Technology</title>
+	<meta name="description" content="Support HolmesAI and help preserve Ernest Holmes' spiritual wisdom for future generations. Your contribution makes authentic Science of Mind guidance accessible to spiritual seekers worldwide." />
+	<meta name="keywords" content="support HolmesAI, donate spiritual technology, Ernest Holmes preservation, Science of Mind funding, spiritual AI support, Religious Science donation, metaphysical technology funding, Ernest Holmes legacy support, spiritual guidance funding, AI spiritual teacher support, Science of Mind preservation, spiritual technology donation, Ernest Holmes wisdom preservation, metaphysical AI funding, spiritual innovation support, Religious Science technology funding, Ernest Holmes AI support, spiritual technology preservation, Science of Mind technology funding, metaphysical wisdom preservation, spiritual AI development funding, Ernest Holmes teachings preservation, spiritual technology innovation funding, AI spiritual guidance support, Ernest Holmes digital legacy, spiritual technology mission funding, Science of Mind AI funding, metaphysical technology preservation, spiritual guidance technology funding, Ernest Holmes AI preservation funding, spiritual technology mission support" />
+	<meta name="author" content="HolmesAI Team" />
 	<meta name="robots" content="index, follow" />
 	<meta name="language" content="English" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -36,16 +36,16 @@
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://holmes-ai.netdevs.net/support" />
-	<meta property="og:title" content="Support Holmes AI - Preserve Ernest Holmes' Spiritual Wisdom | Donate to Spiritual Technology" />
-	<meta property="og:description" content="Support Holmes AI and help preserve Ernest Holmes' spiritual wisdom for future generations. Your contribution makes authentic Science of Mind guidance accessible to spiritual seekers worldwide." />
+	<meta property="og:title" content="Support HolmesAI - Preserve Ernest Holmes' Spiritual Wisdom | Donate to Spiritual Technology" />
+	<meta property="og:description" content="Support HolmesAI and help preserve Ernest Holmes' spiritual wisdom for future generations. Your contribution makes authentic Science of Mind guidance accessible to spiritual seekers worldwide." />
 	<!-- <meta property="og:image" content="https://holmes-ai.netdevs.net/images/holmes-ai-support.jpg" /> -->
-	<meta property="og:site_name" content="Holmes AI" />
+	<meta property="og:site_name" content="HolmesAI" />
 	
 	<!-- Twitter -->
 	<meta property="twitter:card" content="summary_large_image" />
 	<meta property="twitter:url" content="https://holmes-ai.netdevs.net/support" />
-	<meta property="twitter:title" content="Support Holmes AI - Preserve Ernest Holmes' Spiritual Wisdom | Donate to Spiritual Technology" />
-	<meta property="twitter:description" content="Support Holmes AI and help preserve Ernest Holmes' spiritual wisdom for future generations. Your contribution makes authentic Science of Mind guidance accessible to spiritual seekers worldwide." />
+	<meta property="twitter:title" content="Support HolmesAI - Preserve Ernest Holmes' Spiritual Wisdom | Donate to Spiritual Technology" />
+	<meta property="twitter:description" content="Support HolmesAI and help preserve Ernest Holmes' spiritual wisdom for future generations. Your contribution makes authentic Science of Mind guidance accessible to spiritual seekers worldwide." />
 	<!-- <meta property="twitter:image" content="https://holmes-ai.netdevs.net/images/holmes-ai-support.jpg" /> -->
 	
 	<!-- Canonical URL -->
@@ -56,14 +56,14 @@
 	{
 		"@context": "https://schema.org",
 		"@type": "WebPage",
-		"name": "Support Holmes AI",
-		"description": "Support Holmes AI and help preserve Ernest Holmes' spiritual wisdom for future generations.",
+		"name": "Support HolmesAI",
+		"description": "Support HolmesAI and help preserve Ernest Holmes' spiritual wisdom for future generations.",
 		"url": "https://holmes-ai.netdevs.net/support",
 		"datePublished": "2024-12-19",
 		"dateModified": "2024-12-19",
 		"mainEntity": {
 			"@type": "Organization",
-			"name": "Holmes AI",
+			"name": "HolmesAI",
 			"description": "Preserving Ernest Holmes' wisdom through AI technology",
 			"foundingDate": "2024",
 			"mission": "To preserve and perpetuate Ernest Holmes' authentic voice and teachings through cutting-edge AI technology"
@@ -73,7 +73,7 @@
 			"name": "Spiritual Technology Funding",
 			"description": "Supporting the preservation of Ernest Holmes' spiritual wisdom through AI technology"
 		},
-		"keywords": "support Holmes AI, donate spiritual technology, Ernest Holmes preservation, Science of Mind funding, spiritual AI support, Religious Science donation, metaphysical technology funding, Ernest Holmes legacy support, spiritual guidance funding, AI spiritual teacher support, Science of Mind preservation, spiritual technology donation, Ernest Holmes wisdom preservation, metaphysical AI funding, spiritual innovation support, Religious Science technology funding, Ernest Holmes AI support, spiritual technology preservation, Science of Mind technology funding, metaphysical wisdom preservation, spiritual AI development funding, Ernest Holmes teachings preservation, spiritual technology innovation funding, AI spiritual guidance support, Ernest Holmes digital legacy, spiritual technology mission funding, Science of Mind AI funding, metaphysical technology preservation, spiritual guidance technology funding, Ernest Holmes AI preservation funding, spiritual technology mission support"
+		"keywords": "support HolmesAI, donate spiritual technology, Ernest Holmes preservation, Science of Mind funding, spiritual AI support, Religious Science donation, metaphysical technology funding, Ernest Holmes legacy support, spiritual guidance funding, AI spiritual teacher support, Science of Mind preservation, spiritual technology donation, Ernest Holmes wisdom preservation, metaphysical AI funding, spiritual innovation support, Religious Science technology funding, Ernest Holmes AI support, spiritual technology preservation, Science of Mind technology funding, metaphysical wisdom preservation, spiritual AI development funding, Ernest Holmes teachings preservation, spiritual technology innovation funding, AI spiritual guidance support, Ernest Holmes digital legacy, spiritual technology mission funding, Science of Mind AI funding, metaphysical technology preservation, spiritual guidance technology funding, Ernest Holmes AI preservation funding, spiritual technology mission support"
 	}
 	</script>
 
@@ -82,11 +82,11 @@
 	{
 		"@context": "https://schema.org",
 		"@type": "DonateAction",
-		"name": "Support Holmes AI",
+		"name": "Support HolmesAI",
 		"description": "Help preserve Ernest Holmes' spiritual wisdom for future generations",
 		"recipient": {
 			"@type": "Organization",
-			"name": "Holmes AI",
+			"name": "HolmesAI",
 			"description": "Preserving Ernest Holmes' wisdom through AI technology"
 		},
 		"target": {
@@ -107,7 +107,7 @@
 	{
 		"@context": "https://schema.org",
 		"@type": "Organization",
-		"name": "Holmes AI",
+		"name": "HolmesAI",
 		"description": "Preserving Ernest Holmes' spiritual wisdom through cutting-edge AI technology",
 		"url": "https://holmes-ai.netdevs.net",
 		"logo": "https://holmes-ai.netdevs.net/images/logo.ico",
@@ -192,7 +192,7 @@
     <div class="hero-content">
       <div class="hero-badge">Community Support</div>
       <h1>
-        <span class="hero-title-glow">Support Holmes AI</span>
+        <span class="hero-title-glow">Support HolmesAI</span>
       </h1>
       <p class="hero-subtitle">
         <span class="subtitle-highlight">Help Preserve</span> Ernest Holmes' Legacy 
@@ -226,12 +226,12 @@
     <section class="section" aria-labelledby="overview-heading">
       <div class="section-header">
         <div class="section-badge">Our Purpose</div>
-        <h2 id="overview-heading">Why Support Holmes AI?</h2>
+        <h2 id="overview-heading">Why Support HolmesAI?</h2>
         <div class="section-divider"></div>
       </div>
       <div class="overview-content">
         <p class="lead">
-          Holmes AI represents a groundbreaking effort to preserve and perpetuate the authentic wisdom of Ernest Holmes 
+          HolmesAI represents a groundbreaking effort to preserve and perpetuate the authentic wisdom of Ernest Holmes 
           through cutting-edge artificial intelligence technology.
         </p>
         <div class="text-block">
@@ -491,7 +491,7 @@
             <h3>Making Wisdom Accessible</h3>
             <p>
               We believe spiritual guidance should be available to everyone, regardless of location, time, or financial means. 
-              Holmes AI provides 24/7 access to Ernest Holmes' wisdom, making authentic spiritual guidance available whenever 
+              HolmesAI provides 24/7 access to Ernest Holmes' wisdom, making authentic spiritual guidance available whenever 
               it's needed most.
             </p>
           </div>
@@ -556,7 +556,7 @@
             <div class="testimonial-glow"></div>
             <div class="testimonial-content">
               <p>
-                "Holmes AI has been a constant source of spiritual guidance in my life. It's like having Ernest Holmes 
+                "HolmesAI has been a constant source of spiritual guidance in my life. It's like having Ernest Holmes 
                 available whenever I need wisdom and comfort."
               </p>
               <cite>- Sarah M., Spiritual Practitioner</cite>
@@ -596,7 +596,7 @@
       </div>
       <div class="tech-content">
         <p class="lead">
-          Holmes AI uses cutting-edge artificial intelligence technology to provide authentic spiritual guidance 
+          HolmesAI uses cutting-edge artificial intelligence technology to provide authentic spiritual guidance 
           that maintains the integrity and effectiveness of Ernest Holmes' teachings.
         </p>
         
@@ -703,7 +703,7 @@
       </div>
       <div class="support-content">
         <p class="lead">
-          Your support helps us maintain and improve Holmes AI, ensuring Ernest Holmes' wisdom remains accessible 
+          Your support helps us maintain and improve HolmesAI, ensuring Ernest Holmes' wisdom remains accessible 
           to spiritual seekers worldwide.
         </p>
         
@@ -713,11 +713,11 @@
             <h3>Pay Our Hosting</h3>
             <div class="tier-amount">$200 one-time</div>
             <p class="tier-description">
-              Covers our server and hosting costs so Holmes AI stays online and available.
+              Covers our server and hosting costs so HolmesAI stays online and available.
             </p>
             <ul class="tier-benefits">
               <li>Covers hosting infrastructure</li>
-              <li>Keeps Holmes AI online and available</li>
+              <li>Keeps HolmesAI online and available</li>
               <li>Your name in our supporters list</li>
             </ul>
             <button class="support-button" aria-label="Pay our hosting costs with a one-time $200 contribution">
@@ -813,7 +813,7 @@
         <div class="growth-intro">
           <p class="lead">
             Churches and spiritual communities embracing mobile-first and app-first approaches are seeing 
-            remarkable growth in attendance and engagement. Your support helps Holmes AI lead this digital 
+            remarkable growth in attendance and engagement. Your support helps HolmesAI lead this digital 
             spiritual revolution.
           </p>
         </div>
@@ -848,7 +848,7 @@
           </div>
           
           <div class="insight-card">
-            <h3>Holmes AI's Role in This Movement</h3>
+            <h3>HolmesAI's Role in This Movement</h3>
             <ul>
               <li><strong>Authentic Wisdom:</strong> Preserving Ernest Holmes' teachings for digital age</li>
               <li><strong>AI-Powered Guidance:</strong> Personalized spiritual support at scale</li>
@@ -881,11 +881,11 @@
           Your support ensures that authentic spiritual guidance remains accessible to all who seek it.
         </p>
         <div class="cta-buttons">
-          <a href="/" class="cta-button primary" aria-label="Try Holmes AI now">
-            <span>Try Holmes AI</span>
+          <a href="/" class="cta-button primary" aria-label="Try HolmesAI now">
+            <span>Try HolmesAI</span>
             <div class="button-shine"></div>
           </a>
-          <a href="/about" class="cta-button secondary" aria-label="Learn more about Holmes AI">
+          <a href="/about" class="cta-button secondary" aria-label="Learn more about HolmesAI">
             <span>Learn More</span>
           </a>
         </div>
