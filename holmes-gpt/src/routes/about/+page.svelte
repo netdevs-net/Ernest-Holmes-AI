@@ -273,16 +273,11 @@
                     studying his work by putting his voice back into conversation.
                   </p>
                   <p class="member-bio">
-                    I'm a software engineer with 10+ years of experience building and shipping systems, the last few
-                    years focused on DevOps, cybersecurity, and building custom AI agents. I've built LLM-driven
-                    automation pipelines, integrated AI into cloud-native infrastructure, and led mission-critical
-                    projects as a technical project manager.
+                    I love to build custom AI agents and business automation workflows. I've built all sorts of
+                    MarTech and FinTech software.
                   </p>
-                </div>
-
-                <div class="bio-column">
                   <p class="member-bio">
-                    I created Holmes AI to make Ernest Holmes' wisdom feel personal and accessible to everyone.
+                    I created Holmes AI to make Ernest Holmes' wisdom feel accessible to everyone.
                   </p>
                   <div class="contact-note">
                     <div class="note-icon">
@@ -304,21 +299,22 @@
                       </p>
                     </div>
                   </div>
-                  <div class="member-links">
-                    <a href="https://WebDevs.net" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit WebDevs.net (opens in new tab)">
-                      <Globe size={18} />
-                      <span>WebDevs.net</span>
-                    </a>
-                    <a href="https://Ryan-Iguchi.com" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit Ryan-Iguchi.com (opens in new tab)">
-                      <User size={18} />
-                      <span>Ryan-Iguchi.com</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/ryaniguchi/" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit Ryan's LinkedIn profile (opens in new tab)">
-                      <Briefcase size={18} />
-                      <span>LinkedIn</span>
-                    </a>
-                  </div>
                 </div>
+              </div>
+
+              <div class="member-links">
+                <a href="https://WebDevs.net" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit WebDevs.net (opens in new tab)">
+                  <Globe size={18} />
+                  <span>WebDevs.net</span>
+                </a>
+                <a href="https://Ryan-Iguchi.com" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit Ryan-Iguchi.com (opens in new tab)">
+                  <User size={18} />
+                  <span>Ryan-Iguchi.com</span>
+                </a>
+                <a href="https://www.linkedin.com/in/ryaniguchi/" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit Ryan's LinkedIn profile (opens in new tab)">
+                  <Briefcase size={18} />
+                  <span>LinkedIn</span>
+                </a>
               </div>
             </div>
           </div>
@@ -969,8 +965,14 @@
 
   .member-links {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
+    width: 100%;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-primary);
   }
 
   .member-link {
@@ -1232,18 +1234,6 @@
     color: var(--text-accent);
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  }
-
-  /* Responsive Design */
-  @media (min-width: 768px) {
-    .member-content {
-      grid-template-columns: 1fr 1fr;
-    }
-    
-    .member-links {
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
   }
 
   /* Adjustments for mobile responsiveness */
