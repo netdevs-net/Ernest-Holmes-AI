@@ -386,10 +386,10 @@
 
 		<!-- Filters -->
 		<div class="bg-white rounded-lg shadow mb-6">
-			<div class="px-6 py-4 border-b border-gray-200">
+			<div class="px-4 py-4 border-b border-gray-200">
 				<h3 class="text-lg font-medium text-gray-900">Filters & Search</h3>
 			</div>
-			<div class="px-6 py-4">
+			<div class="px-4 py-4">
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 					<div>
 						<label for="search" class="block text-sm font-medium text-gray-700 mb-2">
@@ -424,7 +424,7 @@
 
 		<!-- Questions Table -->
 		<div class="bg-white rounded-lg shadow overflow-hidden">
-			<div class="px-6 py-4 border-b border-gray-200">
+			<div class="px-4 py-4 border-b border-gray-200">
 				<h3 class="text-lg font-medium text-gray-900">Questions ({filteredCount})</h3>
 			</div>
 			
@@ -449,11 +449,11 @@
 				</div>
 			{:else}
 				<div class="overflow-x-auto">
-					<table class="min-w-full divide-y divide-gray-200">
+					<table class="w-full table-fixed divide-y divide-gray-200">
 						<thead class="bg-gray-50">
 							<tr>
-								<th 
-									class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors"
+								<th
+									class="w-[14%] px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors"
 									on:click={() => handleSort('timestamp')}
 								>
 									<div class="flex items-center space-x-1">
@@ -465,8 +465,8 @@
 										{/if}
 									</div>
 								</th>
-								<th 
-									class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors"
+								<th
+									class="w-[10%] px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors"
 									on:click={() => handleSort('category')}
 								>
 									<div class="flex items-center space-x-1">
@@ -478,8 +478,8 @@
 										{/if}
 									</div>
 								</th>
-								<th 
-									class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors"
+								<th
+									class="w-[32%] px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors"
 									on:click={() => handleSort('question')}
 								>
 									<div class="flex items-center space-x-1">
@@ -491,13 +491,13 @@
 										{/if}
 									</div>
 								</th>
-								<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+								<th class="w-[16%] px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 									Tags
 								</th>
-								<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+								<th class="w-[8%] px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 									Bookmarked
 								</th>
-								<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+								<th class="w-[20%] px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 									Actions
 								</th>
 							</tr>
@@ -505,23 +505,23 @@
 						<tbody class="bg-white divide-y divide-gray-200">
 							{#each sortedQuestions as question (question.id)}
 								<tr class="hover:bg-gray-50 transition-colors duration-150">
-									<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+									<td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
 										<div>
 											<div class="font-medium">{formatDate(question.timestamp)}</div>
 											<div class="text-gray-500">{formatRelativeTime(question.timestamp)}</div>
 										</div>
 									</td>
-									<td class="px-6 py-4 whitespace-nowrap">
+									<td class="px-4 py-4 whitespace-nowrap">
 										<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border {getCategoryColor(question.category)}">
 											{question.category}
 										</span>
 									</td>
-									<td class="px-6 py-4">
+									<td class="px-4 py-4">
 										<div class="text-sm text-gray-900 max-w-md truncate" title={question.question}>
 											{question.question}
 										</div>
 									</td>
-									<td class="px-6 py-4">
+									<td class="px-4 py-4">
 										<div class="flex flex-wrap gap-1">
 											{#each question.tags.slice(0, 3) as tag}
 												<span class="inline-flex items-center px-2 py-1 rounded text-xs bg-gray-100 text-gray-800">
@@ -535,25 +535,25 @@
 											{/if}
 										</div>
 									</td>
-									<td class="px-6 py-4 whitespace-nowrap">
+									<td class="px-4 py-4 whitespace-nowrap">
 										{#if question.isBookmarked}
 											<span class="text-yellow-500 text-lg">⭐</span>
 										{:else}
 											<span class="text-gray-300 text-lg">☆</span>
 										{/if}
 									</td>
-									<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-										<div class="flex space-x-2">
+									<td class="px-4 py-4 text-sm font-medium">
+										<div class="flex flex-col items-start gap-1">
 											<button
 												on:click={() => viewResponse(question)}
-												class="text-indigo-600 hover:text-indigo-900 transition-colors"
+												class="text-indigo-600 hover:text-indigo-900 transition-colors whitespace-nowrap"
 												title="View AI response"
 											>
 												🤖 View Response
 											</button>
 											<button
 												on:click={() => confirmDelete(question)}
-												class="text-red-600 hover:text-red-900 transition-colors"
+												class="text-red-600 hover:text-red-900 transition-colors whitespace-nowrap"
 												title="Delete question"
 											>
 												🗑️ Delete

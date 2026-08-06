@@ -898,9 +898,12 @@ export const POST: RequestHandler = async ({
       );
     }
 
-    // Detect bot
-    if (detectBot(userAgent, clientInfo.ip)) {
-      console.warn("Bot detected:", userAgent, clientInfo.ip);
+    // Detect bot -- prefer the client-supplied userAgent, but fall back to
+    // the real request header so callers that don't send it (e.g. the admin
+    // "view response" action) don't crash detectBot() on an undefined value
+    const effectiveUserAgent = userAgent || clientInfo.userAgent || "";
+    if (detectBot(effectiveUserAgent, clientInfo.ip)) {
+      console.warn("Bot detected:", effectiveUserAgent, clientInfo.ip);
       return json(
         {
           error:
