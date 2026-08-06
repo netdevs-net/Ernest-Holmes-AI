@@ -528,16 +528,16 @@
   }
 
   .stat-icon-morph {
-    color: #ff7a29;
+    color: var(--text-accent-hover);
     animation: stat-glow-orange 4s ease-in-out infinite;
   }
 
   @keyframes stat-glow-orange {
     0%, 100% {
-      filter: brightness(1) drop-shadow(0 0 8px rgba(255, 122, 41, 0.5));
+      filter: brightness(1) drop-shadow(0 0 8px rgba(255, 170, 0, 0.5));
     }
     50% {
-      filter: brightness(1.1) drop-shadow(0 0 16px rgba(255, 122, 41, 0.8));
+      filter: brightness(1.05) drop-shadow(0 0 16px rgba(255, 170, 0, 0.8));
     }
   }
 
