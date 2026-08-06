@@ -1875,7 +1875,7 @@
 
 .support-button {
    background: var(--text-accent);
-   color: white;
+   color: #1a1207;
    border: none;
    padding: 1rem 1.8rem;
    border-radius: 40px;
@@ -1883,7 +1883,7 @@
    cursor: pointer;
    transition: all 0.3s ease;
    width: 100%;
-   font-size: 1rem;
+   font-size: 1.1rem;
    position: relative;
    overflow: hidden;
  }
@@ -1926,9 +1926,15 @@
 
  .impact-grid {
    display: grid;
-   grid-template-columns: repeat(2, 1fr);
+   grid-template-columns: 1fr;
    gap: 2rem;
    margin-top: 3rem;
+ }
+
+ @media (min-width: 1024px) {
+   .impact-grid {
+     grid-template-columns: repeat(2, 1fr);
+   }
  }
 
  .impact-card {
@@ -2302,15 +2308,11 @@
    .impact-stats {
      grid-template-columns: 1fr;
    }
-   
-   .impact-grid {
-     grid-template-columns: 1fr;
-   }
-   
+
    .growth-stats {
      grid-template-columns: 1fr;
    }
-   
+
    .growth-insights {
      grid-template-columns: 1fr;
    }
