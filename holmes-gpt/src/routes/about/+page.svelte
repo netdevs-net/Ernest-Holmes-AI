@@ -300,9 +300,7 @@
                       </p>
                       <p class="member-bio">
                         You can also reach out to me via email, at
-                        <a href="mailto:ryan@webdevs.net" class="contact-inline">ryan@webdevs.net</a>,
-                        or by phone at
-                        <a href="tel:+17207729972" class="contact-inline">(720) 772-9972</a>.
+                        <a href="mailto:ryan@webdevs.net" class="contact-inline">ryan@webdevs.net</a>.
                       </p>
                     </div>
                   </div>
