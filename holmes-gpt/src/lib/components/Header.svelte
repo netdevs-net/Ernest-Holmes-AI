@@ -184,20 +184,20 @@
 							<!-- Navigation Links -->
 							<div class="mobile-nav-links">
 								<a href="/about" class="mobile-nav-link" class:active={$page.url.pathname === '/about'} on:click={closeAllMenus}>
-									<Info size={20} />
+									<Info size={26} />
 									<span>About</span>
 								</a>
 								<a href="/support" class="mobile-nav-link" class:active={$page.url.pathname === '/support'} on:click={closeAllMenus}>
-									<Heart size={20} />
+									<Heart size={26} />
 									<span>Support</span>
 								</a>
 								<a href="/privacy" class="mobile-nav-link" class:active={$page.url.pathname === '/privacy'} on:click={closeAllMenus}>
-									<Shield size={20} />
+									<Shield size={26} />
 									<span>Privacy</span>
 								</a>
 								{#if showAdminButton}
 									<a href="/admin" class="mobile-nav-link" class:active={$page.url.pathname === '/admin'} on:click={closeAllMenus}>
-										<BarChart3 size={20} />
+										<BarChart3 size={26} />
 										<span>Admin</span>
 									</a>
 								{/if}
@@ -511,13 +511,13 @@
 	.mobile-nav-link {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
-		padding: 1rem;
+		gap: 1.25rem;
+		padding: 1.25rem 1.5rem;
 		border-radius: 0.75rem;
 		text-decoration: none;
 		color: var(--text-primary);
 		font-weight: 500;
-		font-size: 1rem;
+		font-size: 1.3rem;
 		transition: all 0.2s ease;
 		cursor: pointer;
 	}
