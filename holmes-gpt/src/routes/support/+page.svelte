@@ -418,42 +418,42 @@
         <div class="achievement-grid">
           <div class="achievement-card">
             <div class="card-glow"></div>
-            <div class="achievement-icon" aria-hidden="true"><Brain size={48} /></div>
+            <div class="achievement-icon" aria-hidden="true"><Brain size={24} /></div>
             <h3>AI Authenticity</h3>
             <p>100% authentic Ernest Holmes voice preservation through advanced prompt engineering and comprehensive training data</p>
           </div>
           
           <div class="achievement-card">
             <div class="card-glow"></div>
-            <div class="achievement-icon" aria-hidden="true"><Zap size={48} /></div>
+            <div class="achievement-icon" aria-hidden="true"><Zap size={24} /></div>
             <h3>Performance Excellence</h3>
             <p>Sub-second response times, real-time updates, and seamless user experience across all devices</p>
           </div>
           
           <div class="achievement-card">
             <div class="card-glow"></div>
-            <div class="achievement-icon" aria-hidden="true"><Lock size={48} /></div>
+            <div class="achievement-icon" aria-hidden="true"><Lock size={24} /></div>
             <h3>Security & Privacy</h3>
             <p>Anonymous user identification, encrypted storage, and privacy-first design principles</p>
           </div>
           
           <div class="achievement-card">
             <div class="card-glow"></div>
-            <div class="achievement-icon" aria-hidden="true"><Smartphone size={48} /></div>
+            <div class="achievement-icon" aria-hidden="true"><Smartphone size={24} /></div>
             <h3>Universal Access</h3>
             <p>Responsive design, accessibility compliance, and cross-platform compatibility</p>
           </div>
           
           <div class="achievement-card">
             <div class="card-glow"></div>
-            <div class="achievement-icon" aria-hidden="true"><BarChart3 size={48} /></div>
+            <div class="achievement-icon" aria-hidden="true"><BarChart3 size={24} /></div>
             <h3>Analytics & Insights</h3>
             <p>Comprehensive user analytics, spiritual trend analysis, and performance monitoring</p>
           </div>
           
           <div class="achievement-card">
             <div class="card-glow"></div>
-            <div class="achievement-icon" aria-hidden="true"><RefreshCw size={48} /></div>
+            <div class="achievement-icon" aria-hidden="true"><RefreshCw size={24} /></div>
             <h3>Continuous Improvement</h3>
             <p>Regular updates, feature enhancements, and community-driven development</p>
           </div>
@@ -1442,6 +1442,8 @@
  }
 
 .achievement-card .achievement-icon {
+   display: flex;
+   justify-content: center;
    font-size: 1.5rem;
    margin-bottom: 0.5rem;
  }
@@ -1449,7 +1451,7 @@
 .achievement-card h3 {
    color: #6e6b64;
    margin-bottom: 0.8rem;
-   font-size: 1.2rem;
+   font-size: 1.5rem;
    font-weight: 700;
  }
 
