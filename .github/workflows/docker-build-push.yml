@@ -1,11 +1,6 @@
 name: Build and Push Docker Image
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "holmes-gpt/**"
-      - ".github/workflows/docker-build-push.yml"
   workflow_dispatch:
 
 env:
