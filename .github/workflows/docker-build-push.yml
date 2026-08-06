@@ -80,3 +80,12 @@ jobs:
         run: |
           echo "Built and pushed: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
           echo "Commit tag: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main-${{ github.sha }}"
+
+  deploy:
+    needs: build-and-push
+    runs-on: [self-hosted, kamatera1, holmes-gpt]
+    steps:
+      - name: Pull latest image and redeploy service
+        run: |
+          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          docker service update --force --image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest holmes-gpt

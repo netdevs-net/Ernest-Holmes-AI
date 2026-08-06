@@ -247,8 +247,7 @@
       </div>
       <div class="team-content">
         <p class="lead">
-          Holmes AI is developed by a dedicated team of spiritual practitioners, AI researchers, and technology 
-          experts who share a deep commitment to preserving Ernest Holmes' legacy.
+          Holmes AI is built with care to preserve Ernest Holmes' legacy.
         </p>
         
         <div class="team-grid">
@@ -257,37 +256,33 @@
               <div class="member-card-glow"></div>
               <div class="member-header">
                 <div class="member-avatar">
-                  <img src="/images/Ryan-streetsmart.jpg" alt="Ryan Iguchi, Founder and Lead Developer of Holmes AI" />
+                  <img src="/images/Ryan-streetsmart.jpg" alt="Ryan Iguchi, Developer of Holmes AI" />
                   <div class="avatar-ring"></div>
                 </div>
                 <div class="member-info">
                   <h3>Ryan Iguchi</h3>
-                  <p class="member-role">Founder & Lead Developer</p>
+                  <p class="member-role">Developer</p>
                 </div>
               </div>
-              
+
               <div class="member-content">
                 <div class="bio-column">
                   <p class="member-bio">
-                    Ryan is a passionate technologist and spiritual seeker with 10+ years of experience in programming, 
-                    agile project management, and the last 3 years specializing in DevOps and cybersecurity. As a Programmer 
-                    Analyst with strategic focus on reliability engineering, application hardening, observability, and 
-                    optimizing CI/CD pipelines, Ryan brings deep expertise in AI-integrated infrastructure, natural language 
-                    command processing, and prompt-to-action reinforcement learning systems.
+                    I've been a lifelong student of the Science of Mind, and I've long admired the clarity and depth
+                    of Ernest Holmes' own writing. Building Holmes AI grew out of that admiration — a way to keep
+                    studying his work by putting his voice back into conversation.
                   </p>
                   <p class="member-bio">
-                    Ryan has proven success in building LLM-driven automation pipelines, optimizing simulation workflows 
-                    with AI agents, and integrating AI into cloud-native security and DevOps operations. Both CKAD and 
-                    CompTIA Security+ certified, Ryan is known for leadership in mission-critical projects and 
-                    award-winning performance in CTFs and AI competitions.
+                    I'm a software engineer with 10+ years of experience building and shipping systems, the last few
+                    years focused on DevOps, cybersecurity, and building custom AI agents. I've built LLM-driven
+                    automation pipelines, integrated AI into cloud-native infrastructure, and led mission-critical
+                    projects as a technical project manager.
                   </p>
                 </div>
-                
+
                 <div class="bio-column">
                   <p class="member-bio">
-                    Ryan dedicated months to studying Ernest Holmes' teachings and developing the AI systems that bring 
-                    his wisdom to life. With expertise in AI, web development, and spiritual technology, Ryan created 
-                    Holmes AI to make authentic spiritual guidance accessible to everyone.
+                    I created Holmes AI to make Ernest Holmes' wisdom feel personal and accessible to everyone.
                   </p>
                   <div class="contact-note">
                     <div class="note-icon">
@@ -305,20 +300,18 @@
                       </p>
                       <p class="member-bio">
                         You can also reach out to me via email, at
-                        <a href="mailto:ryan@webdevs.net" class="contact-inline">ryan@webdevs.net</a>,
-                        or by phone at
-                        <a href="tel:+17207729972" class="contact-inline">(720) 772-9972</a>.
+                        <a href="mailto:ryan@webdevs.net" class="contact-inline">ryan@webdevs.net</a>.
                       </p>
                     </div>
                   </div>
                   <div class="member-links">
-                    <a href="https://NetDevs.net" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit NetDevs.net (opens in new tab)">
+                    <a href="https://WebDevs.net" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit WebDevs.net (opens in new tab)">
                       <Globe size={18} />
-                      <span>NetDevs.net</span>
+                      <span>WebDevs.net</span>
                     </a>
-                    <a href="https://ryan-iguchi.com" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit ryan-iguchi.com (opens in new tab)">
+                    <a href="https://Ryan-Iguchi.com" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit Ryan-Iguchi.com (opens in new tab)">
                       <User size={18} />
-                      <span>ryan-iguchi.com</span>
+                      <span>Ryan-Iguchi.com</span>
                     </a>
                     <a href="https://www.linkedin.com/in/ryaniguchi/" target="_blank" rel="noopener noreferrer" class="member-link" aria-label="Visit Ryan's LinkedIn profile (opens in new tab)">
                       <Briefcase size={18} />
