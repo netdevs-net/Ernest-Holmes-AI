@@ -247,8 +247,7 @@
       </div>
       <div class="team-content">
         <p class="lead">
-          Holmes AI is developed by a dedicated team of spiritual practitioners, AI researchers, and technology 
-          experts who share a deep commitment to preserving Ernest Holmes' legacy.
+          Holmes AI is built with care to preserve Ernest Holmes' legacy.
         </p>
         
         <div class="team-grid">
