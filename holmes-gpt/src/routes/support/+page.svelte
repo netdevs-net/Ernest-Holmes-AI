@@ -130,18 +130,22 @@
 			"itemListElement": [
 				{
 					"@type": "Offer",
+					"price": "200",
+					"priceCurrency": "USD",
 					"itemOffered": {
 						"@type": "Service",
-						"name": "Monthly Support",
-						"description": "Recurring monthly support for ongoing development"
+						"name": "Pay Our Hosting",
+						"description": "One-time contribution covering hosting costs"
 					}
 				},
 				{
 					"@type": "Offer",
+					"price": "20",
+					"priceCurrency": "USD",
 					"itemOffered": {
 						"@type": "Service",
-						"name": "One-time Donation",
-						"description": "Single contribution to support development"
+						"name": "Pay Our AI Fees",
+						"description": "One-time contribution covering AI API costs"
 					}
 				}
 			]
@@ -706,57 +710,37 @@
         <div class="support-tiers">
           <div class="support-tier">
             <div class="tier-glow"></div>
-            <h3>Monthly Supporter</h3>
-            <div class="tier-amount">$25/month</div>
-            <ul class="tier-benefits">
-              <li>Helps maintain server costs and infrastructure</li>
-              <li>Supports AI model improvements and updates</li>
-              <li>Enables new feature development</li>
-              <li>Your name in our supporters list</li>
-              <li>Early access to new features</li>
-            </ul>
-            <button class="support-button" aria-label="Support Holmes AI with monthly donation of $25">
-              <span>Support Monthly</span>
-              <div class="button-shine"></div>
-            </button>
-          </div>
-          
-          <div class="support-tier featured">
-            <div class="tier-badge">Most Popular</div>
-            <div class="tier-glow featured"></div>
-            <h3>Annual Supporter</h3>
-            <div class="tier-amount">$250/year</div>
-            <div class="tier-savings">Save $50/year</div>
-            <ul class="tier-benefits">
-              <li>All monthly benefits</li>
-              <li>Priority access to new features</li>
-              <li>Exclusive supporter updates and insights</li>
-              <li>Recognition on our website</li>
-              <li>Invitation to supporter-only events</li>
-              <li>Direct input on feature development</li>
-            </ul>
-            <button class="support-button featured" aria-label="Support Holmes AI with annual donation of $250 and save $50">
-              <span>Support Annually</span>
-              <div class="button-shine"></div>
-            </button>
-          </div>
-          
-          <div class="support-tier">
-            <div class="tier-glow"></div>
-            <h3>Custom Amount</h3>
-            <div class="tier-amount">Any amount</div>
+            <h3>Pay Our Hosting</h3>
+            <div class="tier-amount">$200 one-time</div>
             <p class="tier-description">
-              Choose your own amount to support Holmes AI. Every contribution, no matter the size, 
-              helps preserve Ernest Holmes' legacy.
+              Covers our server and hosting costs so Holmes AI stays online and available.
             </p>
             <ul class="tier-benefits">
-              <li>Flexible contribution amount</li>
-              <li>One-time or recurring options</li>
-              <li>Tax-deductible donation</li>
-              <li>Thank you acknowledgment</li>
+              <li>Covers hosting infrastructure</li>
+              <li>Keeps Holmes AI online and available</li>
+              <li>Your name in our supporters list</li>
             </ul>
-            <button class="support-button" aria-label="Support Holmes AI with a custom donation amount">
-              <span>Custom Support</span>
+            <button class="support-button" aria-label="Pay our hosting costs with a one-time $200 contribution">
+              <span>Pay Hosting — $200</span>
+              <div class="button-shine"></div>
+            </button>
+          </div>
+
+          <div class="support-tier featured">
+            <div class="tier-badge">Most Needed</div>
+            <div class="tier-glow featured"></div>
+            <h3>Pay Our AI Fees</h3>
+            <div class="tier-amount">$20 one-time</div>
+            <p class="tier-description">
+              Covers the AI API costs behind every conversation with Ernest Holmes.
+            </p>
+            <ul class="tier-benefits">
+              <li>Covers AI model/API costs</li>
+              <li>Keeps conversations with Ernest Holmes running</li>
+              <li>Your name in our supporters list</li>
+            </ul>
+            <button class="support-button featured" aria-label="Pay our AI fees with a one-time $20 contribution">
+              <span>Pay AI Fees — $20</span>
               <div class="button-shine"></div>
             </button>
           </div>
@@ -1891,7 +1875,7 @@
 
 .support-button {
    background: var(--text-accent);
-   color: white;
+   color: #1a1207;
    border: none;
    padding: 1rem 1.8rem;
    border-radius: 40px;
@@ -1899,7 +1883,7 @@
    cursor: pointer;
    transition: all 0.3s ease;
    width: 100%;
-   font-size: 1rem;
+   font-size: 1.1rem;
    position: relative;
    overflow: hidden;
  }
@@ -1942,9 +1926,15 @@
 
  .impact-grid {
    display: grid;
-   grid-template-columns: repeat(2, 1fr);
+   grid-template-columns: 1fr;
    gap: 2rem;
    margin-top: 3rem;
+ }
+
+ @media (min-width: 1024px) {
+   .impact-grid {
+     grid-template-columns: repeat(2, 1fr);
+   }
  }
 
  .impact-card {
@@ -2318,15 +2308,11 @@
    .impact-stats {
      grid-template-columns: 1fr;
    }
-   
-   .impact-grid {
-     grid-template-columns: 1fr;
-   }
-   
+
    .growth-stats {
      grid-template-columns: 1fr;
    }
-   
+
    .growth-insights {
      grid-template-columns: 1fr;
    }
