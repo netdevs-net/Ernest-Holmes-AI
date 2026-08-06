@@ -10,6 +10,7 @@
     { Icon: Users, label: 'Trusted' }
   ];
   let heroStatIndex = 0;
+  /** @type {ReturnType<typeof setInterval>} */
   let heroStatTimer;
 
   onMount(() => {
