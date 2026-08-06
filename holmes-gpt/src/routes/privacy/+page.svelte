@@ -265,7 +265,7 @@
             </div>
           </div>
 
-          <div class="contact-card">
+          <div class="contact-card contact-card-address">
             <div class="contact-icon">
               <MapPin size={32} />
             </div>
@@ -1273,10 +1273,18 @@
   .usage-grid,
   .protection-grid,
   .sharing-details,
-  .additional-grid,
-  .contact-grid {
+  .additional-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .contact-card-address {
+    grid-column: 1 / -1;
   }
   
   .policy-card,
@@ -1413,10 +1421,6 @@
   }
   
   .additional-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .contact-grid {
     grid-template-columns: 1fr;
   }
 }

@@ -154,13 +154,13 @@
 		margin-bottom: 0.375rem;
 	}
 
-	/* Ensure proper contrast for user messages */
+	/* Ensure proper contrast for user messages (bubble background is gold) */
 	.user-message {
-		color: white !important;
+		color: #1a1207 !important;
 	}
 
 	.user-message :global(*) {
-		color: white !important;
+		color: #1a1207 !important;
 	}
 
 	/* Holmes message styling */
