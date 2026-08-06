@@ -188,8 +188,8 @@
         <span class="hero-title-glow">Privacy Policy</span>
       </h1>
       <p class="hero-subtitle">
-        <span class="subtitle-highlight">Protecting</span> Your Sacred Conversations 
-        <span class="subtitle-highlight">with Divine Wisdom</span>
+        <span class="subtitle-highlight">Anonymous</span> is our policy.
+        We do not collect any <span class="subtitle-highlight">personally identifiable information</span>.
       </p>
       <div class="hero-stats hero-stats-morph">
         <div class="stat-item stat-item-morph" on:animationiteration={advanceHeroStat}>
