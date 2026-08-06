@@ -34,7 +34,7 @@
 </script>
 
 <svelte:head>
-	<title>Admin Login — Holmes AI</title>
+	<title>Admin Login — HolmesAI</title>
 </svelte:head>
 
 <div class="login-page">
