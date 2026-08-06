@@ -246,26 +246,28 @@
         
         <div class="contact-grid">
           <div class="contact-card">
-            <div class="contact-icon">
-              <Mail size={32} />
-            </div>
-            <div class="contact-info">
-              <h4>Email</h4>
-              <a href="mailto:ryan@webdevs.net" class="contact-link">ryan@webdevs.net</a>
-            </div>
+            <a href="mailto:ryan@webdevs.net" class="contact-card-link">
+              <div class="contact-icon">
+                <Mail size={32} />
+              </div>
+              <div class="contact-info">
+                <h4>Email</h4>
+              </div>
+            </a>
           </div>
 
           <div class="contact-card">
-            <div class="contact-icon">
-              <Phone size={32} />
-            </div>
-            <div class="contact-info">
-              <h4>Phone</h4>
-              <a href="tel:+13105405080" class="contact-link">(310) 540-5080</a>
-            </div>
+            <a href="tel:+13105405080" class="contact-card-link">
+              <div class="contact-icon">
+                <Phone size={32} />
+              </div>
+              <div class="contact-info">
+                <h4>Phone</h4>
+              </div>
+            </a>
           </div>
 
-          <div class="contact-card">
+          <div class="contact-card contact-card-address">
             <div class="contact-icon">
               <MapPin size={32} />
             </div>
@@ -1159,6 +1161,20 @@
   position: relative;
 }
 
+.contact-card-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.contact-card-link:hover .contact-info h4,
+.contact-card-link:hover .contact-icon {
+  color: var(--text-accent-hover);
+}
+
 .contact-card:hover {
   transform: translateY(-2px);
 }
@@ -1273,10 +1289,18 @@
   .usage-grid,
   .protection-grid,
   .sharing-details,
-  .additional-grid,
-  .contact-grid {
+  .additional-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .contact-card-address {
+    grid-column: 1 / -1;
   }
   
   .policy-card,
@@ -1288,22 +1312,24 @@
   }
 
   .contact-card {
-    padding: 1rem;
+    padding: 0.75rem 0.5rem;
   }
 
   .contact-icon {
-    padding: 0.75rem;
+    padding: 0.5rem;
     font-size: 0.9rem;
+    margin-bottom: 0.4rem;
   }
 
   .contact-info h4 {
     font-size: 1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
   }
 
   .contact-link {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
+    padding: 0.4rem 0.4rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
   }
 
   .contact-intro {
@@ -1413,10 +1439,6 @@
   }
   
   .additional-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .contact-grid {
     grid-template-columns: 1fr;
   }
 }

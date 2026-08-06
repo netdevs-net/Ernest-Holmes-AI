@@ -229,7 +229,7 @@
 		background: linear-gradient(135deg, var(--text-accent), var(--text-accent-hover));
 		border: none;
 		border-radius: 8px;
-		color: white;
+		color: #1a1207;
 		cursor: pointer;
 		transition: all 0.2s;
 		display: flex;

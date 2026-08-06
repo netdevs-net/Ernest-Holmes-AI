@@ -27,6 +27,7 @@
 
     --user-message-bg: linear-gradient(135deg, #667eea, #764ba2);
     --user-message-border: rgba(102, 126, 234, 0.3);
+    --on-user-message-text: white;
     --holmes-message-bg: rgba(247, 250, 252, 0.95);
     --holmes-message-border: rgba(226, 232, 240, 0.6);
 
@@ -57,6 +58,7 @@
 
     --user-message-bg: linear-gradient(135deg, #d4af37, #b8941f);
     --user-message-border: rgba(212, 175, 55, 0.4);
+    --on-user-message-text: #1a1207;
     --holmes-message-bg: rgba(42, 42, 42, 0.95);
     --holmes-message-border: rgba(255, 255, 255, 0.1);
 

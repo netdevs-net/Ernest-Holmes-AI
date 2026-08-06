@@ -154,13 +154,14 @@
 		margin-bottom: 0.375rem;
 	}
 
-	/* Ensure proper contrast for user messages */
+	/* Ensure proper contrast for user messages -- bubble bg is purple/blue in
+	   light mode, gold in dark mode, so the text color must follow suit */
 	.user-message {
-		color: white !important;
+		color: var(--on-user-message-text) !important;
 	}
 
 	.user-message :global(*) {
-		color: white !important;
+		color: var(--on-user-message-text) !important;
 	}
 
 	/* Holmes message styling */
