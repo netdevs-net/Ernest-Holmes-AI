@@ -293,10 +293,6 @@
                       <p class="member-bio">
                         <a href="mailto:ryan@webdevs.net" class="contact-cta">Click here to send me a message.</a>
                       </p>
-                      <p class="member-bio">
-                        You can also reach out to me via email, at
-                        <a href="mailto:ryan@webdevs.net" class="contact-inline">ryan@webdevs.net</a>.
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -1099,7 +1095,7 @@
     gap: 1rem;
     padding: 1rem 2rem;
     background: linear-gradient(135deg, var(--text-accent), var(--text-accent-hover));
-    color: white;
+    color: #1a1207;
     text-decoration: none;
     border-radius: 50px;
     font-weight: 600;
