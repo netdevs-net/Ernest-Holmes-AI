@@ -37,10 +37,10 @@
   
 >
   <div class="mx-auto flex h-full max-w-6xl items-center gap-3 px-4 sm:px-6">
-    <a href="/" class="flex items-center gap-2.5 rounded-lg" aria-label="Holmes AI home">
+    <a href="/" class="flex items-center gap-2.5 rounded-lg" aria-label="HolmesAI home">
       <Logo size={34} priority />
       <span class="leading-tight">
-        <span class="block text-[1.05rem] font-bold tracking-tight">Holmes AI</span>
+        <span class="block text-[1.05rem] font-bold tracking-tight">HolmesAI</span>
         <span class="hidden text-xs text-ink-3 sm:block">Ernest Holmes AI Practitioner</span>
       </span>
     </a>

@@ -53,7 +53,7 @@
 </script>
 
 <svelte:head>
-  <title>Admin | Holmes AI</title>
+  <title>Admin | HolmesAI</title>
   <meta name="robots" content="noindex, nofollow" />
 </svelte:head>
 

@@ -44,7 +44,7 @@
 </script>
 
 <svelte:head>
-  <title>Holmes AI: Ask Ernest Holmes</title>
+  <title>HolmesAI: Ask Ernest Holmes</title>
   <meta
     name="description"
     content="A conversational AI practitioner inspired by Ernest Holmes, founder of Religious Science and author of The Science of Mind."
@@ -143,7 +143,7 @@
           onstop={() => chat.stop()}
         />
         <p class="mt-2.5 text-center text-sm font-medium text-ink-2">
-          Holmes AI can make mistakes and is not a substitute for medical or mental-health care.
+          HolmesAI can make mistakes and is not a substitute for medical or mental-health care.
         </p>
       </div>
     </div>

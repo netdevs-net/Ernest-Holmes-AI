@@ -30,7 +30,7 @@
 </script>
 
 <svelte:head>
-  <title>Admin sign-in | Holmes AI</title>
+  <title>Admin sign-in | HolmesAI</title>
   <meta name="robots" content="noindex, nofollow" />
 </svelte:head>
 

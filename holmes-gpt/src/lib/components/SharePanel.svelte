@@ -19,7 +19,7 @@
   function mailBody(text: string): string {
     const excerpt =
       text.length > MAILTO_BODY_LIMIT ? `${text.slice(0, MAILTO_BODY_LIMIT).trimEnd()}…` : text;
-    return `I wanted to share this with you from Holmes AI:\n\n${excerpt}\n\nHolmes AI · ${location.origin}`;
+    return `I wanted to share this with you from HolmesAI:\n\n${excerpt}\n\nHolmesAI · ${location.origin}`;
   }
 
   async function send(event: SubmitEvent) {
@@ -44,7 +44,7 @@
         return;
       }
 
-      const subject = encodeURIComponent("Guidance from Holmes AI");
+      const subject = encodeURIComponent("Guidance from HolmesAI");
       const body = encodeURIComponent(mailBody(ui.shareText));
       // Same-tab navigation: popup blockers silently drop window.open("mailto:").
       location.href = `mailto:${encodeURIComponent(address.trim())}?subject=${subject}&body=${body}`;

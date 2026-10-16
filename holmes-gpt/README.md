@@ -1,4 +1,4 @@
-# Holmes AI
+# HolmesAI
 
 A conversational AI practitioner inspired by Ernest Holmes, author of *The Science of Mind*.
 SvelteKit 2 · Svelte 5 (runes) · Tailwind 4 · SQLite · Claude (Anthropic API) · Satoshi.

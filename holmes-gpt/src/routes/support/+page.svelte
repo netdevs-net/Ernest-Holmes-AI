@@ -1,6 +1,9 @@
 <script lang="ts">
   import ArrowRight from "@lucide/svelte/icons/arrow-right";
   import Brain from "@lucide/svelte/icons/brain";
+  import ChartColumn from "@lucide/svelte/icons/chart-column";
+  import RefreshCw from "@lucide/svelte/icons/refresh-cw";
+  import Zap from "@lucide/svelte/icons/zap";
   import Check from "@lucide/svelte/icons/check";
   import Copy from "@lucide/svelte/icons/copy";
   import Handshake from "@lucide/svelte/icons/handshake";
@@ -15,24 +18,24 @@
   const PAGE_URL = `${SITE}/support`;
   const EMAIL = "support@holmes-ai.netdevs.net";
 
-  const TITLE = "Support Holmes AI - Preserve Ernest Holmes' Spiritual Wisdom | Donate to Spiritual Technology";
+  const TITLE = "Support HolmesAI - Preserve Ernest Holmes' Spiritual Wisdom | Donate to Spiritual Technology";
   const DESCRIPTION =
-    "Support Holmes AI and help preserve Ernest Holmes' spiritual wisdom for future generations. Your contribution makes authentic Science of Mind guidance accessible to spiritual seekers worldwide.";
+    "Support HolmesAI and help preserve Ernest Holmes' spiritual wisdom for future generations. Your contribution makes authentic Science of Mind guidance accessible to spiritual seekers worldwide.";
   const KEYWORDS =
-    "support Holmes AI, donate spiritual technology, Ernest Holmes preservation, Science of Mind funding, spiritual AI support, Religious Science donation, metaphysical technology funding, Ernest Holmes legacy support, spiritual guidance funding, AI spiritual teacher support, Science of Mind preservation, spiritual technology donation, Ernest Holmes wisdom preservation, metaphysical AI funding, spiritual innovation support, Religious Science technology funding, Ernest Holmes AI support, spiritual technology preservation, Science of Mind technology funding, metaphysical wisdom preservation, spiritual AI development funding, Ernest Holmes teachings preservation, spiritual technology innovation funding, AI spiritual guidance support, Ernest Holmes digital legacy, spiritual technology mission funding, Science of Mind AI funding, metaphysical technology preservation, spiritual guidance technology funding, Ernest Holmes AI preservation funding, spiritual technology mission support";
+    "support HolmesAI, donate spiritual technology, Ernest Holmes preservation, Science of Mind funding, spiritual AI support, Religious Science donation, metaphysical technology funding, Ernest Holmes legacy support, spiritual guidance funding, AI spiritual teacher support, Science of Mind preservation, spiritual technology donation, Ernest Holmes wisdom preservation, metaphysical AI funding, spiritual innovation support, Religious Science technology funding, Ernest HolmesAI support, spiritual technology preservation, Science of Mind technology funding, metaphysical wisdom preservation, spiritual AI development funding, Ernest Holmes teachings preservation, spiritual technology innovation funding, AI spiritual guidance support, Ernest Holmes digital legacy, spiritual technology mission funding, Science of Mind AI funding, metaphysical technology preservation, spiritual guidance technology funding, Ernest HolmesAI preservation funding, spiritual technology mission support";
 
   const jsonLd = [
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      name: "Support Holmes AI",
-      description: "Support Holmes AI and help preserve Ernest Holmes' spiritual wisdom for future generations.",
+      name: "Support HolmesAI",
+      description: "Support HolmesAI and help preserve Ernest Holmes' spiritual wisdom for future generations.",
       url: PAGE_URL,
       datePublished: "2024-12-19",
       dateModified: "2024-12-19",
       mainEntity: {
         "@type": "Organization",
-        name: "Holmes AI",
+        name: "HolmesAI",
         description: "Preserving Ernest Holmes' wisdom through AI technology",
         foundingDate: "2024",
         mission:
@@ -48,11 +51,11 @@
     {
       "@context": "https://schema.org",
       "@type": "DonateAction",
-      name: "Support Holmes AI",
+      name: "Support HolmesAI",
       description: "Help preserve Ernest Holmes' spiritual wisdom for future generations",
       recipient: {
         "@type": "Organization",
-        name: "Holmes AI",
+        name: "HolmesAI",
         description: "Preserving Ernest Holmes' wisdom through AI technology",
       },
       target: { "@type": "EntryPoint", urlTemplate: PAGE_URL, actionPlatform: "https://schema.org/WebSite" },
@@ -65,7 +68,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Organization",
-      name: "Holmes AI",
+      name: "HolmesAI",
       description: "Preserving Ernest Holmes' spiritual wisdom through cutting-edge AI technology",
       url: SITE,
       logo: `${SITE}/images/logo.ico`,
@@ -84,18 +87,22 @@
         itemListElement: [
           {
             "@type": "Offer",
+            price: "200",
+            priceCurrency: "USD",
             itemOffered: {
               "@type": "Service",
-              name: "Monthly Support",
-              description: "Recurring monthly support for ongoing development",
+              name: "Pay Our Hosting",
+              description: "One-time contribution covering hosting costs",
             },
           },
           {
             "@type": "Offer",
+            price: "20",
+            priceCurrency: "USD",
             itemOffered: {
               "@type": "Service",
-              name: "One-time Donation",
-              description: "Single contribution to support development",
+              name: "Pay Our AI Fees",
+              description: "One-time contribution covering AI API costs",
             },
           },
         ],
@@ -125,7 +132,7 @@
     {
       icon: Users,
       title: "Making wisdom accessible",
-      body: "We believe spiritual guidance should be available to everyone, regardless of location, time, or financial means. Holmes AI provides 24/7 access to Ernest Holmes' wisdom, making authentic spiritual guidance available whenever it's needed most.",
+      body: "We believe spiritual guidance should be available to everyone, regardless of location, time, or financial means. HolmesAI provides 24/7 access to Ernest Holmes' wisdom, making authentic spiritual guidance available whenever it's needed most.",
     },
     {
       icon: Brain,
@@ -136,51 +143,31 @@
 
   const tiers = [
     {
-      name: "Monthly Supporter",
-      amount: "$25/month",
-      note: "",
+      name: "Pay Our Hosting",
+      amount: "$200",
+      unit: "one-time",
+      badge: "",
       featured: false,
-      cta: "Support monthly",
-      subject: "Monthly support for Holmes AI",
-      intro: "",
-      benefits: [
-        "Helps maintain server costs and infrastructure",
-        "Supports AI model improvements and updates",
-        "Enables new feature development",
-        "Your name in our supporters list",
-        "Early access to new features",
-      ],
+      cta: "Pay Hosting: $200",
+      label: "Pay our hosting costs with a one-time $200 contribution",
+      subject: "Pay Our Hosting ($200 one-time)",
+      intro: "Covers our server and hosting costs so HolmesAI stays online and available.",
+      benefits: ["Covers hosting infrastructure", "Keeps HolmesAI online and available", "Your name in our supporters list"],
     },
     {
-      name: "Annual Supporter",
-      amount: "$250/year",
-      note: "Save $50/year",
+      name: "Pay Our AI Fees",
+      amount: "$20",
+      unit: "one-time",
+      badge: "Most Needed",
       featured: true,
-      cta: "Support annually",
-      subject: "Annual support for Holmes AI",
-      intro: "",
+      cta: "Pay AI Fees: $20",
+      label: "Pay our AI fees with a one-time $20 contribution",
+      subject: "Pay Our AI Fees ($20 one-time)",
+      intro: "Covers the AI API costs behind every conversation with Ernest Holmes.",
       benefits: [
-        "All monthly benefits",
-        "Priority access to new features",
-        "Exclusive supporter updates and insights",
-        "Recognition on our website",
-        "Invitation to supporter-only events",
-        "Direct input on feature development",
-      ],
-    },
-    {
-      name: "Custom Amount",
-      amount: "Any amount",
-      note: "",
-      featured: false,
-      cta: "Custom support",
-      subject: "Custom support for Holmes AI",
-      intro:
-        "Choose your own amount to support Holmes AI. Every contribution, no matter the size, helps preserve Ernest Holmes' legacy.",
-      benefits: [
-        "Flexible contribution amount",
-        "One-time or recurring options",
-        "Thank you acknowledgment",
+        "Covers AI model/API costs",
+        "Keeps conversations with Ernest Holmes running",
+        "Your name in our supporters list",
       ],
     },
   ];
@@ -231,6 +218,39 @@
         ["White-label solutions", "customizable branding for organizations"],
         ["Advanced analytics", "predictive analytics and spiritual trend analysis"],
       ],
+    },
+  ];
+
+  const achievements = [
+    {
+      icon: Brain,
+      title: "AI Authenticity",
+      body: "100% authentic Ernest Holmes voice preservation through advanced prompt engineering and comprehensive training data",
+    },
+    {
+      icon: Zap,
+      title: "Performance Excellence",
+      body: "Sub-second response times, real-time updates, and seamless user experience across all devices",
+    },
+    {
+      icon: Lock,
+      title: "Security & Privacy",
+      body: "Anonymous user identification, encrypted storage, and privacy-first design principles",
+    },
+    {
+      icon: Smartphone,
+      title: "Universal Access",
+      body: "Responsive design, accessibility compliance, and cross-platform compatibility",
+    },
+    {
+      icon: ChartColumn,
+      title: "Analytics & Insights",
+      body: "Comprehensive user analytics, spiritual trend analysis, and performance monitoring",
+    },
+    {
+      icon: RefreshCw,
+      title: "Continuous Improvement",
+      body: "Regular updates, feature enhancements, and community-driven development",
     },
   ];
 
@@ -287,7 +307,7 @@
   <title>{TITLE}</title>
   <meta name="description" content={DESCRIPTION} />
   <meta name="keywords" content={KEYWORDS} />
-  <meta name="author" content="Holmes AI Team" />
+  <meta name="author" content="HolmesAI Team" />
   <meta name="robots" content="index, follow" />
   <meta name="language" content="English" />
 
@@ -295,7 +315,7 @@
   <meta property="og:url" content={PAGE_URL} />
   <meta property="og:title" content={TITLE} />
   <meta property="og:description" content={DESCRIPTION} />
-  <meta property="og:site_name" content="Holmes AI" />
+  <meta property="og:site_name" content="HolmesAI" />
 
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content={PAGE_URL} />
@@ -342,19 +362,19 @@
     <div class="glow" aria-hidden="true"></div>
     <p class="eyebrow rise mb-4">Community support</p>
     <h1 class="rise text-display mx-auto max-w-3xl font-medium text-balance" style="animation-delay: 60ms">
-      Support Holmes AI
+      Support HolmesAI
     </h1>
     <p
       class="rise mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-2 text-pretty"
       style="animation-delay: 120ms"
     >
-      Help preserve Ernest Holmes' legacy for future generations. Holmes AI helps spiritual seekers reach his
+      Help preserve Ernest Holmes' legacy for future generations. HolmesAI helps spiritual seekers reach his
       teachings in a way that feels personal, immediate, and transformative, and your support keeps this resource
       accessible to all who seek it.
     </p>
     <div class="rise mt-8 flex flex-wrap justify-center gap-3" style="animation-delay: 180ms">
       <a class="btn btn-primary" href="#tiers">Become a supporter <ArrowRight size={16} aria-hidden="true" /></a>
-      <a class="btn btn-soft" href={mailto("Supporting Holmes AI")}>
+      <a class="btn btn-soft" href={mailto("Supporting HolmesAI")}>
         <Mail size={16} aria-hidden="true" /> Email us
       </a>
     </div>
@@ -367,11 +387,11 @@
         <p class="eyebrow mb-3">Join us</p>
         <h2 id="ways" class="text-3xl font-medium text-balance sm:text-4xl">How you can support</h2>
         <p class="mt-4 leading-relaxed text-ink-2 text-pretty">
-          Your support helps us maintain and improve Holmes AI, ensuring Ernest Holmes' wisdom remains accessible to
+          Your support helps us maintain and improve HolmesAI, ensuring Ernest Holmes' wisdom remains accessible to
           spiritual seekers worldwide. To contribute, write to us and we will reply with the details.
         </p>
       </div>
-      <div class="grid items-stretch gap-5 md:grid-cols-3">
+      <div class="mx-auto grid max-w-3xl items-stretch gap-6 md:grid-cols-2">
         {#each tiers as t, i (t.name)}
           <article
             class="rise glass card relative flex flex-col gap-5 {t.featured
@@ -383,13 +403,14 @@
               <span
                 class="chip absolute -top-3 left-1/2 -translate-x-1/2 border-[var(--accent-bright)] bg-paper font-medium whitespace-nowrap text-ink"
               >
-                Most popular
+                {t.badge}
               </span>
             {/if}
             <div>
               <h3 class="text-base font-medium text-ink-2">{t.name}</h3>
-              <p class="mt-2 text-4xl font-medium tracking-tight">{t.amount}</p>
-              <p class="mt-1 min-h-5 text-sm font-medium text-accent">{t.note}</p>
+              <p class="mt-2 text-5xl font-medium tracking-tight">
+                {t.amount} <span class="text-base font-medium text-ink-2">{t.unit}</span>
+              </p>
             </div>
             {#if t.intro}<p class="text-[0.9375rem] leading-relaxed text-ink-2">{t.intro}</p>{/if}
             <ul class="flex flex-col gap-2.5 text-[0.9375rem] text-ink-2">
@@ -403,7 +424,7 @@
             <a
               class="btn {t.featured ? 'btn-primary' : 'btn-soft'} mt-auto w-full"
               href={mailto(t.subject)}
-              aria-label="{t.cta} by email: {t.amount}"
+              aria-label={t.label}
             >
               {t.cta}
             </a>
@@ -418,11 +439,11 @@
         <p class="eyebrow mb-3">Our purpose</p>
         <h2 id="why" class="text-3xl font-medium text-balance sm:text-4xl">Why your support matters</h2>
         <p class="mt-4 leading-relaxed text-ink-2 text-pretty">
-          Holmes AI is an effort to preserve and perpetuate the authentic wisdom of Ernest Holmes through artificial
+          HolmesAI is an effort to preserve and perpetuate the authentic wisdom of Ernest Holmes through artificial
           intelligence.
         </p>
       </div>
-      <div class="grid gap-4 sm:grid-cols-2">
+      <div class="grid gap-4 lg:grid-cols-2">
         {#each [...reasons, { icon: Sparkles, title: impact[0].title, body: impact[0].body }] as r, i (r.title)}
           {@const Icon = r.icon}
           <article class="rise glass card flex flex-col gap-3" style="animation-delay: {i * 70}ms">
@@ -434,7 +455,7 @@
           </article>
         {/each}
       </div>
-      <div class="mt-4 grid gap-4 sm:grid-cols-3">
+      <div class="mt-4 grid gap-4 lg:grid-cols-3">
         {#each impact.slice(1) as i, n (i.title)}
           <article class="rise glass card" style="animation-delay: {n * 70}ms">
             <h3 class="mb-2 text-base font-medium">{i.title}</h3>
@@ -446,7 +467,7 @@
 
     <!-- Offers today -->
     <section aria-labelledby="today">
-      <h2 id="today" class="mb-6 text-3xl font-medium text-balance sm:text-4xl">What Holmes AI offers today</h2>
+      <h2 id="today" class="mb-6 text-3xl font-medium text-balance sm:text-4xl">What HolmesAI offers today</h2>
       <div class="glass card grid gap-6 md:grid-cols-3 md:gap-0 md:divide-x md:divide-[var(--line)] md:p-0">
         <div class="flex flex-col gap-3 md:p-7">
           <Brain size={22} class="text-accent" aria-hidden="true" />
@@ -474,6 +495,28 @@
             spiritual oversight.
           </p>
         </div>
+      </div>
+    </section>
+
+    <!-- Technical achievements -->
+    <section aria-labelledby="achievements">
+      <div class="mb-10 max-w-2xl">
+        <p class="eyebrow mb-3">Innovation</p>
+        <h2 id="achievements" class="text-3xl font-medium text-balance sm:text-4xl">
+          Technical Achievements &amp; Innovation
+        </h2>
+      </div>
+      <div class="grid gap-4 lg:grid-cols-2">
+        {#each achievements as a, i (a.title)}
+          {@const Icon = a.icon}
+          <article class="rise glass card flex flex-col items-center gap-3 text-center" style="animation-delay: {i * 60}ms">
+            <span class="grid size-10 place-items-center rounded-full bg-sunken text-accent">
+              <Icon size={24} aria-hidden="true" />
+            </span>
+            <h3 class="text-2xl font-bold">{a.title}</h3>
+            <p class="text-[0.9375rem] leading-relaxed text-ink-2">{a.body}</p>
+          </article>
+        {/each}
       </div>
     </section>
 
@@ -516,11 +559,11 @@
         Help us preserve and perpetuate Ernest Holmes' wisdom for future generations. Your support ensures that
         authentic spiritual guidance remains accessible to all who seek it.
       </p>
-      <a class="text-lg font-medium break-all underline decoration-[var(--accent-bright)] underline-offset-4" href={mailto("Supporting Holmes AI")}>
+      <a class="text-lg font-medium break-all underline decoration-[var(--accent-bright)] underline-offset-4" href={mailto("Supporting HolmesAI")}>
         {EMAIL}
       </a>
       <div class="flex flex-wrap justify-center gap-3">
-        <a class="btn btn-primary" href={mailto("Supporting Holmes AI")}>
+        <a class="btn btn-primary" href={mailto("Supporting HolmesAI")}>
           <Mail size={16} aria-hidden="true" /> Email us
         </a>
         <button type="button" class="btn btn-soft" onclick={copyEmail}>
@@ -530,7 +573,7 @@
             <Copy size={16} aria-hidden="true" /> Copy email
           {/if}
         </button>
-        <a class="btn btn-ghost" href="/">Try Holmes AI</a>
+        <a class="btn btn-ghost" href="/">Try HolmesAI</a>
         <a class="btn btn-ghost" href="/about">Learn more</a>
       </div>
       <span class="sr-only" role="status" aria-live="polite">

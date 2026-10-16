@@ -45,7 +45,7 @@
         <a href="/support" class="hover:text-ink">Support</a>
         <a href="/privacy" class="hover:text-ink">Privacy</a>
       </nav>
-      <p>© {new Date().getFullYear()} Holmes AI</p>
+      <p>© {new Date().getFullYear()} HolmesAI</p>
     </footer>
   {/if}
 </div>

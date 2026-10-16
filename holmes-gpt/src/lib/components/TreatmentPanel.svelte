@@ -133,7 +133,7 @@
     <section aria-labelledby="t-personal">
       <h3 id="t-personal" class="eyebrow mb-1">Or write your own</h3>
       <p class="mb-3 text-sm text-ink-3">
-        Describe what you want the treatment to hold and Holmes AI will compose it in five parts.
+        Describe what you want the treatment to hold and HolmesAI will compose it in five parts.
       </p>
       <label for="intention" class="sr-only">Your intention</label>
       <textarea
