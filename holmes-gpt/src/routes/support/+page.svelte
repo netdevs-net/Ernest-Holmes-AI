@@ -71,7 +71,7 @@
       name: "HolmesAI",
       description: "Preserving Ernest Holmes' spiritual wisdom through cutting-edge AI technology",
       url: SITE,
-      logo: `${SITE}/images/logo.ico`,
+      logo: `${SITE}/icon-512.png`,
       foundingDate: "2024",
       mission: "To preserve and perpetuate Ernest Holmes' authentic voice and teachings through AI technology",
       sameAs: ["https://twitter.com/holmesai", "https://facebook.com/holmesai", "https://linkedin.com/company/holmesai"],
@@ -399,7 +399,7 @@
         {#each tiers as t, i (t.name)}
           <article
             class="rise glass card relative flex flex-col gap-5 {t.featured
-              ? 'border-2 border-[var(--accent-bright)] shadow-float md:-translate-y-3'
+              ? 'border-2 border-[var(--accent-bright)] pt-9 shadow-float md:-translate-y-3'
               : ''}"
             style="animation-delay: {i * 80}ms"
           >

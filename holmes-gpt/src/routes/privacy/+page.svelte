@@ -54,7 +54,7 @@
   const host = "https://holmes-ai.netdevs.net";
   const url = `${host}/privacy`;
   const image = `${host}/images/holmes-ai-privacy.jpg`;
-  const logo = `${host}/images/logo.ico`;
+  const logo = `${host}/icon-512.png`;
 
   const ld = [
     {

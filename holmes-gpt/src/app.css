@@ -162,6 +162,7 @@
     /* Reserve the scrollbar's space so the header does not shift between
        pages that scroll (About) and pages that don't (Home). */
     scrollbar-gutter: stable;
+    overflow-x: clip;
     font-family: var(--font-sans);
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;

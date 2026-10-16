@@ -74,7 +74,7 @@
           {/each}
         </ul>
 
-        <div class="rise grid gap-3 md:grid-cols-3" style="animation-delay: 200ms">
+        <div class="rise grid gap-3 sm:grid-cols-2 lg:grid-cols-3" style="animation-delay: 200ms">
           <section class="glass card flex flex-col">
             <h2 class="mb-3 flex items-center gap-2 text-sm font-medium text-ink-3">
               <Clock size={16} /> Jump back in
@@ -116,14 +116,14 @@
             </button>
           </section>
 
-          <section class="glass card flex flex-col">
+          <section class="glass card flex flex-col sm:max-lg:col-span-2">
             <h2 class="mb-3 flex items-center gap-2 text-sm font-medium text-ink-3">
               <Sparkles size={16} /> Mind treatment
             </h2>
             <p class="text-[0.9375rem] leading-relaxed">
               Create a five-part spiritual treatment for healing, prosperity, peace and more.
             </p>
-            <button type="button" class="btn btn-soft btn-sm mt-auto self-start" onclick={() => ui.open("treatment")}>
+            <button type="button" class="btn btn-soft btn-sm mt-4 self-start md:mt-auto" onclick={() => ui.open("treatment")}>
               <BookOpen size={15} /> Create a treatment
             </button>
           </section>

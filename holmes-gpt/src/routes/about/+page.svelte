@@ -102,7 +102,7 @@
       "name": "HolmesAI",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://holmes-ai.netdevs.net/images/logo.ico"
+        "url": "https://holmes-ai.netdevs.net/icon-512.png"
       }
     },
     "datePublished": "2024-12-19",
@@ -122,7 +122,7 @@
     "name": "HolmesAI",
     "description": "Preserving Ernest Holmes' spiritual wisdom through cutting-edge AI technology",
     "url": "https://holmes-ai.netdevs.net",
-    "logo": "https://holmes-ai.netdevs.net/images/logo.ico",
+    "logo": "https://holmes-ai.netdevs.net/icon-512.png",
     "foundingDate": "2024",
     "mission": "To preserve and perpetuate Ernest Holmes' authentic voice and teachings through AI technology",
     "sameAs": [

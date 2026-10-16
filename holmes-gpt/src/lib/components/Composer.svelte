@@ -79,16 +79,16 @@
     submit();
   }}
 >
-  <div class="flex flex-wrap items-center justify-between gap-2 px-1 pb-2">
-    <div class="flex flex-wrap gap-1.5">
-      <button type="button" class="chip" onclick={() => ui.open("history")}>
-        <BookOpen size={15} /> History{#if history.count > 0}<span class="text-ink-3">({history.count})</span>{/if}
+  <div class="flex items-center justify-between gap-2 px-1 pb-2">
+    <div class="flex gap-1.5">
+      <button type="button" class="chip max-sm:!px-3" aria-label="History" title="History" onclick={() => ui.open("history")}>
+        <BookOpen size={16} /> <span class="hidden sm:inline">History</span>{#if history.count > 0}<span class="hidden text-ink-3 sm:inline">({history.count})</span>{/if}
       </button>
-      <button type="button" class="chip" onclick={() => ui.open("quotes")}>
-        <Film size={15} /> Quotes
+      <button type="button" class="chip max-sm:!px-3" aria-label="Quotes" title="Quotes" onclick={() => ui.open("quotes")}>
+        <Film size={16} /> <span class="hidden sm:inline">Quotes</span>
       </button>
-      <button type="button" class="chip" onclick={() => ui.open("treatment")}>
-        <UserCheck size={15} /> Treatment
+      <button type="button" class="chip max-sm:!px-3" aria-label="Treatment" title="Treatment" onclick={() => ui.open("treatment")}>
+        <UserCheck size={16} /> <span class="hidden sm:inline">Treatment</span>
       </button>
     </div>
 
