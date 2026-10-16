@@ -47,6 +47,11 @@ COPY --from=builder /app/node_modules ./node_modules
 # Copy the quotes data
 COPY --from=builder /app/downloads/training_data ./downloads/training_data
 
+# Bridge the Docker secret at /run/secrets/anthropic_api_key into
+# ANTHROPIC_API_KEY, since the app only reads it from the environment.
+COPY docker-entrypoint.sh ./docker-entrypoint.sh
+RUN chmod +x ./docker-entrypoint.sh
+
 # Create data directory and set permissions for volume mounts
 RUN mkdir -p /app/data && chown -R svelte:nodejs /app
 # Ensure the svelte user can write to the data directory
@@ -61,4 +66,5 @@ VOLUME ["/app/data"]
 EXPOSE 3000
 
 # Start the application using SvelteKit's built-in server
+ENTRYPOINT ["./docker-entrypoint.sh"]
 CMD ["node", "build"] 
