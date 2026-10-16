@@ -51,7 +51,8 @@
   />
 </svelte:head>
 
-<div class="flex min-h-0 flex-col" style="height: calc(100dvh - var(--header-h))">
+<!-- svh on phones: the smallest viewport, so the bottom edge is never hidden behind browser toolbars. -->
+<div class="flex h-[calc(100svh-var(--header-h))] min-h-0 flex-col md:h-[calc(100dvh-var(--header-h))]">
   {#if chat.empty}
     <div class="min-h-0 flex-1 overflow-y-auto">
       <div class="mx-auto flex min-h-full w-full max-w-7xl flex-col justify-center gap-8 px-4 py-10 sm:px-8 lg:px-12">
@@ -133,7 +134,7 @@
   {:else}
     <Thread />
 
-    <div class="shrink-0 px-4 pb-3 sm:px-6">
+    <div class="shrink-0 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-6">
       <div class="mx-auto max-w-3xl">
         <Composer
           busy={chat.busy}
@@ -142,7 +143,7 @@
           onsend={(t) => chat.send(t)}
           onstop={() => chat.stop()}
         />
-        <p class="mt-2.5 text-center text-sm font-medium text-ink-2">
+        <p class="mt-2 text-center text-[0.8125rem] leading-snug font-medium text-ink-2 sm:text-sm">
           HolmesAI can make mistakes and is not a substitute for medical or mental-health care.
         </p>
       </div>
