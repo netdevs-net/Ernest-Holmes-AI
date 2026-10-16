@@ -356,7 +356,7 @@
   }
 </style>
 
-<main class="mx-auto w-full max-w-5xl px-4 pt-12 pb-20 sm:px-6 sm:pt-20">
+<main class="mx-auto w-full max-w-7xl px-4 pt-10 pb-20 sm:px-8 sm:pt-16 lg:px-12">
   <!-- Hero -->
   <header class="relative isolate mb-16 text-center sm:mb-24">
     <div class="glow" aria-hidden="true"></div>

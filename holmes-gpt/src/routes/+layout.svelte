@@ -39,11 +39,11 @@
   </div>
 
   {#if !onHome}
-    <footer class="border-t border-line/60 py-8 text-center text-sm text-ink-3">
-      <nav class="mb-2 flex justify-center gap-5" aria-label="Footer">
-        <a href="/about" class="hover:text-ink">About</a>
-        <a href="/support" class="hover:text-ink">Support</a>
-        <a href="/privacy" class="hover:text-ink">Privacy</a>
+    <footer class="border-t border-line py-8 text-center text-base text-ink-2">
+      <nav class="mb-3 flex justify-center gap-8 font-medium text-ink" aria-label="Footer">
+        <a href="/about" class="underline-offset-4 hover:underline">About</a>
+        <a href="/support" class="underline-offset-4 hover:underline">Support</a>
+        <a href="/privacy" class="underline-offset-4 hover:underline">Privacy</a>
       </nav>
       <p>© {new Date().getFullYear()} HolmesAI</p>
     </footer>

@@ -184,15 +184,15 @@
   </script>
 </svelte:head>
 
-<main class="mx-auto w-full max-w-5xl px-4 pt-10 pb-20 sm:px-6 sm:pt-16">
+<main class="mx-auto w-full max-w-7xl px-4 pt-10 pb-20 sm:px-8 sm:pt-14 lg:px-12">
   <!-- Hero -->
-  <section class="grid items-center gap-10 md:grid-cols-[1.4fr_1fr]" aria-labelledby="about-heading">
+  <section class="grid items-center gap-10 md:grid-cols-[1.5fr_1fr]" aria-labelledby="about-heading">
     <div class="rise">
       <p class="eyebrow mb-4">Spiritual Technology</p>
       <h1 id="about-heading" class="text-display font-medium text-balance">
         Preserving Ernest Holmes' timeless wisdom for the digital age.
       </h1>
-      <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-2 text-pretty">
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-ink-2 text-pretty">
         HolmesAI was born from a deep reverence for Ernest Holmes' teachings and a vision to make his
         timeless wisdom accessible to spiritual seekers worldwide.
       </p>
@@ -201,10 +201,10 @@
         <a href="/support" class="btn btn-soft">Support HolmesAI</a>
       </div>
     </div>
-    <div class="rise relative mx-auto grid aspect-square w-56 place-items-center sm:w-72" style="animation-delay: 120ms">
+    <div class="rise relative mx-auto grid aspect-square w-56 place-items-center sm:w-72 lg:w-96" style="animation-delay: 120ms">
       <div class="glow" aria-hidden="true"></div>
       <div class="glass relative grid size-full place-items-center rounded-full border border-line">
-        <Logo size={120} priority alt="HolmesAI logo" />
+        <Logo size={150} priority alt="HolmesAI logo" />
       </div>
     </div>
   </section>
@@ -257,72 +257,71 @@
       HolmesAI is built with care to preserve Ernest Holmes' legacy.
     </p>
 
-    <article class="card glass rise mt-8 p-5 sm:p-10">
-      <div class="flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+    <article class="card glass rise mt-8 grid gap-8 p-5 sm:p-8 lg:grid-cols-[20rem_1fr] lg:gap-12 lg:p-10">
+      <div class="flex flex-col gap-6">
         <img
           src="/images/Ryan-streetsmart.jpg"
           alt="Ryan Iguchi, Developer of HolmesAI"
           width="514"
           height="400"
           loading="lazy"
-          class="h-32 w-40 rounded-card border border-line object-cover"
+          class="aspect-[4/3] w-full rounded-card border border-line object-cover"
         />
         <div>
           <h3 class="text-3xl font-medium">Ryan Iguchi</h3>
           <p class="mt-1 text-lg text-ink-2">Developer</p>
         </div>
+        <ul class="flex flex-wrap gap-2">
+          {#each links as { href, label, Icon } (href)}
+            <li>
+              <a
+                {href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-soft btn-sm"
+                aria-label="Visit {label} (opens in new tab)"
+              >
+                <Icon size={16} aria-hidden="true" />
+                {label}
+              </a>
+            </li>
+          {/each}
+        </ul>
       </div>
 
-      <div class="mt-8 flex max-w-2xl flex-col gap-4 text-lg leading-relaxed text-ink-2">
-        <p>
-          I've been a lifelong student of the Science of Mind, and I've long admired the clarity and depth
-          of Ernest Holmes' own writing. Building HolmesAI grew out of that admiration, a way to keep
-          studying his work by putting his voice back into conversation.
-        </p>
-        <p>
-          I love to build custom AI agents and business automation workflows. I've built all sorts of
-          MarTech and FinTech software.
-        </p>
-        <p>
-          I created HolmesAI to make Ernest Holmes' wisdom feel accessible to everyone.
-        </p>
-      </div>
-
-      <div class="mt-8 rounded-card border border-line bg-sunken p-5 sm:p-6">
-        <div class="flex items-center gap-2 text-ink">
-          <Mail size={18} aria-hidden="true" />
-          <h4 class="font-medium">I'm available for new projects</h4>
+      <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-4 text-lg leading-relaxed text-ink-2">
+          <p>
+            I've been a lifelong student of the Science of Mind, and I've long admired the clarity and depth
+            of Ernest Holmes' own writing. Building HolmesAI grew out of that admiration, a way to keep
+            studying his work by putting his voice back into conversation.
+          </p>
+          <p>
+            I love to build custom AI agents and business automation workflows. I've built all sorts of
+            MarTech and FinTech software.
+          </p>
+          <p>I created HolmesAI to make Ernest Holmes' wisdom feel accessible to everyone.</p>
         </div>
-        <p class="mt-3 text-ink-2">
-          Have a project in mind? A collaboration proposal? Or do you just want to get in touch?
-        </p>
-        <p class="mt-4">
-          <a href="mailto:ryan@webdevs.net" class="btn btn-primary btn-sm">
-            <Mail size={16} aria-hidden="true" /> Click here to send me a message
-          </a>
-        </p>
-      </div>
 
-      <ul class="mt-6 flex flex-wrap justify-center gap-2">
-        {#each links as { href, label, Icon } (href)}
-          <li>
-            <a
-              {href}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-soft btn-sm"
-              aria-label="Visit {label} (opens in new tab)"
-            >
-              <Icon size={16} aria-hidden="true" />
-              {label}
+        <div class="rounded-card border border-line bg-sunken p-5 sm:p-6">
+          <div class="flex items-center gap-2 text-ink">
+            <Mail size={18} aria-hidden="true" />
+            <h4 class="font-medium">I'm available for new projects</h4>
+          </div>
+          <p class="mt-3 text-ink-2">
+            Have a project in mind? A collaboration proposal? Or do you just want to get in touch?
+          </p>
+          <p class="mt-4">
+            <a href="mailto:ryan@webdevs.net" class="btn btn-primary btn-sm">
+              <Mail size={16} aria-hidden="true" /> Click here to send me a message
             </a>
-          </li>
-        {/each}
-      </ul>
+          </p>
+        </div>
+      </div>
     </article>
 
     <!-- Special thanks -->
-    <article class="card glass rise mt-6 flex flex-col gap-6 p-5 sm:flex-row sm:p-10" style="animation-delay: 80ms" aria-labelledby="thanks-heading">
+    <article class="card glass rise mt-6 flex flex-col gap-6 p-5 sm:flex-row sm:p-8 lg:p-10" style="animation-delay: 80ms" aria-labelledby="thanks-heading">
       <img
         src="/images/linda-short-hair-trans-webp.webp"
         alt="Linda Gauthier, Generous Supporter and Spiritual Practitioner"

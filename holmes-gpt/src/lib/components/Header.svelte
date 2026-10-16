@@ -36,7 +36,7 @@
   class="sticky top-0 z-30 h-(--header-h) border-b border-line/60 bg-glass backdrop-blur-xl"
   
 >
-  <div class="mx-auto flex h-full max-w-6xl items-center gap-3 px-4 sm:px-6">
+  <div class="mx-auto flex h-full max-w-7xl items-center gap-3 px-4 sm:px-8 lg:px-12">
     <a href="/" class="flex items-center gap-2.5 rounded-lg" aria-label="HolmesAI home">
       <Logo size={34} priority />
       <span class="leading-tight">

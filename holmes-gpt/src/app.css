@@ -31,9 +31,9 @@
   --surface-glass: rgba(255, 255, 255, 0.72);
   --surface-sunken: #f1efec;
   --ink: #0e0e11;
-  --ink-2: #4a4a54;
-  --ink-3: #5c5c68;
-  --line: rgba(14, 14, 17, 0.09);
+  --ink-2: #34343d;
+  --ink-3: #4b4b57;
+  --line: rgba(14, 14, 17, 0.12);
   --line-strong: rgba(14, 14, 17, 0.18);
 
   --accent: #8a5d00; /* text-safe gold on paper (AA) */

@@ -196,7 +196,7 @@
   </ol>
 {/snippet}
 
-<main class="mx-auto w-full max-w-6xl px-4 pt-12 pb-20 sm:px-6 sm:pt-16">
+<main class="mx-auto w-full max-w-7xl px-4 pt-10 pb-20 sm:px-8 sm:pt-14 lg:px-12">
   <header class="rise mx-auto max-w-3xl text-center">
     <p class="eyebrow mb-4">Data protection</p>
     <h1 class="text-display font-medium text-balance">Privacy Policy</h1>
