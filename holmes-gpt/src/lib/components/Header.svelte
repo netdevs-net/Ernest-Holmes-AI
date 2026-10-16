@@ -109,13 +109,13 @@
   <nav
     id="mobile-menu"
     aria-label="Menu"
-    class="drawer fixed top-0 right-0 z-50 flex max-h-[60dvh] w-1/2 min-w-48 max-w-xs flex-col overflow-y-auto rounded-bl-[1.75rem] md:hidden"
+    class="drawer fixed top-0 right-0 bottom-0 z-50 flex w-1/2 min-w-48 max-w-xs flex-col overflow-y-auto rounded-l-[1.75rem] md:hidden"
   >
-    <div class="flex h-(--header-h) shrink-0 items-center justify-between border-b border-line pr-2 pl-4">
+    <div class="flex h-(--header-h) shrink-0 items-center justify-between border-b border-line pr-3 pl-4">
       <span class="text-base font-bold tracking-tight">Menu</span>
       <button
         type="button"
-        class="btn btn-ghost btn-icon -mr-2"
+        class="btn btn-ghost btn-icon"
         aria-label="Close menu"
         onclick={() => (menuOpen = false)}
         {@attach (node) => node.focus()}
@@ -143,7 +143,7 @@
       {/each}
     </ul>
 
-    <div class="flex flex-col gap-2 border-t border-line p-3">
+    <div class="mt-auto flex flex-col gap-2 border-t border-line p-3 pb-6">
       <a href="/" class="btn btn-primary btn-sm !min-h-11 w-full">Ask Holmes</a>
       <button type="button" class="btn btn-soft btn-sm !min-h-11 w-full" onclick={() => theme.toggle()}>
         {#if theme.resolved === "dark"}<Sun size={16} /> Light{:else}<Moon size={16} /> Dark{/if}
