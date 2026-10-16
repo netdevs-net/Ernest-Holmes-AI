@@ -98,56 +98,86 @@
 
 {#if menuOpen}
   <!-- Rendered outside <header>: its backdrop-filter would otherwise trap fixed children. -->
+  <button
+    type="button"
+    class="scrim fixed inset-0 z-40 cursor-default md:hidden"
+    tabindex="-1"
+    aria-hidden="true"
+    onclick={() => (menuOpen = false)}
+  ></button>
+
   <nav
     id="mobile-menu"
     aria-label="Menu"
-    class="menu-sheet rise fixed inset-x-0 bottom-0 z-20 flex flex-col overflow-y-auto px-5 pt-4 pb-8 md:hidden"
-    style="top: var(--header-h)"
+    class="drawer fixed top-0 right-0 bottom-0 z-50 flex w-[84%] max-w-sm flex-col overflow-y-auto md:hidden"
   >
-    <ul class="flex flex-col">
+    <div class="flex h-(--header-h) shrink-0 items-center justify-between border-b border-line px-5">
+      <span class="text-lg font-bold tracking-tight">Menu</span>
+      <button
+        type="button"
+        class="btn btn-ghost btn-icon -mr-2"
+        aria-label="Close menu"
+        onclick={() => (menuOpen = false)}
+        {@attach (node) => node.focus()}
+      >
+        <X size={22} />
+      </button>
+    </div>
+
+    <ul class="flex flex-col px-3 py-3">
       {#each links as link (link.href)}
         {@const Icon = link.icon}
         {@const current = page.url.pathname === link.href}
-        <li class="border-b border-line">
+        <li>
           <a
             href={link.href}
-            class="flex items-center gap-4 py-5 text-2xl font-bold tracking-tight {current ? 'text-ink' : 'text-ink-2'}"
+            class="flex items-center gap-4 rounded-2xl px-3 py-4 text-xl font-bold tracking-tight {current
+              ? 'bg-sunken text-ink'
+              : 'text-ink-2 hover:bg-sunken hover:text-ink'}"
             aria-current={current ? "page" : undefined}
           >
-            <span
-              class="grid size-11 shrink-0 place-items-center rounded-full {current
-                ? 'bg-ink text-paper'
-                : 'bg-sunken text-ink-2'}"
-            >
-              <Icon size={20} aria-hidden="true" />
-            </span>
-            <span class="flex-1">{link.label}</span>
-            <ChevronRight size={22} class="text-ink-3" aria-hidden="true" />
+            <Icon size={22} aria-hidden="true" class={current ? "text-accent" : "text-ink-3"} />
+            {link.label}
           </a>
         </li>
       {/each}
     </ul>
 
-    <div class="mt-8 flex flex-col gap-3">
-      <a href="/" class="btn btn-primary !min-h-14 w-full text-base">Ask Ernest Holmes</a>
-      <button
-        type="button"
-        class="btn btn-soft !min-h-12 w-full"
-        onclick={() => theme.toggle()}
-      >
+    <div class="mt-auto flex flex-col gap-3 border-t border-line p-5 pb-8">
+      <a href="/" class="btn btn-primary !min-h-12 w-full">Ask Ernest Holmes</a>
+      <button type="button" class="btn btn-soft !min-h-12 w-full" onclick={() => theme.toggle()}>
         {#if theme.resolved === "dark"}<Sun size={18} /> Light mode{:else}<Moon size={18} /> Dark mode{/if}
       </button>
     </div>
-
-    <p class="mt-auto pt-8 text-center text-sm text-ink-2">© {new Date().getFullYear()} HolmesAI</p>
   </nav>
 {/if}
 
 <style>
-  /* Fully opaque, so page content never shows through the menu. */
-  .menu-sheet {
+  /* Solid, never see-through. */
+  .drawer {
     background: var(--backdrop);
     background-color: var(--paper);
-    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line-strong);
+    box-shadow: var(--shadow-lg);
+    animation: slide-in 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .scrim {
+    background: rgba(5, 12, 20, 0.5);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    animation: fade-in 0.25s ease;
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
   }
 </style>
