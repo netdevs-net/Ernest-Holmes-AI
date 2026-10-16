@@ -365,14 +365,14 @@
   </section>
 
   <!-- CTA -->
-  <section class="card glass rise relative mt-20 overflow-hidden p-8 text-center sm:mt-28 sm:p-14" aria-labelledby="cta-heading">
+  <section class="card glass rise relative mt-20 overflow-hidden p-8 text-left sm:mt-28 sm:p-14 md:text-center" aria-labelledby="cta-heading">
     <p class="eyebrow mb-3">Get Started</p>
     <h2 id="cta-heading" class="text-display font-medium text-balance">Experience HolmesAI</h2>
-    <p class="mx-auto mt-4 max-w-xl text-lg text-ink-2 text-pretty">
+    <p class="mt-4 max-w-xl text-lg text-ink-2 text-pretty md:mx-auto">
       Ready to experience authentic spiritual guidance from Ernest Holmes?
       Start your journey with HolmesAI today.
     </p>
-    <div class="mt-8 flex flex-wrap justify-center gap-3">
+    <div class="mt-8 flex flex-wrap justify-start gap-3 md:justify-center">
       <a href="/" class="btn btn-primary">Start Chatting</a>
       <a href="/support" class="btn btn-soft">Support Us</a>
     </div>

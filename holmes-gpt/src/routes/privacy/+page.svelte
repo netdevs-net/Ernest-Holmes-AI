@@ -197,7 +197,7 @@
 {/snippet}
 
 <main class="mx-auto w-full max-w-7xl px-4 pt-10 pb-20 sm:px-8 sm:pt-14 lg:px-12">
-  <header class="rise mx-auto max-w-3xl text-center">
+  <header class="rise mx-auto max-w-3xl text-left md:text-center">
     <p class="eyebrow mb-4">Data protection</p>
     <h1 class="text-display font-medium text-balance">Privacy Policy</h1>
     <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-ink-2 text-pretty">
@@ -209,7 +209,7 @@
   </header>
 
   <section aria-labelledby="glance" class="rise mt-14 sm:mt-20">
-    <h2 id="glance" class="eyebrow mb-5 text-center">At a glance</h2>
+    <h2 id="glance" class="eyebrow mb-5 text-left md:text-center">At a glance</h2>
     <div class="grid gap-4 md:grid-cols-2">
       <div class="glass card sm:p-6">
         <h3 class="mb-4 text-xl font-medium text-ink">What we keep</h3>
@@ -358,18 +358,24 @@
           <h3 class="mb-4 text-xl font-medium text-ink">Your controls</h3>
           <ul class="grid gap-4 sm:grid-cols-3">
             <li class="flex flex-col gap-2">
-              <Trash2 size={20} class="text-accent" aria-hidden="true" />
-              <p class="font-medium text-ink">Delete questions</p>
+              <div class="flex items-center gap-3">
+                <Trash2 size={20} class="shrink-0 text-accent" aria-hidden="true" />
+                <p class="font-medium text-ink">Delete questions</p>
+              </div>
               <p class="text-sm text-ink-2">Open History and remove any question. It is deleted from our server.</p>
             </li>
             <li class="flex flex-col gap-2">
-              <Cookie size={20} class="text-accent" aria-hidden="true" />
-              <p class="font-medium text-ink">Clear cookies</p>
+              <div class="flex items-center gap-3">
+                <Cookie size={20} class="shrink-0 text-accent" aria-hidden="true" />
+                <p class="font-medium text-ink">Clear cookies</p>
+              </div>
               <p class="text-sm text-ink-2">Remove <code>holmes_sid</code> and local storage in your browser settings.</p>
             </li>
             <li class="flex flex-col gap-2">
-              <Mail size={20} class="text-accent" aria-hidden="true" />
-              <p class="font-medium text-ink">Contact us</p>
+              <div class="flex items-center gap-3">
+                <Mail size={20} class="shrink-0 text-accent" aria-hidden="true" />
+                <p class="font-medium text-ink">Contact us</p>
+              </div>
               <p class="text-sm text-ink-2">Ask a question about your data. See <a href="#contact" class="underline underline-offset-4 hover:text-ink">contact details</a>.</p>
             </li>
           </ul>
@@ -383,18 +389,24 @@
         </p>
         <div class="grid gap-3 sm:grid-cols-3">
           <div class="glass card flex flex-col gap-2">
-            <Mail size={20} class="text-accent" aria-hidden="true" />
-            <h3 class="font-medium text-ink">Email</h3>
+            <div class="flex items-center gap-3">
+              <Mail size={20} class="shrink-0 text-accent" aria-hidden="true" />
+              <h3 class="font-medium text-ink">Email</h3>
+            </div>
             <a href="mailto:ryan@webdevs.net" class="break-words text-ink-2 underline underline-offset-4 hover:text-ink">ryan@webdevs.net</a>
           </div>
           <div class="glass card flex flex-col gap-2">
-            <Phone size={20} class="text-accent" aria-hidden="true" />
-            <h3 class="font-medium text-ink">Phone</h3>
+            <div class="flex items-center gap-3">
+              <Phone size={20} class="shrink-0 text-accent" aria-hidden="true" />
+              <h3 class="font-medium text-ink">Phone</h3>
+            </div>
             <a href="tel:+13105405080" class="text-ink-2 underline underline-offset-4 hover:text-ink">(310) 540-5080</a>
           </div>
           <div class="glass card flex flex-col gap-2">
-            <MapPin size={20} class="text-accent" aria-hidden="true" />
-            <h3 class="font-medium text-ink">Address</h3>
+            <div class="flex items-center gap-3">
+              <MapPin size={20} class="shrink-0 text-accent" aria-hidden="true" />
+              <h3 class="font-medium text-ink">Address</h3>
+            </div>
             <p class="text-ink-2">Redondo Beach Center for Spiritual Living<br />907 Knob Hill Ave<br />Redondo Beach, CA 90277</p>
           </div>
         </div>

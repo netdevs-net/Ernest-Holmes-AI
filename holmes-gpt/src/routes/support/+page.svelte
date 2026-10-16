@@ -362,7 +362,7 @@
 
 <main class="mx-auto w-full max-w-7xl px-4 pt-10 pb-20 sm:px-8 sm:pt-16 lg:px-12">
   <!-- Hero -->
-  <header class="relative isolate mb-16 text-center sm:mb-24">
+  <header class="relative isolate mb-16 text-left sm:mb-24 md:text-center">
     <div class="glow" aria-hidden="true"></div>
     <p class="eyebrow rise mb-4">Community support</p>
     <h1 class="rise text-display mx-auto max-w-3xl font-medium text-balance" style="animation-delay: 60ms">
@@ -376,7 +376,7 @@
       teachings in a way that feels personal, immediate, and transformative, and your support keeps this resource
       accessible to all who seek it.
     </p>
-    <div class="rise mt-8 flex flex-wrap justify-center gap-3" style="animation-delay: 180ms">
+    <div class="rise mt-8 flex flex-wrap justify-start gap-3 md:justify-center" style="animation-delay: 180ms">
       <a class="btn btn-primary" href="#tiers">Become a supporter <ArrowRight size={16} aria-hidden="true" /></a>
       <a class="btn btn-soft" href={mailto("Supporting HolmesAI")}>
         <Mail size={16} aria-hidden="true" /> Email us
@@ -387,7 +387,7 @@
   <div class="flex flex-col gap-16 sm:gap-24">
     <!-- Tiers -->
     <section id="tiers" aria-labelledby="ways" class="scroll-mt-24">
-      <div class="mx-auto mb-10 max-w-2xl text-center">
+      <div class="mx-auto mb-10 max-w-2xl text-left md:text-center">
         <p class="eyebrow mb-3">Join us</p>
         <h2 id="ways" class="text-3xl font-medium text-balance sm:text-4xl">How you can support</h2>
         <p class="mt-4 leading-relaxed text-ink-2 text-pretty">
@@ -513,8 +513,8 @@
       <div class="grid gap-4 lg:grid-cols-2">
         {#each achievements as a, i (a.title)}
           {@const Icon = a.icon}
-          <article class="rise glass card flex flex-col items-center gap-3 text-center" style="animation-delay: {i * 60}ms">
-            <div class="flex items-center justify-center gap-3">
+          <article class="rise glass card flex flex-col items-start gap-3 text-left md:items-center md:text-center" style="animation-delay: {i * 60}ms">
+            <div class="flex items-center justify-start gap-3 md:justify-center">
               <span class="grid size-10 shrink-0 place-items-center rounded-full bg-sunken text-accent">
                 <Icon size={24} aria-hidden="true" />
               </span>
@@ -558,7 +558,7 @@
     </section>
 
     <!-- Contact -->
-    <section aria-labelledby="join" class="rise glass card flex flex-col items-center gap-5 text-center sm:p-12">
+    <section aria-labelledby="join" class="rise glass card flex flex-col items-start gap-5 text-left sm:p-12 md:items-center md:text-center">
       <Handshake size={28} class="text-accent" aria-hidden="true" />
       <h2 id="join" class="text-3xl font-medium text-balance sm:text-4xl">Join our mission</h2>
       <p class="max-w-xl text-lg leading-relaxed text-ink-2 text-pretty">
@@ -568,7 +568,7 @@
       <a class="text-lg font-medium break-all underline decoration-[var(--accent-bright)] underline-offset-4" href={mailto("Supporting HolmesAI")}>
         {EMAIL}
       </a>
-      <div class="flex flex-wrap justify-center gap-3">
+      <div class="flex flex-wrap justify-start gap-3 md:justify-center">
         <a class="btn btn-primary" href={mailto("Supporting HolmesAI")}>
           <Mail size={16} aria-hidden="true" /> Email us
         </a>
