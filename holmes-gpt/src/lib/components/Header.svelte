@@ -6,6 +6,10 @@
   import Plus from "@lucide/svelte/icons/plus";
   import Shield from "@lucide/svelte/icons/shield";
   import X from "@lucide/svelte/icons/x";
+  import ChevronRight from "@lucide/svelte/icons/chevron-right";
+  import Moon from "@lucide/svelte/icons/moon";
+  import Sun from "@lucide/svelte/icons/sun";
+  import { theme } from "$lib/state/theme.svelte";
   import { chat } from "$lib/state/chat.svelte";
   import Logo from "./Logo.svelte";
   import ThemeToggle from "./ThemeToggle.svelte";
@@ -23,6 +27,14 @@
   $effect(() => {
     void page.url.pathname;
     menuOpen = false;
+  });
+
+  // Stop the page behind the open menu from scrolling.
+  $effect(() => {
+    if (!menuOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => (document.body.style.overflow = previous);
   });
 
   function onkeydown(event: KeyboardEvent) {
@@ -80,32 +92,62 @@
         {#if menuOpen}<X size={20} />{:else}<Menu size={20} />{/if}
       </button>
 
-      {#if menuOpen}
-        <button
-          type="button"
-          class="fixed inset-0 z-40 cursor-default"
-          tabindex="-1"
-          aria-hidden="true"
-          onclick={() => (menuOpen = false)}
-        ></button>
-        <nav
-          id="mobile-menu"
-          aria-label="Menu"
-          class="glass rise absolute right-0 top-12 z-50 w-56 rounded-2xl p-2"
-        >
-          {#each links as link (link.href)}
-            {@const Icon = link.icon}
-            <a
-              href={link.href}
-              class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[0.9375rem] font-bold hover:bg-sunken"
-              aria-current={page.url.pathname === link.href ? "page" : undefined}
-            >
-              <Icon size={18} class="text-ink-3" />
-              {link.label}
-            </a>
-          {/each}
-        </nav>
-      {/if}
     </div>
   </div>
 </header>
+
+{#if menuOpen}
+  <!-- Rendered outside <header>: its backdrop-filter would otherwise trap fixed children. -->
+  <nav
+    id="mobile-menu"
+    aria-label="Menu"
+    class="menu-sheet rise fixed inset-x-0 bottom-0 z-20 flex flex-col overflow-y-auto px-5 pt-4 pb-8 md:hidden"
+    style="top: var(--header-h)"
+  >
+    <ul class="flex flex-col">
+      {#each links as link (link.href)}
+        {@const Icon = link.icon}
+        {@const current = page.url.pathname === link.href}
+        <li class="border-b border-line">
+          <a
+            href={link.href}
+            class="flex items-center gap-4 py-5 text-2xl font-bold tracking-tight {current ? 'text-ink' : 'text-ink-2'}"
+            aria-current={current ? "page" : undefined}
+          >
+            <span
+              class="grid size-11 shrink-0 place-items-center rounded-full {current
+                ? 'bg-ink text-paper'
+                : 'bg-sunken text-ink-2'}"
+            >
+              <Icon size={20} aria-hidden="true" />
+            </span>
+            <span class="flex-1">{link.label}</span>
+            <ChevronRight size={22} class="text-ink-3" aria-hidden="true" />
+          </a>
+        </li>
+      {/each}
+    </ul>
+
+    <div class="mt-8 flex flex-col gap-3">
+      <a href="/" class="btn btn-primary !min-h-14 w-full text-base">Ask Ernest Holmes</a>
+      <button
+        type="button"
+        class="btn btn-soft !min-h-12 w-full"
+        onclick={() => theme.toggle()}
+      >
+        {#if theme.resolved === "dark"}<Sun size={18} /> Light mode{:else}<Moon size={18} /> Dark mode{/if}
+      </button>
+    </div>
+
+    <p class="mt-auto pt-8 text-center text-sm text-ink-2">© {new Date().getFullYear()} HolmesAI</p>
+  </nav>
+{/if}
+
+<style>
+  /* Fully opaque, so page content never shows through the menu. */
+  .menu-sheet {
+    background: var(--backdrop);
+    background-color: var(--paper);
+    border-top: 1px solid var(--line);
+  }
+</style>
