@@ -26,6 +26,9 @@
 
   --header-h: 4rem;
 
+  --logo-body: #3b2a6b;
+  --logo-sun: #f7b500;
+
   --paper: #faf9f7;
   --surface: #ffffff;
   --surface-glass: rgba(255, 255, 255, 0.72);
@@ -82,6 +85,8 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
+
+  --logo-body: #ffffff;
 
   --paper: #061a28;
   --surface: #0f2a3d;
@@ -154,6 +159,9 @@
 /* ───────────────────────── Base ───────────────────────── */
 @layer base {
   html {
+    /* Reserve the scrollbar's space so the header does not shift between
+       pages that scroll (About) and pages that don't (Home). */
+    scrollbar-gutter: stable;
     font-family: var(--font-sans);
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;

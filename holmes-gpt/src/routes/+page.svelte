@@ -54,7 +54,7 @@
 <div class="flex min-h-0 flex-col" style="height: calc(100dvh - var(--header-h))">
   {#if chat.empty}
     <div class="min-h-0 flex-1 overflow-y-auto">
-      <div class="mx-auto flex min-h-full w-full max-w-6xl flex-col justify-center gap-8 px-4 py-10 sm:px-8">
+      <div class="mx-auto flex min-h-full w-full max-w-7xl flex-col justify-center gap-8 px-4 py-10 sm:px-8 lg:px-12">
         <div class="rise text-center">
           <p class="eyebrow mb-4">{greeting}</p>
           <h1 class="text-display font-medium text-balance">What is on your heart today?</h1>
