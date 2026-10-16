@@ -109,7 +109,7 @@
   <nav
     id="mobile-menu"
     aria-label="Menu"
-    class="drawer fixed top-0 right-0 bottom-0 z-50 flex w-[84%] max-w-sm flex-col overflow-y-auto md:hidden"
+    class="drawer fixed top-0 right-0 z-50 flex max-h-[92dvh] w-[80%] max-w-xs flex-col overflow-y-auto rounded-bl-[2rem] md:hidden"
   >
     <div class="flex h-(--header-h) shrink-0 items-center justify-between border-b border-line px-5">
       <span class="text-lg font-bold tracking-tight">Menu</span>
@@ -143,7 +143,7 @@
       {/each}
     </ul>
 
-    <div class="mt-auto flex flex-col gap-3 border-t border-line p-5 pb-8">
+    <div class="flex flex-col gap-3 border-t border-line p-5">
       <a href="/" class="btn btn-primary !min-h-12 w-full">Ask Ernest Holmes</a>
       <button type="button" class="btn btn-soft !min-h-12 w-full" onclick={() => theme.toggle()}>
         {#if theme.resolved === "dark"}<Sun size={18} /> Light mode{:else}<Moon size={18} /> Dark mode{/if}
@@ -158,6 +158,7 @@
     background: var(--backdrop);
     background-color: var(--paper);
     border-left: 1px solid var(--line-strong);
+    border-bottom: 1px solid var(--line-strong);
     box-shadow: var(--shadow-lg);
     animation: slide-in 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
