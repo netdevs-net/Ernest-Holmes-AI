@@ -111,7 +111,7 @@
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "customer service",
-        email: "support@holmes-ai.netdevs.net",
+        email: "ryan@webdevs.net",
         availableLanguage: "English",
       },
       hasOfferCatalog: {

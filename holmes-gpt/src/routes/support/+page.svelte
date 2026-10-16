@@ -16,7 +16,7 @@
 
   const SITE = "https://holmes-ai.netdevs.net";
   const PAGE_URL = `${SITE}/support`;
-  const EMAIL = "support@holmes-ai.netdevs.net";
+  const EMAIL = "ryan@webdevs.net";
 
   const TITLE = "Support HolmesAI - Preserve Ernest Holmes' Spiritual Wisdom | Donate to Spiritual Technology";
   const DESCRIPTION =
@@ -300,7 +300,11 @@
     flash(legacyCopy(EMAIL));
   }
 
-  const mailto = (subject: string) => `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}`;
+  /** Opens the visitor's email app, pre-filled to ask how to pay. */
+  const mailto = (subject: string) => {
+    const body = `Hello,\n\nI'd like to support HolmesAI: ${subject}.\n\nCould you please send me the payment details and the payment options available?\n\nThank you.`;
+    return `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
 </script>
 
 <svelte:head>
