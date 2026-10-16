@@ -109,10 +109,10 @@
   <nav
     id="mobile-menu"
     aria-label="Menu"
-    class="drawer fixed top-0 right-0 z-50 flex max-h-[92dvh] w-[80%] max-w-xs flex-col overflow-y-auto rounded-bl-[2rem] md:hidden"
+    class="drawer fixed top-0 right-0 z-50 flex max-h-[60dvh] w-1/2 min-w-48 max-w-xs flex-col overflow-y-auto rounded-bl-[1.75rem] md:hidden"
   >
-    <div class="flex h-(--header-h) shrink-0 items-center justify-between border-b border-line px-5">
-      <span class="text-lg font-bold tracking-tight">Menu</span>
+    <div class="flex h-(--header-h) shrink-0 items-center justify-between border-b border-line pr-2 pl-4">
+      <span class="text-base font-bold tracking-tight">Menu</span>
       <button
         type="button"
         class="btn btn-ghost btn-icon -mr-2"
@@ -124,29 +124,29 @@
       </button>
     </div>
 
-    <ul class="flex flex-col px-3 py-3">
+    <ul class="flex flex-col px-2 py-2">
       {#each links as link (link.href)}
         {@const Icon = link.icon}
         {@const current = page.url.pathname === link.href}
         <li>
           <a
             href={link.href}
-            class="flex items-center gap-4 rounded-2xl px-3 py-4 text-xl font-bold tracking-tight {current
+            class="flex items-center gap-3 rounded-xl px-3 py-3 text-base font-bold tracking-tight {current
               ? 'bg-sunken text-ink'
               : 'text-ink-2 hover:bg-sunken hover:text-ink'}"
             aria-current={current ? "page" : undefined}
           >
-            <Icon size={22} aria-hidden="true" class={current ? "text-accent" : "text-ink-3"} />
+            <Icon size={18} aria-hidden="true" class={current ? "text-accent" : "text-ink-3"} />
             {link.label}
           </a>
         </li>
       {/each}
     </ul>
 
-    <div class="flex flex-col gap-3 border-t border-line p-5">
-      <a href="/" class="btn btn-primary !min-h-12 w-full">Ask Ernest Holmes</a>
-      <button type="button" class="btn btn-soft !min-h-12 w-full" onclick={() => theme.toggle()}>
-        {#if theme.resolved === "dark"}<Sun size={18} /> Light mode{:else}<Moon size={18} /> Dark mode{/if}
+    <div class="flex flex-col gap-2 border-t border-line p-3">
+      <a href="/" class="btn btn-primary btn-sm !min-h-11 w-full">Ask Holmes</a>
+      <button type="button" class="btn btn-soft btn-sm !min-h-11 w-full" onclick={() => theme.toggle()}>
+        {#if theme.resolved === "dark"}<Sun size={16} /> Light{:else}<Moon size={16} /> Dark{/if}
       </button>
     </div>
   </nav>
