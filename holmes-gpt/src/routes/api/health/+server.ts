@@ -1,25 +1,12 @@
 import { json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
-import DatabaseManager from "$lib/db/database";
+import { isHealthy } from "$lib/server/db/database";
 
-export const GET: RequestHandler = async () => {
-  try {
-    const dbManager = DatabaseManager.getInstance();
-    const health = dbManager.healthCheck();
-
-    return json({
-      status: "ok",
-      timestamp: new Date().toISOString(),
-      database: health,
-    });
-  } catch (error) {
-    return json(
-      {
-        status: "error",
-        timestamp: new Date().toISOString(),
-        error: error instanceof Error ? error.message : "Unknown error",
-      },
-      { status: 500 },
-    );
-  }
+/** Liveness probe. Deliberately exposes no paths or sizes. */
+export const GET: RequestHandler = () => {
+  const database = isHealthy();
+  return json(
+    { status: database ? "ok" : "error", database: database ? "up" : "down" },
+    { status: database ? 200 : 503, headers: { "Cache-Control": "no-store" } },
+  );
 };

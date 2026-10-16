@@ -12,15 +12,10 @@ Crawl-delay: 0.5
 Allow: /about/
 Allow: /support/
 Allow: /privacy/
-Allow: /api/health/
-Allow: /api/quotes/
-Allow: /api/stats/
 
 # Block sensitive areas
 Disallow: /admin/
-Disallow: /api/chat/
-Disallow: /api/questions/
-Disallow: /api/users/
+Disallow: /api/
 
 # Special instructions for major search engines
 User-agent: Googlebot
