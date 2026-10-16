@@ -514,10 +514,12 @@
         {#each achievements as a, i (a.title)}
           {@const Icon = a.icon}
           <article class="rise glass card flex flex-col items-center gap-3 text-center" style="animation-delay: {i * 60}ms">
-            <span class="grid size-10 place-items-center rounded-full bg-sunken text-accent">
-              <Icon size={24} aria-hidden="true" />
-            </span>
-            <h3 class="text-2xl font-bold">{a.title}</h3>
+            <div class="flex items-center justify-center gap-3">
+              <span class="grid size-10 shrink-0 place-items-center rounded-full bg-sunken text-accent">
+                <Icon size={24} aria-hidden="true" />
+              </span>
+              <h3 class="text-2xl font-bold">{a.title}</h3>
+            </div>
             <p class="text-[0.9375rem] leading-relaxed text-ink-2">{a.body}</p>
           </article>
         {/each}

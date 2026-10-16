@@ -57,7 +57,7 @@
       {#each links as link (link.href)}
         <a
           href={link.href}
-          class="btn btn-ghost btn-sm"
+          class="btn btn-ghost btn-sm !font-bold"
           aria-current={page.url.pathname === link.href ? "page" : undefined}
           class:text-ink={page.url.pathname === link.href}
         >
@@ -97,7 +97,7 @@
             {@const Icon = link.icon}
             <a
               href={link.href}
-              class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[0.9375rem] hover:bg-sunken"
+              class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[0.9375rem] font-bold hover:bg-sunken"
               aria-current={page.url.pathname === link.href ? "page" : undefined}
             >
               <Icon size={18} class="text-ink-3" />
