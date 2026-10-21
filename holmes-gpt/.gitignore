@@ -38,3 +38,8 @@ node_modules
 downloads/
 *.pdf
 *.cbz
+# SQLite runtime files
+data/
+!src/lib/data/
+*.db-shm
+*.db-wal

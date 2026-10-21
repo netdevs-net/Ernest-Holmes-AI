@@ -1,708 +1,142 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import type { QuestionHistory } from '$lib/utils/questionStorage';
-	
-	let questions: QuestionHistory[] = [];
-	let loading = true;
-	let error = '';
-	let sortField: 'timestamp' | 'category' | 'question' = 'timestamp';
-	let sortDirection: 'asc' | 'desc' = 'desc';
-	let searchTerm = '';
-	let selectedCategory = '';
-	let showDeleteConfirm = false;
-	let questionToDelete: QuestionHistory | null = null;
-	let showResponseModal = false;
-	let selectedQuestion: QuestionHistory | null = null;
-	let responseLoading = false;
-	let aiResponse = '';
-	let responseError = '';
-	
-	// Email statistics
-	let emailStats: any = null;
-	let emailStatsLoading = false;
-	let emailStatsError = '';
-	
-	// Categories for filtering
-	const categories = ['all', 'spiritual', 'practical', 'metaphysical', 'personal', 'general'];
-	
-	onMount(async () => {
-		await Promise.all([
-			loadQuestions(),
-			loadEmailStats()
-		]);
-	});
-	
-	async function loadQuestions() {
-		try {
-			loading = true;
-			const response = await fetch('/api/questions?limit=1000'); // Get all questions
-			if (response.ok) {
-				const data = await response.json();
-				questions = data.questions || [];
-			} else {
-				error = 'Failed to load questions';
-			}
-		} catch (err) {
-			error = 'Error loading questions';
-			console.error('Error loading questions:', err);
-		} finally {
-			loading = false;
-		}
-	}
-	
-	async function loadEmailStats() {
-		try {
-			emailStatsLoading = true;
-			const response = await fetch('/api/emails?action=stats');
-			if (response.ok) {
-				const data = await response.json();
-				emailStats = data.data;
-			} else {
-				emailStatsError = 'Failed to load email statistics';
-			}
-		} catch (err) {
-			emailStatsError = 'Error loading email statistics';
-			console.error('Error loading email stats:', err);
-		} finally {
-			emailStatsLoading = false;
-		}
-	}
-	
-	async function deleteQuestion(question: QuestionHistory) {
-		try {
-			const response = await fetch(`/api/questions/${question.id}`, {
-				method: 'DELETE'
-			});
-			
-			if (response.ok) {
-				// Remove from local array
-				questions = questions.filter(q => q.id !== question.id);
-				showDeleteConfirm = false;
-				questionToDelete = null;
-			} else {
-				error = 'Failed to delete question';
-			}
-		} catch (err) {
-			error = 'Error deleting question';
-			console.error('Error deleting question:', err);
-		}
-	}
-	
-	function confirmDelete(question: QuestionHistory) {
-		questionToDelete = question;
-		showDeleteConfirm = true;
-	}
-	
-	function cancelDelete() {
-		showDeleteConfirm = false;
-		questionToDelete = null;
-	}
-	
-	async function viewResponse(question: QuestionHistory) {
-		selectedQuestion = question;
-		showResponseModal = true;
-		responseLoading = true;
-		aiResponse = '';
-		responseError = '';
-		
-		try {
-			const response = await fetch('/api/chat', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					message: question.question,
-					category: question.category
-				})
-			});
-			
-			if (response.ok) {
-				const data = await response.json();
-				aiResponse = data.response || 'No response received';
-			} else {
-				responseError = 'Failed to get response from AI';
-			}
-		} catch (err) {
-			responseError = 'Error connecting to AI service';
-			console.error('Error getting AI response:', err);
-		} finally {
-			responseLoading = false;
-		}
-	}
-	
-	function closeResponseModal() {
-		showResponseModal = false;
-		selectedQuestion = null;
-		aiResponse = '';
-		responseError = '';
-	}
-	
-	function handleSort(field: 'timestamp' | 'category' | 'question') {
-		if (sortField === field) {
-			sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
-		} else {
-			sortField = field;
-			sortDirection = 'asc';
-		}
-	}
-	
-	function formatDate(date: Date): string {
-		return new Date(date).toLocaleString();
-	}
-	
-	function formatRelativeTime(date: Date): string {
-		const now = new Date();
-		const questionDate = new Date(date);
-		const diffInHours = (now.getTime() - questionDate.getTime()) / (1000 * 60 * 60);
-		
-		if (diffInHours < 1) {
-			return 'Just now';
-		} else if (diffInHours < 24) {
-			const hours = Math.floor(diffInHours);
-			return `${hours} hour${hours > 1 ? 's' : ''} ago`;
-		} else if (diffInHours < 168) { // 7 days
-			const days = Math.floor(diffInHours / 24);
-			return `${days} day${days > 1 ? 's' : ''} ago`;
-		} else {
-			return questionDate.toLocaleDateString();
-		}
-	}
-	
-	function getCategoryColor(category: string): string {
-		const colors = {
-			spiritual: 'bg-purple-100 text-purple-800 border-purple-200',
-			practical: 'bg-blue-100 text-blue-800 border-blue-200',
-			metaphysical: 'bg-indigo-100 text-indigo-800 border-indigo-200',
-			personal: 'bg-pink-100 text-pink-800 border-pink-200',
-			general: 'bg-gray-100 text-gray-800 border-gray-200'
-		};
-		return colors[category as keyof typeof colors] || colors.general;
-	}
-	
-	function parseFormatting(text: string): string {
-		return text
-			.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-			.replace(/\*(.*?)\*/g, '<em>$1</em>')
-			.replace(/\n\n/g, '<br><br>')
-			.replace(/\n/g, '<br>')
-			.replace(/^/, '<p>')
-			.replace(/$/, '</p>')
-			.replace(/• /g, '<br>• ');
-	}
-	
-	// Computed properties for filtering and sorting
-	$: filteredQuestions = questions.filter(question => {
-		const matchesSearch = searchTerm === '' || 
-			question.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-			question.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
-		
-		const matchesCategory = selectedCategory === '' || selectedCategory === 'all' || 
-			question.category === selectedCategory;
-		
-		return matchesSearch && matchesCategory;
-	});
-	
-	$: sortedQuestions = [...filteredQuestions].sort((a, b) => {
-		let aValue: any, bValue: any;
-		
-		switch (sortField) {
-			case 'timestamp':
-				aValue = new Date(a.timestamp).getTime();
-				bValue = new Date(b.timestamp).getTime();
-				break;
-			case 'category':
-				aValue = a.category.toLowerCase();
-				bValue = b.category.toLowerCase();
-				break;
-			case 'question':
-				aValue = a.question.toLowerCase();
-				bValue = b.question.toLowerCase();
-				break;
-			default:
-				return 0;
-		}
-		
-		if (sortDirection === 'asc') {
-			return aValue > bValue ? 1 : -1;
-		} else {
-			return aValue < bValue ? 1 : -1;
-		}
-	});
-	
-	$: totalQuestions = questions.length;
-	$: filteredCount = filteredQuestions.length;
+  import { goto, invalidateAll } from "$app/navigation";
+  import LogOut from "@lucide/svelte/icons/log-out";
+  import Trash2 from "@lucide/svelte/icons/trash-2";
+  import PageShell from "$lib/components/PageShell.svelte";
+  import { relativeTime } from "$lib/utils/time";
+
+  let { data } = $props();
+
+  const categories = ["all", "spiritual", "practical", "metaphysical", "personal", "general"];
+  let answers = $state<Record<string, string>>({});
+  let error = $state("");
+
+  const tiles = $derived([
+    { label: "Questions", value: data.stats.total },
+    { label: "Last 24 hours", value: data.stats.last24h },
+    { label: "Visitor sessions", value: data.stats.sessions },
+    { label: "Bookmarked", value: data.stats.bookmarked },
+    { label: "Emails shared", value: data.emails.total },
+    { label: "Unique recipients", value: data.emails.unique },
+  ]);
+
+  const security = $derived([
+    { label: "Requests since start", value: data.metrics.totalRequests },
+    { label: "Rate-limit hits", value: data.metrics.rateLimitHits },
+    { label: "Bots blocked", value: data.metrics.botDetections },
+    { label: "Daily limit hits", value: data.metrics.dailyUsageExceeded },
+    { label: "Avg tokens / answer", value: data.metrics.averageTokensPerRequest },
+    { label: "Model spend", value: `$${data.metrics.totalCost.toFixed(4)}` },
+  ]);
+
+  async function loadAnswer(id: string, open: boolean) {
+    if (!open || id in answers) return;
+    const res = await fetch(`/api/admin/questions/${id}`);
+    answers[id] = res.ok ? (await res.json()).answer || "(no saved answer)" : "Could not load the answer.";
+  }
+
+  async function remove(id: string) {
+    if (!confirm("Delete this question and its answer permanently?")) return;
+    error = "";
+    const res = await fetch(`/api/admin/questions/${id}`, { method: "DELETE" });
+    if (!res.ok) {
+      error = "Could not delete that question.";
+      return;
+    }
+    await invalidateAll();
+  }
+
+  async function signOut() {
+    await fetch("/api/admin/auth", { method: "DELETE" });
+    await goto("/admin/login");
+  }
 </script>
 
 <svelte:head>
-	<title>Admin - Question Management | HolmesAI</title>
-	<meta name="description" content="Admin panel for managing spiritual questions and user interactions." />
+  <title>Admin | HolmesAI</title>
+  <meta name="robots" content="noindex, nofollow" />
 </svelte:head>
 
-<main class="min-h-screen bg-gray-50">
-	<!-- Header -->
-	<div class="bg-white shadow-sm border-b">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="flex justify-between items-center py-6">
-				<div>
-					<h1 class="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-					<p class="mt-1 text-sm text-gray-500">Manage spiritual questions and user interactions</p>
-				</div>
-				<div class="flex items-center space-x-4">
-					<a href="/" class="text-indigo-600 hover:text-indigo-500 font-medium">
-						← Back to Chat
-					</a>
-					<button 
-						on:click={loadQuestions}
-						class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors"
-					>
-						🔄 Refresh
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
+<PageShell eyebrow="Admin" title="Dashboard" width="wide">
+  <div class="-mt-6 flex justify-end">
+    <button type="button" class="btn btn-soft btn-sm" onclick={signOut}>
+      <LogOut size={15} /> Sign out
+    </button>
+  </div>
 
-	<!-- Stats -->
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-		<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
-			<div class="bg-white rounded-lg shadow p-6">
-				<div class="flex items-center">
-					<div class="flex-shrink-0">
-						<div class="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center">
-							<span class="text-white font-semibold">📝</span>
-						</div>
-					</div>
-					<div class="ml-4">
-						<p class="text-sm font-medium text-gray-500">Total Questions</p>
-						<p class="text-2xl font-semibold text-gray-900">{totalQuestions}</p>
-					</div>
-				</div>
-			</div>
-			
-			<div class="bg-white rounded-lg shadow p-6">
-				<div class="flex items-center">
-					<div class="flex-shrink-0">
-						<div class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
-							<span class="text-white font-semibold">👥</span>
-						</div>
-					</div>
-					<div class="ml-4">
-						<p class="text-sm font-medium text-gray-500">Filtered Results</p>
-						<p class="text-2xl font-semibold text-gray-900">{filteredCount}</p>
-					</div>
-				</div>
-			</div>
-			
-			<div class="bg-white rounded-lg shadow p-6">
-				<div class="flex items-center">
-					<div class="flex-shrink-0">
-						<div class="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center">
-							<span class="text-white font-semibold">⭐</span>
-						</div>
-					</div>
-					<div class="ml-4">
-						<p class="text-sm font-medium text-gray-500">Bookmarked</p>
-						<p class="text-2xl font-semibold text-gray-900">
-							{questions.filter(q => q.isBookmarked).length}
-						</p>
-					</div>
-				</div>
-			</div>
-			
-			<!-- Email Statistics -->
-			{#if emailStatsLoading}
-				<div class="bg-white rounded-lg shadow p-6">
-					<div class="flex items-center">
-						<div class="flex-shrink-0">
-							<div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
-								<span class="text-white font-semibold">📧</span>
-							</div>
-						</div>
-						<div class="ml-4">
-							<p class="text-sm font-medium text-gray-500">Total Emails</p>
-							<p class="text-2xl font-semibold text-gray-900">Loading...</p>
-						</div>
-					</div>
-				</div>
-			{:else if emailStatsError}
-				<div class="bg-white rounded-lg shadow p-6">
-					<div class="flex items-center">
-						<div class="flex-shrink-0">
-							<div class="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
-								<span class="text-white font-semibold">❌</span>
-							</div>
-						</div>
-						<div class="ml-4">
-							<p class="text-sm font-medium text-gray-500">Email Stats</p>
-							<p class="text-sm text-red-600">Error loading</p>
-						</div>
-					</div>
-				</div>
-			{:else if emailStats}
-				<div class="bg-white rounded-lg shadow p-6">
-					<div class="flex items-center">
-						<div class="flex-shrink-0">
-							<div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
-								<span class="text-white font-semibold">📧</span>
-							</div>
-						</div>
-						<div class="ml-4">
-							<p class="text-sm font-medium text-gray-500">Total Emails</p>
-							<p class="text-2xl font-semibold text-gray-900">{emailStats.total_emails}</p>
-						</div>
-					</div>
-				</div>
-				
-				<div class="bg-white rounded-lg shadow p-6">
-					<div class="flex items-center">
-						<div class="flex-shrink-0">
-							<div class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
-								<span class="text-white font-semibold">👥</span>
-							</div>
-						</div>
-						<div class="ml-4">
-							<p class="text-sm font-medium text-gray-500">Unique Emails</p>
-							<p class="text-2xl font-semibold text-gray-900">{emailStats.unique_emails}</p>
-						</div>
-					</div>
-				</div>
-				
-				<div class="bg-white rounded-lg shadow p-6">
-					<div class="flex items-center">
-						<div class="flex-shrink-0">
-							<div class="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
-								<span class="text-white font-semibold">📅</span>
-							</div>
-						</div>
-						<div class="ml-4">
-							<p class="text-sm font-medium text-gray-500">Today</p>
-							<p class="text-2xl font-semibold text-gray-900">{emailStats.emails_today}</p>
-						</div>
-					</div>
-				</div>
-			{/if}
-		</div>
+  <section aria-labelledby="usage-h">
+    <h2 id="usage-h" class="eyebrow mb-3">Usage</h2>
+    <dl class="grid grid-cols-2 gap-3 md:grid-cols-3">
+      {#each tiles as tile (tile.label)}
+        <div class="glass card">
+          <dt class="text-sm text-ink-3">{tile.label}</dt>
+          <dd class="mt-1 text-3xl font-medium tabular-nums">{tile.value}</dd>
+        </div>
+      {/each}
+    </dl>
+  </section>
 
-		<!-- Filters -->
-		<div class="bg-white rounded-lg shadow mb-6">
-			<div class="px-4 py-4 border-b border-gray-200">
-				<h3 class="text-lg font-medium text-gray-900">Filters & Search</h3>
-			</div>
-			<div class="px-4 py-4">
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-					<div>
-						<label for="search" class="block text-sm font-medium text-gray-700 mb-2">
-							Search Questions
-						</label>
-						<input
-							id="search"
-							type="text"
-							bind:value={searchTerm}
-							placeholder="Search questions or tags..."
-							class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-						/>
-					</div>
-					<div>
-						<label for="category" class="block text-sm font-medium text-gray-700 mb-2">
-							Category Filter
-						</label>
-						<select
-							id="category"
-							bind:value={selectedCategory}
-							class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-						>
-							<option value="">All Categories</option>
-							{#each categories.filter(c => c !== 'all') as category}
-								<option value={category}>{category.charAt(0).toUpperCase() + category.slice(1)}</option>
-							{/each}
-						</select>
-					</div>
-				</div>
-			</div>
-		</div>
+  <section aria-labelledby="sec-h">
+    <h2 id="sec-h" class="eyebrow mb-3">Safeguards (since last restart)</h2>
+    <dl class="grid grid-cols-2 gap-3 md:grid-cols-3">
+      {#each security as tile (tile.label)}
+        <div class="glass card">
+          <dt class="text-sm text-ink-3">{tile.label}</dt>
+          <dd class="mt-1 text-2xl font-medium tabular-nums">{tile.value}</dd>
+        </div>
+      {/each}
+    </dl>
+    <p class="mt-3 text-sm text-ink-3">
+      Limits per visitor: {data.limits.requestsPer15Min} questions / 15 min, {data.limits.requestsPerDay}
+      per day, {data.limits.tokensPerDay.toLocaleString()} tokens per day.
+    </p>
+  </section>
 
-		<!-- Questions Table -->
-		<div class="bg-white rounded-lg shadow overflow-hidden">
-			<div class="px-4 py-4 border-b border-gray-200">
-				<h3 class="text-lg font-medium text-gray-900">Questions ({filteredCount})</h3>
-			</div>
-			
-			{#if loading}
-				<div class="p-8 text-center">
-					<div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
-					<p class="mt-2 text-gray-500">Loading questions...</p>
-				</div>
-			{:else if error}
-				<div class="p-8 text-center">
-					<p class="text-red-600">{error}</p>
-					<button 
-						on:click={loadQuestions}
-						class="mt-2 text-indigo-600 hover:text-indigo-500"
-					>
-						Try again
-					</button>
-				</div>
-			{:else if sortedQuestions.length === 0}
-				<div class="p-8 text-center">
-					<p class="text-gray-500">No questions found matching your criteria.</p>
-				</div>
-			{:else}
-				<div class="overflow-x-auto">
-					<table class="w-full table-fixed divide-y divide-gray-200">
-						<thead class="bg-gray-50">
-							<tr>
-								<th
-									class="w-[14%] px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors"
-									on:click={() => handleSort('timestamp')}
-								>
-									<div class="flex items-center space-x-1">
-										<span>Timestamp</span>
-										{#if sortField === 'timestamp'}
-											<span class="text-indigo-600">
-												{sortDirection === 'asc' ? '↑' : '↓'}
-											</span>
-										{/if}
-									</div>
-								</th>
-								<th
-									class="w-[10%] px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors"
-									on:click={() => handleSort('category')}
-								>
-									<div class="flex items-center space-x-1">
-										<span>Category</span>
-										{#if sortField === 'category'}
-											<span class="text-indigo-600">
-												{sortDirection === 'asc' ? '↑' : '↓'}
-											</span>
-										{/if}
-									</div>
-								</th>
-								<th
-									class="w-[32%] px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors"
-									on:click={() => handleSort('question')}
-								>
-									<div class="flex items-center space-x-1">
-										<span>Question</span>
-										{#if sortField === 'question'}
-											<span class="text-indigo-600">
-												{sortDirection === 'asc' ? '↑' : '↓'}
-											</span>
-										{/if}
-									</div>
-								</th>
-								<th class="w-[16%] px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-									Tags
-								</th>
-								<th class="w-[8%] px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-									Bookmarked
-								</th>
-								<th class="w-[20%] px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-									Actions
-								</th>
-							</tr>
-						</thead>
-						<tbody class="bg-white divide-y divide-gray-200">
-							{#each sortedQuestions as question (question.id)}
-								<tr class="hover:bg-gray-50 transition-colors duration-150">
-									<td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
-										<div>
-											<div class="font-medium">{formatDate(question.timestamp)}</div>
-											<div class="text-gray-500">{formatRelativeTime(question.timestamp)}</div>
-										</div>
-									</td>
-									<td class="px-4 py-4 whitespace-nowrap">
-										<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border {getCategoryColor(question.category)}">
-											{question.category}
-										</span>
-									</td>
-									<td class="px-4 py-4">
-										<div class="text-sm text-gray-900 max-w-md truncate" title={question.question}>
-											{question.question}
-										</div>
-									</td>
-									<td class="px-4 py-4">
-										<div class="flex flex-wrap gap-1">
-											{#each question.tags.slice(0, 3) as tag}
-												<span class="inline-flex items-center px-2 py-1 rounded text-xs bg-gray-100 text-gray-800">
-													{tag}
-												</span>
-											{/each}
-											{#if question.tags.length > 3}
-												<span class="inline-flex items-center px-2 py-1 rounded text-xs bg-gray-100 text-gray-600">
-													+{question.tags.length - 3}
-												</span>
-											{/if}
-										</div>
-									</td>
-									<td class="px-4 py-4 whitespace-nowrap">
-										{#if question.isBookmarked}
-											<span class="text-yellow-500 text-lg">⭐</span>
-										{:else}
-											<span class="text-gray-300 text-lg">☆</span>
-										{/if}
-									</td>
-									<td class="px-4 py-4 text-sm font-medium">
-										<div class="flex flex-col items-start gap-1">
-											<button
-												on:click={() => viewResponse(question)}
-												class="text-indigo-600 hover:text-indigo-900 transition-colors whitespace-nowrap"
-												title="View AI response"
-											>
-												🤖 View Response
-											</button>
-											<button
-												on:click={() => confirmDelete(question)}
-												class="text-red-600 hover:text-red-900 transition-colors whitespace-nowrap"
-												title="Delete question"
-											>
-												🗑️ Delete
-											</button>
-										</div>
-									</td>
-								</tr>
-							{/each}
-						</tbody>
-					</table>
-				</div>
-			{/if}
-		</div>
-	</div>
-</main>
+  <section aria-labelledby="q-h">
+    <h2 id="q-h" class="eyebrow mb-3">Questions</h2>
 
-<!-- Delete Confirmation Modal -->
-{#if showDeleteConfirm && questionToDelete}
-	<div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-		<div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-			<div class="mt-3 text-center">
-				<div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
-					<span class="text-red-600 text-xl">⚠️</span>
-				</div>
-				<h3 class="text-lg font-medium text-gray-900 mt-4">Delete Question</h3>
-				<div class="mt-2 px-7 py-3">
-					<p class="text-sm text-gray-500">
-						Are you sure you want to delete this question? This action cannot be undone.
-					</p>
-					<div class="mt-3 p-3 bg-gray-50 rounded text-sm text-gray-700">
-						"{questionToDelete.question}"
-					</div>
-				</div>
-				<div class="flex justify-center space-x-4 mt-4">
-					<button
-						on:click={cancelDelete}
-						class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors"
-					>
-						Cancel
-					</button>
-					<button
-						on:click={() => deleteQuestion(questionToDelete!)}
-						class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
-					>
-						Delete
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
-{/if}
+    <form method="GET" class="mb-4 flex flex-wrap gap-2">
+      <label class="sr-only" for="admin-q">Search</label>
+      <input id="admin-q" name="q" type="search" class="field max-w-sm" placeholder="Search questions" value={data.search} />
+      <label class="sr-only" for="admin-cat">Category</label>
+      <select id="admin-cat" name="category" class="field w-auto">
+        {#each categories as c (c)}
+          <option value={c} selected={c === data.category}>{c === "all" ? "All categories" : c}</option>
+        {/each}
+      </select>
+      <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
 
-<!-- Response Modal -->
-{#if showResponseModal && selectedQuestion}
-	<div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-		<div class="relative top-10 mx-auto p-6 border w-11/12 max-w-4xl shadow-lg rounded-md bg-white">
-			<div class="flex justify-between items-start mb-4">
-				<div>
-					<h3 class="text-xl font-medium text-gray-900">AI Response</h3>
-					<p class="text-sm text-gray-500 mt-1">Question: "{selectedQuestion.question}"</p>
-				</div>
-				<button
-					on:click={closeResponseModal}
-					class="text-gray-400 hover:text-gray-600 transition-colors"
-					title="Close"
-					aria-label="Close response modal"
-				>
-					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-					</svg>
-				</button>
-			</div>
-			
-			<div class="bg-gray-50 rounded-lg p-4 mb-4">
-				<h4 class="font-medium text-gray-900 mb-2">Question Details</h4>
-				<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-					<div>
-						<span class="text-gray-500">Category:</span>
-						<span class="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium border {getCategoryColor(selectedQuestion.category)}">
-							{selectedQuestion.category}
-						</span>
-					</div>
-					<div>
-						<span class="text-gray-500">Asked:</span>
-						<span class="ml-2">{formatDate(selectedQuestion.timestamp)}</span>
-					</div>
-					<div>
-						<span class="text-gray-500">Bookmarked:</span>
-						<span class="ml-2">{selectedQuestion.isBookmarked ? '⭐ Yes' : '☆ No'}</span>
-					</div>
-				</div>
-			</div>
-			
-			{#if responseLoading}
-				<div class="text-center py-8">
-					<div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
-					<p class="mt-2 text-gray-500">Getting AI response...</p>
-				</div>
-			{:else if responseError}
-				<div class="text-center py-8">
-					<div class="text-red-600 mb-2">⚠️ {responseError}</div>
-					<button
-						on:click={() => viewResponse(selectedQuestion!)}
-						class="text-indigo-600 hover:text-indigo-500"
-					>
-						Try again
-					</button>
-				</div>
-			{:else if aiResponse}
-				<div class="bg-white border rounded-lg p-6 max-h-96 overflow-y-auto">
-					<h4 class="font-medium text-gray-900 mb-3">HolmesGPT Response</h4>
-					<div class="prose prose-sm max-w-none">
-						<div class="formatted-content text-gray-700">
-							{@html parseFormatting(aiResponse)}
-						</div>
-					</div>
-				</div>
-			{/if}
-			
-			<div class="flex justify-end mt-6">
-				<button
-					on:click={closeResponseModal}
-					class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors"
-				>
-					Close
-				</button>
-			</div>
-		</div>
-	</div>
-{/if}
+    {#if error}<p class="mb-3 text-danger" role="alert">{error}</p>{/if}
 
-<style>
-	/* Custom scrollbar for table */
-	.overflow-x-auto::-webkit-scrollbar {
-		height: 8px;
-	}
-	
-	.overflow-x-auto::-webkit-scrollbar-track {
-		background: #f1f5f9;
-		border-radius: 4px;
-	}
-	
-	.overflow-x-auto::-webkit-scrollbar-thumb {
-		background: #cbd5e1;
-		border-radius: 4px;
-	}
-	
-	.overflow-x-auto::-webkit-scrollbar-thumb:hover {
-		background: #94a3b8;
-	}
-	
-</style> 
+    {#if data.questions.length === 0}
+      <p class="py-10 text-center text-ink-3">No questions match.</p>
+    {:else}
+      <ul class="flex flex-col gap-2">
+        {#each data.questions as q (q.id)}
+          <li class="glass rounded-2xl">
+            <details ontoggle={(e) => loadAnswer(q.id, e.currentTarget.open)}>
+              <summary class="flex cursor-pointer list-none items-start justify-between gap-4 p-4">
+                <span class="min-w-0">
+                  <span class="block font-medium">{q.question}</span>
+                  <span class="mt-1 block text-xs text-ink-3">
+                    {relativeTime(q.createdAt)} · {q.category}
+                    {#if q.ip}· {q.ip}{/if}
+                  </span>
+                </span>
+              </summary>
+              <div class="border-t border-line px-4 py-4">
+                <p class="whitespace-pre-wrap text-sm leading-relaxed text-ink-2">
+                  {answers[q.id] ?? "Loading…"}
+                </p>
+                <button type="button" class="btn btn-danger btn-sm mt-4" onclick={() => remove(q.id)}>
+                  <Trash2 size={14} /> Delete
+                </button>
+              </div>
+            </details>
+          </li>
+        {/each}
+      </ul>
+    {/if}
+  </section>
+</PageShell>

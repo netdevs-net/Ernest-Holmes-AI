@@ -2,55 +2,60 @@ import { json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
 import {
   ADMIN_COOKIE,
-  createAdminCookieValue,
-  getAdminPassword,
-  isValidAdminCookie,
-} from "$lib/server/adminAuth";
+  adminCookieMaxAge,
+  createAdminToken,
+  isAdminConfigured,
+  isValidAdminToken,
+  loginLimiter,
+  secondsUntil,
+  verifyAdminPassword,
+} from "$lib/server/security";
 
-const COOKIE_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
+export const POST: RequestHandler = async ({
+  request,
+  cookies,
+  getClientAddress,
+}) => {
+  if (!isAdminConfigured()) {
+    return json({ error: "Admin sign-in is not configured." }, { status: 503 });
+  }
 
-export const POST: RequestHandler = async ({ request, cookies }) => {
-  const configuredPassword = getAdminPassword();
-  if (!configuredPassword) {
+  const limit = loginLimiter.hit(getClientAddress());
+  if (!limit.allowed) {
     return json(
-      { error: "Admin authentication is not configured" },
-      { status: 503 },
+      { error: "Too many attempts. Please wait a few minutes." },
+      {
+        status: 429,
+        headers: { "Retry-After": String(secondsUntil(limit.resetAt)) },
+      },
     );
   }
 
+  let password: unknown;
   try {
-    const { password } = await request.json();
-    if (!password || password !== configuredPassword) {
-      return json({ error: "Invalid password" }, { status: 401 });
-    }
-
-    const cookieValue = createAdminCookieValue();
-    if (!cookieValue) {
-      return json(
-        { error: "Admin authentication is not configured" },
-        { status: 503 },
-      );
-    }
-
-    cookies.set(ADMIN_COOKIE, cookieValue, {
-      path: "/",
-      httpOnly: true,
-      sameSite: "strict",
-      secure: process.env.NODE_ENV === "production",
-      maxAge: COOKIE_MAX_AGE,
-    });
-
-    return json({ success: true });
+    ({ password } = await request.json());
   } catch {
-    return json({ error: "Invalid request" }, { status: 400 });
+    return json({ error: "Invalid request." }, { status: 400 });
   }
+
+  if (!verifyAdminPassword(password)) {
+    return json({ error: "Incorrect password." }, { status: 401 });
+  }
+
+  cookies.set(ADMIN_COOKIE, createAdminToken()!, {
+    path: "/",
+    httpOnly: true,
+    sameSite: "strict",
+    secure: process.env.NODE_ENV === "production",
+    maxAge: adminCookieMaxAge,
+  });
+  return json({ ok: true });
 };
 
-export const DELETE: RequestHandler = async ({ cookies }) => {
+export const DELETE: RequestHandler = ({ cookies }) => {
   cookies.delete(ADMIN_COOKIE, { path: "/" });
-  return json({ success: true });
+  return json({ ok: true });
 };
 
-export const GET: RequestHandler = async ({ cookies }) => {
-  return json({ authenticated: isValidAdminCookie(cookies) });
-};
+export const GET: RequestHandler = ({ cookies }) =>
+  json({ authenticated: isValidAdminToken(cookies.get(ADMIN_COOKIE)) });
