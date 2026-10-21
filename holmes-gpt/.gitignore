@@ -40,5 +40,6 @@ downloads/
 *.cbz
 # SQLite runtime files
 data/
+!src/lib/data/
 *.db-shm
 *.db-wal
