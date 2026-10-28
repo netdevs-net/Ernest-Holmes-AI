@@ -1,4 +1,4 @@
-export type Panel = "history" | "quotes" | "treatment" | "share" | null;
+export type Panel = "history" | "quotes" | "treatment" | "share" | "admin" | null;
 
 class UiState {
   panel = $state<Panel>(null);
@@ -7,6 +7,11 @@ class UiState {
 
   open(panel: Exclude<Panel, null>) {
     this.panel = panel;
+  }
+
+  /** Toggles the admin popup (Command-K / Ctrl-K). */
+  toggleAdmin() {
+    this.panel = this.panel === "admin" ? null : "admin";
   }
 
   close() {
