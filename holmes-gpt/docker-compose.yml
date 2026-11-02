@@ -1,30 +1,49 @@
+# Production on kamatera1. Plain docker compose, no swarm.
+#
+# The deploy job runs this file from its checkout with the server directory as
+# the project directory, so relative paths below resolve there:
+#
+#   docker compose -f holmes-gpt/docker-compose.yml --project-directory /srv/projects/holmes-gpt up -d
+#
+# /srv/projects/holmes-gpt (root:actions-runner 0750) holds the server-only files:
+#   .env                        ADMIN_PASSWORD=...                  (0640 root:actions-runner)
+#   secrets/anthropic_api_key   the Anthropic key, one line         (0400, owner uid 1001 = svelte)
+#
+# Compose mounts the key at /run/secrets/anthropic_api_key, the same path the swarm
+# secret used, so the app (src/lib/server/claude.ts) needs no change.
+name: holmes-gpt
+
 services:
   holmes-gpt:
     image: ghcr.io/netdevs-net/holmes-gpt:latest
+    container_name: holmes-gpt
     ports:
-      - "3000:3000"
+      # All interfaces on purpose: Cloudflare sends ernestholmes.us straight to
+      # origin port 5544 (there is no nginx vhost for it on kamatera1).
+      - "5544:3000"
+    env_file: .env
+    # Same environment as the swarm service it replaces (NODE_ENV and PORT come
+    # from the image). The proxy-header settings in env.example were never set in
+    # production; adding them changes request origin handling, so that is its own change.
     environment:
-      - NODE_ENV=production
-      - PORT=3000
-      # Set in .env or replace — required for chat replies
-      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-}
       - DB_DIR=/app/data
-      # Trust the reverse proxy for client IP / scheme (see env.example)
-      - ADDRESS_HEADER=X-Forwarded-For
-      - XFF_DEPTH=1
-      - PROTOCOL_HEADER=x-forwarded-proto
-      - HOST_HEADER=x-forwarded-host
     secrets:
       - anthropic_api_key
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
+    volumes:
+      - holmes-gpt-data:/app/data
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 secrets:
   anthropic_api_key:
+    file: ./secrets/anthropic_api_key
+
+volumes:
+  # The SQLite data the swarm service used; created outside compose, so never
+  # removed by `docker compose down`.
+  holmes-gpt-data:
     external: true
