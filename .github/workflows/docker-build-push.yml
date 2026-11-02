@@ -80,7 +80,19 @@ jobs:
     needs: build-and-push
     runs-on: [self-hosted, kamatera1, holmes-gpt]
     steps:
-      - name: Pull latest image and redeploy service
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Compose file from this checkout; .env and secrets/ live in the server
+      # directory (see holmes-gpt/docker-compose.yml).
+      - name: Pull latest image and recreate the container
         run: |
-          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-          docker service update --force --image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest holmes-gpt
+          compose="docker compose -f holmes-gpt/docker-compose.yml --project-directory /srv/projects/holmes-gpt"
+          $compose pull
+          $compose up -d
+          for _ in $(seq 1 30); do
+            curl -fsS -o /dev/null http://127.0.0.1:5544/ && break
+            sleep 2
+          done
+          curl -fsS -o /dev/null http://127.0.0.1:5544/
+          $compose ps

@@ -1,231 +1,55 @@
-# HolmesGPT Deployment Guide
+# Deploying HolmesGPT
 
-## Overview
+Production runs on **kamatera1** as a plain Docker Compose service (no swarm), from the image
+`ghcr.io/netdevs-net/holmes-gpt:latest`. ernestholmes.us goes through Cloudflare straight to
+origin port **5544**.
 
-This guide explains how to deploy HolmesGPT to your remote server with proper Docker secrets configuration.
+## Deploy
 
-## Prerequisites
+Run the **Build and Push Docker Image** workflow (Actions → Run workflow). It:
 
-- Docker installed on remote server
-- Access to GitHub Container Registry (ghcr.io/netdevs-net/holmes-gpt)
-- Anthropic API key
+1. runs the type check and the tests;
+2. builds and pushes `:latest`, `:main` and `:main-<sha>` to GHCR;
+3. on the self-hosted runner on kamatera1, runs `docker compose pull` and `up -d` with
+   [`docker-compose.yml`](docker-compose.yml), then waits for the app to answer on `127.0.0.1:5544`.
 
-## Docker Secrets Configuration
+## Server files
 
-### What are Docker Secrets?
+The workflow uses the compose file from its checkout. The project directory is
+`/srv/projects/holmes-gpt` (`root:actions-runner`, mode `0750`), which holds the two files
+that never go in git:
 
-Docker secrets are encrypted files that contain sensitive data (like API keys) and are mounted into containers at runtime. They are more secure than environment variables because:
+| File | Contents | Owner / mode |
+|---|---|---|
+| `.env` | `ADMIN_PASSWORD=...` | `root:actions-runner` `0640` |
+| `secrets/anthropic_api_key` | the Anthropic API key, one line | uid `1001` (`svelte` in the image) `0400` |
 
-- They are encrypted at rest
-- They are only accessible to services that explicitly request them
-- They are not visible in container inspection or logs
+Compose mounts the key at `/run/secrets/anthropic_api_key`. The app reads that path first and
+falls back to `ANTHROPIC_API_KEY` (`src/lib/server/claude.ts`).
 
-### Current Setup
-
-The application is configured to read the Anthropic API key from:
-
-1. **Docker Secret** (primary): `/run/secrets/anthropic_api_key`
-2. **Environment Variable** (fallback): `ANTHROPIC_API_KEY`
-
-## Deployment Steps
-
-### Step 1: Set Up Docker Secrets (Local/Remote)
-
-#### Option A: Using the Setup Script
+To rotate the key, put the new value in `secrets/anthropic_api_key` (same owner and mode) and
+recreate the container:
 
 ```bash
-# Make sure you're in the holmes-gpt directory
-cd holmes-gpt
-
-# Run the setup script
-./setup-docker-secrets.sh
+cd /srv/projects/holmes-gpt && docker compose -f <checkout>/holmes-gpt/docker-compose.yml --project-directory . up -d --force-recreate
 ```
 
-#### Option B: Manual Setup
+## Data
+
+SQLite lives in the external volume `holmes-gpt-data`, mounted at `/app/data`. `docker compose down`
+does not remove it. The host's b-kopia job backs it up to B2 every night.
+
+## Manual commands on kamatera1
 
 ```bash
-# Initialize Docker Swarm (if not already done)
-docker swarm init
-
-# Create the secret (replace YOUR_API_KEY with your actual key)
-echo "YOUR_API_KEY" | docker secret create anthropic_api_key -
-
-# Verify the secret was created
-docker secret ls
+C="docker compose -f /path/to/checkout/holmes-gpt/docker-compose.yml --project-directory /srv/projects/holmes-gpt"
+$C ps
+$C logs --tail 100
+$C restart
 ```
 
-### Step 2: Deploy the Service
+The app logs only failed requests (4xx/5xx), so a quiet log does not mean no traffic.
 
-#### For New Deployment:
+## Local
 
-```bash
-docker service create \
-  --name holmes-gpt \
-  --secret anthropic_api_key \
-  --publish 3000:3000 \
-  --replicas 1 \
-  ghcr.io/netdevs-net/holmes-gpt:latest
-```
-
-#### For Existing Service Update:
-
-```bash
-# Pull the latest image
-docker pull ghcr.io/netdevs-net/holmes-gpt:latest
-
-# Update the service
-docker service update --image ghcr.io/netdevs-net/holmes-gpt:latest holmes-gpt
-```
-
-### Step 3: Verify Deployment
-
-```bash
-# Check service status
-docker service ls
-
-# Check service logs
-docker service logs holmes-gpt
-
-# Check if the secret is properly mounted
-docker exec -it $(docker ps -q --filter "name=holmes-gpt") ls -la /run/secrets/
-```
-
-## Troubleshooting
-
-### Common Issues
-
-#### 1. 500 Error on /api/chat
-
-**Symptoms:** Browser shows "Failed to load resource: the server responded with a status of 500 () api/chat"
-
-**Causes:**
-
-- Missing or invalid API key
-- Docker secret not properly mounted
-- Service not updated with latest image
-
-**Solutions:**
-
-```bash
-# Check if secret exists
-docker secret ls
-
-# Check service logs for API errors
-docker service logs holmes-gpt
-
-# Verify the secret is mounted
-docker exec -it $(docker ps -q --filter "name=holmes-gpt") cat /run/secrets/anthropic_api_key
-
-# Update service with latest image
-docker service update --image ghcr.io/netdevs-net/holmes-gpt:latest holmes-gpt
-```
-
-#### 2. Service Won't Start
-
-**Symptoms:** Service shows "Rejected" or "Failed" status
-
-**Solutions:**
-
-```bash
-# Check service details
-docker service ps holmes-gpt
-
-# Check for resource constraints
-docker system df
-
-# Restart the service
-docker service update --force holmes-gpt
-```
-
-#### 3. API Key Not Found
-
-**Symptoms:** Logs show "Docker secret not found, using environment variable"
-
-**Solutions:**
-
-```bash
-# Recreate the secret
-docker secret rm anthropic_api_key
-echo "YOUR_API_KEY" | docker secret create anthropic_api_key -
-
-# Update the service to use the new secret
-docker service update --secret-add anthropic_api_key holmes-gpt
-```
-
-## Security Best Practices
-
-### 1. API Key Management
-
-- Never commit API keys to version control
-- Use Docker secrets instead of environment variables
-- Rotate API keys regularly
-- Use least-privilege access for API keys
-
-### 2. Container Security
-
-- Run containers as non-root user (already configured)
-- Keep base images updated
-- Scan images for vulnerabilities
-- Use multi-stage builds (already implemented)
-
-### 3. Network Security
-
-- Use reverse proxy (nginx/traefik) for SSL termination
-- Restrict container network access
-- Use internal networks for service communication
-
-## Monitoring and Logs
-
-### View Service Logs
-
-```bash
-# Real-time logs
-docker service logs -f holmes-gpt
-
-# Last 100 lines
-docker service logs --tail 100 holmes-gpt
-
-# Logs with timestamps
-docker service logs -t holmes-gpt
-```
-
-### Monitor Service Health
-
-```bash
-# Service status
-docker service ls
-
-# Service details
-docker service inspect holmes-gpt
-
-# Resource usage
-docker stats
-```
-
-## Environment Variables
-
-The application supports these environment variables as fallbacks:
-
-| Variable            | Description                  | Default      |
-| ------------------- | ---------------------------- | ------------ |
-| `ANTHROPIC_API_KEY` | Anthropic API key (fallback) | None         |
-| `NODE_ENV`          | Node environment             | `production` |
-| `PORT`              | Application port             | `3000`       |
-
-## API Endpoints
-
-| Endpoint         | Method | Description           |
-| ---------------- | ------ | --------------------- |
-| `/api/chat`      | POST   | Main chat API with AI |
-| `/api/questions` | GET    | Get question history  |
-| `/api/quotes`    | GET    | Get Holmes quotes     |
-| `/api/stats`     | GET    | Get usage statistics  |
-
-## Support
-
-If you encounter issues:
-
-1. Check the service logs: `docker service logs holmes-gpt`
-2. Verify Docker secrets: `docker secret ls`
-3. Test the API locally first
-4. Check the browser console for client-side errors
+`docker-compose.local.yml` builds from source and serves on `localhost:3015`, using `.env` for the key.
